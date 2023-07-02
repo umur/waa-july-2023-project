@@ -10,5 +10,8 @@ import lombok.Setter;
 @Data
 @DiscriminatorValue("faculty")
 public class Faculty extends Person {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="department_id")
+    private Department department;
 
 }
