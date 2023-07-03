@@ -1,4 +1,7 @@
 package com.blue.alumniMangePortal.repository;
 
-public class StudentRepo {
+import com.blue.alumniMangePortal.entity.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepo extends JpaRepository<Student, Long> {
 }
