@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConf
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Lab3 REST API", version = "1.0",
+@OpenAPIDefinition(info = @Info(title = "Alumni REST API", version = "1.0",
 		description = "Alumni API description...",
 		contact = @Contact(name = "Taha Elsayed")),
 		security = {@SecurityRequirement(name = "bearerToken")}
