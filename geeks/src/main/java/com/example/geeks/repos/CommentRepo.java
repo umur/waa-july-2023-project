@@ -11,7 +11,7 @@ public interface CommentRepo extends ListCrudRepository<Comment, List<Comment>> 
     public List<Comment> getCommentsByCommenter_Id(Long id);
 
 
-    //TODO Check that
+
     public List<Comment> getCommentsByStudentId(Long id);
 
 

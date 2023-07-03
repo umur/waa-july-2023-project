@@ -14,7 +14,7 @@ public class LogService {
 
     private final LogRepo loRepo;
 
-    //TODO ADD add function
+
     public Log addLog(Log l){
         return loRepo.save(l);
     }
