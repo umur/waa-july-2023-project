@@ -1,6 +1,8 @@
 package com.miu.waa.aluminimanagement.service;
 
+import com.miu.waa.aluminimanagement.model.Department;
 import com.miu.waa.aluminimanagement.model.Student;
+import com.miu.waa.aluminimanagement.repository.DepartmentRepository;
 import com.miu.waa.aluminimanagement.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService{
 
     private final StudentRepository repository;
+
+    private final DepartmentRepository departmentRepository;
     @Override
     public List<Student> findAll() {
         return repository.findAll();
@@ -25,6 +29,8 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student save(Student student) {
+        Department department = departmentRepository.findById(student.getDepartment().getId()).get();
+        student.setDepartment(department);
         Student created = repository.save(student);
         return created;
     }
