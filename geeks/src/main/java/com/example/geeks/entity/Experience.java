@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
+
 @Setter
 @Getter
 @Entity
-public class JobExperience {
+public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,10 +19,8 @@ public class JobExperience {
     private LocalDate dateStarted;
     private LocalDate dateEnded;
     private String description;
-
-//    @ManyToOne
-//    private User user;
-
-    // Add constructors, getters, and setters
+    // navigation properties
+    @ManyToOne
+    @JoinColumn
+    private User user;
 }
-
