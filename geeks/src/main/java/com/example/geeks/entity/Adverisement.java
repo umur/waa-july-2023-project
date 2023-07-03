@@ -14,13 +14,6 @@ public class JobAd {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToMany(mappedBy = "jobsApplied")
-    private List<User> applicants;
-
-    @ManyToOne
-    private User creator;
-
     private String companyName;
     private String title;
     private String state;
@@ -31,6 +24,12 @@ public class JobAd {
     private double salary;
     private String description;
     private boolean isDeleted;
+
+//    @ManyToMany(mappedBy = "jobsApplied")
+//    private List<User> applicants;
+//
+//    @ManyToOne
+//    private User creator;
 
     // Add constructors, getters, and setters
 }

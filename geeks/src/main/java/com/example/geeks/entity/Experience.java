@@ -20,8 +20,8 @@ public class JobExperience {
     private LocalDate dateEnded;
     private String description;
 
-    @ManyToOne
-    private User user;
+//    @ManyToOne
+//    private User user;
 
     // Add constructors, getters, and setters
 }
