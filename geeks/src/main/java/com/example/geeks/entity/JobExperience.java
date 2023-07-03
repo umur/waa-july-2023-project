@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.time.Period;
+
 @Setter
 @Getter
 @Entity
@@ -24,5 +25,9 @@ public class JobExperience {
     private User user;
 
     // Add constructors, getters, and setters
+
+    public Period getPeriod(){
+        return Period.between(this.dateStarted, this.dateEnded);
+    }
 }
 

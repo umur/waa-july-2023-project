@@ -13,7 +13,7 @@ public class Log {
     private LocalDateTime dateAndTime;
 
     @ManyToOne
-    private User userId;
+    private User user;
 
     private String description;
 
