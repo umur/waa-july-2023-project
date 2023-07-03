@@ -1,9 +1,6 @@
 package com.alumni.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -23,5 +20,7 @@ public class User {
     private String resetToken;
     private int  failedLoginAttempts;
     private LocalDateTime activeAfter;
+
+    @OneToMany
     private List<Role> roles;
 }

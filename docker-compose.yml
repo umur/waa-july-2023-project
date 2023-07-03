@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres:15.3-alpine3.18
+    ports:
+      - "${POSTGRES_PORT:-15432}:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+    env_file:
+      - .env
+    container_name: alumni_db

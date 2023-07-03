@@ -19,6 +19,7 @@ public class Student {
     private String major;
     private String name;
     private String cvUrl;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<jobExperience> jobExperiences;
 
     @OneToOne
