@@ -20,7 +20,7 @@ public class Student {
     private String name;
     private String cvUrl;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<jobExperience> jobExperiences;
+    private List<JobExperience> jobExperiences;
 
     @OneToOne
     private User user;
