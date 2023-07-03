@@ -2,11 +2,15 @@ version: '3.9'
 
 services:
   database:
-    image: postgres:15.3-alpine3.18
+    image: postgres:15.1-alpine
     ports:
-      - "${POSTGRES_PORT:-15432}:5432"
+      - 15432:5432
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
-    env_file:
-      - .env
+      POSTGRES_DB: "alumni_db"
     container_name: alumni_db
+
+volumes:
+  postgres_vol: {}
