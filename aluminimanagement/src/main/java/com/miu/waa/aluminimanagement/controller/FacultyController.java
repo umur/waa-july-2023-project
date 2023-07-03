@@ -1,6 +1,7 @@
 package com.miu.waa.aluminimanagement.controller;
 
 import com.miu.waa.aluminimanagement.model.Faculty;
+import com.miu.waa.aluminimanagement.service.FacultyService;
 import com.miu.waa.aluminimanagement.service.FacultyServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FacultyController {
 
-    private final FacultyServiceImpl service;
+    private final FacultyService service;
 
     @GetMapping()
     public List<Faculty> findAll() {

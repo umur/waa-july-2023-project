@@ -13,7 +13,7 @@ import java.util.List;
 public class Student extends  Person{
 
     @OneToOne
-    @JoinColumn(name="Department_ID")
+    @JoinColumn(name="department_id")
     private Department department;
     private Double gpa;
 
