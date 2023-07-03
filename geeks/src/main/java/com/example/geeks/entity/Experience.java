@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 @Setter
 @Getter
 @Entity
-public class JobExperience {
+public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,14 +19,8 @@ public class JobExperience {
     private LocalDate dateStarted;
     private LocalDate dateEnded;
     private String description;
-
+    // navigation properties
     @ManyToOne
+    @JoinColumn
     private User user;
-
-    // Add constructors, getters, and setters
-
-    public Period getPeriod(){
-        return Period.between(this.dateStarted, this.dateEnded);
-    }
 }
-

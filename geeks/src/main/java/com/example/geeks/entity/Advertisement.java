@@ -10,17 +10,10 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-public class JobAd {
+public class Advertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToMany(mappedBy = "jobsApplied")
-    private List<User> applicants;
-
-    @ManyToOne
-    private User creator;
-
     private String companyName;
     private String title;
     private String state;
@@ -32,6 +25,11 @@ public class JobAd {
     private String description;
     private boolean isDeleted;
 
-    // Add constructors, getters, and setters
-}
+    // navigation properties
+    @ManyToOne
+    @JoinColumn
+    private User creator;
 
+    @ManyToMany(mappedBy = "applicatedAdvertisments")
+    private List<User> applicants;
+}

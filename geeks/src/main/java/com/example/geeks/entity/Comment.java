@@ -13,16 +13,16 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    private User commenter;
-
-    @ManyToOne
-    private User student;
-
     private LocalDateTime dateAndTime;
     private String comment;
     private boolean isDeleted;
 
-    // Add constructors, getters, and setters
+    // navigation properties
+    @ManyToOne
+    @JoinColumn
+    private User commentGiver;
+
+    @ManyToOne
+    @JoinColumn
+    private User commentReceiver;
 }

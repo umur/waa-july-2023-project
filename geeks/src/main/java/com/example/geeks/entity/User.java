@@ -3,15 +3,14 @@ package com.example.geeks.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import java.time.LocalDate;
 import java.util.List;
+
 @Setter
 @Getter
 @Entity
-public class User implements UserDetails {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,48 +27,22 @@ public class User implements UserDetails {
     private String cv;
     private boolean isDeleted;
 
-    @OneToMany(mappedBy = "creator")
-    private List<JobAd> jobsCreated;
-
-    @ManyToMany(mappedBy = "applicants")
-    private List<JobAd> jobsApplied;
+    // navigation properties
+    @OneToMany(mappedBy = "user")
+    private List<Log> logs;
 
     @OneToMany(mappedBy = "user")
-    private List<JobExperience> jobExperiences;
+    private List<Experience> experiences;
 
-    @OneToMany(mappedBy = "commenter")
-    private List<Comment> commentedFrom;
+    @OneToMany(mappedBy = "commentGiver")
+    private List<Comment> givenComments;
 
-    @OneToMany(mappedBy = "student")
-    private List<Comment> commentedOn;
+    @OneToMany(mappedBy = "commentReceiver")
+    private List<Comment> receivedComments;
 
+    @OneToMany(mappedBy = "creator")
+    private List<Advertisement> createdAdvertisments;
 
-    /////////////////////////////////////////////////
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
-    // Add constructors, getters, and setters
+    @ManyToMany
+    private List<Advertisement> applicatedAdvertisments;
 }
-
