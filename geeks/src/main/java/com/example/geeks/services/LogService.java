@@ -20,7 +20,7 @@ public class LogService {
     }
 
     public List<Log> getLogsByDateAndTime(LocalDateTime dt){
-        return loRepo.getLogsByDateAndTimeIs(dt);
+        return loRepo.getLogsByTimeIs(dt);
     }
 
     public List<Log> getLogsByUser(User u){
@@ -28,6 +28,6 @@ public class LogService {
     }
 
     public List<Log> getLogsByUserAndDateAndTime(User u, LocalDateTime dt){
-        return loRepo.getLogsByUserIsAndDateAndTimeIs(u, dt);
+        return loRepo.getLogsByUserIsAndTimeIs(u, dt);
     }
 }

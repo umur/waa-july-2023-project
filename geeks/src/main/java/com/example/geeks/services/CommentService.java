@@ -1,7 +1,7 @@
 package com.example.geeks.services;
 
 import com.example.geeks.entity.Comment;
-import com.example.geeks.entity.JobAd;
+import com.example.geeks.entity.Advertisement;
 import com.example.geeks.entity.User;
 import com.example.geeks.repos.CommentRepo;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +26,6 @@ public class CommentService {
     }
 
     public List<Comment> getCommentsByOn(Long commenterId, User student){
-        return coRepo.getCommentsByCommenter_IdAndStudentIs(commenterId, student);
+        return coRepo.getCommentsByCommentGiver_IdCommentReceiverIs(commenterId, student);
     }
 }

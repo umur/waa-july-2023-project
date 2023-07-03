@@ -4,19 +4,19 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 @Setter
 @Getter
 @Entity
-public class Log {
+public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDateTime time;
-    private String description;
+    private Long appId;
 
-    // navigation properties
     @ManyToOne
-    @JoinColumn
-    private User user;
+    private User student;
+    @ManyToOne
+    private Advertisement advertisement;
+
 }

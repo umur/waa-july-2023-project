@@ -30,6 +30,9 @@ public class Advertisement {
     @JoinColumn
     private User creator;
 
-    @ManyToMany(mappedBy = "applicatedAdvertisments")
-    private List<User> applicants;
+//    @OneToMany(mappedBy = "student")
+//    private List<User> applicants;
+
+
+
 }

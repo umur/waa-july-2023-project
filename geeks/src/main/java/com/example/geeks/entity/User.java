@@ -3,14 +3,17 @@ package com.example.geeks.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 @Setter
 @Getter
 @Entity
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,9 +43,32 @@ public class User {
     @OneToMany(mappedBy = "commentReceiver")
     private List<Comment> receivedComments;
 
-    @OneToMany(mappedBy = "creator")
-    private List<Advertisement> createdAdvertisments;
 
-    @ManyToMany
-    private List<Advertisement> applicatedAdvertisments;
+
+    //////////////////////////////////////////////////////
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

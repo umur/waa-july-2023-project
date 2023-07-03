@@ -1,6 +1,3 @@
-INSERT INTO dumy (name) VALUES ('John Doe');
-INSERT INTO dumy (name) VALUES ('ahmed Ali');
-INSERT INTO dumy (name) VALUES ('amr hassan');
 
 
 INSERT INTO user (name, image, username, password, email, state, city, major, role, is_Active, cv, is_Deleted)
@@ -32,7 +29,7 @@ VALUES
 ('VWX Corporation', 'Product Manager', '2017-08-15', '2019-12-31', 'Managed product roadmap and coordinated cross-functional teams', 6);
 
 
-INSERT INTO log (date_And_Time, description, user_id)
+INSERT INTO log (date_Time, description, user_id)
 VALUES
 ('2022-01-01 10:30:00', 'User logged in', 1),
 ('2022-01-02 14:45:00', 'User updated profile information', 1),
@@ -65,12 +62,14 @@ VALUES
 ('2022-01-07 13:10:00', 'Keep up the good work!', false, 3, 5);
 
 
-insert into alumni_db.user_applicated_advertisments
+insert into application (`advertisement_id`, `student_id`)
 values(1,2),
-(1, 2),
-(1, 3),
-(1, 4),
-(2, 4),
-(2, 5),
-(4, 2),
-(4, 5);
+      (1, 2),
+      (1, 3),
+      (1, 4),
+      (2, 4),
+      (2, 5),
+      (4, 2),
+      (4, 5);
+
+

@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface LogRepo extends ListCrudRepository<Log, List<Log>> {
 
-    public List<Log> getLogsByDateAndTimeIs(LocalDateTime dt);
+    public List<Log> getLogsByTimeIs(LocalDateTime dt);
 
     public List<Log> getLogsByUserIs(User u);
 
-    public List<Log> getLogsByUserIsAndDateAndTimeIs(User u, LocalDateTime dt);
+    public List<Log> getLogsByUserIsAndTimeIs(User u, LocalDateTime dt);
 
 
 }
