@@ -2,6 +2,7 @@ package com.alumni.dtos.request;
 
 import com.alumni.entity.JobExperience;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,6 +18,4 @@ public class StudentRequestDto {
     private List<JobExperience> jobExperiences;
     private String email;
     private String password;
-
-
 }
