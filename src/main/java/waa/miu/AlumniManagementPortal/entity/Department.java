@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,8 @@ public class Department {
     private Long id;
     private String name;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "department")
-    private List<Faculty> faculties;
+    private List<Faculty> faculty;
 
 }

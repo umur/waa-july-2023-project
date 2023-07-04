@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class CurrentWorkPlace {
 
     private String companyName, position;
 
-    @OneToOne
+    @JsonManagedReference
+    @OneToOne(mappedBy = "currentWorkPlace")
     private Address address;
 }

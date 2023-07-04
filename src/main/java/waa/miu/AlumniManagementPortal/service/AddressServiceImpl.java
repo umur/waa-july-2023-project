@@ -1,6 +1,7 @@
 package waa.miu.AlumniManagementPortal.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import waa.miu.AlumniManagementPortal.entity.Address;
@@ -9,21 +10,17 @@ import waa.miu.AlumniManagementPortal.repository.AddressRepo;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
 
-    public AddressRepo addressRepo;
-
-    public AddressServiceImpl(AddressRepo addressRepo){
-        this.addressRepo=addressRepo;
-    }
+    private final AddressRepo addressRepo;
 
     public Address createAddress(Address address) {
         return addressRepo.save(address);
     }
 
     public Address getAddressById(Long id) {
-        return addressRepo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Address not found with id: " + id));
+        return addressRepo.findById(id).orElse(null);
     }
 
     public Address updateAddress(Address address) {
@@ -34,9 +31,9 @@ public class AddressServiceImpl implements AddressService {
     }
 
     public void deleteAddress(Long id) {
-        if (!addressRepo.existsById(id)) {
-            throw new EntityNotFoundException("Address not found with id: " + id);
-        }
+//        if (!addressRepo.existsById(id)) {
+//            throw new EntityNotFoundException("Address not found with id: " + id);
+//        }
         addressRepo.deleteById(id);
     }
     public List<Address> getAllAddresses(){

@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,14 +22,18 @@ public class Address {
 
     private String zipcode;
 
+    @JsonBackReference
     @OneToOne
     private Faculty faculty;
 
+    @JsonBackReference
     @OneToOne
     private CurrentWorkPlace currentWorkPlace;
 
+    @JsonBackReference
     @OneToOne
     private Student student;
 
 
 }
+

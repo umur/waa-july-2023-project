@@ -1,5 +1,7 @@
 package waa.miu.AlumniManagementPortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,12 +21,15 @@ public class Faculty {
 
     private boolean isAdmin, isDeleted;
 
+    @JsonBackReference
     @ManyToOne
     private Department department;
 
-    @OneToOne
+    @JsonManagedReference
+    @OneToOne(mappedBy = "faculty")
     private Address address;
 
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(mappedBy = "faculty")
     private List<Comment> comments;
 }

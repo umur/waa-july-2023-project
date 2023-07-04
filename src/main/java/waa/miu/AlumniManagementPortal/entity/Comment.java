@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +15,11 @@ public class Comment {
 
     private String comment;
 
+    @JsonBackReference
     @ManyToOne
     private Faculty faculty;
 
+    @JsonBackReference
     @ManyToOne
     private Student student;
 }

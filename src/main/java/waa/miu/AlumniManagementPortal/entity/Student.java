@@ -22,8 +22,8 @@ public class Student {
     @OneToOne(mappedBy = "student")
     private Address address;
 
-    @JsonManagedReference
-    @ManyToMany(mappedBy = "student")
+    @JsonBackReference
+    @ManyToOne
     private Major major;
 
     @OneToMany(mappedBy = "student")
@@ -33,6 +33,10 @@ public class Student {
     @JsonBackReference
     @ManyToOne
     private CurrentWorkPlace currentWorkPlace;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "student")
+    private List<Comment> comments;
 
     private boolean isCurrentlyEmployed, isDeleted;
 
