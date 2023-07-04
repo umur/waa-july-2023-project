@@ -11,15 +11,15 @@ public class Experience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long experience_id;
+    private long id;
 
-    private String company_name;
+    private String companyName;
     private String city;
     private String State;
-    private String company_description;
-    private String job_title;
-    private LocalDate start_date;
-    private LocalDate exit_date;
+    private String companyDescription;
+    private String jobTitle;
+    private LocalDate startDate;
+    private LocalDate exitDate;
 
 }
 

@@ -34,8 +34,8 @@ public class JobAdvController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/tags")
-    public ResponseEntity<Iterable<JobAdv>> getJobAdvByTags(@RequestBody List<Tag> tags) {
+    @GetMapping("/tags/{tags}")
+    public ResponseEntity<Iterable<JobAdv>> getJobAdvByTags(@PathVariable List<String> tags) {
         Iterable<JobAdv> jobAdv = jobAdvService.getJobAdvByTags(tags);
         if (jobAdv != null) {
             return new ResponseEntity<>(jobAdv, HttpStatus.OK);

@@ -1,7 +1,10 @@
 package com.example.alumni.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import com.example.alumni.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +22,9 @@ public class JobAdvService {
     @Autowired
     private JobAdvRepository jobAdvRepository;
 
+    @Autowired
+    private TagRepository tagRepository;
+
     public Iterable<JobAdv> getAllJobAdvs() {
         return jobAdvRepository.findAll();
     }
@@ -27,8 +33,17 @@ public class JobAdvService {
         return jobAdvRepository.findById(id).orElse(null);
     }
 
-    public Iterable<JobAdv> getJobAdvByTags(List<Tag> tags) {
-        return jobAdvRepository.findByTagsIn(tags);
+    public Iterable<JobAdv> getJobAdvByTags(List<String> tags) {
+        List<Tag> filterTags = new ArrayList<>();
+        for (String tagName : tags) {
+            Optional<Tag> tag=  tagRepository.findByName(tagName);
+            if (tag.isPresent())
+            {
+                filterTags.add(tag.get());
+            }
+        }
+        //tagRepository.findByName()
+        return jobAdvRepository.findByTagsIn(filterTags);
     }
 
     public JobAdv createJobAdv(JobAdv jobAdv) {

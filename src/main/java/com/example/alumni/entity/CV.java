@@ -11,17 +11,16 @@ public class CV {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CV_id;
+    private Long id;
 
-    private String career_goal;
-    private String job_title;
+    private String careerGoal;
+    private String jobTitle;
 
     @OneToMany
     @JoinColumn(name = "CV_id")
     private List<Experience> experiences;
 
     @ManyToMany
-    @JoinTable(name = "CV_Tag", joinColumns = @JoinColumn(name = "CV_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @JoinTable
     private List<Tag> tags;
 }

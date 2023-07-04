@@ -29,7 +29,7 @@ public class ExperienceService {
     }
 
     public Pair<Boolean, Experience> updateExperience(Experience experience) {
-        boolean exists = experienceRepository.existsById(experience.getExperience_id());
+        boolean exists = experienceRepository.existsById(experience.getId());
         experienceRepository.save(experience);
         return Pair.of(exists, experience);
     }

@@ -10,8 +10,8 @@ import java.util.List;
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long tag_id;
-    private String tag_name;
+    private long id;
+    private String name;
 
 
     @ManyToMany(mappedBy = "tags")

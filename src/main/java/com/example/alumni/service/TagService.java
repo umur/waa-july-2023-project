@@ -29,7 +29,7 @@ public class TagService {
     }
 
     public Pair<Boolean, Tag> updateTag(Tag tag) {
-        boolean exists = tagRepository.existsById(tag.getTag_id());
+        boolean exists = tagRepository.existsById(tag.getId());
         tagRepository.save(tag);
         return Pair.of(exists, tag);
     }

@@ -29,7 +29,7 @@ public class CVService {
     }
 
     public Pair<Boolean, CV> updateCV(CV cv) {
-        boolean exists = cvRepository.existsById(cv.getCV_id());
+        boolean exists = cvRepository.existsById(cv.getId());
         cvRepository.save(cv);
         return Pair.of(exists, cv);
     }
