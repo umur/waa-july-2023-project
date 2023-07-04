@@ -46,7 +46,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRole(@PathVariable long id) {
+    public ResponseEntity<Void> deleteRole(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = roleService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JobAdvertisementRepository extends ListCrudRepository<JobAdvertisement, Long> {
-    Iterable<JobAdvertisement> findByTagsIn(List<Tag> tags);
+    List<JobAdvertisement> findByTagsIn(List<Tag> tags);
 }

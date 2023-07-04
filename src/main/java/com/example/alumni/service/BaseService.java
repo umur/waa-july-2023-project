@@ -13,5 +13,5 @@ public interface BaseService<T, ID> {
 
     Pair<Boolean, T> update(T t) throws IllegalAccessException;
 
-    boolean delete(ID id);
+    boolean delete(ID id) throws IllegalAccessException;
 }

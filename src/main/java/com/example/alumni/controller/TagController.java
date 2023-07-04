@@ -46,7 +46,7 @@ public class TagController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = tagService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

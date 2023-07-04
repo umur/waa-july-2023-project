@@ -47,7 +47,7 @@ public class ExperienceController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteExperience(@PathVariable long id) {
+    public ResponseEntity<Void> deleteExperience(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = experienceService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

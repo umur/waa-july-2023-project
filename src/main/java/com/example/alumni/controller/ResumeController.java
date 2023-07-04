@@ -46,7 +46,7 @@ public class ResumeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = resumeService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

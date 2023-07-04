@@ -15,9 +15,9 @@ public class ListMapper<T,E> {
     ModelMapper modelMapper;
 
 
-    public List<?> mapList(List<T> list, E convertTo){
+    public List<E> mapList(List<T> list, E convertTo){
         return
-                list.stream()
+                (List<E>) list.stream()
                 .map(e-> modelMapper.map(e, convertTo.getClass()))
                 .collect(Collectors.toList());
     }

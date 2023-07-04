@@ -10,6 +10,8 @@ import com.example.alumni.repository.ExperienceRepository;
 
 import org.springframework.data.util.Pair;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class ExperienceServiceImpl implements ExperienceService {
@@ -24,19 +26,25 @@ public class ExperienceServiceImpl implements ExperienceService {
 
     @Override
     public Experience getById(Long id) {
+
         return experienceRepository.findById(id).orElse(null);
     }
 
     @Override
     public Experience add(Experience experience) {
+
         return experienceRepository.save(experience);
     }
 
     @Override
     public Pair<Boolean, Experience> update(Experience experience) {
-        boolean exists = experienceRepository.existsById(experience.getId());
-        experienceRepository.save(experience);
-        return Pair.of(exists, experience);
+
+        Optional<Experience> existingExperience = experienceRepository.findById(experience.getId());
+        if (existingExperience.isPresent()) {
+
+            experience = experienceRepository.save(experience);
+        }
+        return Pair.of(existingExperience.isPresent(), experience);
     }
 
     @Override
