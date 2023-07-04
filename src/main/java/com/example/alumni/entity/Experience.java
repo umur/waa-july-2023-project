@@ -23,6 +23,7 @@ public class Experience {
     private String companyName;
     private String city;
     private String State;
+    @Lob
     private String companyDescription;
     private String jobTitle;
     private LocalDate startDate;

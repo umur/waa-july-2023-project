@@ -18,28 +18,28 @@ public class TagServiceImpl implements TagService {
     private TagRepository tagRepository;
 
     @Override
-    public Iterable<Tag> getAllTags() {
+    public Iterable<Tag> getAll() {
         return tagRepository.findAll();
     }
 
     @Override
-    public Tag getTagById(long id) {
+    public Tag getById(Long id) {
         return tagRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Tag createTag(Tag tag) {
+    public Tag add(Tag tag) {
         return tagRepository.save(tag);
     }
 
     @Override
-    public Pair<Boolean, Tag> updateTag(Tag tag) {
+    public Pair<Boolean, Tag> update(Tag tag) {
         boolean exists = tagRepository.existsById(tag.getId());
         tagRepository.save(tag);
         return Pair.of(exists, tag);
     }
     @Override
-    public boolean deleteTag(long id) {
+    public boolean delete(Long id) {
         Tag existingTag = tagRepository.findById(id).orElse(null);
         if (existingTag != null) {
             tagRepository.delete(existingTag);

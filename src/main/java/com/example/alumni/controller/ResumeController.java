@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import com.example.alumni.entity.Resume;
 
 @RestController
-@RequestMapping("/cvs")
-public class CVController {
+@RequestMapping("/resumes")
+public class ResumeController {
 
     @Autowired
     private ResumeService resumeService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Resume>> getAllCVs() {
-        Iterable<Resume> cvs = resumeService.getAllCVs();
+    public ResponseEntity<Iterable<Resume>> getAll() {
+        Iterable<Resume> cvs = resumeService.getAll();
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Resume> getCVById(@PathVariable long id) {
-        Resume resume = resumeService.getCVById(id);
+    public ResponseEntity<Resume> getById(@PathVariable long id) {
+        Resume resume = resumeService.getById(id);
         if (resume != null) {
             return new ResponseEntity<>(resume, HttpStatus.OK);
         }
@@ -32,22 +32,22 @@ public class CVController {
     }
 
     @PostMapping
-    public ResponseEntity<Resume> createCV(@RequestBody Resume resume) {
-        Resume createdResume = resumeService.createCV(resume);
+    public ResponseEntity<Resume> add(@RequestBody Resume resume) throws IllegalAccessException {
+        Resume createdResume = resumeService.add(resume);
         return new ResponseEntity<>(createdResume, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Resume> updateCV(@PathVariable long id, @RequestBody Resume resume) {
-        Pair<Boolean, Resume> result = resumeService.updateCV(resume);
+    public ResponseEntity<Resume> update(@PathVariable long id, @RequestBody Resume resume) throws IllegalAccessException {
+        Pair<Boolean, Resume> result = resumeService.update(resume);
         return (!result.getFirst())
         ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
         : new ResponseEntity<Resume>(result.getSecond(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCV(@PathVariable long id) {
-        boolean deleted = resumeService.deleteCV(id);
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        boolean deleted = resumeService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

@@ -18,13 +18,13 @@ public class RoleController {
 
     @GetMapping
     public ResponseEntity<Iterable<Role>> getAllRoles() {
-        Iterable<Role> roles = roleService.getAllRoles();
+        Iterable<Role> roles = roleService.getAll();
         return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Role> getRoleById(@PathVariable long id) {
-        Role role = roleService.getRoleById(id);
+        Role role = roleService.getById(id);
         if (role != null) {
             return new ResponseEntity<>(role, HttpStatus.OK);
         }
@@ -32,14 +32,14 @@ public class RoleController {
     }
 
     @PostMapping
-    public ResponseEntity<Role> createRole(@RequestBody Role role) {
-        Role createdRole = roleService.createRole(role);
+    public ResponseEntity<Role> createRole(@RequestBody Role role) throws IllegalAccessException {
+        Role createdRole = roleService.add(role);
         return new ResponseEntity<>(createdRole, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Role> updateRole(@PathVariable long id, @RequestBody Role role) {
-        Pair<Boolean, Role> result = roleService.updateRole(role);
+    public ResponseEntity<Role> updateRole(@PathVariable long id, @RequestBody Role role) throws IllegalAccessException {
+        Pair<Boolean, Role> result = roleService.update(role);
         return (!result.getFirst())
         ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
         : new ResponseEntity<Role>(result.getSecond(), HttpStatus.OK);
@@ -47,7 +47,7 @@ public class RoleController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRole(@PathVariable long id) {
-        boolean deleted = roleService.deleteRole(id);
+        boolean deleted = roleService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

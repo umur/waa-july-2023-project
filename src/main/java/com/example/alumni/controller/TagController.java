@@ -18,13 +18,13 @@ public class TagController {
 
     @GetMapping
     public ResponseEntity<Iterable<Tag>> getAllTags() {
-        Iterable<Tag> tags = tagService.getAllTags();
+        Iterable<Tag> tags = tagService.getAll();
         return new ResponseEntity<>(tags, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Tag> getTagById(@PathVariable long id) {
-        Tag tag = tagService.getTagById(id);
+        Tag tag = tagService.getById(id);
         if (tag != null) {
             return new ResponseEntity<>(tag, HttpStatus.OK);
         }
@@ -32,22 +32,22 @@ public class TagController {
     }
 
     @PostMapping
-    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) {
-        Tag createdTag = tagService.createTag(tag);
+    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) throws IllegalAccessException {
+        Tag createdTag = tagService.add(tag);
         return new ResponseEntity<>(createdTag, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tag> updateTag(@PathVariable long id, @RequestBody Tag tag) {
-        Pair<Boolean, Tag> result = tagService.updateTag(tag);
+    public ResponseEntity<Tag> update(@PathVariable long id, @RequestBody Tag tag) throws IllegalAccessException {
+        Pair<Boolean, Tag> result = tagService.update(tag);
         return (!result.getFirst())
         ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
         : new ResponseEntity<Tag>(result.getSecond(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTag(@PathVariable long id) {
-        boolean deleted = tagService.deleteTag(id);
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        boolean deleted = tagService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

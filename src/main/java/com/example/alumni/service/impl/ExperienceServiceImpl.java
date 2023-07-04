@@ -18,29 +18,29 @@ public class ExperienceServiceImpl implements ExperienceService {
     private ExperienceRepository experienceRepository;
 
     @Override
-    public Iterable<Experience> getAllExperiences() {
+    public Iterable<Experience> getAll() {
         return experienceRepository.findAll();
     }
 
     @Override
-    public Experience getExperienceById(long id) {
+    public Experience getById(Long id) {
         return experienceRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Experience createExperience(Experience experience) {
+    public Experience add(Experience experience) {
         return experienceRepository.save(experience);
     }
 
     @Override
-    public Pair<Boolean, Experience> updateExperience(Experience experience) {
+    public Pair<Boolean, Experience> update(Experience experience) {
         boolean exists = experienceRepository.existsById(experience.getId());
         experienceRepository.save(experience);
         return Pair.of(exists, experience);
     }
 
     @Override
-    public boolean deleteExperience(long id) {
+    public boolean delete(Long id) {
         Experience existingExperience = experienceRepository.findById(id).orElse(null);
         if (existingExperience != null) {
             experienceRepository.delete(existingExperience);

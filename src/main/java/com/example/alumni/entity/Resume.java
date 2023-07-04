@@ -20,6 +20,7 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Lob
     private String careerGoal;
     private String jobTitle;
 

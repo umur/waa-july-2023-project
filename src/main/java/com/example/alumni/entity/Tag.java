@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name="tag", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 @SQLDelete(sql = "UPDATE Tag SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedTagFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedTagFilter", condition = "deleted = :isDeleted")

@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.alumni.repository.TagRepository;
-import com.example.alumni.service.JobJobAdvertisementService;
-import jakarta.persistence.EntityManager;
-import org.hibernate.Session;
-import org.hibernate.Filter;
+import com.example.alumni.service.JobAdvertisementService;
+import com.example.alumni.util.CurrentUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +19,7 @@ import org.springframework.data.util.Pair;
 
 @Service
 @Transactional
-public class JobJobAdvertisementServiceImpl implements JobJobAdvertisementService {
+public class JobAdvertisementServiceImpl implements JobAdvertisementService {
 
     @Autowired
     private JobAdvertisementRepository jobAdvertisementRepository;
@@ -29,12 +27,15 @@ public class JobJobAdvertisementServiceImpl implements JobJobAdvertisementServic
     @Autowired
     private TagRepository tagRepository;
 
-//    @Autowired
+    @Autowired
+    private CurrentUserUtil currentUserUtil;
+
+//    @PersistenceContext
 //    private EntityManager entityManager;
 
 
     @Override
-    public Iterable<JobAdvertisement> getAllJobAdvs() {
+    public Iterable<JobAdvertisement> getAll() {
 
         return jobAdvertisementRepository.findAll();
     }
@@ -51,12 +52,12 @@ public class JobJobAdvertisementServiceImpl implements JobJobAdvertisementServic
 //    }
 
     @Override
-    public JobAdvertisement getJobAdvById(long id) {
+    public JobAdvertisement getById(Long id) {
         return jobAdvertisementRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Iterable<JobAdvertisement> getJobAdvByTags(List<String> tags) {
+    public Iterable<JobAdvertisement> getByTags(List<String> tags) {
         List<Tag> filterTags = new ArrayList<>();
         for (String tagName : tags) {
             Optional<Tag> tag = tagRepository.findByName(tagName);
@@ -68,19 +69,26 @@ public class JobJobAdvertisementServiceImpl implements JobJobAdvertisementServic
     }
 
     @Override
-    public JobAdvertisement createJobAdv(JobAdvertisement jobAdvertisement) {
+    public JobAdvertisement add(JobAdvertisement jobAdvertisement) {
         return jobAdvertisementRepository.save(jobAdvertisement);
     }
 
     @Override
-    public Pair<Boolean, JobAdvertisement> updateJobAdv(JobAdvertisement jobAdvertisement) {
+    public Pair<Boolean, JobAdvertisement> update(JobAdvertisement jobAdvertisement) throws IllegalAccessException {
         boolean exists = jobAdvertisementRepository.existsById(jobAdvertisement.getId());
-        jobAdvertisementRepository.save(jobAdvertisement);
+        if (exists) {
+            JobAdvertisement existingJob = jobAdvertisementRepository.findById(jobAdvertisement.getId()).get();
+            if (currentUserUtil.getUserId().get() != existingJob.getUser().getId()) {
+                throw new IllegalAccessException("Only owner can edit");
+            }
+            jobAdvertisementRepository.save(jobAdvertisement);
+        }
+
         return Pair.of(exists, jobAdvertisement);
     }
 
     @Override
-    public boolean deleteJobAdv(long id) {
+    public boolean delete(Long id) {
         JobAdvertisement existingJobAdvertisement = jobAdvertisementRepository.findById(id).orElse(null);
         if (existingJobAdvertisement != null) {
             jobAdvertisementRepository.delete(existingJobAdvertisement);

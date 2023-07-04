@@ -1,3 +1,5 @@
+
+
 INSERT IGNORE users (id, email, first_name, last_name, password)
 VALUES (1, 'student1@miu.edu', 'student', 'one', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2'); -- 123
 INSERT IGNORE users (id, email, first_name, last_name, password)

@@ -17,14 +17,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<Iterable<User>> getAllUsers() {
-        Iterable<User> users = userService.getAllUsers();
+    public ResponseEntity<Iterable<User>> getAll() {
+        Iterable<User> users = userService.getAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id) {
-        User user = userService.getUserById(id);
+    public ResponseEntity<User> getById(@PathVariable Long id) {
+        User user = userService.getById(id);
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
@@ -32,22 +32,22 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
+    public ResponseEntity<User> add(@RequestBody User user) throws IllegalAccessException {
+        User createdUser = userService.add(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User user) {
-        Pair<Boolean, User> result = userService.updateUser(user);
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) throws IllegalAccessException {
+        Pair<Boolean, User> result = userService.update(user);
         return (!result.getFirst())
         ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
         : new ResponseEntity<User>(result.getSecond(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable long id) {
-        boolean deleted = userService.deleteUser(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        boolean deleted = userService.delete(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

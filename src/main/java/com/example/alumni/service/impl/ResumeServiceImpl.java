@@ -18,29 +18,29 @@ public class ResumeServiceImpl implements ResumeService {
     private ResumeRepository resumeRepository;
 
     @Override
-    public Iterable<Resume> getAllCVs() {
+    public Iterable<Resume> getAll() {
         return resumeRepository.findAll();
     }
 
     @Override
-    public Resume getCVById(long id) {
+    public Resume getById(Long id) {
         return resumeRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Resume createCV(Resume resume) {
+    public Resume add(Resume resume) {
         return resumeRepository.save(resume);
     }
 
     @Override
-    public Pair<Boolean, Resume> updateCV(Resume resume) {
+    public Pair<Boolean, Resume> update(Resume resume) {
         boolean exists = resumeRepository.existsById(resume.getId());
         resumeRepository.save(resume);
         return Pair.of(exists, resume);
     }
 
     @Override
-    public boolean deleteCV(long id) {
+    public boolean delete(Long id) {
         Resume existingResume = resumeRepository.findById(id).orElse(null);
         if (existingResume != null) {
             resumeRepository.delete(existingResume);

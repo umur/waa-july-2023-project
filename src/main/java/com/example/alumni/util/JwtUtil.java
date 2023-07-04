@@ -1,6 +1,7 @@
 package com.example.alumni.util;
 
 import io.jsonwebtoken.*;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,10 +15,10 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
+@AllArgsConstructor
 public class JwtUtil {
 
-    @Autowired
-    UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
     private final String secret = "Don\'tLogin@1";
     private final long expiration = 15 * 60 * 1000;
     //     private final long expiration = 5;

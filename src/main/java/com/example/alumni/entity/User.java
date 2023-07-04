@@ -12,7 +12,7 @@ import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Data
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 @SQLDelete(sql = "UPDATE User SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedUserFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedUserFilter", condition = "deleted = :isDeleted")

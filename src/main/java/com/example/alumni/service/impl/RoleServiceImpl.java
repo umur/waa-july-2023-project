@@ -18,28 +18,28 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Override
-    public Iterable<Role> getAllRoles() {
+    public Iterable<Role> getAll() {
         return roleRepository.findAll();
     }
 
     @Override
-    public Role getRoleById(long id) {
+    public Role getById(Long id) {
         return roleRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Role createRole(Role role) {
+    public Role add(Role role) {
         return roleRepository.save(role);
     }
 
     @Override
-    public Pair<Boolean, Role> updateRole(Role role) {
+    public Pair<Boolean, Role> update(Role role) {
         boolean exists = roleRepository.existsById(role.getId());
         roleRepository.save(role);
         return Pair.of(exists, role);
     }
     @Override
-    public boolean deleteRole(long id) {
+    public boolean delete(Long id) {
         Role existingRole = roleRepository.findById(id).orElse(null);
         if (existingRole != null) {
             roleRepository.delete(existingRole);
@@ -49,7 +49,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role findByRole(String role) {
+    public Role getByRole(String role) {
         return roleRepository.findByRole(role);
     }
 }
