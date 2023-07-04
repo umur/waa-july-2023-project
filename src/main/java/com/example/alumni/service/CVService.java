@@ -1,45 +1,16 @@
 package com.example.alumni.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.alumni.entity.CV;
-import com.example.alumni.repository.CVRepository;
-
 import org.springframework.data.util.Pair;
 
-@Service
-@Transactional
-public class CVService {
+public interface CVService {
+    Iterable<CV> getAllCVs();
 
-    @Autowired
-    private CVRepository cvRepository;
+    CV getCVById(long id);
 
-    public Iterable<CV> getAllCVs() {
-        return cvRepository.findAll();
-    }
+    CV createCV(CV cv);
 
-    public CV getCVById(long id) {
-        return cvRepository.findById(id).orElse(null);
-    }
+    Pair<Boolean, CV> updateCV(CV cv);
 
-    public CV createCV(CV cv) {
-        return cvRepository.save(cv);
-    }
-
-    public Pair<Boolean, CV> updateCV(CV cv) {
-        boolean exists = cvRepository.existsById(cv.getId());
-        cvRepository.save(cv);
-        return Pair.of(exists, cv);
-    }
-
-    public boolean deleteCV(long id) {
-        CV existingCV = cvRepository.findById(id).orElse(null);
-        if (existingCV != null) {
-            cvRepository.delete(existingCV);
-            return true;
-        }
-        return false;
-    }
+    boolean deleteCV(long id);
 }

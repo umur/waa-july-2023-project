@@ -1,5 +1,6 @@
 package com.example.alumni.controller;
 
+import com.example.alumni.service.CVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
@@ -7,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.alumni.entity.CV;
-import com.example.alumni.service.CVService;
 
 @RestController
 @RequestMapping("/cvs")

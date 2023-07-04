@@ -2,6 +2,7 @@ package com.example.alumni.controller;
 
 import java.util.List;
 
+import com.example.alumni.service.JobAdvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
@@ -9,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.alumni.entity.JobAdv;
-import com.example.alumni.entity.Tag;
-import com.example.alumni.service.JobAdvService;
 
 @RestController
 @RequestMapping("/jobAdvs")

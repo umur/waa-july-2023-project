@@ -1,45 +1,16 @@
 package com.example.alumni.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.alumni.entity.Tag;
-import com.example.alumni.repository.TagRepository;
-
 import org.springframework.data.util.Pair;
 
-@Service
-@Transactional
-public class TagService {
+public interface TagService {
+    Iterable<Tag> getAllTags();
 
-    @Autowired
-    private TagRepository tagRepository;
+    Tag getTagById(long id);
 
-    public Iterable<Tag> getAllTags() {
-        return tagRepository.findAll();
-    }
+    Tag createTag(Tag tag);
 
-    public Tag getTagById(long id) {
-        return tagRepository.findById(id).orElse(null);
-    }
+    Pair<Boolean, Tag> updateTag(Tag tag);
 
-    public Tag createTag(Tag tag) {
-        return tagRepository.save(tag);
-    }
-
-    public Pair<Boolean, Tag> updateTag(Tag tag) {
-        boolean exists = tagRepository.existsById(tag.getId());
-        tagRepository.save(tag);
-        return Pair.of(exists, tag);
-    }
-
-    public boolean deleteTag(long id) {
-        Tag existingTag = tagRepository.findById(id).orElse(null);
-        if (existingTag != null) {
-            tagRepository.delete(existingTag);
-            return true;
-        }
-        return false;
-    }
+    boolean deleteTag(long id);
 }

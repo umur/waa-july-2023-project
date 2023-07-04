@@ -1,45 +1,16 @@
 package com.example.alumni.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.alumni.entity.Experience;
-import com.example.alumni.repository.ExperienceRepository;
-
 import org.springframework.data.util.Pair;
 
-@Service
-@Transactional
-public class ExperienceService {
+public interface ExperienceService {
+    Iterable<Experience> getAllExperiences();
 
-    @Autowired
-    private ExperienceRepository experienceRepository;
+    Experience getExperienceById(long id);
 
-    public Iterable<Experience> getAllExperiences() {
-        return experienceRepository.findAll();
-    }
+    Experience createExperience(Experience experience);
 
-    public Experience getExperienceById(long id) {
-        return experienceRepository.findById(id).orElse(null);
-    }
+    Pair<Boolean, Experience> updateExperience(Experience experience);
 
-    public Experience createExperience(Experience experience) {
-        return experienceRepository.save(experience);
-    }
-
-    public Pair<Boolean, Experience> updateExperience(Experience experience) {
-        boolean exists = experienceRepository.existsById(experience.getId());
-        experienceRepository.save(experience);
-        return Pair.of(exists, experience);
-    }
-
-    public boolean deleteExperience(long id) {
-        Experience existingExperience = experienceRepository.findById(id).orElse(null);
-        if (existingExperience != null) {
-            experienceRepository.delete(existingExperience);
-            return true;
-        }
-        return false;
-    }
+    boolean deleteExperience(long id);
 }
