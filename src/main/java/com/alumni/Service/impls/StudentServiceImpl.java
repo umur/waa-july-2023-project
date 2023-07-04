@@ -9,8 +9,10 @@ import com.alumni.entity.Role;
 import com.alumni.entity.Student;
 import com.alumni.repository.BaseUserRepository;
 import com.alumni.repository.StudentRepository;
+import com.alumni.utils.RepositoryUtils;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,13 +36,13 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentResponseDTO> getList(int page, int size, String state, String city, String major, String name) {
 
 
-    return
-//            repository.getList(RepositoryUtils.searchFormatter(state),
-//            RepositoryUtils.searchFormatter(city),
-//            RepositoryUtils.searchFormatter(major),
-//            RepositoryUtils.searchFormatter(name),
-//            PageRequest.of(page,size))
-            repository.findAll().stream().map((Student student)->modelMapper.map(student,StudentResponseDTO.class)).collect(Collectors.toList());
+    return repository.getList(RepositoryUtils.searchFormatter(state),
+            RepositoryUtils.searchFormatter(city),
+            RepositoryUtils.searchFormatter(major),
+            RepositoryUtils.searchFormatter(name),
+                    PageRequest.of(page,size)
+                    )
+                    .stream().map((Student student)->modelMapper.map(student,StudentResponseDTO.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -72,7 +74,8 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void put(Long id, StudentRequestDto requestDto) {
         Student source=repository.findById(id).orElseThrow(()->new NotFoundException("Student Not Found ID"));
-        modelMapper.map(source,requestDto);
+        modelMapper.map(requestDto,source);
+        source.setId(id);
         repository.save(source);
     }
 
