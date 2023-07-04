@@ -29,22 +29,6 @@ public class StudentController {
         System.out.println("get CV file");
         return null;
     }
-    @GetMapping("/getByState/{state}")
-    public String getStudentByState(@PathVariable String state) {
-        return null;
-    }
-    @GetMapping("/getByCity/{city}")
-    public String getStudentByCity(@PathVariable String city) {
-        return null;
-    }
-    @GetMapping("/getByMajor/{major}")
-    public String getStudentsByMajor(@PathVariable String major) {
-        return null;
-    }
-    @GetMapping("/getByName/{name}")
-    public String getStudentByName(@PathVariable String name) {
-        return null;
-    }
     @GetMapping("/getById/{id}")
     public String getStudentById(@PathVariable Long id) {
         return null;
@@ -59,6 +43,10 @@ public class StudentController {
     }
     @PutMapping("/resetPassword/{password}")
     public String resetPassword(@PathVariable String password){
+        return null;
+    }
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id){
         return null;
     }
 
