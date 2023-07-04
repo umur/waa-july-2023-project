@@ -13,4 +13,6 @@ public interface RoleService {
     Pair<Boolean, Role> updateRole(Role role);
 
     boolean deleteRole(long id);
+
+    Role findByName(String user);
 }

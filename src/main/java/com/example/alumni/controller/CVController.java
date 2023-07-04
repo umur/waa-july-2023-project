@@ -1,53 +1,53 @@
 package com.example.alumni.controller;
 
-import com.example.alumni.service.CVService;
+import com.example.alumni.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.alumni.entity.CV;
+import com.example.alumni.entity.Resume;
 
 @RestController
 @RequestMapping("/cvs")
 public class CVController {
 
     @Autowired
-    private CVService cvService;
+    private ResumeService resumeService;
 
     @GetMapping
-    public ResponseEntity<Iterable<CV>> getAllCVs() {
-        Iterable<CV> cvs = cvService.getAllCVs();
+    public ResponseEntity<Iterable<Resume>> getAllCVs() {
+        Iterable<Resume> cvs = resumeService.getAllCVs();
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CV> getCVById(@PathVariable long id) {
-        CV cv = cvService.getCVById(id);
-        if (cv != null) {
-            return new ResponseEntity<>(cv, HttpStatus.OK);
+    public ResponseEntity<Resume> getCVById(@PathVariable long id) {
+        Resume resume = resumeService.getCVById(id);
+        if (resume != null) {
+            return new ResponseEntity<>(resume, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<CV> createCV(@RequestBody CV cv) {
-        CV createdCV = cvService.createCV(cv);
-        return new ResponseEntity<>(createdCV, HttpStatus.CREATED);
+    public ResponseEntity<Resume> createCV(@RequestBody Resume resume) {
+        Resume createdResume = resumeService.createCV(resume);
+        return new ResponseEntity<>(createdResume, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CV> updateCV(@PathVariable long id, @RequestBody CV cv) {
-        Pair<Boolean, CV> result = cvService.updateCV(cv);
+    public ResponseEntity<Resume> updateCV(@PathVariable long id, @RequestBody Resume resume) {
+        Pair<Boolean, Resume> result = resumeService.updateCV(resume);
         return (!result.getFirst())
         ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
-        : new ResponseEntity<CV>(result.getSecond(), HttpStatus.OK);
+        : new ResponseEntity<Resume>(result.getSecond(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCV(@PathVariable long id) {
-        boolean deleted = cvService.deleteCV(id);
+        boolean deleted = resumeService.deleteCV(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

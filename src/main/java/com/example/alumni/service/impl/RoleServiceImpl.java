@@ -47,4 +47,9 @@ public class RoleServiceImpl implements RoleService {
         }
         return false;
     }
+
+    @Override
+    public Role findByName(String role) {
+        return roleRepository.findByRole(role);
+    }
 }
