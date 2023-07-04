@@ -1,42 +1,42 @@
 package com.alumni.controllers;
 
 
-import com.alumni.Service.StudentService;
-import com.alumni.dtos.response.StudentResponseDTO;
-import com.alumni.dtos.request.StudentRequestDto;
+import com.alumni.Service.AdminService;
+import com.alumni.Service.FacultyService;
+import com.alumni.dtos.request.AdminRequestDto;
+import com.alumni.dtos.request.FacultyRequestDto;
+import com.alumni.dtos.response.AdminResponseDTO;
+import com.alumni.dtos.response.FacultyResponseDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/admins")
 @AllArgsConstructor
-public class StudentController {
-    private final StudentService service;
+public class AdminController {
+    private final AdminService service;
 
 
     @GetMapping
-    public List<StudentResponseDTO> getList(
+    public List<AdminResponseDTO> getList(
             @RequestParam int page,
             @RequestParam int size,
-            @RequestParam(required = false,defaultValue = "") String state,
-            @RequestParam(required = false,defaultValue = "") String  city,
-            @RequestParam(required = false,defaultValue = "") String  major,
             @RequestParam(required = false,defaultValue = "") String  name
             ){
-        return service.getList(page,size,state, city, major, name);
+        return service.getList(page,size, name);
 
     }
 
 
     @PostMapping
-    public void createOne(@RequestBody StudentRequestDto requestDto){
+    public void createOne(@RequestBody AdminRequestDto requestDto){
          service.create(requestDto);
     }
 
     @GetMapping("/{id}")
-    public StudentResponseDTO findById(@PathVariable(name = "id") Long id){
+    public AdminResponseDTO findById(@PathVariable(name = "id") Long id){
         return service.findById(id);
     }
 
@@ -55,7 +55,7 @@ public class StudentController {
 
     @PutMapping("/{id}")
     public void update(@PathVariable(name = "id") Long id,
-                       @RequestBody StudentRequestDto requestDto){
+                       @RequestBody AdminRequestDto requestDto){
         service.put(id,requestDto);
     }
 
