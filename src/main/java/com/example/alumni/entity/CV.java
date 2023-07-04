@@ -11,7 +11,7 @@ public class CV {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long CV_id;
+    private Long CV_id;
 
     private String career_goal;
     private String job_title;
