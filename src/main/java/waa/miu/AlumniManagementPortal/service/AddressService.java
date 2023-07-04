@@ -1,6 +1,5 @@
 package waa.miu.AlumniManagementPortal.service;
 
-import org.springframework.stereotype.Service;
 import waa.miu.AlumniManagementPortal.entity.Address;
 
 import java.util.List;

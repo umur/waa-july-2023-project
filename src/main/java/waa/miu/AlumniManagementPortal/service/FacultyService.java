@@ -1,6 +1,5 @@
 package waa.miu.AlumniManagementPortal.service;
 
-import waa.miu.AlumniManagementPortal.entity.CurrentWorkPlace;
 import waa.miu.AlumniManagementPortal.entity.Faculty;
 
 import java.util.List;
