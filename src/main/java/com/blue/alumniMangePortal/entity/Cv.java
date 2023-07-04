@@ -3,6 +3,7 @@ package com.blue.alumniMangePortal.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.FetchMode;
 
 @Entity
 @Getter
