@@ -1,10 +1,13 @@
 package com.example.alumni.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.alumni.entity.JobAdv;
+import com.example.alumni.entity.Tag;
 import com.example.alumni.repository.JobAdvRepository;
 
 import org.springframework.data.util.Pair;
@@ -22,6 +25,10 @@ public class JobAdvService {
 
     public JobAdv getJobAdvById(long id) {
         return jobAdvRepository.findById(id).orElse(null);
+    }
+
+    public Iterable<JobAdv> getJobAdvByTags(List<Tag> tags) {
+        return jobAdvRepository.findByTagsIn(tags);
     }
 
     public JobAdv createJobAdv(JobAdv jobAdv) {

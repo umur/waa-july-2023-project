@@ -1,5 +1,7 @@
 package com.example.alumni.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
@@ -7,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.alumni.entity.JobAdv;
+import com.example.alumni.entity.Tag;
 import com.example.alumni.service.JobAdvService;
 
 @RestController
@@ -25,6 +28,15 @@ public class JobAdvController {
     @GetMapping("/{id}")
     public ResponseEntity<JobAdv> getJobAdvById(@PathVariable long id) {
         JobAdv jobAdv = jobAdvService.getJobAdvById(id);
+        if (jobAdv != null) {
+            return new ResponseEntity<>(jobAdv, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/tags")
+    public ResponseEntity<Iterable<JobAdv>> getJobAdvByTags(@RequestBody List<Tag> tags) {
+        Iterable<JobAdv> jobAdv = jobAdvService.getJobAdvByTags(tags);
         if (jobAdv != null) {
             return new ResponseEntity<>(jobAdv, HttpStatus.OK);
         }
