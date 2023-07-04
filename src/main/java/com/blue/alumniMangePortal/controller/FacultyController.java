@@ -1,5 +1,7 @@
 package com.blue.alumniMangePortal.controller;
 
+import com.blue.alumniMangePortal.dto.FacultyAddressDto;
+import com.blue.alumniMangePortal.entity.Address;
 import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,10 @@ public class FacultyController {
 
     @PostMapping
     public void addFaculty(@RequestBody Faculty faculty){
+//        Faculty faculty = facultyAddressDto.getFaculty();
+//        Address address = facultyAddressDto.getAddress();
+//        faculty.setAddress(address);
+//        faculty.ge
         facultyService.addFaculty(faculty);
     }
     @GetMapping

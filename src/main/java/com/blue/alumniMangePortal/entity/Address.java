@@ -15,7 +15,4 @@ public class Address {
     private String zip;
     private String city;
     private String state;
-
-
-
 }
