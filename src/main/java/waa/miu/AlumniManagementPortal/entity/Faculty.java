@@ -19,7 +19,7 @@ public class Faculty {
 
     private boolean isAdmin, isDeleted;
 
-    @OneToOne
+    @ManyToOne
     private Department department;
 
     @OneToOne
