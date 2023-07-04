@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,10 @@ public class Major {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+
+    private String majorName;
+
+    @JsonBackReference
+    @ManyToMany
     private Student student;
 }

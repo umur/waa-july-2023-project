@@ -23,7 +23,7 @@ public class Student {
     private Address address;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "student")
+    @ManyToMany(mappedBy = "student")
     private Major major;
 
     @OneToMany(mappedBy = "student")
