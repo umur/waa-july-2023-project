@@ -1,11 +1,11 @@
-package com.blue.alumniMangePortal.service.impl;
+package com.blue.alumniMangePortal.service;
 
 import com.blue.alumniMangePortal.entity.Address;
 import com.blue.alumniMangePortal.repository.AddressRepo;
-import com.blue.alumniMangePortal.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,14 +14,16 @@ public class AddressServiceImpl implements AddressService {
     private final AddressRepo addressRepo;
 
 
-    public String getAll(){
-        addressRepo.findAll();
-        return "all Address";
+    public List<Address> getAll(){
+        return addressRepo.findAll();
     }
 
-    public String getAddressById(Long id){
-        addressRepo.findById(id);
-        return "an address by id";
+    public Address getAddressById(Long id){
+        Optional<Address> add= addressRepo.findById(id);
+        if(add.isPresent()) {
+            return add.get();
+        }
+        return null;
     }
     public Address saveAddress(Address address){
         addressRepo.save(address);
@@ -38,7 +40,7 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
-    public String DeleteById(Long id){
+    public String deleteById(Long id){
         Optional<Address> address= addressRepo.findById(id);
         if(address.isPresent()){
             addressRepo.deleteById(id);

@@ -1,7 +1,6 @@
 package com.blue.alumniMangePortal.controller;
 
 import com.blue.alumniMangePortal.dto.StudentJob;
-import com.blue.alumniMangePortal.entity.JobsAdvertised;
 import com.blue.alumniMangePortal.entity.Student;
 import com.blue.alumniMangePortal.service.StudentService;
 import lombok.RequiredArgsConstructor;
