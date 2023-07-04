@@ -1,13 +1,23 @@
+INSERT IGNORE INTO universitymember(id, email, role)
+VALUES(1, 'student1@miu.edu', 'STUDENT');
+INSERT IGNORE INTO universitymember(id, email, role)
+VALUES(2, 'student2@miu.edu', 'STUDENT');
+INSERT IGNORE INTO universitymember(id, email, role)
+VALUES(3, 'admin@miu.edu', 'ADMIN');
+INSERT IGNORE INTO universitymember(id, email, role)
+VALUES(4, 'employee1@miu.edu', 'FACULTY');
+INSERT IGNORE INTO universitymember(id, email, role)
+VALUES(5, 'student3@miu.edu', 'STUDENT');
 
 
 INSERT IGNORE users (id, email, first_name, last_name, password)
-VALUES (1, 'student1@miu.edu', 'student', 'one', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2'); -- 123
+VALUES (1, 'student1@miu.edu', 'student', 'one', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S'); -- 123
 INSERT IGNORE users (id, email, first_name, last_name, password)
-VALUES (2, 'student2@miu.edu', 'student', 'two', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2'); -- 123
+VALUES (2, 'student2@miu.edu', 'student', 'two', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S'); -- 123
 INSERT IGNORE users (id, email, first_name, last_name, password)
-VALUES (3, 'admin@miu.edu', 'Dean', 'Altarawneh', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2'); -- 123
+VALUES (3, 'admin@miu.edu', 'Dean', 'Altarawneh', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S'); -- 123
 INSERT IGNORE users (id, email, first_name, last_name, password)
-VALUES (4, 'employee1@miu.edu', 'Employee', 'one', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2'); -- 123
+VALUES (4, 'employee1@miu.edu', 'Employee', 'one', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S'); -- 123
 
 
 

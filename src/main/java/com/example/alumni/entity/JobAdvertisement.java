@@ -13,7 +13,7 @@ import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Data
-@Table(name="JobAdvertisement")
+@Table(name="jobadvertisement")
 @NoArgsConstructor @AllArgsConstructor
 @SQLDelete(sql = "UPDATE JobAdvertisement SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedJobAdvertisementFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))

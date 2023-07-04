@@ -9,7 +9,7 @@ import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Data
-@Table(name="JobApplication")
+@Table(name="jobapplication")
 @SQLDelete(sql = "UPDATE JobApplication SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedJobApplicationFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedJJobApplicationFilter", condition = "deleted = :isDeleted")

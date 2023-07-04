@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 public class SignUpRequest {
 
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String firstName;
     private String lastName;
-    private String zip;
-    private String city;
 }
