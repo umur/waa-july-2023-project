@@ -1,9 +1,9 @@
 package waa.miu.AlumniManagementPortal.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import waa.miu.AlumniManagementPortal.entity.Address;
 import waa.miu.AlumniManagementPortal.entity.Comment;
 import waa.miu.AlumniManagementPortal.service.CommentService;
 
@@ -11,12 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/comments")
+@RequiredArgsConstructor
 public class CommentController {
+
     private final CommentService commentService;
 
-    public CommentController(CommentService commentService) {
-        this.commentService = commentService;
-    }
     @PostMapping
     public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
         Comment createdComment = commentService.createComment(comment);

@@ -34,7 +34,7 @@ public class MajorServiceImpl implements MajorService{
         Optional<Major> optionalMajor = majorRepo.findById(id);
         if (optionalMajor.isPresent()){
             optionalMajor.get().setMajorName(major.getMajorName());
-            optionalMajor.get().setStudent(major.getStudent());
+            optionalMajor.get().setStudents(major.getStudents());
         }
         return optionalMajor.orElse(null);
     }

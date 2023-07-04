@@ -6,13 +6,15 @@ import waa.miu.AlumniManagementPortal.entity.Student;
 import waa.miu.AlumniManagementPortal.service.StudentService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/students")
 @RequiredArgsConstructor
 public class StudentController {
 
-    private StudentService studentService;
+
+    private final StudentService studentService;
 
     @GetMapping
     public List<Student> findAll(){
@@ -22,6 +24,11 @@ public class StudentController {
     @GetMapping("/{id}")
     public Student findById(@PathVariable Long id){
         return studentService.findById(id);
+    }
+
+    @GetMapping("/filter")
+    public void filterByType(@RequestParam Map<String, String> filterParams){
+        studentService.filterEntities(filterParams);
     }
 
     @PostMapping
