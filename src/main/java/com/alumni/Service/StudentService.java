@@ -2,6 +2,7 @@ package com.alumni.Service;
 
 import com.alumni.dtos.response.StudentResponseDTO;
 import com.alumni.dtos.request.StudentRequestDto;
+import com.alumni.entity.BaseUser;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface StudentService {
      void put(Long id, StudentRequestDto requestDto);
 
     void deleteById(Long id);
+
+     void changePassword(Long id, String password);
 }
