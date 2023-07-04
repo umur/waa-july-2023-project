@@ -1,5 +1,8 @@
 package com.example.alumni.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,7 +19,8 @@ public class User {
     private String firstname;
     private String lastname;
 
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles = new ArrayList<Role>();
 
 
 }
