@@ -26,8 +26,7 @@ public class Student {
     @OneToOne(mappedBy = "student")
     private Major major;
 
-    @OneToMany
-    private List<JobAdvert> jobAdverts;
+//    private List<JobAdvert> jobAdverts;
 
     @JsonBackReference
     @ManyToOne

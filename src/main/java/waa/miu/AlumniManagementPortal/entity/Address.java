@@ -25,6 +25,9 @@ public class Address {
     private Faculty faculty;
 
     @OneToOne
+    private CurrentWorkPlace currentWorkPlace;
+
+    @OneToOne
     private Student student;
 
 
