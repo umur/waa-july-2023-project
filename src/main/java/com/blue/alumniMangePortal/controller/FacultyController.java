@@ -16,30 +16,27 @@ public class FacultyController {
     private FacultyService facultyService;
 
     @PostMapping
-    public void addFaculty(@RequestBody Faculty faculty){
-//        Faculty faculty = facultyAddressDto.getFaculty();
-//        Address address = facultyAddressDto.getAddress();
-//        faculty.setAddress(address);
-//        faculty.ge
+    public void addFaculty(@RequestBody Faculty faculty) {
         facultyService.addFaculty(faculty);
     }
+
     @GetMapping
-    public List<Faculty> getFaculties(){
+    public List<Faculty> getFaculties() {
         return facultyService.getFaculties();
     }
 
     @GetMapping("/{id}")
-    public Faculty getFactuly(@PathVariable Long id){
+    public Faculty getFactuly(@PathVariable Long id) {
         return facultyService.getFaculty(id);
     }
 
     @PutMapping("/{id}/faculty")
-    void updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty){
-        facultyService.updateFaculty(id,faculty);
+    void updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty) {
+        facultyService.updateFaculty(id, faculty);
     }
 
     @DeleteMapping("/{id}")
-    void deleteFaculty(@PathVariable Long id){
+    void deleteFaculty(@PathVariable Long id) {
         facultyService.deleteFaculty(id);
     }
 }

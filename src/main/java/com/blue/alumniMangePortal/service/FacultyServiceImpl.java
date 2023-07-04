@@ -16,8 +16,6 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public void addFaculty(Faculty faculty) {
-        Address address = faculty.getAddress();
-        faculty.setAddress(address);
         facultyRepo.save(faculty);
     }
 
