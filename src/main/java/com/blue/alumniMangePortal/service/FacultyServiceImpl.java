@@ -47,8 +47,7 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public void deleteFaculty(Long id) {
         Faculty facultyToDelete = getFaculty(id);
-        if (facultyToDelete !=null){
-            facultyRepo.deleteById(id);
-        }
+        facultyToDelete.set_deleted(true);
+        facultyRepo.save(facultyToDelete);
     }
 }

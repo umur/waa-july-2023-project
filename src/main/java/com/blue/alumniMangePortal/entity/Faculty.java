@@ -1,5 +1,6 @@
 package com.blue.alumniMangePortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,6 +16,7 @@ public class Faculty {
     private Long id;
     private String first_name;
     private String last_name;
+    @JsonIgnore
     private String password;
     private String email;
     private String phone_number;
@@ -27,5 +29,6 @@ public class Faculty {
     @OneToOne
     private Address address;
     private boolean is_admin;
+    @JsonIgnore
     private boolean is_deleted;
 }
