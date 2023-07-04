@@ -1,0 +1,221 @@
+{
+  "info": {
+    "_postman_id": "UserController",
+    "name": "UserController",
+    "description": "Postman collection for UserController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/users/{{id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users Where ID Has",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/users/whereIdHas/{{id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "whereIdHas",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users By City",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/users/byCity/{{city}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "byCity",
+            "{{city}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users By State",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/users/byState/{{state}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "byState",
+            "{{state}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users Where Name Has",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/users/whereNameHas/{{name}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "whereNameHas",
+            "{{name}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Student By Major",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/users/studentByMajor/{{major}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "studentByMajor",
+            "{{major}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

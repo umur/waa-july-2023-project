@@ -1,11 +1,12 @@
 package com.example.geeks.repos;
 
 import com.example.geeks.entity.Advertisement;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface AdvertisementRepo extends ListCrudRepository<Advertisement, List<Advertisement>> {
+public interface AdvertisementRepo extends JpaRepository<Advertisement, List<Advertisement>> {
 
 
     public Advertisement getAdvertisementByIdIs(Long id);

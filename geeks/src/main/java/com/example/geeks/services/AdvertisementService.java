@@ -5,10 +5,14 @@ import com.example.geeks.entity.Advertisement;
 import com.example.geeks.repos.AdvertisementRepo;
 import com.example.geeks.repos.AdvertisementRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @RequiredArgsConstructor
+@Qualifier("ads")
+@Component
 public class AdvertisementService {
 
     private final AdvertisementRepo jaRepo;

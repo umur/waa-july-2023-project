@@ -1,5 +1,6 @@
 package com.example.geeks.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +21,11 @@ public class Comment {
     // navigation properties
     @ManyToOne
     @JoinColumn
+    @JsonBackReference
     private User commentGiver;
 
     @ManyToOne
     @JoinColumn
+    @JsonBackReference
     private User commentReceiver;
 }

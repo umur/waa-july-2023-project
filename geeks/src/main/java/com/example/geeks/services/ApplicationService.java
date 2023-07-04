@@ -3,11 +3,14 @@ package com.example.geeks.services;
 import com.example.geeks.entity.Application;
 import com.example.geeks.repos.ApplicationRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-
+@Qualifier("aps")
+@Component
 public class ApplicationService {
 
 

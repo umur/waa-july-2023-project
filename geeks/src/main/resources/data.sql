@@ -29,7 +29,7 @@ VALUES
 ('VWX Corporation', 'Product Manager', '2017-08-15', '2019-12-31', 'Managed product roadmap and coordinated cross-functional teams', 6);
 
 
-INSERT INTO log (date_Time, description, user_id)
+INSERT INTO log (time, description, user_id)
 VALUES
 ('2022-01-01 10:30:00', 'User logged in', 1),
 ('2022-01-02 14:45:00', 'User updated profile information', 1),

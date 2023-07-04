@@ -4,11 +4,17 @@ package com.example.geeks.services;
 import com.example.geeks.entity.User;
 import com.example.geeks.repos.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Qualifier("uss")
+@Component
 @RequiredArgsConstructor
 public class UserService {
+
+
     private final UserRepo usRepo;
 
     public User addUser(User u){
@@ -19,27 +25,27 @@ public class UserService {
     }
 
     public User getUser(Long id){
-        return usRepo.getUsersById(id);
+        return usRepo.findById(id);
     }
 
     public List<User> getUsersWhereIdHas(Long id){
-        return usRepo.getUsersByIdLike(id);
+        return usRepo.findByIdContaining(id);
     }
 
     public List<User> getUsersByCity(String city){
-        return usRepo.getUsersByCityIs(city);
+        return usRepo.findByCity(city);
     }
 
     public List<User> getUsersByState(String state){
-        return usRepo.getUsersByStateIs(state);
+        return usRepo.findByState(state);
     }
 /////////////////////////////////
     public List<User> getUsersWhereNameHas(String name){
-        return usRepo.getUsersByNameLike(name);
+        return usRepo.findByNameContaining(name);
     }
 
     public List<User> getStudentByMajor(String major){
-        return usRepo.getUsersByMajorIs(major);
+        return usRepo.findByMajor(major);
     }
 //////////////////////////////////
 

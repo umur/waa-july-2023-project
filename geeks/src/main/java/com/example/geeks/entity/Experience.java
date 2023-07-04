@@ -1,5 +1,6 @@
 package com.example.geeks.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Experience {
     // navigation properties
     @ManyToOne
     @JoinColumn
+    @JsonBackReference
     private User user;
 }

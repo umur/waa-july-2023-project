@@ -5,11 +5,14 @@ import com.example.geeks.entity.Experience;
 import com.example.geeks.entity.User;
 import com.example.geeks.repos.ExperienceRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-
+@Qualifier("exs")
+@Component
 public class ExperienceService {
 
     private final ExperienceRepo jeRepo;
@@ -23,15 +26,15 @@ public class ExperienceService {
         return jeRepo.findAll();
     }
 
-    public List<Experience> getExperiencesByUser(User u){
-        return jeRepo.getExperiencesByUserIs(u);
+    public List<Experience> getExperiencesByUser(Long id){
+        return jeRepo.getExperiencesByUser_Id(id);
     }
 
     public List<Experience> getExperiencesByCompanyName(String cName){
         return jeRepo.getExperiencesByCompanyName(cName);
     }
 
-    public Experience getExperienceByIdIs(Long id){
-        return jeRepo.getExperienceByIdIs(id);
+    public Experience getExperienceById(Long id){
+        return jeRepo.getExperienceById(id);
     }
 }

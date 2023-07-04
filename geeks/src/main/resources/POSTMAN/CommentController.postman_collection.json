@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "CommentController",
+    "name": "CommentController",
+    "description": "Postman collection for CommentController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Comment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/comments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "comments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Comments on User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/comments/receiver/{{userId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "comments",
+            "receiver",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Comments by User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/comments/giver/{{userId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "comments",
+            "giver",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

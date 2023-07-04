@@ -1,10 +1,14 @@
 package com.example.geeks.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.service.annotation.PatchExchange;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -13,7 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-public class User implements UserDetails {
+public class User {//implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,22 +35,28 @@ public class User implements UserDetails {
     private boolean isDeleted;
 
     // navigation properties
-    @OneToMany(mappedBy = "user")
+
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Log> logs;
 
-    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Experience> experiences;
 
-    @OneToMany(mappedBy = "commentGiver")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "commentGiver")
     private List<Comment> givenComments;
 
-    @OneToMany(mappedBy = "commentReceiver")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "commentReceiver")
     private List<Comment> receivedComments;
 
 
 
     //////////////////////////////////////////////////////
-
+/*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -71,4 +81,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+ */
 }
