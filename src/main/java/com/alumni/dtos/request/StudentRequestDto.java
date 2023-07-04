@@ -1,29 +1,22 @@
-package com.alumni.entity;
+package com.alumni.dtos.request;
 
-import jakarta.persistence.*;
+import com.alumni.entity.JobExperience;
 import lombok.Data;
 
 import java.util.List;
 
 
-@Entity
 @Data
-public class Student {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class StudentRequestDto {
     private long id;
-
     private String state;
     private String city;
     private String major;
     private String name;
     private String cvUrl;
-    @OneToMany(cascade = CascadeType.ALL)
     private List<JobExperience> jobExperiences;
-
-    @OneToOne
-    private BaseUser user;
+    private String email;
+    private String password;
 
 
 }

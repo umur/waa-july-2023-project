@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class User {
+public class BaseUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +21,6 @@ public class User {
     private int  failedLoginAttempts;
     private LocalDateTime activeAfter;
 
-    @OneToMany
+    @Enumerated(EnumType.STRING)
     private List<Role> roles;
 }

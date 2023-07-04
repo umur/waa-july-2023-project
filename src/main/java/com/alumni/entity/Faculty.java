@@ -15,5 +15,5 @@ public class Faculty {
     private String name;
 
     @OneToOne
-    private User user;
+    private BaseUser user;
 }
