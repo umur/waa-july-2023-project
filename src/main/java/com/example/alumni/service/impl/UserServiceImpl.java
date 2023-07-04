@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
         List<Role> roles=new ArrayList<>();
-        roles.add(roleService.findByName("STUDENT"));
+        roles.add(roleService.findByRole("STUDENT"));
         user.setRoles(roles);
         String salt = BCrypt.gensalt();
 

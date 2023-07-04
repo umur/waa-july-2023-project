@@ -14,5 +14,5 @@ public interface RoleService {
 
     boolean deleteRole(long id);
 
-    Role findByName(String user);
+    Role findByRole(String role);
 }
