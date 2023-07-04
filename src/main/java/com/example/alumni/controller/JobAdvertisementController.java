@@ -20,12 +20,14 @@ public class JobAdvertisementController {
 
 
     @GetMapping
+    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
     public ResponseEntity<Iterable<JobAdvertisementDto>> getAll() {
         Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getAll();
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
     public ResponseEntity<JobAdvertisementDto> getById(@PathVariable long id) {
         JobAdvertisementDto jobAdvertisement = jobAdvertisementService.getById(id);
         if (jobAdvertisement != null) {
@@ -35,6 +37,7 @@ public class JobAdvertisementController {
     }
 
     @GetMapping("/tags/")
+    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
     public ResponseEntity<Iterable<JobAdvertisementDto>> getByTags(@RequestParam List<String> tags) {
         Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getByTags(tags);
         return new ResponseEntity<>(jobs, HttpStatus.OK);
@@ -58,7 +61,7 @@ public class JobAdvertisementController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasRole('STUDENT') or hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) throws IllegalAccessException {
         boolean deleted = jobAdvertisementService.delete(id);
         if (deleted) {

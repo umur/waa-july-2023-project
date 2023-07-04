@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.alumni.entity.User;
@@ -17,12 +18,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
     public ResponseEntity<Iterable<User>> getAll() {
         Iterable<User> users = userService.getAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
     public ResponseEntity<User> getById(@PathVariable Long id) {
         User user = userService.getById(id);
         if (user != null) {
@@ -32,6 +35,7 @@ public class UserController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> add(@RequestBody User user) throws IllegalAccessException {
         User createdUser = userService.add(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
@@ -46,6 +50,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) throws IllegalAccessException {
         boolean deleted = userService.delete(id);
         if (deleted) {

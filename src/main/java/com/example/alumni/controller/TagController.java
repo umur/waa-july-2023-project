@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.alumni.entity.Tag;
@@ -17,13 +18,15 @@ public class TagController {
     private TagService tagService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Tag>> getAllTags() {
+    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
+    public ResponseEntity<Iterable<Tag>> getAll() {
         Iterable<Tag> tags = tagService.getAll();
         return new ResponseEntity<>(tags, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tag> getTagById(@PathVariable long id) {
+    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
+    public ResponseEntity<Tag> getById(@PathVariable long id) {
         Tag tag = tagService.getById(id);
         if (tag != null) {
             return new ResponseEntity<>(tag, HttpStatus.OK);
@@ -32,12 +35,14 @@ public class TagController {
     }
 
     @PostMapping
-    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) throws IllegalAccessException {
+    @PreAuthorize("hasRole('STUDENT')")
+    public ResponseEntity<Tag> add(@RequestBody Tag tag) throws IllegalAccessException {
         Tag createdTag = tagService.add(tag);
         return new ResponseEntity<>(createdTag, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Tag> update(@PathVariable long id, @RequestBody Tag tag) throws IllegalAccessException {
         Pair<Boolean, Tag> result = tagService.update(tag);
         return (!result.getFirst())
@@ -46,6 +51,7 @@ public class TagController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = tagService.delete(id);
         if (deleted) {
