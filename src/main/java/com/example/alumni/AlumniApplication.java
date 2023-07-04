@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 		contact = @Contact(name = "Taha Elsayed")),
 		security = {@SecurityRequirement(name = "bearerToken")}
 )
-@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 @EnableWebMvc
 public class AlumniApplication {
 
