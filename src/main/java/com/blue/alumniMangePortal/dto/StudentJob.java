@@ -1,8 +1,7 @@
 package com.blue.alumniMangePortal.dto;
 
-//import com.blue.alumniMangePortal.entity.JobsAdvertised;
+import com.blue.alumniMangePortal.entity.JobsAdvertise;
 import com.blue.alumniMangePortal.entity.Student;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,5 +9,5 @@ import lombok.Setter;
 @Setter
 public class StudentJob {
     private Student student;
-//    private JobsAdvertised jobsAdvertised;
+    private JobsAdvertise jobsAdvertised;
 }

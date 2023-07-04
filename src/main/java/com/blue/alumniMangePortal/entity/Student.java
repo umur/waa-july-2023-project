@@ -25,9 +25,9 @@ public class Student {
 //    private Address address;
 //    private Tag tag;
 //    private Major major;
-//    @OneToMany
-//    @JsonManagedReference
-//    private List<JobsAdvertised> jobsAdvertisedList=new ArrayList<>();
+    @OneToMany
+    @JsonManagedReference
+    private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
 //    private CurrentWorkPlace;
 //    private Cv cv;
 
