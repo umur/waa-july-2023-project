@@ -6,6 +6,7 @@ import com.blue.alumniMangePortal.entity.Student;
 import java.util.List;
 
 public interface StudentService {
+
     String registerStudent(Student student);
 
     String updateProfile(Long id, Student student);
@@ -23,4 +24,5 @@ public interface StudentService {
     String resetPassword(Student student, String password);
 
 //    List<Student> deleteById(Long id);
+
 }
