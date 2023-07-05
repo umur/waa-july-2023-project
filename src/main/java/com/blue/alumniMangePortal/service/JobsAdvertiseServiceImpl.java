@@ -42,7 +42,7 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
              return true;
     }
     public List<JobsAdvertise> findFirst10ByOrderByPostedDateAsc(){
-        return jobsAdvertiseRepo.findFirst10ByOrderByPostedDateAsc();
+        return null;
     }
 
 

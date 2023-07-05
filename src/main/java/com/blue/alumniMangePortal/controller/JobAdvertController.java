@@ -2,7 +2,7 @@ package com.blue.alumniMangePortal.controller;
 
 import com.blue.alumniMangePortal.dto.StudentJob;
 //import com.blue.alumniMangePortal.entity.JobsAdvertised;
-import com.blue.alumniMangePortal.service.JobAdvertService;
+//import com.blue.alumniMangePortal.service.JobAdvertService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class JobAdvertController {
-    private final JobAdvertService jobAdvertService;
+//    private final JobAdvertService jobAdvertService;
 
 //    @GetMapping("/last10JobAdverts")
 //    public List<JobsAdvertised> getFirstTenJobAdverts(){

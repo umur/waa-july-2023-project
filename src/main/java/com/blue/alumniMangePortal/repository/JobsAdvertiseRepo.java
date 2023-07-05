@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface JobsAdvertiseRepo extends JpaRepository<JobsAdvertise,Long> {
 
-    public List <JobsAdvertise> findFirst10ByOrderByPostedDateAsc();
+//    public List <JobsAdvertise> findFirst10ByOrderByPostedDateAsc();
 
-    public List<JobsAdvertiseRepo> getFirstTenJobAppliedAdverts();
+//    public List<JobsAdvertiseRepo> getFirstTenJobAppliedAdverts();
     }

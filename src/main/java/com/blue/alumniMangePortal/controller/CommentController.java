@@ -1,7 +1,9 @@
 package com.blue.alumniMangePortal.controller;
 
 import com.blue.alumniMangePortal.entity.Comment;
+import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.service.CommentService;
+import com.blue.alumniMangePortal.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,13 @@ import java.util.List;
 public class CommentController {
     @Autowired
     public CommentService commentService;
+    @Autowired
+    public FacultyService facultyService;
 
-    @PostMapping
-    public void addComment(@RequestBody Comment comment){
+    @PostMapping("/{facultyId}")
+    public void addComment(@PathVariable Long facultyId, @RequestBody Comment comment){
+        Faculty faculty = facultyService.getFaculty(facultyId);
+        comment.setFaculty(faculty);
         commentService.addComment(comment);
     }
 
