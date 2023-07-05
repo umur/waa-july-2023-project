@@ -18,14 +18,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Iterable<User>> getAll() {
         Iterable<User> users = userService.getAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<User> getById(@PathVariable Long id) {
         User user = userService.getById(id);
         if (user != null) {
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> add(@RequestBody User user) throws IllegalAccessException {
         User createdUser = userService.add(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) throws IllegalAccessException {
         boolean deleted = userService.delete(id);
         if (deleted) {

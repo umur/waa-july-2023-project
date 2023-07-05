@@ -20,14 +20,14 @@ public class JobAdvertisementController {
 
 
     @GetMapping
-    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Iterable<JobAdvertisementDto>> getAll() {
         Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getAll();
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<JobAdvertisementDto> getById(@PathVariable long id) {
         JobAdvertisementDto jobAdvertisement = jobAdvertisementService.getById(id);
         if (jobAdvertisement != null) {
@@ -37,21 +37,21 @@ public class JobAdvertisementController {
     }
 
     @GetMapping("/tags/")
-    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Iterable<JobAdvertisementDto>> getByTags(@RequestParam List<String> tags) {
         Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getByTags(tags);
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('STUDENT')")
     public ResponseEntity<JobAdvertisementDto> add(@RequestBody JobAdvertisementDto jobAdvertisement) throws IllegalAccessException {
         JobAdvertisementDto createdJobAdvertisement = jobAdvertisementService.add(jobAdvertisement);
         return new ResponseEntity<>(createdJobAdvertisement, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('STUDENT')")
     public ResponseEntity<JobAdvertisementDto> update(@PathVariable Long id, @RequestBody JobAdvertisementDto jobAdvertisement) throws IllegalAccessException {
 
         Pair<Boolean, JobAdvertisementDto> result = jobAdvertisementService.update(jobAdvertisement);
@@ -61,7 +61,7 @@ public class JobAdvertisementController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('STUDENT') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) throws IllegalAccessException {
         boolean deleted = jobAdvertisementService.delete(id);
         if (deleted) {

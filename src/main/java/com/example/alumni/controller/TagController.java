@@ -18,14 +18,14 @@ public class TagController {
     private TagService tagService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Iterable<Tag>> getAll() {
         Iterable<Tag> tags = tagService.getAll();
         return new ResponseEntity<>(tags, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Tag> getById(@PathVariable long id) {
         Tag tag = tagService.getById(id);
         if (tag != null) {
@@ -35,14 +35,14 @@ public class TagController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('STUDENT')")
     public ResponseEntity<Tag> add(@RequestBody Tag tag) throws IllegalAccessException {
         Tag createdTag = tagService.add(tag);
         return new ResponseEntity<>(createdTag, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Tag> update(@PathVariable long id, @RequestBody Tag tag) throws IllegalAccessException {
         Pair<Boolean, Tag> result = tagService.update(tag);
         return (!result.getFirst())
@@ -51,7 +51,7 @@ public class TagController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = tagService.delete(id);
         if (deleted) {

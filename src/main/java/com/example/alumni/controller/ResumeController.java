@@ -18,14 +18,14 @@ public class ResumeController {
     private ResumeService resumeService;
 
     @GetMapping
-    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Iterable<Resume>> getAll() {
         Iterable<Resume> cvs = resumeService.getAll();
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('STUDENT') or hasRole('FACULTY')")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Resume> getById(@PathVariable long id) {
         Resume resume = resumeService.getById(id);
         if (resume != null) {
@@ -35,14 +35,14 @@ public class ResumeController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('STUDENT')")
     public ResponseEntity<Resume> add(@RequestBody Resume resume) throws IllegalAccessException {
         Resume createdResume = resumeService.add(resume);
         return new ResponseEntity<>(createdResume, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('STUDENT')")
     public ResponseEntity<Resume> update(@PathVariable long id, @RequestBody Resume resume) throws IllegalAccessException {
         Pair<Boolean, Resume> result = resumeService.update(resume);
         return (!result.getFirst())
@@ -51,7 +51,7 @@ public class ResumeController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasAuthority('STUDENT')")
     public ResponseEntity<Void> delete(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = resumeService.delete(id);
         if (deleted) {

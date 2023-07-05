@@ -18,14 +18,14 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Iterable<Role>> getAll() {
         Iterable<Role> roles = roleService.getAll();
         return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Role> getById(@PathVariable long id) {
         Role role = roleService.getById(id);
         if (role != null) {
@@ -35,14 +35,14 @@ public class RoleController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Role> add(@RequestBody Role role) throws IllegalAccessException {
         Role createdRole = roleService.add(role);
         return new ResponseEntity<>(createdRole, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Role> update(@PathVariable long id, @RequestBody Role role) throws IllegalAccessException {
         Pair<Boolean, Role> result = roleService.update(role);
         return (!result.getFirst())
@@ -51,7 +51,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) throws IllegalAccessException {
         boolean deleted = roleService.delete(id);
         if (deleted) {
