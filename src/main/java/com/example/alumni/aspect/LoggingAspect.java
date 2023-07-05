@@ -17,13 +17,14 @@ public class LoggingAspect {
     @Around("execution(* com.example.alumni.service.impl.*.update(..))")
     public Object logMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
-        logger.info("Executing method: {}", methodName);
+        Object[] args = joinPoint.getArgs();
 
+        logger.info("Executing method: {}. Parameters: {}", methodName, args);
 
         Object result;
         try {
             result = joinPoint.proceed();
-            logger.info("Method {} executed successfully", methodName);
+            logger.info("Method {} executed successfully. Result: {}", methodName, result);
         } catch (Exception ex) {
             logger.error("Error executing method {}: {}", methodName, ex.getMessage());
             throw ex;
