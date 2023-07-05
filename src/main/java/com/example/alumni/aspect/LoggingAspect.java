@@ -14,7 +14,7 @@ public class LoggingAspect {
 
     private static final Logger logger = LogManager.getLogger(LoggingAspect.class);
 
-    @Around("execution(* com.example.**.**.*(..))")
+    @Around("execution(* com.example.alumni.service.impl.*.update(..))")
     public Object logMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
         logger.info("Executing method: {}", methodName);
