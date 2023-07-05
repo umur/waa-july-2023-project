@@ -1,4 +1,4 @@
-package com.example.springdata1.aspect;
+package com.example.alumni.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -14,7 +14,7 @@ public class WaaOffensiveWordsAspect {
 
     private static final List<String> OFFENSIVE_WORDS = Arrays.asList("bad", "word");
 
-    @Around("execution(* com.example.springdata1.service.impl.*.*(..))")
+    @Around("execution(* com.example.**.**.*(..))")
     public Object filterOffensiveWords(ProceedingJoinPoint joinPoint) throws Throwable {
 
         Object[] args = joinPoint.getArgs();
