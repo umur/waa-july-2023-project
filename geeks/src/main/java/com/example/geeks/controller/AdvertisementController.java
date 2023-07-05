@@ -16,11 +16,14 @@ public class AdvertisementController {
     @Autowired
     AdvertisementService advertisementService;
 
+    /*
     @PostMapping
     public Advertisement addAdvertisement(@RequestBody Advertisement advertisement) {
         Advertisement savedAdvertisement = advertisementService.addAdvertisement(advertisement);
         return savedAdvertisement;
     }
+    */
+
 
     @GetMapping
     public List<Advertisement> getAllAdvertisements() {
@@ -60,5 +63,10 @@ public class AdvertisementController {
     public List<Advertisement> getAdvertisementsByCompanyName(@PathVariable String companyName) {
         List<Advertisement> advertisements = advertisementService.getAdvertisementsByCompanyName(companyName);
         return advertisements;
+    }
+
+    @DeleteMapping("/{id}")
+    public void getAdvertisementsByCompanyName(@PathVariable Long id) {
+       advertisementService.deleteAdvertisement(id);
     }
 }

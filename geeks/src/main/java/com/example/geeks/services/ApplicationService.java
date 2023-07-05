@@ -2,6 +2,7 @@ package com.example.geeks.services;
 
 import com.example.geeks.entity.Application;
 import com.example.geeks.repos.ApplicationRepo;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Qualifier("aps")
 @Component
+@Transactional
 public class ApplicationService {
 
 
@@ -24,13 +26,17 @@ public class ApplicationService {
         return apRepo.findAll();
     }
 
+
     public List<Application> getApplicationsOfStudent(Long id){
-        return apRepo.getApplicationsByStudent_Id(id);
+        return apRepo.getApplicationsByStudent_IdIsAndIsDeleted(id, false);
     }
 
     public Application getApplicationById(Long id){
-        return apRepo.getApplicationByAppIdIs(id);
+        return apRepo.getApplicationByAppIdIsAndIsDeleted(id, false);
     }
 
+    public void deleteApplication(Long id, Long id2){
+        apRepo.deleteApplication(id, id2);
+    }
 
 }

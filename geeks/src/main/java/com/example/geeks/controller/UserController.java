@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -23,13 +24,15 @@ public class UserController {
     @Qualifier("uss")
     @Autowired
     UserService uss;
+
+    /*
     @PostMapping
     @ResponseBody
     public User addUser(@RequestBody User user) {
         User savedUser = uss.addUser(user);
         return savedUser;
     }
-
+    */
     @GetMapping
     @ResponseBody
     public List<UserDTO> getAllUsers() {
@@ -45,12 +48,14 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseBody
     public User getUserById(@PathVariable Long id) {
-        User user = uss.getUser(id);
-        if (user != null) {
-            return user;
-        } else {
-            return null;
-        }
+        Optional<User> user = uss.getUser(id);
+        return user.orElse(null);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public void deleteUser(@PathVariable Long id) {
+        uss.deleteUser(id);
     }
 
     @GetMapping("/whereIdHas/{id}")
@@ -87,4 +92,16 @@ public class UserController {
         List<User> users = uss.getStudentByMajor(major);
         return users;
     }
+
+//    @DeleteMapping("/activate/{id}")
+//    @ResponseBody
+//    public void activateUser(@PathVariable Long id) {
+//        uss.deleteUser(id);
+//    }
+//
+//    @DeleteMapping("/deactivate/{id}")
+//    @ResponseBody
+//    public void deActivateUser(@PathVariable Long id) {
+//        uss.deleteUser(id);
+//    }
 }

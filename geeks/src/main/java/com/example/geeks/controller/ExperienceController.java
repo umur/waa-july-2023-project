@@ -16,11 +16,14 @@ public class ExperienceController {
     @Autowired
     ExperienceService experienceService;
 
+    /*
     @PostMapping
     public Experience addExperience(@RequestBody Experience experience) {
         Experience savedExperience = experienceService.addExperience(experience);
         return savedExperience;
     }
+    */
+
 
     @GetMapping
     public List<Experience> getAllExperiences() {
@@ -49,5 +52,10 @@ public class ExperienceController {
         } else {
             return null;
         }
+    }
+
+    @DeleteMapping("/{id}/{cName}")
+    public void deleteExperience(@PathVariable Long id, @PathVariable String cName) {
+        experienceService.deleteExperience(id, cName);
     }
 }

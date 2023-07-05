@@ -2,18 +2,28 @@ package com.example.geeks.repos;
 
 import com.example.geeks.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
 
 import java.util.List;
+import java.util.Optional;
 
-public interface UserRepo extends JpaRepository<User, List<User>> {
+public interface UserRepo extends JpaRepository<User, Long> {
 
 
 
-    public User findById(Long id);
-    public List<User> findByState(String stateName);
-    public List<User> findByCity(String cityName);
-    public List<User> findByMajor(String major);
-    public List<User> findByNameContaining(String name);
-    public List<User> findByIdContaining(Long id);
+    public Optional<User> findById(Long id);
+    public List<User> findByStateAndIsDeleted(String stateName, boolean d);
+    public List<User> findByCityAndIsDeleted(String cityName, boolean d);
+    public List<User> findByMajorAndIsDeleted(String major, boolean d);
+    public List<User> findByNameContainingAndIsDeleted(String name, boolean d);
+    public List<User> findByIdContainingAndIsDeleted(Long id, boolean d);
+
+    public List<User> findAllByIsDeleted(boolean d);
+
+    @Modifying
+    @Query(value = "UPDATE `alumni_db`.`user` SET `is_deleted` = true WHERE (`id` = ?);\n",
+            nativeQuery = true)
+    public void updateUserByIdIs(Long id);
 }

@@ -16,11 +16,13 @@ public class ApplicationController {
     @Autowired
     ApplicationService applicationService;
 
+    /*
     @PostMapping
     public Application addApplication(@RequestBody Application application) {
         Application savedApplication = applicationService.addApplication(application);
         return savedApplication;
     }
+    */
 
     @GetMapping
     public List<Application> getAllApplications() {
@@ -42,5 +44,11 @@ public class ApplicationController {
     public List<Application> getApplicationsOfStudent(@PathVariable Long studentId) {
         List<Application> applications = applicationService.getApplicationsOfStudent(studentId);
         return applications;
+    }
+
+
+    @GetMapping("/{id}/{adId}")
+    public void deleteApplicationsOfStudent(@PathVariable Long id, @PathVariable Long adId) {
+        applicationService.deleteApplication(id, adId);
     }
 }

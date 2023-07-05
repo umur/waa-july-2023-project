@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
+
 public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,7 @@ public class Experience {
     private LocalDate dateStarted;
     private LocalDate dateEnded;
     private String description;
+    private boolean isDeleted;
     // navigation properties
     @ManyToOne
     @JoinColumn

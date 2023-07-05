@@ -3,15 +3,18 @@ package com.example.geeks.services;
 
 import com.example.geeks.entity.User;
 import com.example.geeks.repos.UserRepo;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Qualifier("uss")
 @Component
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 
 
@@ -21,31 +24,35 @@ public class UserService {
         return usRepo.save(u);
     }
     public List<User> getAllUsers(){
-        return usRepo.findAll();
+        return usRepo.findAllByIsDeleted(false);
     }
 
-    public User getUser(Long id){
+    public Optional<User> getUser(Long id){
         return usRepo.findById(id);
     }
 
     public List<User> getUsersWhereIdHas(Long id){
-        return usRepo.findByIdContaining(id);
+        return usRepo.findByIdContainingAndIsDeleted(id, false);
     }
 
     public List<User> getUsersByCity(String city){
-        return usRepo.findByCity(city);
+        return usRepo.findByCityAndIsDeleted(city, false);
     }
 
     public List<User> getUsersByState(String state){
-        return usRepo.findByState(state);
+        return usRepo.findByStateAndIsDeleted(state, false);
     }
 /////////////////////////////////
     public List<User> getUsersWhereNameHas(String name){
-        return usRepo.findByNameContaining(name);
+        return usRepo.findByNameContainingAndIsDeleted(name, false);
     }
 
     public List<User> getStudentByMajor(String major){
-        return usRepo.findByMajor(major);
+        return usRepo.findByMajorAndIsDeleted(major, false);
+    }
+
+    public void deleteUser(Long id){
+        usRepo.updateUserByIdIs(id);
     }
 //////////////////////////////////
 

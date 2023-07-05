@@ -16,11 +16,14 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
+    /*
     @PostMapping
     public Comment addComment(@RequestBody Comment comment) {
         Comment savedComment = commentService.addComment(comment);
         return savedComment;
     }
+    */
+
 
     @GetMapping("/receiver/{userId}")
     public List<Comment> getCommentsOnUser(@PathVariable Long userId) {
@@ -34,5 +37,17 @@ public class CommentController {
         // Assuming "userId" refers to the giver user's ID
         List<Comment> comments = commentService.getCommentsBy(userId);
         return comments;
+    }
+
+    @GetMapping("/{commenter}/{reciver}")
+    public List<Comment> getCommentsByUserOnUser(@PathVariable Long commenter, @PathVariable Long reciver) {
+
+        List<Comment> comments = commentService.getCommentsByOn(commenter, reciver);
+        return comments;
+    }
+
+    @DeleteMapping("/{commenter}/{reciver}")
+    public void deleteComment(@PathVariable Long commenter, @PathVariable Long reciver){
+        commentService.deleteComment(commenter, reciver);
     }
 }

@@ -15,18 +15,18 @@ VALUES
 
 
 
-INSERT INTO experience (company_Name, role, date_Started, date_Ended, description, user_id)
+INSERT INTO experience (company_Name, role, date_Started, date_Ended, description, is_deleted, user_id)
 VALUES
-('ABC Company', 'Software Engineer', '2020-01-01', '2022-12-31', 'Worked on developing web applications', 1),
-('XYZ Corporation', 'Data Analyst', '2019-05-01', '2021-09-30', 'Performed data analysis and created reports', 1),
-('123 Industries', 'Project Manager', '2018-03-15', '2020-06-30', 'Managed multiple projects and teams', 2),
-('DEF Corporation', 'Software Developer', '2019-07-01', '2021-12-31', 'Developed web applications using Java and Spring', 2),
-('GHI Technologies', 'Database Administrator', '2020-02-15', '2022-08-31', 'Managed and optimized database systems', 3),
-('JKL Solutions', 'Business Analyst', '2018-09-01', '2021-03-31', 'Analyzed business requirements and proposed solutions', 3),
-('MNO Enterprises', 'UX Designer', '2017-06-01', '2019-12-31', 'Created user-centered designs for web and mobile applications', 4),
-('PQR Company', 'IT Support Specialist', '2019-01-15', '2021-06-30', 'Provided technical support and troubleshooting for software and hardware', 4),
-('STU Innovations', 'Software Engineer', '2018-03-01', '2020-09-30', 'Developed and maintained backend systems using Python and Django', 5),
-('VWX Corporation', 'Product Manager', '2017-08-15', '2019-12-31', 'Managed product roadmap and coordinated cross-functional teams', 6);
+('ABC Company', 'Software Engineer', '2020-01-01', '2022-12-31', 'Worked on developing web applications', false, 1),
+('XYZ Corporation', 'Data Analyst', '2019-05-01', '2021-09-30', 'Performed data analysis and created reports', false, 1),
+('123 Industries', 'Project Manager', '2018-03-15', '2020-06-30', 'Managed multiple projects and teams', false, 2),
+('DEF Corporation', 'Software Developer', '2019-07-01', '2021-12-31', 'Developed web applications using Java and Spring', false, 2),
+('GHI Technologies', 'Database Administrator', '2020-02-15', '2022-08-31', 'Managed and optimized database systems', false, 3),
+('JKL Solutions', 'Business Analyst', '2018-09-01', '2021-03-31', 'Analyzed business requirements and proposed solutions', false, 3),
+('MNO Enterprises', 'UX Designer', '2017-06-01', '2019-12-31', 'Created user-centered designs for web and mobile applications', false, 4),
+('PQR Company', 'IT Support Specialist', '2019-01-15', '2021-06-30', 'Provided technical support and troubleshooting for software and hardware', false, 4),
+('STU Innovations', 'Software Engineer', '2018-03-01', '2020-09-30', 'Developed and maintained backend systems using Python and Django', false, 5),
+('VWX Corporation', 'Product Manager', '2017-08-15', '2019-12-31', 'Managed product roadmap and coordinated cross-functional teams', false, 6);
 
 
 INSERT INTO log (time, description, user_id)
@@ -62,14 +62,14 @@ VALUES
 ('2022-01-07 13:10:00', 'Keep up the good work!', false, 3, 5);
 
 
-insert into application (`advertisement_id`, `student_id`)
-values(1,2),
-      (1, 2),
-      (1, 3),
-      (1, 4),
-      (2, 4),
-      (2, 5),
-      (4, 2),
-      (4, 5);
+insert into application (`is_deleted`, `advertisement_id`, `student_id`)
+values(false, 1,2),
+      (false, 1, 2),
+      (false, 1, 3),
+      (false, 1, 4),
+      (false, 2, 4),
+      (false, 2, 5),
+      (false, 4, 2),
+      (false, 4, 5);
 
 

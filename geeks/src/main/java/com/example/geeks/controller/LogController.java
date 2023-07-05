@@ -17,11 +17,14 @@ public class LogController {
     @Autowired
     LogService logService;
 
+    /*
     @PostMapping
     public Log addLog(@RequestBody Log log) {
         Log savedLog = logService.addLog(log);
         return savedLog;
     }
+    */
+
 
     @GetMapping("/datetime/{datetime}")
     public List<Log> getLogsByDateAndTime(@PathVariable LocalDateTime datetime) {
