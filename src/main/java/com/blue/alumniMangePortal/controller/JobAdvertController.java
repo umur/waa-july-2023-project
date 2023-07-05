@@ -17,12 +17,13 @@ public class JobAdvertController {
 
     @GetMapping("/last10JobAdverts")
     public List<JobsAdvertise> getFirstTenJobAdverts(){
-        return jobsAdvertService.findFirst10ByOrderByPostedDateAsc();
+  return null;
+       // return jobsAdvertService.getFirstTenJobAppliedAdverts();
     }
-    @GetMapping("last10AppliedJobAdverts")
-    public List<JobsAdvertise> getFirstTenJobAppliedAdverts(){
-        return null;
-    }
+//    @GetMapping("last10AppliedJobAdverts")
+//    public List<JobsAdvertise> getFirstTenJobAppliedAdverts(){
+//        return null;
+//    }
 
     @PutMapping("/editJobAdvertsPosted")
     public JobsAdvertise editJobAdverts(@PathVariable Long id, @RequestBody JobsAdvertise jobsAdvertise) {
@@ -39,25 +40,27 @@ public class JobAdvertController {
 //    public String GetJobAdvertsByTags(@PathVariable Tag tag){
 //        return null;
 //    }
-    @GetMapping("/getJobAdvertByState/{state}")
-    public String getJobAdvertsByState(@PathVariable String state) {
-        return null;
-    }
-    @GetMapping("/getJobAdvertByCity/{city}")
-    public String getJobAdvertsByCity(@PathVariable String city){
-        return null;
-    }
-    @GetMapping("/getJobAdvertByCompanyName/{companyName}")
-    public String getJobAdvertsCompanyName(@PathVariable String companyName){
-        return null;
-    }
-    @DeleteMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable Long id){
-        return null;
-    }
-//    @GetMapping("getByLoaction/{location}")
-//    public String getJobsAdvertisedByLocation(@PathVariable Address location ){
+//    @GetMapping("/getJobAdvertByState/{state}")
+//    public String getJobAdvertsByState(@PathVariable String state) {
 //        return null;
 //    }
+//    @GetMapping("/getJobAdvertByCity/{city}")
+//    public String getJobAdvertsByCity(@PathVariable String city){
+//        return null;
+//    }
+//    @GetMapping("/getJobAdvertByCompanyName/{companyName}")
+//    public String getJobAdvertsCompanyName(@PathVariable String companyName){
+//        return null;
+//    }
+//    @DeleteMapping("/delete/{id}")
+//    public String deleteStudent(@PathVariable Long id){
+//        return null;
+//    }
+////    @GetMapping("getByLoaction/{location}")
+////    public String getJobsAdvertisedByLocation(@PathVariable Address location ){
+////        return null;
+////    }
+
+
 
 }

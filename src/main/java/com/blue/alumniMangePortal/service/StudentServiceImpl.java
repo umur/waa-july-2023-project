@@ -1,14 +1,10 @@
 package com.blue.alumniMangePortal.service;
 
-import com.blue.alumniMangePortal.dto.StudentJob;
-import com.blue.alumniMangePortal.entity.JobsAdvertised;
 import com.blue.alumniMangePortal.entity.Student;
 import com.blue.alumniMangePortal.repository.StudentRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,12 +12,12 @@ import java.util.Optional;
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepo studentRepo;
-
+ @Override
     public String registerStudent(Student student) {
         studentRepo.save(student);
         return "student added";
     }
-
+    @Override
     public String updateProfile(Long id, Student student) {
         Optional<Student> std = studentRepo.findById(id);
         if (std.isPresent()) {
@@ -37,12 +33,12 @@ public class StudentServiceImpl implements StudentService {
         }
         return null;
     }
-
+    @Override
     public String seeStudentCv(Long id) {
         System.out.println("get CV file");
         return "Cv displayed";
     }
-
+    @Override
     public Student filterStudent(Object obj) {
         if (obj instanceof String) {
             String var = (String) obj;
@@ -64,7 +60,7 @@ public class StudentServiceImpl implements StudentService {
         }
         return null;
     }
-
+    @Override
     public Student getStudentById(Long id) {
         Optional<Student> std = studentRepo.findById(id);
         if (std.isPresent()) {
@@ -72,23 +68,23 @@ public class StudentServiceImpl implements StudentService {
         }
         return null;
     }
-
+    @Override
     public List<Student> getAllStudents() {
         return studentRepo.findAll();
     }
-
+    @Override
     public String addJobExperience(Student student, String jobExperience) {
         student.setJobExperiences(jobExperience);
         studentRepo.save(student);
         return jobExperience;
     }
-
+    @Override
     public String resetPassword(Student student, String password) {
         student.setPassword(password);
         studentRepo.save(student);
         return "password has been reset";
     }
-
+    @Override
     public List<Student> deleteById(Long id) {
         Optional<Student> std=studentRepo.findById(id);
         if(std.isPresent()){

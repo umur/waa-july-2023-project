@@ -20,6 +20,8 @@ public class JobsAdvertise {
 
 //    private Address location;
     @ManyToOne
-    @JsonBackReference
+    //@JsonBackReference
     private Student student;
+    @OneToOne
+    private Address address;
 }

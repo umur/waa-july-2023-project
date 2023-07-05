@@ -41,9 +41,9 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
         jobsAdvertiseRepo.deleteById(id);
              return true;
     }
-    public List<JobsAdvertise> findFirst10ByOrderByPostedDateAsc(){
-        return jobsAdvertiseRepo.findFirst10ByOrderByPostedDateAsc();
-    }
+//    public List<JobsAdvertise> getFirstTenJobAppliedAdverts(){
+//        return jobsAdvertiseRepo.getFirstTenJobAppliedAdverts();
+//    }
 
 
 }
