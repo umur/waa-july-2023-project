@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping(value = "/students", consumes = "application/json")
 @RequiredArgsConstructor
 public class StudentController {
 
@@ -27,8 +27,8 @@ public class StudentController {
     }
 
     @GetMapping("/filter")
-    public void filterByType(@RequestParam Map<String, String> filterParams){
-        studentService.filterEntities(filterParams);
+    public List<Student> filterByType(@RequestParam Map<String, String> filterParams){
+        return studentService.filterEntities(filterParams);
     }
 
     @PostMapping

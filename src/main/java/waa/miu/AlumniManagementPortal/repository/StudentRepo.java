@@ -8,7 +8,8 @@ import java.util.List;
 
 @Repository
 public interface StudentRepo extends ListCrudRepository<Student, Long> {
+    List<Student> findByAddressState(String state);
+    List<Student> findByAddressCity(String city);
+    List<Student> findAllByMajorMajorName(String major);
     List<Student> findAllByFirstName(String name);
-    List<Student> findAllByLastName(String name);
-    List<Student> findAllByFirstNameOrLastName(String firstName, String lastName);
 }

@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,7 +17,7 @@ public class Department {
     private Long id;
     private String name;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "faculty-department")
     @OneToMany(mappedBy = "department")
     private List<Faculty> faculty;
 

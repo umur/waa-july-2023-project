@@ -3,10 +3,9 @@ package waa.miu.AlumniManagementPortal.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import waa.miu.AlumniManagementPortal.entity.Student;
-import waa.miu.AlumniManagementPortal.repository.AddressRepo;
-import waa.miu.AlumniManagementPortal.repository.MajorRepo;
 import waa.miu.AlumniManagementPortal.repository.StudentRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -20,8 +19,6 @@ public class StudentServiceImpl implements StudentService{
 
 
     private final StudentRepo studentRepo;
-    private final AddressRepo addressRepo;
-    private final MajorRepo majorRepo;
 
 
     @Override
@@ -35,37 +32,23 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public void filterEntities(Map<String, String> filterParams) {
+    public List<Student> filterEntities(Map<String, String> filterParams) {
+
+        List<Student> students = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : filterParams.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
 
             switch (key) {
-                case "state" -> {
-                    logger.info("state ==> " + value);
-                    List<Student> studentsByState = addressRepo.findAllByState(value);
-                    logger.info("studentsByState ==> " + studentsByState);
-                }
-                case "city" -> {
-                    logger.info("city ==> " + value);
-                    List<Student> studentsByCity = addressRepo.findAllByCity(value);
-                    logger.info("studentsByCity ==> " + studentsByCity);
-                }
-                case "major" -> {
-                    logger.info("major ==> " + value);
-                    List<Student> studentsByMajorName = majorRepo.findAllByMajorName(value);
-                    logger.info("studentsByMajorName ==> " + studentsByMajorName);
-                }
-                case "name" -> {
-                    logger.info("name ==> " + value);
-                    List<Student> studentsByFirstName = studentRepo.findAllByFirstName(value);
-                    logger.info("studentsByFirstName ==> " + studentsByFirstName);
-                }
+                case "state" -> students = studentRepo.findByAddressState(value);
+                case "city" -> students = studentRepo.findByAddressCity(value);
+                case "major" -> students = studentRepo.findAllByMajorMajorName(value);
+                case "name" -> students = studentRepo.findAllByFirstName(value);
                 default -> logger.info(key + " <==> " + value);
             }
         }
-
+        return students;
     }
 
     @Override

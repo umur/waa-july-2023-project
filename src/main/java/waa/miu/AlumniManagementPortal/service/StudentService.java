@@ -11,7 +11,7 @@ public interface StudentService {
 
     Student findById(Long id);
 
-    void filterEntities(Map<String, String> filterParams);
+    List<Student> filterEntities(Map<String, String> filterParams);
 
     Student create(Student student);
 

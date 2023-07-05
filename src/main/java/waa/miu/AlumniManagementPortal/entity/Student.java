@@ -1,7 +1,6 @@
 package waa.miu.AlumniManagementPortal.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,27 +17,26 @@ public class Student {
 
     private String firstName, lastName, password, email, phone;
 
-    @JsonManagedReference
+    private boolean isCurrentlyEmployed, isDeleted;
+
+    @JsonManagedReference(value = "student-address")
     @OneToOne(mappedBy = "student")
     private Address address;
 
-    @JsonBackReference
+    @JsonBackReference(value = "student-major")
     @ManyToOne
     private Major major;
 
+    @JsonManagedReference(value = "student-jobAdverts")
     @OneToMany(mappedBy = "student")
-    @JsonManagedReference
     private List<JobAdvert> jobAdverts;
 
-    @JsonBackReference
+    @JsonBackReference(value = "student-currentWorkPlace")
     @ManyToOne
     private CurrentWorkPlace currentWorkPlace;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "student-comment")
     @OneToMany(mappedBy = "student")
     private List<Comment> comments;
-
-    private boolean isCurrentlyEmployed, isDeleted;
-
 
 }
