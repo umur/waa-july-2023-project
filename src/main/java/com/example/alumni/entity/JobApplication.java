@@ -1,5 +1,6 @@
 package com.example.alumni.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Filter;
@@ -7,12 +8,14 @@ import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.SQLDelete;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
-@Table(name="jobapplication")
+@Table(name = "jobapplication")
 @SQLDelete(sql = "UPDATE JobApplication SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedJobApplicationFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
-@Filter(name = "deletedJJobApplicationFilter", condition = "deleted = :isDeleted")
+@Filter(name = "deletedJobApplicationFilter", condition = "deleted = :isDeleted")
 public class JobApplication {
     @EmbeddedId
     private JobApplicationId id;
@@ -27,5 +30,8 @@ public class JobApplication {
     //@MapsId
     private JobAdvertisement jobAdvertisement;
 
+    private LocalDate applicationDate = LocalDate.now();
 
+    @JsonIgnore
+    private boolean deleted = Boolean.FALSE;
 }

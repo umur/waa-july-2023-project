@@ -1,5 +1,6 @@
 package com.example.alumni.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +23,6 @@ public class Role {
     private Long id;
     private String role;
 
+    @JsonIgnore
     private boolean deleted = Boolean.FALSE;
 }

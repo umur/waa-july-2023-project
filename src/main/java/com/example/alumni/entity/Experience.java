@@ -1,5 +1,6 @@
 package com.example.alumni.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Filter;
@@ -29,6 +30,7 @@ public class Experience {
     private LocalDate startDate;
     private LocalDate exitDate;
 
+    @JsonIgnore
     private boolean deleted = Boolean.FALSE;
 
 }

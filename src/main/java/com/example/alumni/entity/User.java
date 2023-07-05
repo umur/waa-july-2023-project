@@ -3,6 +3,7 @@ package com.example.alumni.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -31,5 +32,8 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<Role>();
 
+    private Boolean isEnabled = Boolean.TRUE;
+
+    @JsonIgnore
     private boolean deleted = Boolean.FALSE;
 }

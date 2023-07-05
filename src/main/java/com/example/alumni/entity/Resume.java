@@ -1,5 +1,6 @@
 package com.example.alumni.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Filter;
@@ -35,5 +36,6 @@ public class Resume {
     @OneToOne
     private User user;
 
+    @JsonIgnore
     private boolean deleted = Boolean.FALSE;
 }

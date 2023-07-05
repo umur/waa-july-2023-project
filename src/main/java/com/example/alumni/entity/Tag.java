@@ -1,5 +1,6 @@
 package com.example.alumni.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Filter;
@@ -24,6 +25,7 @@ public class Tag {
     @ManyToMany(mappedBy = "tags")
     private List<Resume> resume;
 
+    @JsonIgnore
     private boolean deleted = Boolean.FALSE;
 
 }

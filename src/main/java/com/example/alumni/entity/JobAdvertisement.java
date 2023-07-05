@@ -2,6 +2,7 @@ package com.example.alumni.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,5 +37,6 @@ public class JobAdvertisement {
     @JoinColumn
     private User user;
 
+    @JsonIgnore
     private boolean deleted = Boolean.FALSE;
 }
