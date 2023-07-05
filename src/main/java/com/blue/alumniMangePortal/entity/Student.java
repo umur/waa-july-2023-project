@@ -32,7 +32,7 @@ public class Student {
     private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
 //    private CurrentWorkPlace;
 //    private Cv cv;
-    public void addJobsAdvertisedToStd(JobsAdvertised jobs){
+    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
         jobsAdvertisedList.add(jobs);
     }
 }
