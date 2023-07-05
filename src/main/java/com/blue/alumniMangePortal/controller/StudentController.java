@@ -1,6 +1,5 @@
 package com.blue.alumniMangePortal.controller;
-
-import com.blue.alumniMangePortal.dto.StudentJob;
+import com.blue.alumniMangePortal.entity.JobExperience;
 import com.blue.alumniMangePortal.entity.Student;
 import com.blue.alumniMangePortal.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -14,40 +13,44 @@ public class StudentController {
     private final StudentService studentService;
     @PostMapping("/registerStudent")
     public String registerStudent(@RequestBody Student student){
-        return null;
+        return studentService.registerStudent(student);
     }
-    @PutMapping("/updateProfile")
+    @PutMapping("/updateProfile/{id}")
     public String updateProfile(@PathVariable Long id, @RequestBody Student student){
-        return null;
+        return studentService.updateProfile(id, student);
     }
-    @PostMapping("/addJobAdverts")
-    public String addJobAdverts(@RequestBody StudentJob studentJob){
-        return null;
-    }
+//    @PostMapping("/addJobAdverts/{id}")
+//    public String addJobAdverts(@PathVariable Long id, @RequestBody JobsAdvertised jobs){
+//
+//        return
+//    }
     @GetMapping("/seeCv/{id}")
     public String seeStudentCv(@PathVariable Long id){
         System.out.println("get CV file");
-        return null;
+        return "cv is seen";
     }
     @GetMapping("/getById/{id}")
-    public String getStudentById(@PathVariable Long id) {
-        return null;
+    public Student getStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id);
     }
     @GetMapping("/")
     public List<Student> getAllStudents(){
-        return null;
+        return studentService.getAllStudents();
     }
-    @PostMapping("/addprofessionalExperience")
-    public String addJobExperience(@RequestBody String jobExperience){
-        return null;
+    @PostMapping("/addprofessionalExperience/{id}")
+    public String addJobExperience(@PathVariable Long id,@RequestBody JobExperience jobExperience){
+        return studentService.addJobExperience(id, jobExperience);
     }
     @PutMapping("/resetPassword/{password}")
-    public String resetPassword(@PathVariable String password){
-        return null;
+    public String resetPassword(@RequestBody Student student,@PathVariable String password){
+        return studentService.resetPassword(student,password);
     }
-    @DeleteMapping("/delete/{id}")
-    public String deleteById(@PathVariable Long id){
-        return null;
-    }
-
+//    @DeleteMapping("/delete/{id}")
+//    public List<Student> deleteById(@PathVariable Long id){
+//        return studentService.deleteById(id);
+//    }
+//    @GetMapping("/filterBy/{variable}")
+//    public Student filterStudent(@PathVariable Object obj){
+//        return studentService.filterStudent(obj);
+//    }
 }
