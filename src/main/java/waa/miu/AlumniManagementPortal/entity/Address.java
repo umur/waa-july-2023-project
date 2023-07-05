@@ -1,6 +1,9 @@
 package waa.miu.AlumniManagementPortal.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,15 +25,15 @@ public class Address {
 
     private String zipcode;
 
-    @JsonBackReference
+    @JsonBackReference(value = "faculty-address")
     @OneToOne
     private Faculty faculty;
 
-    @JsonBackReference
+    @JsonBackReference(value = "currentWorkPlace-address")
     @OneToOne
     private CurrentWorkPlace currentWorkPlace;
 
-    @JsonBackReference
+    @JsonBackReference(value = "student-address")
     @OneToOne
     private Student student;
 

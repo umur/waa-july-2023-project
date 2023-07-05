@@ -1,6 +1,7 @@
 package waa.miu.AlumniManagementPortal.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class Major {
 
     private String majorName;
 
-    @JsonManagedReference
-    @OneToMany
+    @JsonManagedReference(value = "student-major")
+    @OneToMany(mappedBy = "major")
     private List<Student> students;
 }

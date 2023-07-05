@@ -2,7 +2,6 @@ package waa.miu.AlumniManagementPortal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import waa.miu.AlumniManagementPortal.entity.CurrentWorkPlace;
 import waa.miu.AlumniManagementPortal.entity.Faculty;
 import waa.miu.AlumniManagementPortal.service.FacultyService;
 

@@ -1,6 +1,8 @@
 package waa.miu.AlumniManagementPortal.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,11 +17,11 @@ public class Comment {
 
     private String comment;
 
-    @JsonBackReference
+    @JsonBackReference(value = "faculty-comment")
     @ManyToOne
     private Faculty faculty;
 
-    @JsonBackReference
+    @JsonBackReference(value = "student-comment")
     @ManyToOne
     private Student student;
 }
