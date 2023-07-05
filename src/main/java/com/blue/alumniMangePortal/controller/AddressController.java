@@ -14,9 +14,8 @@ public class AddressController {
     private final AddressService addressService;
 
     @PostMapping("/addresses")
-    public Address addAddress(Address address){
+    public void addAddress(Address address){
         addressService.saveAddress(address);
-        return address;
     }
     @GetMapping("/addresses")
     public List<Address> getAll(@RequestBody Address address){

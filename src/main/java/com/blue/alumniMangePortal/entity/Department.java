@@ -4,15 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Getter
 @Setter
-public class Address {
+@Getter
+@Entity
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Street;
-    private String zip;
-    private String city;
-    private String state;
+    private String name;
 }

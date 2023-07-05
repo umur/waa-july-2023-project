@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +20,19 @@ public class Student {
     private String phoneNumber;
     private boolean isDeleted;
     private boolean currentlyEmployed;
-    private String jobExperiences;
-//    private Address address;
+    @OneToOne
+    private JobExperience jobExperiences;
+    @OneToOne
+    private Address address;
 //    private Tag tag;
-//    private Major major;
+    @OneToOne
+    private Major major;
     @OneToMany
    // @JsonManagedReference
     private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
 //    private CurrentWorkPlace;
 //    private Cv cv;
-
+    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
+        jobsAdvertisedList.add(jobs);
+    }
 }
