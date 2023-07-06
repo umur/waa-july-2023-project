@@ -2,7 +2,6 @@ package com.example.geeks.services;
 
 
 import com.example.geeks.entity.Experience;
-import com.example.geeks.entity.User;
 import com.example.geeks.repos.ExperienceRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

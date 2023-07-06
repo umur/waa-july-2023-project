@@ -20,42 +20,43 @@ public class UserService {
 
     private final UserRepo usRepo;
 
-    public User addUser(User u){
+    public User addUser(User u) {
         return usRepo.save(u);
     }
-    public List<User> getAllUsers(){
+
+    public List<User> getAllUsers() {
         return usRepo.findAllByIsDeleted(false);
     }
 
-    public Optional<User> getUser(Long id){
+    public Optional<User> getUser(Long id) {
         return usRepo.findById(id);
     }
 
-    public List<User> getUsersWhereIdHas(Long id){
+    public List<User> getUsersWhereIdHas(Long id) {
         return usRepo.findByIdContainingAndIsDeleted(id, false);
     }
 
-    public List<User> getUsersByCity(String city){
+    public List<User> getUsersByCity(String city) {
         return usRepo.findByCityAndIsDeleted(city, false);
     }
 
-    public List<User> getUsersByState(String state){
+    public List<User> getUsersByState(String state) {
         return usRepo.findByStateAndIsDeleted(state, false);
     }
-/////////////////////////////////
-    public List<User> getUsersWhereNameHas(String name){
+
+    /////////////////////////////////
+    public List<User> getUsersWhereNameHas(String name) {
         return usRepo.findByNameContainingAndIsDeleted(name, false);
     }
 
-    public List<User> getStudentByMajor(String major){
+    public List<User> getStudentByMajor(String major) {
         return usRepo.findByMajorAndIsDeleted(major, false);
     }
 
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         usRepo.updateUserByIdIs(id);
     }
 //////////////////////////////////
-
 
 
 }
