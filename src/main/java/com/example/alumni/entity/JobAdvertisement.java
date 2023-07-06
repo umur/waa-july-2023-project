@@ -4,13 +4,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
-import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.*;
 
 @Entity
 @Data
@@ -44,4 +42,8 @@ public class JobAdvertisement extends BaseEntity {
     private String state;
 
     private String company;
+
+    @OneToMany(mappedBy ="jobAdvertisement")
+    @BatchSize(size = 20)
+    private List<JobApplication> jobApplications;
 }
