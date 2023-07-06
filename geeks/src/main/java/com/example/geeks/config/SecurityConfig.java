@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/addresses/**").hasAuthority("ADMIN")
                 .requestMatchers("/api/advertisements/**").hasAuthority("STUDENT")
                 .requestMatchers("/api/categories/**").hasAuthority("ADMIN")
-                .requestMatchers("/api/reviews/**").hasAuthority("ADMIN")
+                .requestMatchers("/api/comments/**").hasAuthority("ADMIN")
                 .requestMatchers("/api/users/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
