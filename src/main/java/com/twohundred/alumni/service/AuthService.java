@@ -1,24 +1,34 @@
 package com.twohundred.alumni.service;
 
-import com.twohundred.alumni.entity.Role;
-import com.twohundred.alumni.entity.User;
-import com.twohundred.alumni.entity.dto.request.LoginRequest;
-import com.twohundred.alumni.entity.dto.request.RegisterRequest;
-import com.twohundred.alumni.entity.dto.response.LoginResponse;
-import com.twohundred.alumni.repository.RoleRepo;
-import com.twohundred.alumni.repository.Token;
-import com.twohundred.alumni.repository.TokenRepository;
-import com.twohundred.alumni.repository.UserRepo;
-import com.twohundred.alumni.util.JwtUtil;
-import lombok.RequiredArgsConstructor;
+import java.util.Arrays;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import com.twohundred.alumni.entity.Address;
+import com.twohundred.alumni.entity.Faculty;
+import com.twohundred.alumni.entity.Role;
+import com.twohundred.alumni.entity.Student;
+import com.twohundred.alumni.entity.User;
+import com.twohundred.alumni.entity.dto.request.FacultyRegisterRequest;
+import com.twohundred.alumni.entity.dto.request.LoginRequest;
+import com.twohundred.alumni.entity.dto.request.RegisterRequest;
+import com.twohundred.alumni.entity.dto.request.StudentRegisterRequest;
+import com.twohundred.alumni.entity.dto.response.LoginResponse;
+import com.twohundred.alumni.repository.FacultyRepo;
+import com.twohundred.alumni.repository.RoleRepo;
+import com.twohundred.alumni.repository.StudentRepo;
+import com.twohundred.alumni.repository.Token;
+import com.twohundred.alumni.repository.TokenRepository;
+import com.twohundred.alumni.repository.UserRepo;
+import com.twohundred.alumni.util.JwtUtil;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +39,59 @@ public class AuthService {
   private final PasswordEncoder passwordEncoder;
   private final JwtUtil jwtUtil;
   private final AuthenticationManager authenticationManager;
+  private final FacultyRepo facultyRepo;
+  private final StudentRepo studentRepo;
+  private final ModelMapper modelMapper;
+
+  public LoginResponse registerFaculty(FacultyRegisterRequest request) {
+    List<Role> roles = Arrays.asList(roleRepo.findByRole("FACULTY"));
+    var user = new User(
+        request.getFirstname(),
+        request.getLastname(),
+        request.getEmail(),
+        passwordEncoder.encode(request.getPassword()),
+        roles);
+
+    Address address = modelMapper.map(request.getAddress(), Address.class);
+    user.setAddress(address);
+
+    var savedUser = repository.save(user);
+
+    Faculty faculty = new Faculty();
+    faculty.setSalary(request.getSalary());
+    faculty.setTitle(request.getTitle());
+    faculty.setUser(savedUser);
+    facultyRepo.save(faculty);
+
+    var jwtToken = jwtUtil.generateToken(user);
+    saveUserToken(savedUser, jwtToken);
+    return new LoginResponse(jwtToken);
+  }
+
+  public LoginResponse registerStudent(StudentRegisterRequest request) {
+    List<Role> roles = Arrays.asList(roleRepo.findByRole("STUDENT"));
+    var user = new User(
+        request.getFirstname(),
+        request.getLastname(),
+        request.getEmail(),
+        passwordEncoder.encode(request.getPassword()),
+        roles);
+
+    Address address = modelMapper.map(request.getAddress(), Address.class);
+    user.setAddress(address);
+
+    var savedUser = repository.save(user);
+
+    Student student = new Student();
+    student.setGpa(request.getGpa());
+    student.setMajor(request.getMajor());
+    student.setUser(savedUser);
+    studentRepo.save(student);
+
+    var jwtToken = jwtUtil.generateToken(user);
+    saveUserToken(savedUser, jwtToken);
+    return new LoginResponse(jwtToken);
+  }
 
   public LoginResponse register(RegisterRequest request) {
     List<Role> roles = Arrays.asList(roleRepo.findByRole(request.getRole()));
@@ -47,11 +110,9 @@ public class AuthService {
   public LoginResponse authenticate(LoginRequest request) {
     try {
       authenticationManager.authenticate(
-              new UsernamePasswordAuthenticationToken(
-                      request.getEmail(),
-                      request.getPassword()
-              )
-      );
+          new UsernamePasswordAuthenticationToken(
+              request.getEmail(),
+              request.getPassword()));
     } catch (BadCredentialsException e) {
       throw new BadCredentialsException(e.getMessage());
     } catch (Exception ex) {

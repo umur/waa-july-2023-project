@@ -1,19 +1,28 @@
 package com.twohundred.alumni.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
 
 @Entity
 @Data
@@ -32,8 +41,8 @@ public class User implements UserDetails {
     private Long lockedTimeInMilliseconds;
     private Boolean deleted = Boolean.FALSE;
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name="address_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @JsonIgnore
@@ -41,7 +50,17 @@ public class User implements UserDetails {
     @JoinTable
     private List<Role> roles;
 
-    public User() {};
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Student student;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Faculty faculty;
+
+    public User() {
+    }
+
     public User(String firstName, String lastName, String email, String password, List<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
