@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -36,12 +37,15 @@ public class UserActivityLogger {
         var log = new Log();
         log.setTime(LocalDateTime.now());
         log.setDescription(joinPoint.toShortString());
-        // Object test =SecurityContextHolder.getContext().getAuthentication().getDetails();
-
-          User userInDB = userRepo.findById(1l).get();
+        SimpleGrantedAuthority userId = (SimpleGrantedAuthority) SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[1];
+        User userInDB;
+        if (userRepo.findById(Long.valueOf(userId.getAuthority())).isPresent()) {
+            userInDB = userRepo.findById(Long.valueOf(userId.getAuthority())).get();
+        } else {
+            userInDB = null;
+        }
 
         log.setUser(userInDB);
-       // var x = service.getCommentsBy(1L);
         logger.addLog(log);
     }
 }
