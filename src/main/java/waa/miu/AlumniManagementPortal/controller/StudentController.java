@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/students", consumes = "application/json")
+@RequestMapping("/students")
 @RequiredArgsConstructor
 public class StudentController {
 

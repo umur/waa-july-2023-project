@@ -2,14 +2,12 @@ package waa.miu.AlumniManagementPortal.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
+@Data
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
