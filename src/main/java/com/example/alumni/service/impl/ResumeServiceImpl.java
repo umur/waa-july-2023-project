@@ -35,7 +35,7 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public Pair<Boolean, Resume> update(Resume resume) {
         boolean exists = resumeRepository.existsById(resume.getId());
-        resumeRepository.save(resume);
+        resume = resumeRepository.save(resume);
         return Pair.of(exists, resume);
     }
 

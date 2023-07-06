@@ -36,7 +36,6 @@ public class JobApplicationServiceImpl implements JobApplicationService {
     @Override
     public JobApplication add(JobApplication jobApplication) throws IllegalAccessException {
         jobApplication.setUser(currentUserUtil.getUser().get());
-        jobApplication.setApplicationDate(LocalDate.now());
         return jobApplicationRepository.save(jobApplication);
     }
     @Override

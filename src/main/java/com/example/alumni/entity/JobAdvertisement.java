@@ -19,9 +19,8 @@ import org.hibernate.annotations.SQLDelete;
 @SQLDelete(sql = "UPDATE JobAdvertisement SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedJobAdvertisementFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedJobAdvertisementFilter", condition = "deleted = :isDeleted")
-public class JobAdvertisement {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class JobAdvertisement extends BaseEntity {
+
     private String positionTitle;
     @Lob
     private String Description;

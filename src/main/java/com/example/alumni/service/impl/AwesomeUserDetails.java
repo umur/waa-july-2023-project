@@ -20,10 +20,14 @@ public class AwesomeUserDetails implements UserDetails {
     private String password;
     private List<Role> roles;
 
+    @JsonIgnore
+    private User user;
+
     public AwesomeUserDetails(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();
+        this.user = user;
     }
 
     @Override
@@ -50,7 +54,7 @@ public class AwesomeUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return user.getEnabled();
     }
 
     @Override
@@ -60,6 +64,6 @@ public class AwesomeUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return user.getEnabled();
     }
 }

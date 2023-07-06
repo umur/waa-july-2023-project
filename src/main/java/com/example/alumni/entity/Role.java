@@ -10,17 +10,11 @@ import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Data
-@Table(name="roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"role"})})
+@Table(name = "roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"role"})})
 @SQLDelete(sql = "UPDATE Role SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedRoleFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedRoleFilter", condition = "deleted = :isDeleted")
-public class Role {
+public class Role extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String role;
-
-    @JsonIgnore
-    private boolean deleted = Boolean.FALSE;
 }

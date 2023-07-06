@@ -12,20 +12,15 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name="tag", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+@Table(name = "tag", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 @SQLDelete(sql = "UPDATE Tag SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedTagFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedTagFilter", condition = "deleted = :isDeleted")
-public class Tag {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Tag extends BaseEntity {
+
     private String name;
 
     @ManyToMany(mappedBy = "tags")
     private List<Resume> resume;
-
-    @JsonIgnore
-    private boolean deleted = Boolean.FALSE;
 
 }

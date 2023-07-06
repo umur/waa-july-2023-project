@@ -1,32 +1,32 @@
-INSERT IGNORE INTO universitymember(id, email, role)
-VALUES(1, 'student1@miu.edu', 'STUDENT');
-INSERT IGNORE INTO universitymember(id, email, role)
-VALUES(2, 'student2@miu.edu', 'STUDENT');
-INSERT IGNORE INTO universitymember(id, email, role)
-VALUES(3, 'admin@miu.edu', 'ADMIN');
-INSERT IGNORE INTO universitymember(id, email, role)
-VALUES(4, 'employee1@miu.edu', 'FACULTY');
-INSERT IGNORE INTO universitymember(id, email, role)
-VALUES(5, 'student3@miu.edu', 'STUDENT');
+INSERT IGNORE INTO universitymember(id, email, role, create_date_time, update_date_time, version)
+VALUES(1, 'student1@miu.edu', 'STUDENT', now(), now(), 1);
+INSERT IGNORE INTO universitymember(id, email, role, create_date_time, update_date_time, version)
+VALUES(2, 'student2@miu.edu', 'STUDENT', now(), now(), 1);
+INSERT IGNORE INTO universitymember(id, email, role, create_date_time, update_date_time, version)
+VALUES(3, 'admin@miu.edu', 'ADMIN', now(), now(), 1);
+INSERT IGNORE INTO universitymember(id, email, role, create_date_time, update_date_time, version)
+VALUES(4, 'employee1@miu.edu', 'FACULTY', now(), now(), 1);
+INSERT IGNORE INTO universitymember(id, email, role, create_date_time, update_date_time, version)
+VALUES(5, 'student3@miu.edu', 'STUDENT', now(), now(), 1);
 
 
-INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major)
-VALUES (1, 'student1@miu.edu', 'student', 'one', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science'); -- 123
-INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major)
-VALUES (2, 'student2@miu.edu', 'student', 'two', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science'); -- 123
-INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major)
-VALUES (3, 'admin@miu.edu', 'Dean', 'Altarawneh', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science'); -- 123
-INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major)
-VALUES (4, 'employee1@miu.edu', 'Employee', 'one', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science'); -- 123
+INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major, enabled, create_date_time, update_date_time, version)
+VALUES (1, 'student1@miu.edu', 'student', 'one', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science', 1, now(), now(), 1); -- 123
+INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major, enabled, create_date_time, update_date_time, version)
+VALUES (2, 'student2@miu.edu', 'student', 'two', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science', 1, now(), now(), 1); -- 123
+INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major, enabled, create_date_time, update_date_time, version)
+VALUES (3, 'admin@miu.edu', 'Dean', 'Altarawneh', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science', 1, now(), now(), 1); -- 123
+INSERT IGNORE users (id, email, first_name, last_name, password, city, state, major, enabled, create_date_time, update_date_time, version)
+VALUES (4, 'employee1@miu.edu', 'Employee', 'one', '$2a$10$ssIMs0xJ5lSHrfiHJfQJMewmc7TD3rmsdE9xprZJFamGRsYSuc82S', 'Fairfield', 'Iowa', 'Computer Science', 1, now(), now(), 1); -- 123
 
 
 
-INSERT IGNORE roles (id, role)
-VALUES (1, 'STUDENT');
-INSERT IGNORE roles (id, role)
-VALUES (2, 'FACULTY');
-INSERT IGNORE roles (id, role)
-VALUES (3, 'ADMIN');
+INSERT IGNORE roles (id, role, create_date_time, update_date_time, version)
+VALUES (1, 'STUDENT', now(), now(), 1);
+INSERT IGNORE roles (id, role, create_date_time, update_date_time, version)
+VALUES (2, 'FACULTY', now(), now(), 1);
+INSERT IGNORE roles (id, role, create_date_time, update_date_time, version)
+VALUES (3, 'ADMIN', now(), now(), 1);
 
 
 INSERT IGNORE users_roles (user_id, roles_id)

@@ -15,11 +15,7 @@ import java.time.LocalDate;
 @SQLDelete(sql = "UPDATE Experience SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedExperienceFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedExperienceFilter", condition = "deleted = :isDeleted")
-public class Experience {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Experience  extends BaseEntity {
 
     private String companyName;
     private String city;

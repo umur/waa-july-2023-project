@@ -2,13 +2,12 @@ package com.example.alumni.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
-import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -17,6 +16,7 @@ import java.time.LocalDate;
 @FilterDef(name = "deletedJobApplicationFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedJobApplicationFilter", condition = "deleted = :isDeleted")
 public class JobApplication {
+
     @EmbeddedId
     private JobApplicationId id;
 
@@ -30,8 +30,18 @@ public class JobApplication {
     //@MapsId
     private JobAdvertisement jobAdvertisement;
 
-    private LocalDate applicationDate = LocalDate.now();
-
     @JsonIgnore
     private boolean deleted = Boolean.FALSE;
+
+    @JsonIgnore
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @JsonIgnore
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
+
+    @Version
+    private int version;
+
 }

@@ -15,11 +15,7 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE Resume SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedResumeFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedResumeFilter", condition = "deleted = :isDeleted")
-public class Resume {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Resume extends BaseEntity {
 
     @Lob
     private String careerGoal;
@@ -36,6 +32,4 @@ public class Resume {
     @OneToOne
     private User user;
 
-    @JsonIgnore
-    private boolean deleted = Boolean.FALSE;
 }
