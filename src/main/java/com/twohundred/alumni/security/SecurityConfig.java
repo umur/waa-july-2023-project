@@ -37,10 +37,12 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(request -> request
               .requestMatchers("/uaa/**").permitAll()
+              .requestMatchers("/echart/**").permitAll()
               .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
               .requestMatchers("/student/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
               .requestMatchers("/comment/**").hasAnyAuthority("ADMIN", "FACULTY")
               .requestMatchers("/user/**").hasAuthority("ADMIN")
+              .requestMatchers("/admin/**").hasAuthority("ADMIN")
               .anyRequest()
               .authenticated())
             .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))

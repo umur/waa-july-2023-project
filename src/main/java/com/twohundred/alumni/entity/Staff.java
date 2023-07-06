@@ -1,12 +1,14 @@
 package com.twohundred.alumni.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
-@Getter
-@Setter
+@Data
+@SQLDelete(sql = "UPDATE staff SET deleted = true WHERE id=?")
+@Where(clause = "deleted = false")
 public class Staff {
     @Id
     private Long id;
