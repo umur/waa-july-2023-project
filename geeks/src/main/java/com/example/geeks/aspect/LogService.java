@@ -2,7 +2,6 @@ package com.example.geeks.aspect;
 
 
 import com.example.geeks.entity.Log;
-import com.example.geeks.entity.User;
 import com.example.geeks.repos.LogRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;

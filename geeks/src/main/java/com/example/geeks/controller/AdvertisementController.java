@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/advertisements")
+@RequestMapping("/api/advertisements")
 public class AdvertisementController {
 
     @Qualifier("ads")

@@ -1,23 +1,24 @@
 package com.example.geeks.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.service.annotation.PatchExchange;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
 @Setter
 @Getter
 @Entity
-public class User {//implements UserDetails {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements Serializable, UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,12 +30,12 @@ public class User {//implements UserDetails {
     private String state;
     private String city;
     private String major;
-    private String role;
     private boolean isActive;
     private String cv;
     private boolean isDeleted;
 
-    // navigation properties
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 
     @JsonManagedReference
@@ -53,34 +54,40 @@ public class User {//implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "commentReceiver")
     private List<Comment> receivedComments;
 
-
-
-    //////////////////////////////////////////////////////
-/*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return !isDeleted;
     }
+
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return !isDeleted;
     }
 
- */
 }

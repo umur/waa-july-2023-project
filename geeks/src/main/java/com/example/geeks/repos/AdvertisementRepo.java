@@ -5,10 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface AdvertisementRepo extends JpaRepository<Advertisement, List<Advertisement>> {
+@Repository
+public interface AdvertisementRepo extends ListCrudRepository<Advertisement, List<Advertisement>> {
 
 
     public Advertisement getAdvertisementByIdIsAndIsDeleted(Long id, boolean b);

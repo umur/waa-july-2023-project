@@ -1,15 +1,12 @@
 package com.example.geeks.services;
 
 import com.example.geeks.entity.Comment;
-import com.example.geeks.entity.Advertisement;
-import com.example.geeks.entity.User;
 import com.example.geeks.repos.CommentRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor

@@ -2,16 +2,16 @@
 
 INSERT INTO user (name, image, username, password, email, state, city, major, role, is_Active, cv, is_Deleted)
 VALUES
-('John Doe', 'image_url', 'johndoe', 'password123', 'johndoe@example.com', 'California', 'Los Angeles', 'Computer Science', 'USER', true, 'cv_url', false),
-('Jane Smith', 'image_url', 'janesmith', 'password456', 'janesmith@example.com', 'New York', 'New York City', 'Business Administration', 'USER', true, 'cv_url', false),
-('Mike Johnson', 'image_url', 'mikejohnson', 'password789', 'mikejohnson@example.com', 'Texas', 'Austin', 'Engineering', 'USER', true, 'cv_url', false),
-('Sarah Johnson', 'image_url', 'sarahjohnson', 'password123', 'sarahjohnson@example.com', 'Florida', 'Miami', 'Marketing', 'USER', true, 'cv_url', false),
-('Michael Smith', 'image_url', 'michaelsmith', 'password456', 'michaelsmith@example.com', 'California', 'San Francisco', 'Art', 'USER', true, 'cv_url', false),
-('Emily Davis', 'image_url', 'emilydavis', 'password789', 'emilydavis@example.com', 'Texas', 'Houston', 'Psychology', 'USER', true, 'cv_url', false),
-('Daniel Wilson', 'image_url', 'danielwilson', 'password123', 'danielwilson@example.com', 'New York', 'Albany', 'Biology', 'USER', true, 'cv_url', false),
-('Olivia Thompson', 'image_url', 'oliviathompson', 'password456', 'oliviathompson@example.com', 'Florida', 'Orlando', 'Education', 'USER', true, 'cv_url', false),
-('Andrew Miller', 'image_url', 'andrewmiller', 'password789', 'andrewmiller@example.com', 'California', 'San Diego', 'Finance', 'USER', true, 'cv_url', false),
-('Sophia Davis', 'image_url', 'sophiadavis', 'password123', 'sophiadavis@example.com', 'Texas', 'Dallas', 'Music', 'USER', true, 'cv_url', false);
+('John Doe', 'image_url', 'johndoe', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'johndoe@example.com', 'California', 'Los Angeles', 'Computer Science', 'ADMIN', true, 'cv_url', false),
+('Jane Smith', 'image_url', 'janesmith', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'janesmith@example.com', 'New York', 'New York City', 'Business Administration', 'ADMIN', true, 'cv_url', false),
+('Mike Johnson', 'image_url', 'mikejohnson', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'mikejohnson@example.com', 'Texas', 'Austin', 'Engineering', 'ADMIN', true, 'cv_url', false),
+('Sarah Johnson', 'image_url', 'sarahjohnson', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'sarahjohnson@example.com', 'Florida', 'Miami', 'Marketing', 'ADMIN', true, 'cv_url', false),
+('Michael Smith', 'image_url', 'michaelsmith', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'michaelsmith@example.com', 'California', 'San Francisco', 'Art', 'ADMIN', true, 'cv_url', false),
+('Emily Davis', 'image_url', 'emilydavis', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'emilydavis@example.com', 'Texas', 'Houston', 'Psychology', 'ADMIN', true, 'cv_url', false),
+('Daniel Wilson', 'image_url', 'danielwilson', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'danielwilson@example.com', 'New York', 'Albany', 'Biology', 'ADMIN', true, 'cv_url', false),
+('Olivia Thompson', 'image_url', 'oliviathompson', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'oliviathompson@example.com', 'Florida', 'Orlando', 'Education', 'ADMIN', true, 'cv_url', false),
+('Andrew Miller', 'image_url', 'andrewmiller', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'andrewmiller@example.com', 'California', 'San Diego', 'Finance', 'ADMIN', true, 'cv_url', false),
+('Sophia Davis', 'image_url', 'sophiadavis', '$2a$10$iF/AFMpI1Lq66EGJW/MzG.KtJQApEwKHI4n.d5T713TDVZAM/MkNu', 'sophiadavis@example.com', 'Texas', 'Dallas', 'Music', 'ADMIN', true, 'cv_url', false);
 
 
 

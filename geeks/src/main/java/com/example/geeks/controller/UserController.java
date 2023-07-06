@@ -4,11 +4,8 @@ package com.example.geeks.controller;
 import com.example.geeks.entity.User;
 import com.example.geeks.entity.dtos.UserDTO;
 import com.example.geeks.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +14,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
 
 
     //DONOT FORGET TO USE PASS AND USERNAMR(USER) IN HEADERS
-    @Qualifier("uss")
-    @Autowired
-    UserService uss;
+    private final  UserService uss;
 
     /*
     @PostMapping
