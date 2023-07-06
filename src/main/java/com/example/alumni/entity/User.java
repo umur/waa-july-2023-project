@@ -40,4 +40,7 @@ public class User extends BaseEntity {
 
     private Boolean enabled = Boolean.TRUE;
 
+
+    @OneToMany(mappedBy = "user")
+    private List<JobApplication> jobApplications;
 }

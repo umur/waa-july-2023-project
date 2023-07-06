@@ -21,13 +21,13 @@ public class JobApplication {
     private JobApplicationId id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    @MapsId
+    //@JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @MapsId("userId")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "job_advertisement_id", insertable = false, updatable = false)
-    @MapsId
+    //@JoinColumn(name = "job_advertisement_id", insertable = false, updatable = false)
+    @MapsId("jobAdvertisementId")
     private JobAdvertisement jobAdvertisement;
 
     @JsonIgnore

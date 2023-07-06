@@ -13,11 +13,13 @@ import java.io.Serializable;
 @Data
 public class JobApplicationId implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "job_advertisement_id")
-    private JobAdvertisement jobAdvertisement;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "job_advertisement_id")
+//    private JobAdvertisement jobAdvertisement;
+    private Long userId;
+    private Long jobAdvertisementId;
 }
