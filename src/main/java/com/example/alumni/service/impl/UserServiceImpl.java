@@ -2,6 +2,8 @@ package com.example.alumni.service.impl;
 
 import com.example.alumni.entity.Role;
 import com.example.alumni.entity.UniversityMember;
+import com.example.alumni.entity.dto.request.ResetUserPasswordRequest;
+import com.example.alumni.entity.dto.request.ToggleUserStatusRequest;
 import com.example.alumni.service.RoleService;
 import com.example.alumni.service.UniversityMemberService;
 import com.example.alumni.service.UserService;
@@ -108,5 +110,45 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllByCity(String city) {
         return userRepository.findByCity(city);
+    }
+
+    @Override
+    public User toggleUserStatus(ToggleUserStatusRequest toggleUserStatusRequest) {
+        Optional<User> existingUser = userRepository.findById(toggleUserStatusRequest.getUserId());
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+            boolean hasStudentOrFacultyRole = user.getRoles().stream()
+                    .anyMatch(role -> role.getRole().equals("STUDENT") || role.getRole().equals("FACULTY"));
+            if (hasStudentOrFacultyRole) {
+                user.setEnabled(toggleUserStatusRequest.getEnabled());
+                user = userRepository.save(user);
+                return user;
+            } else {
+                throw new IllegalArgumentException("Admin can toggle status for STUDENT OR FACULTY only.");
+            }
+
+        }
+        throw new IllegalArgumentException("User does not exist");
+    }
+
+    @Override
+    public User resetUserPassword(ResetUserPasswordRequest resetUserPasswordRequest) {
+        Optional<User> existingUser = userRepository.findById(resetUserPasswordRequest.getUserId());
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+
+            boolean hasStudentOrFacultyRole = user.getRoles().stream()
+                    .anyMatch(role -> role.getRole().equals("STUDENT") || role.getRole().equals("FACULTY"));
+            if (hasStudentOrFacultyRole) {
+                String salt = BCrypt.gensalt();
+
+                user.setPassword(BCrypt.hashpw(resetUserPasswordRequest.getPassword(), salt));
+                user = userRepository.save(user);
+                return user;
+            } else {
+                throw new IllegalArgumentException("Admin can reset password for STUDENT OR FACULTY only.");
+            }
+        }
+        throw new IllegalArgumentException("User does not exist");
     }
 }

@@ -1,5 +1,7 @@
 package com.example.alumni.controller;
 
+import com.example.alumni.entity.dto.request.ResetUserPasswordRequest;
+import com.example.alumni.entity.dto.request.ToggleUserStatusRequest;
 import com.example.alumni.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -76,5 +78,19 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/toggle-user-status/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<User> toggleUserStatus(@PathVariable Long id,@RequestBody ToggleUserStatusRequest toggleUserStatusRequest) throws IllegalAccessException {
+        User createdUser = userService.toggleUserStatus(toggleUserStatusRequest);
+        return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/reset-user-password/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<User> resetUserPassword(@PathVariable Long id,@RequestBody ResetUserPasswordRequest resetUserPasswordRequest) throws IllegalAccessException {
+        User createdUser = userService.resetUserPassword(resetUserPasswordRequest);
+        return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
     }
 }
