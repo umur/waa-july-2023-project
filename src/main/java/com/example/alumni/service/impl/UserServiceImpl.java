@@ -49,18 +49,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User user) throws IllegalAccessException {
+        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+        if (!existingUser.isPresent()) {
+            Optional<UniversityMember> universityMember = universityMemberService.getByEmail(user.getEmail());
+            if (universityMember.isPresent()) {
+                List<Role> roles = new ArrayList<>();
+                roles.add(roleService.getByRole(universityMember.get().getRole()));
+                user.setRoles(roles);
+                String salt = BCrypt.gensalt();
 
-        Optional<UniversityMember> universityMember = universityMemberService.getByEmail(user.getEmail());
-        if (universityMember.isPresent()) {
-            List<Role> roles = new ArrayList<>();
-            roles.add(roleService.getByRole(universityMember.get().getRole()));
-            user.setRoles(roles);
-            String salt = BCrypt.gensalt();
-
-            user.setPassword(BCrypt.hashpw(user.getPassword(), salt));
-            return userRepository.save(user);
+                user.setPassword(BCrypt.hashpw(user.getPassword(), salt));
+                return userRepository.save(user);
+            } else {
+                throw new IllegalAccessException("You are not a member of MIU");
+            }
         } else {
-            throw new IllegalAccessException("You are not a member of MIU");
+            throw new IllegalArgumentException("Email already in use");
         }
     }
 
@@ -89,5 +93,20 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<User> getAllByMajor(String major) {
+        return userRepository.findByMajor(major);
+    }
+
+    @Override
+    public List<User> getAllByState(String state) {
+        return userRepository.findByState(state);
+    }
+
+    @Override
+    public List<User> getAllByCity(String city) {
+        return userRepository.findByCity(city);
     }
 }

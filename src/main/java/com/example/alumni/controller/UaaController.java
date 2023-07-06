@@ -7,6 +7,8 @@ import com.example.alumni.entity.dto.request.SignUpRequest;
 import com.example.alumni.entity.dto.response.LoginResponse;
 import com.example.alumni.service.AuthService;
 import com.example.alumni.service.UserService;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,9 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/uaa")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-
 public class UaaController {
+    @Autowired
+    private ModelMapper modelMapper;
 
     private final AuthService authService;
 
@@ -30,7 +33,6 @@ public class UaaController {
 
         this.userService = userService;
     }
-
 
     @PostMapping("/signin")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -46,11 +48,7 @@ public class UaaController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest) throws IllegalAccessException {
-        User user = new User();
-        user.setEmail(signUpRequest.getEmail());
-        user.setFirstName(signUpRequest.getFirstName());
-        user.setLastName(signUpRequest.getLastName());
-        user.setPassword(signUpRequest.getPassword());
+        User user = modelMapper.map(signUpRequest, User.class);
 
         user = userService.add(user);
 

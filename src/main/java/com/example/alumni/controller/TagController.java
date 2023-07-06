@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.alumni.entity.Tag;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tags")
 public class TagController {
@@ -34,6 +36,12 @@ public class TagController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/search")
+    @PreAuthorize("hasAuthority('STUDENT')")
+    public ResponseEntity<List<Tag>> getBySearch(@RequestParam String tag) {
+        return new ResponseEntity<>(tagService.getAllByTag(tag), HttpStatus.OK);
+    }
+
     @PostMapping
     @PreAuthorize("hasAuthority('STUDENT')")
     public ResponseEntity<Tag> add(@RequestBody Tag tag) throws IllegalAccessException {
@@ -46,8 +54,8 @@ public class TagController {
     public ResponseEntity<Tag> update(@PathVariable long id, @RequestBody Tag tag) throws IllegalAccessException {
         Pair<Boolean, Tag> result = tagService.update(tag);
         return (!result.getFirst())
-        ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
-        : new ResponseEntity<Tag>(result.getSecond(), HttpStatus.OK);
+                ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
+                : new ResponseEntity<Tag>(result.getSecond(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

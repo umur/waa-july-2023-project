@@ -23,4 +23,5 @@ public class JobAdvertisementDto {
     private String requiredSkills;
     private List<Tag> tags;
     private User user;
+    private String company;
 }

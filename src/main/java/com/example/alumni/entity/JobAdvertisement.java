@@ -39,4 +39,10 @@ public class JobAdvertisement {
 
     @JsonIgnore
     private boolean deleted = Boolean.FALSE;
+
+    private String city;
+
+    private String state;
+
+    private String company;
 }

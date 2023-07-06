@@ -10,6 +10,8 @@ import com.example.alumni.repository.TagRepository;
 
 import org.springframework.data.util.Pair;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class TagServiceImpl implements TagService {
@@ -38,6 +40,7 @@ public class TagServiceImpl implements TagService {
         tagRepository.save(tag);
         return Pair.of(exists, tag);
     }
+
     @Override
     public boolean delete(Long id) {
         Tag existingTag = tagRepository.findById(id).orElse(null);
@@ -46,5 +49,10 @@ public class TagServiceImpl implements TagService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Tag> getAllByTag(String tag) {
+        return tagRepository.findAllByNameContains(tag);
     }
 }

@@ -11,7 +11,6 @@ import com.example.alumni.util.CurrentUserUtil;
 import com.example.alumni.util.ListMapper;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,7 +69,7 @@ public class JobAdvertisementServiceImpl implements JobAdvertisementService {
     }
 
     @Override
-    public Iterable<JobAdvertisementDto> getByTags(List<String> tags) {
+    public Iterable<JobAdvertisementDto> getAllByTags(List<String> tags) {
         List<Tag> filterTags = new ArrayList<>();
         for (String tagName : tags) {
             Optional<Tag> tag = tagRepository.findByName(tagName);
@@ -78,9 +77,27 @@ public class JobAdvertisementServiceImpl implements JobAdvertisementService {
                 filterTags.add(tag.get());
             }
         }
-        return listMapper.mapList(jobAdvertisementRepository.findByTagsIn(filterTags),
+        return listMapper.mapList(jobAdvertisementRepository.findAllByTagsIn(filterTags),
                 new JobAdvertisementDto());
 
+    }
+
+    @Override
+    public Iterable<JobAdvertisementDto> getAllByCity(String city) {
+        return listMapper.mapList(jobAdvertisementRepository.findAllByCity(city),
+                new JobAdvertisementDto());
+    }
+
+    @Override
+    public Iterable<JobAdvertisementDto> getAllByState(String state) {
+        return listMapper.mapList(jobAdvertisementRepository.findAllByState(state),
+                new JobAdvertisementDto());
+    }
+
+    @Override
+    public Iterable<JobAdvertisementDto> getAllByCompany(String company) {
+        return listMapper.mapList(jobAdvertisementRepository.findAllByCompany(company),
+                new JobAdvertisementDto());
     }
 
     @Override

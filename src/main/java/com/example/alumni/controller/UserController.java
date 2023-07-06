@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.alumni.entity.User;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -34,6 +36,23 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/city")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
+    public ResponseEntity<List<User>> getByCity(@RequestParam String city) {
+        return new ResponseEntity<>(userService.getAllByCity(city), HttpStatus.OK);
+    }
+    @GetMapping("/state")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
+    public ResponseEntity<List<User>> getByState(@RequestParam String state) {
+        return new ResponseEntity<>(userService.getAllByState(state), HttpStatus.OK);
+    }
+
+    @GetMapping("/major")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
+    public ResponseEntity<List<User>> getByMajor(@RequestParam String major) {
+        return new ResponseEntity<>(userService.getAllByMajor(major), HttpStatus.OK);
+    }
+
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<User> add(@RequestBody User user) throws IllegalAccessException {
@@ -45,8 +64,8 @@ public class UserController {
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) throws IllegalAccessException {
         Pair<Boolean, User> result = userService.update(user);
         return (!result.getFirst())
-        ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
-        : new ResponseEntity<User>(result.getSecond(), HttpStatus.OK);
+                ? new ResponseEntity<>(result.getSecond(), HttpStatus.CREATED)
+                : new ResponseEntity<User>(result.getSecond(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

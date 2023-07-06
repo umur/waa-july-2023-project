@@ -18,7 +18,6 @@ public class JobAdvertisementController {
     @Autowired
     private JobAdvertisementService jobAdvertisementService;
 
-
     @GetMapping
     @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
     public ResponseEntity<Iterable<JobAdvertisementDto>> getAll() {
@@ -38,8 +37,29 @@ public class JobAdvertisementController {
 
     @GetMapping("/tags/")
     @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
-    public ResponseEntity<Iterable<JobAdvertisementDto>> getByTags(@RequestParam List<String> tags) {
-        Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getByTags(tags);
+    public ResponseEntity<Iterable<JobAdvertisementDto>> getAllByTags(@RequestParam List<String> tags) {
+        Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getAllByTags(tags);
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
+    @GetMapping("/city/")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
+    public ResponseEntity<Iterable<JobAdvertisementDto>> getAllByCity(@RequestParam String city) {
+        Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getAllByCity(city);
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
+    @GetMapping("/state/")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
+    public ResponseEntity<Iterable<JobAdvertisementDto>> getAllByState(@RequestParam String state) {
+        Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getAllByState(state);
+        return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
+    @GetMapping("/company/")
+    @PreAuthorize("hasAuthority('STUDENT') or hasAuthority('FACULTY')")
+    public ResponseEntity<Iterable<JobAdvertisementDto>> getAllByCompany(@RequestParam String company) {
+        Iterable<JobAdvertisementDto> jobs = jobAdvertisementService.getAllByCompany(company);
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
 
