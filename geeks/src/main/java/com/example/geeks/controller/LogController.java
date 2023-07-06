@@ -1,7 +1,7 @@
 package com.example.geeks.controller;
 
 import com.example.geeks.entity.Log;
-import com.example.geeks.services.LogService;
+import com.example.geeks.aspect.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
