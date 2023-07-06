@@ -53,6 +53,6 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public List<Tag> getAllByTag(String tag) {
-        return tagRepository.findAllByNameContains(tag);
+        return tagRepository.findAllByNameContainingIgnoreCase(tag);
     }
 }

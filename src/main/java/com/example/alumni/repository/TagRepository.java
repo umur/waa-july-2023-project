@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface TagRepository extends ListCrudRepository<Tag, Long> {
     Optional<Tag> findByName(String name);
-    List<Tag> findAllByNameContains(String name);
+    List<Tag> findAllByNameContainingIgnoreCase(String name);
 
 }
