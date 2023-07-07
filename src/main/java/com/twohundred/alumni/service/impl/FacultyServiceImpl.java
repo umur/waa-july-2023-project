@@ -21,7 +21,7 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public FacultyDto delete(Faculty faculty) {
         Faculty tempFaculty = findById(faculty.getId());
-        tempFaculty.setDeleted(true);
+        tempFaculty.getUser().setDeleted(true);
         Faculty newFaculty = facultyRepo.save(tempFaculty);
         return modelMapper.map(newFaculty, FacultyDto.class);
     }

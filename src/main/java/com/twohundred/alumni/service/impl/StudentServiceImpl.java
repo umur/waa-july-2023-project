@@ -21,7 +21,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto delete(Student student) {
         Student tempStudent = findById(student.getId());
-        tempStudent.setDeleted(true);
+        tempStudent.getUser().setDeleted(true);
         Student newStudent = studentRepo.save(tempStudent);
         return modelMapper.map(newStudent, StudentDto.class);
     }
