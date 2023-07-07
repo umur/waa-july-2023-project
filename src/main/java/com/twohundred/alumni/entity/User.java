@@ -100,4 +100,13 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Staff staff;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Faculty faculty;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Student student;
 }
