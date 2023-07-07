@@ -50,14 +50,6 @@ public class User implements UserDetails {
     @JoinTable
     private List<Role> roles;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Student student;
-
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Faculty faculty;
-
     public User() {
     }
 
