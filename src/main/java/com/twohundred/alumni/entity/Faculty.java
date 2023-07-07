@@ -1,11 +1,13 @@
 package com.twohundred.alumni.entity;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
 
 @Entity
 @Data
@@ -18,9 +20,9 @@ public class Faculty {
     private String title;
 
     private Double salary;
+    
+    private Boolean deleted = Boolean.FALSE;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private User faculty;
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 }

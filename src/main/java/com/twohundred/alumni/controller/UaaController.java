@@ -1,7 +1,9 @@
 package com.twohundred.alumni.controller;
 
+import com.twohundred.alumni.entity.dto.request.FacultyRegisterRequest;
 import com.twohundred.alumni.entity.dto.request.LoginRequest;
 import com.twohundred.alumni.entity.dto.request.RegisterRequest;
+import com.twohundred.alumni.entity.dto.request.StudentRegisterRequest;
 import com.twohundred.alumni.entity.dto.response.LoginResponse;
 import com.twohundred.alumni.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,5 +29,15 @@ public class UaaController {
     @PostMapping("/signup")
     public ResponseEntity<LoginResponse> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
+    }
+
+    @PostMapping("/signup/faculty")
+    public ResponseEntity<LoginResponse> register(@RequestBody FacultyRegisterRequest request) {
+        return ResponseEntity.ok(authService.registerFaculty(request));
+    }
+
+    @PostMapping("/signup/student")
+    public ResponseEntity<LoginResponse> register(@RequestBody StudentRegisterRequest request) {
+        return ResponseEntity.ok(authService.registerStudent(request));
     }
 }

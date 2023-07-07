@@ -35,7 +35,7 @@ public class EChartServiceImpl implements EChartService {
     public Map<String, Long> numberOfStudentsPerState() {
         List<Student> students = studentRepo.findAll();
         return students.stream().collect(
-                Collectors.groupingBy((Student student) -> student.getStudent().getAddress().getState(),
+                Collectors.groupingBy((Student student) -> student.getUser().getAddress().getState(),
                         Collectors.counting()));
 
     }
@@ -44,7 +44,7 @@ public class EChartServiceImpl implements EChartService {
     public Map<String, Long> numberOfStudentsPerCity() {
         List<Student> students = studentRepo.findAll();
         return students.stream().collect(
-                Collectors.groupingBy((Student student) -> student.getStudent().getAddress().getCity(),
+                Collectors.groupingBy((Student student) -> student.getUser().getAddress().getCity(),
                         Collectors.counting()));
     }
 
