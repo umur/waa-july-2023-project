@@ -13,7 +13,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstName, lastName, password, email, phone;
+    private String firstName, lastName, password, email, phone, cv;
 
     private boolean isCurrentlyEmployed, isDeleted;
 
