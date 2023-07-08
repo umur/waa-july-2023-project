@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @RestController
 public class FileRetrievalController {
-    @Value("${file.upload.directory}")
+    @Value("/path/to/upload/directory")
     private String uploadDirectory;
 
     @GetMapping("/files/{filename}")

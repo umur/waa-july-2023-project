@@ -1,6 +1,5 @@
 package com.blue.alumniMangePortal.controller;
 
-import com.blue.alumniMangePortal.dto.FacultyAddressDto;
 import com.blue.alumniMangePortal.entity.Address;
 import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.service.AddressService;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/faculties")
+@RequestMapping("/alumniMangePortal/faculties")
 public class FacultyController {
     @Autowired
     private FacultyService facultyService;
