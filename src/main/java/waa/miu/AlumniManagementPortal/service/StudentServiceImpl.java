@@ -1,14 +1,16 @@
 package waa.miu.AlumniManagementPortal.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.tika.Tika;
+import org.apache.tika.mime.MediaType;
 import org.springframework.stereotype.Service;
 import waa.miu.AlumniManagementPortal.entity.Student;
 import waa.miu.AlumniManagementPortal.repository.StudentRepo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 import java.util.logging.Logger;
 
 @Service
@@ -53,7 +55,42 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student create(Student student) {
-        return studentRepo.save(student);
+        String studentCVPath = processCV(student);
+        Student student1 = new Student();
+        student1.setId(student.getId());
+        student1.setFirstName(student.getFirstName());
+        student1.setLastName(student.getLastName());
+        student1.setCv(studentCVPath);
+        student1.setPassword(student.getPassword());
+        student1.setEmail(student.getEmail());
+        student1.setPhone(student.getPhone());
+        student1.setAddress(student.getAddress());
+        student1.setMajor(student.getMajor());
+        student1.setJobAdverts(student.getJobAdverts());
+        student1.setCurrentWorkPlace(student.getCurrentWorkPlace());
+        student1.setCurrentlyEmployed(student.isCurrentlyEmployed());
+        student1.setDeleted(student.isDeleted());
+        return studentRepo.save(student1);
+    }
+
+    private String processCV(Student student) {
+        String base64value = student.getCv();
+        byte[] fileBytes = Base64.getDecoder().decode(base64value);
+        Tika tika = new Tika();
+        MediaType mediaType = MediaType.parse(tika.detect(fileBytes));
+        String fileExtension = mediaType.getSubtype();
+        if (fileExtension.equals("x-tika-ooxml")) fileExtension = "docx";
+        String filePath = "/Users/fortuneking/Downloads/uploads/"+
+                student.getFirstName()+"-"+
+                student.getLastName()+
+                "-CV."+fileExtension;
+        try{
+            Path path = Path.of(filePath);
+            Files.write(path, fileBytes);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return filePath;
     }
 
     @Override
