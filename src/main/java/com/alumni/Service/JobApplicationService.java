@@ -1,9 +1,10 @@
 package com.alumni.Service;
+
 import com.alumni.entity.JobApplication;
 
 import java.util.List;
 
-public interface JobApplicationService  {
+public interface JobApplicationService {
     List<JobApplication> getList(int page, int size, Long jobId, Long studentId);
 
     void create(JobApplication record);

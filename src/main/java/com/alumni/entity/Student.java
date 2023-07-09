@@ -6,7 +6,6 @@ import lombok.Data;
 import java.util.List;
 import java.util.Objects;
 
-
 @Entity
 @Data
 public class Student {
@@ -29,14 +28,18 @@ public class Student {
     private Attachment cv;
 
     @OneToMany(mappedBy = "student")
-    private List<JobApplication> jobApplications ;
-
+    private List<JobApplication> jobApplications;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Student student)) return false;
-        return id == student.id && Objects.equals(state, student.state) && Objects.equals(city, student.city) && Objects.equals(major, student.major) && Objects.equals(name, student.name) && Objects.equals(cvUrl, student.cvUrl) && Objects.equals(jobExperiences, student.jobExperiences) && Objects.equals(user, student.user) && Objects.equals(cv, student.cv);
+        if (this == o)
+            return true;
+        if (!(o instanceof Student student))
+            return false;
+        return id == student.id && Objects.equals(state, student.state) && Objects.equals(city, student.city)
+                && Objects.equals(major, student.major) && Objects.equals(name, student.name)
+                && Objects.equals(cvUrl, student.cvUrl) && Objects.equals(jobExperiences, student.jobExperiences)
+                && Objects.equals(user, student.user) && Objects.equals(cv, student.cv);
     }
 
     @Override
