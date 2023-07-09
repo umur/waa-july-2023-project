@@ -1,4 +1,5 @@
 package com.alumni.entity;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -6,7 +7,6 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 @Entity
 @Data
@@ -21,11 +21,13 @@ public class JobAdvertisement {
     private String city;
     private String company;
 
-
     private String attachments;
     private String postedBy;
     private Date postedAt;
 
     @ManyToMany
-    private List<Tag> tags= new ArrayList<>();
+    private List<Tag> tags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "jobAdvertisement")
+    private List<JobApplication> jobApplications;
 }
