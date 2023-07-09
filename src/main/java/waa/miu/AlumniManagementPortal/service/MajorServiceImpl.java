@@ -1,12 +1,13 @@
 package waa.miu.AlumniManagementPortal.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import waa.miu.AlumniManagementPortal.entity.Major;
 import waa.miu.AlumniManagementPortal.repository.MajorRepo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,8 @@ public class MajorServiceImpl implements MajorService{
 
     @Override
     public Major findById(Long id) {
-        return majorRepo.findById(id).orElse(null);
+        return majorRepo.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Major with id "+id+" not found"));
     }
 
     @Override
@@ -31,12 +33,10 @@ public class MajorServiceImpl implements MajorService{
 
     @Override
     public Major update(Long id, Major major) {
-        Optional<Major> optionalMajor = majorRepo.findById(id);
-        if (optionalMajor.isPresent()){
-            optionalMajor.get().setMajorName(major.getMajorName());
-            optionalMajor.get().setStudents(major.getStudents());
-        }
-        return optionalMajor.orElse(null);
+        Major exisitingMajor = findById(id);
+        exisitingMajor.setMajorName(major.getMajorName());
+        exisitingMajor.setStudents(major.getStudents());
+        return majorRepo.save(exisitingMajor);
     }
 
     @Override

@@ -38,4 +38,14 @@ public class JobAdvertController {
     public void delete(@PathVariable Long id){
         jobAdvertService.delete(id);
     }
+
+    @GetMapping("/findTop10JobsByDateAdded")
+    public List<JobAdvert> findTop10JobsByDateAdded(){
+        return jobAdvertService.findTop10JobsByDateAdded();
+    }
+
+    @GetMapping("/findTop10JobsByDateApplied")
+    public List<JobAdvert> findTop10JobsByDateApplied(){
+        return jobAdvertService.findTop10JobsByDateApplied();
+    }
 }

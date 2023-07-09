@@ -1,8 +1,9 @@
 package waa.miu.AlumniManagementPortal.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import waa.miu.AlumniManagementPortal.entity.Address;
 import waa.miu.AlumniManagementPortal.repository.AddressRepo;
 
@@ -19,19 +20,20 @@ public class AddressServiceImpl implements AddressService {
     }
 
     public Address getAddressById(Long id) {
-        return addressRepo.findById(id).orElse(null);
+        return addressRepo.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Address with id "+id+" not found"));
     }
 
     public Address updateAddress(Address address) {
         if (!addressRepo.existsById(address.getId())) {
-            throw new EntityNotFoundException("Address not found with id: " + address.getId());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Address with id "+address.getId()+" not found");
         }
         return addressRepo.save(address);
     }
 
     public void deleteAddress(Long id) {
         if (!addressRepo.existsById(id)) {
-            throw new EntityNotFoundException("Address not found with id: " + id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Address with id "+id+" not found");
         }
         addressRepo.deleteById(id);
     }
