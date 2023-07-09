@@ -1,12 +1,13 @@
 package waa.miu.AlumniManagementPortal.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import waa.miu.AlumniManagementPortal.entity.Faculty;
 import waa.miu.AlumniManagementPortal.repository.FacultyRepo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,8 @@ public class FacultyServiceImpl implements FacultyService{
 
     @Override
     public Faculty findById(Long id) {
-        return facultyRepo.findById(id).orElse(null);
+        return facultyRepo.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Faculty with id "+id+" not found"));
     }
 
     @Override
@@ -31,21 +33,19 @@ public class FacultyServiceImpl implements FacultyService{
 
     @Override
     public Faculty update(Long id, Faculty faculty) {
-        Optional<Faculty> optionalFaculty = facultyRepo.findById(id);
-        if (optionalFaculty.isPresent()){
-            optionalFaculty.get().setFirstName(faculty.getFirstName());
-            optionalFaculty.get().setLastName(faculty.getLastName());
-            optionalFaculty.get().setPassword(faculty.getPassword());
-            optionalFaculty.get().setEmail(faculty.getEmail());
-            optionalFaculty.get().setPhone(faculty.getPhone());
-            optionalFaculty.get().setTitle(faculty.getTitle());
-            optionalFaculty.get().setAdmin(faculty.isAdmin());
-            optionalFaculty.get().setDeleted(faculty.isDeleted());
-            optionalFaculty.get().setDepartment(faculty.getDepartment());
-            optionalFaculty.get().setAddress(faculty.getAddress());
-            optionalFaculty.get().setComments(faculty.getComments());
-        }
-        return optionalFaculty.orElse(null);
+        Faculty existingFaculty = findById(id);
+            existingFaculty.setFirstName(faculty.getFirstName());
+            existingFaculty.setLastName(faculty.getLastName());
+            existingFaculty.setPassword(faculty.getPassword());
+            existingFaculty.setEmail(faculty.getEmail());
+            existingFaculty.setPhone(faculty.getPhone());
+            existingFaculty.setTitle(faculty.getTitle());
+            existingFaculty.setAdmin(faculty.isAdmin());
+            existingFaculty.setDeleted(faculty.isDeleted());
+            existingFaculty.setDepartment(faculty.getDepartment());
+            existingFaculty.setAddress(faculty.getAddress());
+            existingFaculty.setComments(faculty.getComments());
+        return facultyRepo.save(existingFaculty);
     }
 
     @Override

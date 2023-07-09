@@ -1,23 +1,20 @@
 package waa.miu.AlumniManagementPortal.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import waa.miu.AlumniManagementPortal.entity.Tag;
 import waa.miu.AlumniManagementPortal.repository.TagRepo;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TagServiceImpl implements TagService{
 
-    public TagRepo tagRepo;
-
-    @Autowired
-    public TagServiceImpl(TagRepo tagRepo){
-        this.tagRepo=tagRepo;
-
-    }
+    private final TagRepo tagRepo;
 
     public List<Tag> getAllTags() {
         return tagRepo.findAll();
@@ -28,7 +25,8 @@ public class TagServiceImpl implements TagService{
     }
 
     public Tag getTagById(Long id) {
-        return tagRepo.findById(id).orElse(null);
+        return tagRepo.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Tag with id "+id+" not found"));
     }
 
     public void deleteTag(Long id) {
@@ -37,7 +35,7 @@ public class TagServiceImpl implements TagService{
 
     public Tag updateTag(Tag tag) {
         if (!tagRepo.existsById(tag.getId())) {
-            throw new EntityNotFoundException("Tag not found with id: " + tag.getId());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tag with id "+tag.getId()+" not found");
         }
         return tagRepo.save(tag);
     }

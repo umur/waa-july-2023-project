@@ -1,12 +1,13 @@
 package waa.miu.AlumniManagementPortal.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import waa.miu.AlumniManagementPortal.entity.CurrentWorkPlace;
 import waa.miu.AlumniManagementPortal.repository.CurrentWorkPlaceRepo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,8 @@ public class CurrentWorkPlaceServiceImpl implements CurrentWorkPlaceService{
 
     @Override
     public CurrentWorkPlace findById(Long id) {
-        return currentWorkPlaceRepo.findById(id).orElse(null);
+        return currentWorkPlaceRepo.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Current work place with id "+id+" not found"));
     }
 
     @Override
@@ -31,13 +33,11 @@ public class CurrentWorkPlaceServiceImpl implements CurrentWorkPlaceService{
 
     @Override
     public CurrentWorkPlace update(Long id, CurrentWorkPlace currentWorkPlace) {
-        Optional<CurrentWorkPlace> optionalCurrentWorkPlace = currentWorkPlaceRepo.findById(id);
-        if (optionalCurrentWorkPlace.isPresent()){
-            optionalCurrentWorkPlace.get().setCompanyName(currentWorkPlace.getCompanyName());
-            optionalCurrentWorkPlace.get().setPosition(currentWorkPlace.getPosition());
-            optionalCurrentWorkPlace.get().setAddress(currentWorkPlace.getAddress());
-        }
-        return optionalCurrentWorkPlace.orElse(null);
+        CurrentWorkPlace existingWorkPlace = findById(id);
+        existingWorkPlace.setCompanyName(currentWorkPlace.getCompanyName());
+        existingWorkPlace.setPosition(currentWorkPlace.getPosition());
+        existingWorkPlace.setAddress(currentWorkPlace.getAddress());
+        return currentWorkPlaceRepo.save(existingWorkPlace);
     }
 
     @Override
