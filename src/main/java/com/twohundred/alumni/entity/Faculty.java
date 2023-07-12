@@ -2,20 +2,18 @@ package com.twohundred.alumni.entity;
 
 import jakarta.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-public class Faculty {
-    @Id
-    private Long id;
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "faculties")
+public class Faculty extends User {
 
     private String title;
 
     private Double salary;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private User user;
 }

@@ -28,51 +28,52 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 public class SecurityConfig {
 
-  private final JwtFilter jwtFilter;
-  private final LogoutHandler logoutHandler;
-  private final UserDetailsService userDetailsService;
+    private final JwtFilter jwtFilter;
+    private final LogoutHandler logoutHandler;
+    private final UserDetailsService userDetailsService;
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(request -> request
-              .requestMatchers("/uaa/**").permitAll()
-              .requestMatchers("/echart/**").permitAll()
-              .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
-              .requestMatchers("/student/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
-              .requestMatchers("/comment/**").hasAnyAuthority("ADMIN", "FACULTY")
-              .requestMatchers("/user/**").hasAuthority("ADMIN")
-              .requestMatchers("/admin/**").hasAuthority("ADMIN")
-              .anyRequest()
-              .authenticated())
-            .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
-            .authenticationProvider(authenticationProvider()).addFilterBefore(
-                    jwtFilter, UsernamePasswordAuthenticationFilter.class)
-        .logout((logout) -> logout.logoutSuccessUrl("/uaa/logout")
-                .permitAll().addLogoutHandler(logoutHandler)
-        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()));
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/uaa/**").permitAll()
+                        .requestMatchers("/echart/**").permitAll()
+//                        .requestMatchers("/faculties/**").permitAll()
+//                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
+                        .requestMatchers("/student/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
+                        .requestMatchers("/comment/**").hasAnyAuthority("ADMIN", "FACULTY")
+                        .requestMatchers("/user/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .anyRequest()
+                        .authenticated())
+                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
+                .authenticationProvider(authenticationProvider()).addFilterBefore(
+                        jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout((logout) -> logout.logoutSuccessUrl("/uaa/logout")
+                        .permitAll().addLogoutHandler(logoutHandler)
+                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()));
 
-    return http.build();
-  }
-
-
-
-  @Bean
-  public AuthenticationProvider authenticationProvider() {
-    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    authProvider.setUserDetailsService(userDetailsService);
-    authProvider.setPasswordEncoder(passwordEncoder());
-    return authProvider;
-  }
-
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+        return http.build();
+    }
 
 
-  @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-    return config.getAuthenticationManager();
-  }
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
 }

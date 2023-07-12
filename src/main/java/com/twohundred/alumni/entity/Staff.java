@@ -5,14 +5,8 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Staff {
-    @Id
-    private Long id;
+@Table(name = "staffs")
+public class Staff extends User{
 
     private String title;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private User user;
 }

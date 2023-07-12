@@ -2,8 +2,6 @@ package com.twohundred.alumni.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -15,7 +13,9 @@ public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "start_date")
     private Long from;
+    @Column(name = "end_date")
     private Long to;
     private String company;
     private String title;

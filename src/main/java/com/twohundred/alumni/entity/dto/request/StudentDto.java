@@ -7,5 +7,8 @@ public class StudentDto {
     private Long id;
     private String major;
     private Double gpa;
-    private UserDto user;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private AddressDto address;
 }

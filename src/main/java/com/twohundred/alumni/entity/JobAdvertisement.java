@@ -3,6 +3,8 @@ package com.twohundred.alumni.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@SQLDelete(sql = "UPDATE tag SET deleted = true WHERE id=?")
+@Where(clause = "is_deleted = false")
 public class JobAdvertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +36,5 @@ public class JobAdvertisement {
 
     @CreatedDate
     private Date dateCreated;
-    private boolean isDeleted = false;
+    private Boolean isDeleted = Boolean.FALSE;
 }

@@ -21,8 +21,7 @@ public class Job {
     private String companyName;
     private Boolean deleted = Boolean.FALSE;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
+    @Embedded
     private Address address;
 
     @ManyToMany(cascade = CascadeType.ALL)

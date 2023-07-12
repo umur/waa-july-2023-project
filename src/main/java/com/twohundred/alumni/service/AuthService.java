@@ -33,105 +33,87 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-  private final RoleRepo roleRepo;
-  private final UserRepo repository;
-  private final TokenRepository tokenRepository;
-  private final PasswordEncoder passwordEncoder;
-  private final JwtUtil jwtUtil;
-  private final AuthenticationManager authenticationManager;
-  private final FacultyRepo facultyRepo;
-  private final StudentRepo studentRepo;
-  private final ModelMapper modelMapper;
+    private final RoleRepo roleRepo;
+    private final UserRepo repository;
+    private final TokenRepository tokenRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
+    private final FacultyRepo facultyRepo;
+    private final StudentRepo studentRepo;
+    private final ModelMapper modelMapper;
 
-  public LoginResponse registerFaculty(FacultyRegisterRequest request) {
-    List<Role> roles = Arrays.asList(roleRepo.findByRole("FACULTY"));
-    var user = new User(
-        request.getFirstname(),
-        request.getLastname(),
-        request.getEmail(),
-        passwordEncoder.encode(request.getPassword()),
-        roles);
-
-    Address address = modelMapper.map(request.getAddress(), Address.class);
-    user.setAddress(address);
-
-    var savedUser = repository.save(user);
-
-    Faculty faculty = new Faculty();
-    faculty.setSalary(request.getSalary());
-    faculty.setTitle(request.getTitle());
-    faculty.setUser(savedUser);
-    facultyRepo.save(faculty);
-
-    var jwtToken = jwtUtil.generateToken(user);
-    saveUserToken(savedUser, jwtToken);
-    return new LoginResponse(jwtToken);
-  }
-
-  public LoginResponse registerStudent(StudentRegisterRequest request) {
-    List<Role> roles = Arrays.asList(roleRepo.findByRole("STUDENT"));
-    var user = new User(
-        request.getFirstname(),
-        request.getLastname(),
-        request.getEmail(),
-        passwordEncoder.encode(request.getPassword()),
-        roles);
-
-    Address address = modelMapper.map(request.getAddress(), Address.class);
-    user.setAddress(address);
-
-    var savedUser = repository.save(user);
-
-    Student student = new Student();
-    student.setGpa(request.getGpa());
-    student.setMajor(request.getMajor());
-    student.setUser(savedUser);
-    studentRepo.save(student);
-
-    var jwtToken = jwtUtil.generateToken(user);
-    saveUserToken(savedUser, jwtToken);
-    return new LoginResponse(jwtToken);
-  }
-
-  public LoginResponse register(RegisterRequest request) {
-    List<Role> roles = Arrays.asList(roleRepo.findByRole(request.getRole()));
-    var user = new User(
-        request.getFirstname(),
-        request.getLastname(),
-        request.getEmail(),
-        passwordEncoder.encode(request.getPassword()),
-        roles);
-    var savedUser = repository.save(user);
-    var jwtToken = jwtUtil.generateToken(user);
-    saveUserToken(savedUser, jwtToken);
-    return new LoginResponse(jwtToken);
-  }
-
-  public LoginResponse authenticate(LoginRequest request) {
-    try {
-      authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(
-              request.getEmail(),
-              request.getPassword()));
-    } catch (BadCredentialsException e) {
-      throw new BadCredentialsException(e.getMessage());
-    } catch (Exception ex) {
-      System.out.println("Error:" + ex.getMessage());
+    public LoginResponse registerFaculty(FacultyRegisterRequest request) {
+        List<Role> roles = Arrays.asList(roleRepo.findByRole("FACULTY"));
+        var faculty = new Faculty(request.getTitle(), request.getSalary());
+        faculty.setFirstName(request.getFirstname());
+        faculty.setLastName(request.getLastname());
+        faculty.setEmail(request.getEmail());
+        faculty.setPassword(passwordEncoder.encode(request.getPassword()));
+        faculty.setRoles(roles);
+        Address address = modelMapper.map(request.getAddress(), Address.class);
+        faculty.setAddress(address);
+        facultyRepo.save(faculty);
+        var jwtToken = jwtUtil.generateToken(faculty);
+        saveUserToken(faculty, jwtToken);
+        return new LoginResponse(jwtToken);
     }
 
-    try {
-      var user = repository.findByEmail(request.getEmail()).orElseThrow();
-      var jwtToken = jwtUtil.generateToken(user);
-      saveUserToken(user, jwtToken);
-      return new LoginResponse(jwtToken);
-    } catch (Exception ex) {
-      System.out.println("Error:" + ex.getMessage());
+    public LoginResponse registerStudent(StudentRegisterRequest request) {
+        List<Role> roles = Arrays.asList(roleRepo.findByRole("STUDENT"));
+        var student = new Student(request.getMajor(), request.getGpa());
+        student.setFirstName(request.getFirstname());
+        student.setLastName(request.getLastname());
+        student.setEmail(request.getEmail());
+        student.setPassword(passwordEncoder.encode(request.getPassword()));
+        student.setRoles(roles);
+        Address address = modelMapper.map(request.getAddress(), Address.class);
+        student.setAddress(address);
+        studentRepo.save(student);
+        var jwtToken = jwtUtil.generateToken(student);
+        saveUserToken(student, jwtToken);
+        return new LoginResponse(jwtToken);
     }
-    return null;
-  }
 
-  private void saveUserToken(User user, String jwtToken) {
-    Token token = new Token(jwtToken, System.currentTimeMillis(), user);
-    tokenRepository.saveToken(token);
-  }
+    public LoginResponse register(RegisterRequest request) {
+        List<Role> roles = Arrays.asList(roleRepo.findByRole(request.getRole()));
+        var user = new User(
+                request.getFirstname(),
+                request.getLastname(),
+                request.getEmail(),
+                passwordEncoder.encode(request.getPassword()),
+                roles);
+        var savedUser = repository.save(user);
+        var jwtToken = jwtUtil.generateToken(user);
+        saveUserToken(savedUser, jwtToken);
+        return new LoginResponse(jwtToken);
+    }
+
+    public LoginResponse authenticate(LoginRequest request) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()));
+        } catch (BadCredentialsException e) {
+            throw new BadCredentialsException(e.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Error:" + ex.getMessage());
+        }
+
+        try {
+            var user = repository.findByEmail(request.getEmail()).orElseThrow();
+            var jwtToken = jwtUtil.generateToken(user);
+            saveUserToken(user, jwtToken);
+            return new LoginResponse(jwtToken);
+        } catch (Exception ex) {
+            System.out.println("Error:" + ex.getMessage());
+        }
+        return null;
+    }
+
+    private void saveUserToken(User user, String jwtToken) {
+        Token token = new Token(jwtToken, System.currentTimeMillis(), user);
+        tokenRepository.saveToken(token);
+    }
 }

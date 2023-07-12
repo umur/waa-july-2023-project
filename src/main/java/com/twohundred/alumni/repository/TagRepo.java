@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface TagRepo extends ListCrudRepository<Tag, Long> {
 
-    List<Tag> findAllByNameLike(String tagName);
+    List<Tag> findAllByNameLike(String name);
 
 }

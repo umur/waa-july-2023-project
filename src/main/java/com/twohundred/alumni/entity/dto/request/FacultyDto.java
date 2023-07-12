@@ -7,5 +7,8 @@ public class FacultyDto {
     private Long id;
     private String title;
     private Double salary;
-    private UserDto user;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private AddressDto address;
 }

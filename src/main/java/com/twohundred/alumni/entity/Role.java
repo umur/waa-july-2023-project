@@ -10,8 +10,6 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Data
-@SQLDelete(sql = "UPDATE role SET deleted = true WHERE id=?")
-@Where(clause = "deleted = false")
 public class Role {
 
     @Id

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,43 +13,34 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Entity
 @Data
 @SQLDelete(sql = "UPDATE user SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private Boolean active;
-    private Boolean locked;
-    private Long lockedTimeInMilliseconds;
-    private Boolean deleted = Boolean.FALSE;
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+    protected Long id;
+    protected String firstName;
+    protected String lastName;
+    protected String email;
+    protected String password;
+    protected Boolean active;
+    protected Boolean locked;
+    protected Long lockedTimeInMilliseconds;
+    protected Boolean deleted = Boolean.FALSE;
+
+    @Embedded
+    protected Address address;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable
-    private List<Role> roles;
+    @JoinTable(name = "user_roles")
+    protected List<Role> roles;
 
     public User() {
     }
@@ -92,13 +84,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Staff staff;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Faculty faculty;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Student student;
 }

@@ -1,11 +1,11 @@
 package com.twohundred.alumni.controller;
 
+import com.twohundred.alumni.entity.User;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.twohundred.alumni.entity.Student;
 import com.twohundred.alumni.entity.dto.request.StudentDto;
 import com.twohundred.alumni.service.impl.StudentServiceImpl;
 import com.twohundred.alumni.util.SecurityUtil;
@@ -21,13 +21,12 @@ public class StudentController {
 
     @PutMapping
     public StudentDto update(StudentDto studentDto) {
-        Student currentStudent = securityUtil.getCurrentUser().getStudent();
-        return studentServiceImpl.update(currentStudent, studentDto);
+        return studentServiceImpl.update(studentDto);
     }
 
     @DeleteMapping
     public StudentDto delete() {
-        Student currentStudent = securityUtil.getCurrentUser().getStudent();
+        User currentStudent = securityUtil.getCurrentUser();
         return studentServiceImpl.delete(currentStudent);
     }
 
