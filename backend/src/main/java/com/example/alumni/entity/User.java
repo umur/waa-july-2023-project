@@ -36,6 +36,11 @@ public class User extends BaseEntity {
     private String major;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = { "user_id", "roles_id" })
+    )
     private List<Role> roles = new ArrayList<Role>();
 
     private Boolean enabled = Boolean.TRUE;
