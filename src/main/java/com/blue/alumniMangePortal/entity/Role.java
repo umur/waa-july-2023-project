@@ -1,6 +1,7 @@
 package com.blue.alumniMangePortal.entity;
 
 public enum Role {
-    USER,
+    FACULTY,
+    STUDENT,
     ADMIN
 }

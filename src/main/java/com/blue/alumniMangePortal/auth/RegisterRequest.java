@@ -3,6 +3,7 @@ package com.blue.alumniMangePortal.auth;
 import com.blue.alumniMangePortal.entity.Address;
 import com.blue.alumniMangePortal.entity.Comment;
 import com.blue.alumniMangePortal.entity.Department;
+import com.blue.alumniMangePortal.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,4 +27,5 @@ public class RegisterRequest {
     private Address address;
     private boolean is_admin;
     private boolean is_deleted;
+    private Role role;
 }

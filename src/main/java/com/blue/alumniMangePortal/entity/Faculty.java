@@ -1,6 +1,5 @@
 package com.blue.alumniMangePortal.entity;
 
-//import com.blue.alumniMangePortal.user.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

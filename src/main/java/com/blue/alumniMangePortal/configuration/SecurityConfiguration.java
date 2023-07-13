@@ -25,6 +25,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/alumniMangePortal/auth/**")
                 .permitAll()
+                .requestMatchers("/alumniMangePortal/comments/**")
+                .hasAuthority("FACULTY")
                 .anyRequest()
                 .authenticated()
                 .and()
