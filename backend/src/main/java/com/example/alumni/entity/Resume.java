@@ -23,7 +23,7 @@ public class Resume extends BaseEntity {
 
     @OneToMany
     @JoinColumn
-    private List<Resume> Resumes;
+    private List<Experience> experiences;
 
     @ManyToMany
     @JoinTable
