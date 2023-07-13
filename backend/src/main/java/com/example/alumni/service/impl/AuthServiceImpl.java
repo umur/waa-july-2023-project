@@ -37,6 +37,10 @@ public class AuthServiceImpl implements AuthService {
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException(e.getMessage());
         }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            throw e;
+        }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(result.getName());
 

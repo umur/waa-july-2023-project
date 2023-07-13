@@ -1,19 +1,19 @@
 package com.example.alumni.entity;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
-import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.*;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
@@ -22,7 +22,24 @@ import org.springframework.beans.factory.annotation.Value;
 @SQLDelete(sql = "UPDATE User SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedUserFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedUserFilter", condition = "deleted = :isDeleted")
-public class User extends BaseEntity {
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @JsonIgnore
+    private boolean deleted = Boolean.FALSE;
+
+    @JsonIgnore
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @JsonIgnore
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
+
+    @Version
+    private int version;
 
     private String email;
 

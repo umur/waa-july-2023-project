@@ -1,13 +1,14 @@
 package com.example.alumni.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
-import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.*;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +17,25 @@ import java.util.Objects;
 @SQLDelete(sql = "UPDATE StudentComment SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedStudentCommentFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedStudentCommentFilter", condition = "deleted = :isDeleted")
-public class StudentComment extends BaseEntity {
+public class StudentComment implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @JsonIgnore
+    private boolean deleted = Boolean.FALSE;
+
+    @JsonIgnore
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @JsonIgnore
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
+
+    @Version
+    private int version;
 
     @Lob
     private String comment;

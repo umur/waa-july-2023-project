@@ -1,5 +1,7 @@
 package com.example.alumni.entity;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,7 +19,25 @@ import org.hibernate.annotations.*;
 @SQLDelete(sql = "UPDATE JobAdvertisement SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedJobAdvertisementFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedJobAdvertisementFilter", condition = "deleted = :isDeleted")
-public class JobAdvertisement extends BaseEntity {
+public class JobAdvertisement implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @JsonIgnore
+    private boolean deleted = Boolean.FALSE;
+
+    @JsonIgnore
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @JsonIgnore
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
+
+    @Version
+    private int version;
 
     private String positionTitle;
     @Lob
@@ -33,9 +53,6 @@ public class JobAdvertisement extends BaseEntity {
     @ManyToOne
     @JoinColumn
     private User user;
-
-    @JsonIgnore
-    private boolean deleted = Boolean.FALSE;
 
     private String city;
 

@@ -21,11 +21,11 @@ VALUES (4, 'employee1@miu.edu', 'Employee', 'one', '$2a$10$ssIMs0xJ5lSHrfiHJfQJM
 
 
 
-INSERT IGNORE roles (id, role, create_date_time, update_date_time, version)
+INSERT IGNORE roles (id, name, create_date_time, update_date_time, version)
 VALUES (1, 'STUDENT', now(), now(), 1);
-INSERT IGNORE roles (id, role, create_date_time, update_date_time, version)
+INSERT IGNORE roles (id, name, create_date_time, update_date_time, version)
 VALUES (2, 'FACULTY', now(), now(), 1);
-INSERT IGNORE roles (id, role, create_date_time, update_date_time, version)
+INSERT IGNORE roles (id, name, create_date_time, update_date_time, version)
 VALUES (3, 'ADMIN', now(), now(), 1);
 
 INSERT IGNORE users_roles (user_id, roles_id)

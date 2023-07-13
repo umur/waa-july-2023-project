@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,20 +16,7 @@ import java.time.LocalDateTime;
 @SQLDelete(sql = "UPDATE JobApplication SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedJobApplicationFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedJobApplicationFilter", condition = "deleted = :isDeleted")
-public class JobApplication {
-
-    @EmbeddedId
-    private JobApplicationId id;
-
-    @ManyToOne
-    //@JoinColumn(name = "user_id", insertable = false, updatable = false)
-    @MapsId("userId")
-    private User user;
-
-    @ManyToOne
-    //@JoinColumn(name = "job_advertisement_id", insertable = false, updatable = false)
-    @MapsId("jobAdvertisementId")
-    private JobAdvertisement jobAdvertisement;
+public class JobApplication implements Serializable {
 
     @JsonIgnore
     private boolean deleted = Boolean.FALSE;
@@ -43,5 +31,18 @@ public class JobApplication {
 
     @Version
     private int version;
+
+    @EmbeddedId
+    private JobApplicationId id;
+
+    @ManyToOne
+    //@JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @MapsId("userId")
+    private User user;
+
+    @ManyToOne
+    //@JoinColumn(name = "job_advertisement_id", insertable = false, updatable = false)
+    @MapsId("jobAdvertisementId")
+    private JobAdvertisement jobAdvertisement;
 
 }
