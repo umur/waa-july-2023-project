@@ -5,7 +5,7 @@ import com.twohundred.alumni.entity.Comment;
 import java.util.List;
 
 public interface CommentService {
-    void create(Comment review);
+    Comment create(Comment review);
 
     List<Comment> findAll();
 

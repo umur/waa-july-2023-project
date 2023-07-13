@@ -2,6 +2,7 @@ package com.twohundred.alumni.service.impl;
 
 import java.util.Optional;
 
+import com.twohundred.alumni.entity.Address;
 import com.twohundred.alumni.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class StudentServiceImpl implements StudentService {
         tempStudent.setFirstName(studentDto.getFirstName());
         tempStudent.setLastName(studentDto.getLastName());
         tempStudent.setEmail(studentDto.getEmail());
-
+        tempStudent.setAddress(new Address());
         tempStudent.getAddress().setCity(studentDto.getAddress().getCity());
         tempStudent.getAddress().setState(studentDto.getAddress().getState());
         tempStudent.getAddress().setStreet(studentDto.getAddress().getStreet());

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.twohundred.alumni.entity.Address;
 import com.twohundred.alumni.entity.Student;
 import com.twohundred.alumni.entity.User;
 import com.twohundred.alumni.repository.StudentRepo;
@@ -53,7 +54,7 @@ public class FacultyServiceImpl implements FacultyService {
         tempFaculty.setFirstName(facultyDto.getFirstName());
         tempFaculty.setLastName(facultyDto.getLastName());
         tempFaculty.setEmail(facultyDto.getEmail());
-
+        tempFaculty.setAddress(new Address());
         tempFaculty.getAddress().setCity(facultyDto.getAddress().getCity());
         tempFaculty.getAddress().setState(facultyDto.getAddress().getState());
         tempFaculty.getAddress().setStreet(facultyDto.getAddress().getStreet());

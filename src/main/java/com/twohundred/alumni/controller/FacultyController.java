@@ -1,7 +1,11 @@
 package com.twohundred.alumni.controller;
 
+import com.twohundred.alumni.entity.Comment;
 import com.twohundred.alumni.entity.User;
+import com.twohundred.alumni.entity.dto.request.CommentDto;
 import com.twohundred.alumni.entity.dto.request.StudentDto;
+import com.twohundred.alumni.service.impl.CommentServiceImpl;
+import com.twohundred.alumni.service.impl.StudentServiceImpl;
 import com.twohundred.alumni.util.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,7 @@ import com.twohundred.alumni.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,6 +26,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FacultyController {
     private final FacultyServiceImpl facultyServiceImpl;
+    private final CommentServiceImpl commentService;
+    private final StudentServiceImpl studentService;
     private final SecurityUtil securityUtil;
 
     private final Mapper mapper;
@@ -48,4 +55,41 @@ public class FacultyController {
 
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("/student/comment")
+    public ResponseEntity<?> addCommentToStudent(@RequestBody CommentDto commentDto) {
+        User currentFaculty, student;
+        try {
+            currentFaculty = securityUtil.getCurrentUser();
+            student = studentService.findById(commentDto.getStudentId());
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        Comment comment = new Comment();
+        comment.setComment(commentDto.getComment());
+        comment.setFaculty(currentFaculty);
+        comment.setStudent(student);
+        comment.setCommentedAt(new Date());
+        Comment result;
+        try {
+            result = commentService.create(comment);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_GATEWAY);
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/student/comments")
+    public ResponseEntity<?> getAllComments(){
+//        User currentFaculty;
+//        try {
+//            currentFaculty = securityUtil.getCurrentUser();
+//        } catch (Exception e) {
+//            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+//        }
+        return ResponseEntity.ok(commentService.findAll());
+    }
+
+
 }

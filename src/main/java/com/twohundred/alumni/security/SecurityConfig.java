@@ -38,11 +38,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/uaa/**").permitAll()
                         .requestMatchers("/echart/**").permitAll()
-//                        .requestMatchers("/faculties/**").permitAll()
 //                        .requestMatchers("/api/**").permitAll()
                         .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
                         .requestMatchers("/student/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
                         .requestMatchers("/comment/**").hasAnyAuthority("ADMIN", "FACULTY")
+                        .requestMatchers("/faculties/**").hasAuthority("FACULTY")
                         .requestMatchers("/user/**").hasAuthority("ADMIN")
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest()

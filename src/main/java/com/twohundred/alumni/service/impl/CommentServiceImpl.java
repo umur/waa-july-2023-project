@@ -15,8 +15,8 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepo commentRepo;
 
-    public void create(Comment comment) {
-        commentRepo.save(comment);
+    public Comment create(Comment comment) {
+       return commentRepo.save(comment);
     }
 
     public List<Comment> findAll() {

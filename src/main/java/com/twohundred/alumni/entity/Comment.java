@@ -5,6 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import java.util.Date;
+
 @Entity
 @Data
 @SQLDelete(sql = "UPDATE comment SET deleted = true WHERE id=?")
@@ -14,7 +16,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
-    private Long commentedAt;
+    @Temporal(TemporalType.DATE)
+    private Date commentedAt;
     private Boolean deleted = Boolean.FALSE;
 
     @OneToOne
