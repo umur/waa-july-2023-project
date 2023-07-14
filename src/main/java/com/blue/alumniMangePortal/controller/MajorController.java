@@ -31,8 +31,8 @@ public class MajorController {
         return majorService.updateMajor(id,major);
     }
     @DeleteMapping("/{id}")
-    public boolean deleteCvById(@PathVariable Long id){
-        majorService.DeleteMajorById(id);
-        return  true;
+    public void deleteCvById(@PathVariable Long id){
+        majorService.findByDeletedTrue(id);
+
     }
 }

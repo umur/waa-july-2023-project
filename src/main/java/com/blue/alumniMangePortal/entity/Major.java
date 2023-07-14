@@ -1,5 +1,6 @@
 package com.blue.alumniMangePortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,4 +18,6 @@ public class Major {
     private Long id;
     private double duration;
     private String name;
+    @JsonIgnore
+    boolean isDeleted;
 }

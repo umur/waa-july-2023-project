@@ -3,6 +3,8 @@ package com.blue.alumniMangePortal.controller;
 import com.blue.alumniMangePortal.dto.StudentJob;
 //import com.blue.alumniMangePortal.entity.JobsAdvertised;
 //import com.blue.alumniMangePortal.service.JobAdvertService;
+import com.blue.alumniMangePortal.entity.JobsAdvertise;
+import com.blue.alumniMangePortal.service.JobsAdvertiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import org.springframework.web.bind.annotation.*;
@@ -13,51 +15,40 @@ import java.util.List;
 @RequestMapping
 @RequiredArgsConstructor
 public class JobAdvertController {
-//    private final JobAdvertService jobAdvertService;
+   private final JobsAdvertiseService jobsAdvertService;
 
-//    @GetMapping("/last10JobAdverts")
-//    public List<JobsAdvertised> getFirstTenJobAdverts(){
-//        return null;
-//    }
-    @GetMapping("last10AppliedJobAdverts")
-//    public List<JobsAdvertised> getFirstTenJobAppliedAdverts(){
-//        return null;
-//    }
+    @GetMapping("/jobAdverts")
+    public List<JobsAdvertise> getAllJobsAdvertise(){
+        return jobsAdvertService.getAll();
+    }
+    @GetMapping("/jobsAdverts/{id}")
+    public JobsAdvertise getJobsAdvertiseById(@PathVariable Long id){
+     return jobsAdvertService.getJobsAdvertiseById(id);
+    }
 
-    @PutMapping("/editJobAdvertsPosted")
-    public JobsAdvertise editJobAdverts(@PathVariable Long id, @RequestBody JobsAdvertise jobsAdvertise) {
+    @PutMapping("/editJobsAdverts")
+    public JobsAdvertise editJobAdverts(@PathVariable Long id, @RequestBody JobsAdvertise jobsAdvertise)
+    {
 
         return jobsAdvertService.updateJobsAdvertise(id,jobsAdvertise);
     }
 
-    @PostMapping("/applyForJob")
+    @PostMapping("/JobsAdverts")
     public JobsAdvertise addForJob(@RequestBody JobsAdvertise jobsAdvertise) {
         return jobsAdvertService.saveJobsAdvertise(jobsAdvertise);
     }
 
-    //    @GetMapping("/getJobAdvertByTags/{tag}")
-//    public String GetJobAdvertsByTags(@PathVariable Tag tag){
-//        return null;
-//    }
-    @GetMapping("/getJobAdvertByState/{state}")
-    public String getJobAdvertsByState(@PathVariable String state) {
-        return null;
+    @DeleteMapping("/deleteJobsAdverts/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        jobsAdvertService.findByDeletedTrue(id);
     }
-    @GetMapping("/getJobAdvertByCity/{city}")
-    public String getJobAdvertsByCity(@PathVariable String city){
-        return null;
-    }
-    @GetMapping("/getJobAdvertByCompanyName/{companyName}")
-    public String getJobAdvertsCompanyName(@PathVariable String companyName){
-        return null;
-    }
-    @DeleteMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable Long id){
-        return null;
-    }
-//    @GetMapping("getByLoaction/{location}")
-//    public String getJobsAdvertisedByLocation(@PathVariable Address location ){
-//        return null;
-//    }
+      @GetMapping("/getTop10")
+      public List<JobsAdvertise> findTop10ByOrderByCreatedAtDesc (){
+        return jobsAdvertService.findTop10ByOrderByCreatedAtDesc();
+      }
+      @GetMapping("/getTop10Applied")
+      public  List<JobsAdvertise> findTop10ByOrderByAppliedAtDesc(){
+        return jobsAdvertService.findTop10ByOrderByAppliedAtDesc();
+      }
 
 }

@@ -12,5 +12,5 @@ public interface CvService {
     public Cv saveCv(Cv cv);
     public Cv updateCv(long id,Cv cv);
 
-    public String deleteCvById(Long id);
+    void findByDeletedTrue(Long id);
 }

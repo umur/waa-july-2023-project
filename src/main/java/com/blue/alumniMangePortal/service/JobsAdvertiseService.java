@@ -6,10 +6,14 @@ import com.blue.alumniMangePortal.entity.JobsAdvertise;
 import java.util.List;
 
 public interface JobsAdvertiseService {
-    String getAll();
-    String getJobsAdvertiseById(Long id);
+    List<JobsAdvertise> getAll();
+    JobsAdvertise getJobsAdvertiseById(Long id);
     JobsAdvertise saveJobsAdvertise(JobsAdvertise jobsAdvertise);
     JobsAdvertise updateJobsAdvertise(long id,JobsAdvertise jobsAdvertise);
-    boolean DeleteJobsAdvertiseById(Long id);
-    //List<JobsAdvertise> getFirstTenJobAppliedAdverts();
+
+    void findByDeletedTrue(Long id);
+
+    List<JobsAdvertise> findTop10ByOrderByCreatedAtDesc();
+
+   List<JobsAdvertise> findTop10ByOrderByAppliedAtDesc();
 }
