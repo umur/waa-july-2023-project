@@ -49,10 +49,16 @@ public class UaaController {
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest) throws IllegalAccessException {
         User user = modelMapper.map(signUpRequest, User.class);
-
+        String email = user.getEmail();
+        ;
+        String plainPassword = user.getPassword();
         user = userService.add(user);
 
-        return ResponseEntity.ok(user);
+        LoginRequest loginRequest = new LoginRequest(email, plainPassword);
+
+        var loginResponse = authService.login(loginRequest);
+        return new ResponseEntity<>(
+                loginResponse, HttpStatus.OK);
     }
 }
 
