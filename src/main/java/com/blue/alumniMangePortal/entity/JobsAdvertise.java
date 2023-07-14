@@ -1,11 +1,13 @@
 package com.blue.alumniMangePortal.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,9 +19,16 @@ public class JobsAdvertise {
     @Temporal(value=TemporalType.DATE)
     private Date date;
     private String position;
-
-//    private Address location;
+    @Temporal(value=TemporalType.DATE)
+    private Date jobAppliedDate;
+    private String companyName;
     @ManyToOne
-    @JsonBackReference
+    //@JsonBackReference
     private Student student;
+    @OneToOne
+    private Address address;
+    @OneToMany
+    List<Tag> tags;
+    @JsonIgnore
+    boolean isDeleted;
 }

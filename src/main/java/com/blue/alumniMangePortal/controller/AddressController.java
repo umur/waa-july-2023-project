@@ -15,6 +15,7 @@ public class AddressController {
 
     @PostMapping("/addresses")
     public void addAddress(Address address){
+
         addressService.saveAddress(address);
     }
     @GetMapping("/addresses")
@@ -31,8 +32,7 @@ public class AddressController {
         return addressService.updateAddress(id,address);
     }
     @DeleteMapping("/{id}")
-    public boolean deletById(@PathVariable Long id){
-        addressService.deleteById(id);
-        return  true;
+    public void deletById(@PathVariable Long id){
+       addressService.findByDeletedTrue(id);
     }
 }

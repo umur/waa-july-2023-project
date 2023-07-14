@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MajorService {
-    public List<Major> getAll();
-    public Major getMajorById(Long id);
-    public Major saveMajor(Major major);
-    public Major updateMajor(long id,Major major);
-    public boolean  DeleteMajorById(Long id);
+     List<Major> getAll();
+     Major getMajorById(Long id);
+     Major saveMajor(Major major);
+     Major updateMajor(long id,Major major);
+    void findByDeletedTrue(Long id);
 
 }

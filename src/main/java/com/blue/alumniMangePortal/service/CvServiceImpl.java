@@ -40,11 +40,11 @@ public class CvServiceImpl implements CvService {
 
     }
 
-    public String deleteCvById(Long id){
-        Optional<Cv> c= cvRepo.findById(id);
-        if(c.isPresent()){
-            cvRepo.deleteById(id);
-        }
-        return"Cv deleted";
+    public void findByDeletedTrue(Long id){
+
+        Optional<Cv> cvToDelete = cvRepo.findById(id);
+        cvToDelete.get().setDeleted(true);
+        cvRepo.save(cvToDelete.get());
+
     }
 }
