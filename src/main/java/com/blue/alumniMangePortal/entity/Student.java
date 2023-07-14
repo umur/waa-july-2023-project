@@ -1,5 +1,6 @@
 package com.blue.alumniMangePortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -14,10 +15,12 @@ public class Student {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+    private String email;
     private String firstName;
     private String lastName;
     private String password;
     private String phoneNumber;
+    @JsonIgnoreProperties
     private boolean isDeleted;
     private boolean currentlyEmployed;
     @OneToOne
@@ -25,14 +28,16 @@ public class Student {
     @OneToOne
     private Address address;
 //    private Tag tag;
-    @OneToOne
+    @ManyToOne
     private Major major;
     @OneToMany
-   // @JsonManagedReference
-    private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
+    @JsonManagedReference
+    private List<JobsAdvertised> jobsAdvertisedList=new ArrayList<>();
 //    private CurrentWorkPlace;
-//    private Cv cv;
-    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
+    @OneToOne
+    private UploadedFilePath cv;
+    public void addJobsAdvertisedToStd(JobsAdvertised jobs){
         jobsAdvertisedList.add(jobs);
     }
+
 }
