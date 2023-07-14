@@ -4,7 +4,9 @@ package com.example.alumni.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
-import lombok.Data;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.*;
 
 import java.io.Serializable;
@@ -12,7 +14,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Data
+@Setter
+@Getter
 @Table(name = "studentcomment")
 @SQLDelete(sql = "UPDATE StudentComment SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedStudentCommentFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))

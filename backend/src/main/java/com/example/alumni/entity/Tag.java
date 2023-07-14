@@ -3,7 +3,9 @@ package com.example.alumni.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
-import lombok.Data;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.*;
 
 import java.io.Serializable;
@@ -11,7 +13,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @Table(name = "tag", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 @SQLDelete(sql = "UPDATE Tag SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedTagFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))

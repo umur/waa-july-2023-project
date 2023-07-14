@@ -2,7 +2,8 @@ package com.example.alumni.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.*;
 
 import java.io.Serializable;
@@ -10,7 +11,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Setter
+@Getter
 @SQLDelete(sql = "UPDATE Experience SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedExperienceFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
 @Filter(name = "deletedExperienceFilter", condition = "deleted = :isDeleted")

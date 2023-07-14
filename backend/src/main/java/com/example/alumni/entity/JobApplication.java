@@ -3,15 +3,16 @@ package com.example.alumni.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Setter
+@Getter
 @Table(name = "jobapplication")
 @SQLDelete(sql = "UPDATE JobApplication SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedJobApplicationFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))

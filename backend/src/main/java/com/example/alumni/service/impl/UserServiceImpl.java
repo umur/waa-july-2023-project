@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService {
                 roles.add(roleService.getByRole(universityMember.get().getRole()));
                 user.setRoles(roles);
                 String salt = BCrypt.gensalt();
-
                 user.setPassword(BCrypt.hashpw(user.getPassword(), salt));
                 return userRepository.save(user);
             } else {

@@ -3,14 +3,17 @@ package com.example.alumni.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
-import lombok.Data;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Setter
+@Getter
 @Table(name = "roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"role"})})
 @SQLDelete(sql = "UPDATE Role SET deleted = true WHERE id=?")
 @FilterDef(name = "deletedRoleFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))

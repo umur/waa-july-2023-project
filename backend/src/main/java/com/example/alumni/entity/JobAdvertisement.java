@@ -7,13 +7,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.*;
 
 @Entity
-@Data
+@Setter
+@Getter
 @Table(name="jobadvertisement")
 @NoArgsConstructor @AllArgsConstructor
 @SQLDelete(sql = "UPDATE JobAdvertisement SET deleted = true WHERE id=?")
