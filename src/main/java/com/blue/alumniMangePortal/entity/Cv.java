@@ -1,8 +1,10 @@
 package com.blue.alumniMangePortal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.FetchMode;
 
 @Entity
 @Getter
@@ -18,6 +20,8 @@ public class Cv {
 
     @OneToOne
     private Address address;
+    @JsonIgnore
+    boolean isDeleted;
 
 
 }

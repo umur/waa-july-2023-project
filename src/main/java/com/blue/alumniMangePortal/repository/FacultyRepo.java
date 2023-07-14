@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface FacultyRepo extends JpaRepository<Faculty,Long> {
-//    @Query("SELECT f FROM Faculty f WHERE f.is_deleted = false")
-//    List<Faculty> findAll();
+public interface FacultyRepo extends JpaRepository<Faculty, Long> {
+    @Query("SELECT f FROM Faculty f WHERE f.is_deleted = false")
+    List<Faculty> findAll();
+
 //    @Query("SELECT f from Faculty f where f.is_deleted=false")
 //    Optional<Faculty> findById(Long id);
 }

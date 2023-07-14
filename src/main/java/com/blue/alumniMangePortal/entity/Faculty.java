@@ -26,7 +26,7 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty")
     @JsonManagedReference
     private List<Comment> comments;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private Address address;
     private boolean is_admin;
     @JsonIgnore
