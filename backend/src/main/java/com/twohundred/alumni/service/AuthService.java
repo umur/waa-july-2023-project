@@ -56,7 +56,8 @@ public class AuthService {
         facultyRepo.save(faculty);
         var jwtToken = jwtUtil.generateToken(faculty);
         saveUserToken(faculty, jwtToken);
-        return new LoginResponse(jwtToken);
+        return new LoginResponse(jwtToken, faculty.getId(), faculty.getFirstName() + ' ' + faculty.getLastName(),
+                faculty.getRoles().stream().map(r -> r.getRole()).toList());
     }
 
     public LoginResponse registerStudent(StudentRegisterRequest request) {
@@ -72,7 +73,8 @@ public class AuthService {
         studentRepo.save(student);
         var jwtToken = jwtUtil.generateToken(student);
         saveUserToken(student, jwtToken);
-        return new LoginResponse(jwtToken);
+        return new LoginResponse(jwtToken, student.getId(), student.getFirstName() + ' ' +  student.getLastName(),
+                student.getRoles().stream().map(r -> r.getRole()).toList());
     }
 
     public LoginResponse register(RegisterRequest request) {
@@ -86,7 +88,8 @@ public class AuthService {
         var savedUser = repository.save(user);
         var jwtToken = jwtUtil.generateToken(user);
         saveUserToken(savedUser, jwtToken);
-        return new LoginResponse(jwtToken);
+        return new LoginResponse(jwtToken, user.getId(), user.getFirstName() + ' ' +  user.getLastName(),
+                user.getRoles().stream().map(r -> r.getRole()).toList());
     }
 
     public LoginResponse authenticate(LoginRequest request) {
@@ -105,7 +108,8 @@ public class AuthService {
             var user = repository.findByEmail(request.getEmail()).orElseThrow();
             var jwtToken = jwtUtil.generateToken(user);
             saveUserToken(user, jwtToken);
-            return new LoginResponse(jwtToken);
+            return new LoginResponse(jwtToken, user.getId(), user.getFirstName() + ' ' +  user.getLastName(),
+                    user.getRoles().stream().map(r -> r.getRole()).toList());
         } catch (Exception ex) {
             System.out.println("Error:" + ex.getMessage());
         }
