@@ -6,13 +6,13 @@ import com.blue.alumniMangePortal.entity.Student;
 import java.util.List;
 
 public interface StudentService {
-    String registerStudent(Student student);
+    Student registerStudent(Student student);
 
-    String updateProfile(Long id, Student student);
+    Student updateProfile(Long id, Student student);
 
     String seeStudentCv(Long id);
 
-//    Student filterStudent(Object obj);
+    List<Student> filterStudent(String obj);
 
     Student getStudentById(Long id);
 
@@ -22,5 +22,5 @@ public interface StudentService {
 
     String resetPassword(Student student, String password);
 
-//    List<Student> deleteById(Long id);
+    void deleteById(Long id);
 }
