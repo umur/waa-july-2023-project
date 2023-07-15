@@ -12,8 +12,8 @@ public interface JobsAdvertiseService {
     JobsAdvertise updateJobsAdvertise(long id,JobsAdvertise jobsAdvertise);
 
     void findByDeletedTrue(Long id);
-
     List<JobsAdvertise> findTop10ByOrderByCreatedAtDesc();
-
    List<JobsAdvertise> findTop10ByOrderByAppliedAtDesc();
+    List<JobsAdvertise> getJobsAdvertisByTag(String tag);
+
 }

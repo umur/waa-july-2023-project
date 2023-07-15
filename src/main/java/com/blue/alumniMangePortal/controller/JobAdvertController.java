@@ -7,6 +7,7 @@ import com.blue.alumniMangePortal.entity.JobsAdvertise;
 import com.blue.alumniMangePortal.service.JobsAdvertiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +50,10 @@ public class JobAdvertController {
       @GetMapping("/getTop10Applied")
       public  List<JobsAdvertise> findTop10ByOrderByAppliedAtDesc(){
         return jobsAdvertService.findTop10ByOrderByAppliedAtDesc();
+      }
+      @GetMapping("/getByTag/{tag}")
+    public List<JobsAdvertise> getJobsAdvertisByTag(@PathVariable String tag){
+        return jobsAdvertService.getJobsAdvertisByTag(tag);
       }
 
 }

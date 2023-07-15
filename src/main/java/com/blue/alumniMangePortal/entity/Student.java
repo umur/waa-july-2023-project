@@ -36,8 +36,6 @@ public class Student {
 //    private CurrentWorkPlace;
     @OneToOne
     private UploadedFilePath cv;
-    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
-        jobsAdvertisedList.add(jobs);
-    }
+
 
 }
