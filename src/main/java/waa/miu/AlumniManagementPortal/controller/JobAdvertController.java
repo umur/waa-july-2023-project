@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/jobAdverts")
+@CrossOrigin
 public class JobAdvertController {
 
     private final JobAdvertService jobAdvertService;

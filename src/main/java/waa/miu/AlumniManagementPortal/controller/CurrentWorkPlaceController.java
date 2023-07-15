@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/currentWorkPlace")
 @RequiredArgsConstructor
+@CrossOrigin
 public class CurrentWorkPlaceController {
 
     private final CurrentWorkPlaceService currentWorkPlaceService;
