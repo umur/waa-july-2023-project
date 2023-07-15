@@ -2,12 +2,15 @@ import './App.css';
 import Navbar from './components/navbar/Navbar';
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 // import Login from './components/login/Login';
-// import Student from './components/student/Student';
 import StudentList from './components/student/StudentList';
 import StudentAdd from './components/student/StudentAdd';
 import StudentUpdate from './components/student/StudentUpdate';
 import NotFound from './components/not-found/NotFound';
 import Home from './components/home/Home';
+import Faculty from './components/faculty/Faculty';
+// import FacultyList from './components/faculty/FacultyList';
+import FacultyAdd from './components/faculty/FacultyAdd';
+import FacultyUpdate from './components/faculty/FacultyUpdate';
 
 const MyRoutes = () => {
   const routes = useRoutes([
@@ -15,6 +18,9 @@ const MyRoutes = () => {
     { path: "/showStudents", element: <StudentList /> },
     { path: "/createStudents", element: <StudentAdd /> },
     { path: "/updateStudents/:id", element: <StudentUpdate /> },
+    { path: "/showFaculties", element: <Faculty /> },
+    { path: "/createFaculties", element: <FacultyAdd /> },
+    { path: "/updateFaculties/:id", element: <FacultyUpdate /> },
     { path: "*", element: <NotFound /> },
   ]);
   return routes;
