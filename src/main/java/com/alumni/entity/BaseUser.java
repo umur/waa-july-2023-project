@@ -24,6 +24,8 @@ public class BaseUser implements UserDetails {
     private long id;
     private String firstName;
     private String lastName;
+
+    @Column(unique=true)
     private String email;
     private String password;
     private boolean isActive;

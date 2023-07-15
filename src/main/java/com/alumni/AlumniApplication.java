@@ -15,7 +15,6 @@ public class AlumniApplication {
 	public BCryptPasswordEncoder bCryptPasswordEncoder(){
         String seed="w7A&e5LpUs8FxEv2FaBR";
         return new BCryptPasswordEncoder(10, new SecureRandom(seed.getBytes(StandardCharsets.UTF_8)));
-//		return new BCryptPasswordEncoder();
 	}
 
 
