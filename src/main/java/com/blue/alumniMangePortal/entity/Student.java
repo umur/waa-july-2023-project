@@ -31,7 +31,7 @@ public class Student {
     @ManyToOne
     private Major major;
     @OneToMany
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
 //    private CurrentWorkPlace;
     @OneToOne
