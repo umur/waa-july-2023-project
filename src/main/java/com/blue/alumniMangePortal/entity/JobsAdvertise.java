@@ -23,7 +23,7 @@ public class JobsAdvertise {
     private Date jobAppliedDate;
     private String companyName;
     @ManyToOne
-    //@JsonBackReference
+    @JsonBackReference
     private Student student;
     @OneToOne
     private Address address;

@@ -32,11 +32,11 @@ public class Student {
     private Major major;
     @OneToMany
     @JsonManagedReference
-    private List<JobsAdvertised> jobsAdvertisedList=new ArrayList<>();
+    private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
 //    private CurrentWorkPlace;
     @OneToOne
     private UploadedFilePath cv;
-    public void addJobsAdvertisedToStd(JobsAdvertised jobs){
+    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
         jobsAdvertisedList.add(jobs);
     }
 
