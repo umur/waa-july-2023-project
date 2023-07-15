@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Faculty implements UserDetails {
+public class Faculty  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,37 +42,37 @@ public class Faculty implements UserDetails {
     @JsonIgnore
     private boolean is_deleted;
 
-    @Override
+//    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    @Override
+//    @Override
     public String getPassword() {
         return password;
     }
 
-    @Override
+//    @Override
     public String getUsername() {
         return email;
     }
 
-    @Override
+//    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
+//    @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
+//    @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override
+//    @Override
     public boolean isEnabled() {
         return true;
     }

@@ -9,7 +9,11 @@ import com.blue.alumniMangePortal.repository.StudentRepo;
 import com.blue.alumniMangePortal.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final StudentRepo studentRepo;
+    private final UserDetailsService userDetailsService;
 
     public AuthenticationResponse registerStudent(RegisterStudent registerStudent) {
         var student = Student.builder()
@@ -59,22 +64,29 @@ public class AuthenticationService {
                 .role(request.getRole())
                 .build();
         facultyRepo.save(faculty);
-        var jwtToken = jwtService.generateToken(faculty);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(faculty.getUsername());
+        var jwtToken = jwtService.generateToken(userDetails);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+        Authentication result = null;
+        try {
+            result = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
+        } catch (BadCredentialsException e) {
+            throw new BadCredentialsException(e.getMessage());
+        }
         var faculty = facultyRepo.findByEmail(request.getEmail())
                 .orElseThrow();
-        var jwtToken = jwtService.generateToken(faculty);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(result.getName());
+        var jwtToken = jwtService.generateToken(userDetails);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
