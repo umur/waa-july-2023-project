@@ -10,12 +10,15 @@ import java.util.List;
 
 @Repository
 public interface JobsAdvertiseRepo extends JpaRepository<JobsAdvertise, Long> {
-    @Query("SELECT j FROM JobsAdvertise j WHERE j.isDeleted = false")
+    @Query("SELECT job FROM JobsAdvertise job WHERE job.isDeleted = false")
     List<JobsAdvertise> getAll();
-  @Query("SELECT j FROM JobsAdvertise j ORDER BY j.id LIMIT 10")
+  @Query("SELECT job FROM JobsAdvertise job ORDER BY job.id LIMIT 10")
       List<JobsAdvertise> findFirst10ByOrderByCreatedAtDesc();
-  @Query("SELECT j FROM JobsAdvertise j ORDER BY j.jobAppliedDate DESC LIMIT 10")
+  @Query("SELECT job FROM JobsAdvertise job ORDER BY job.jobAppliedDate DESC LIMIT 10")
     List<JobsAdvertise> findTop10ByOrderByAppliedAtDesc();
+//    List<JobsAdvertise> findByTagValue(String tag);
+    @Query("SELECT job FROM JobsAdvertise job WHERE job.tag = ?1")
+    List<JobsAdvertise> findByTagValue(String tag);
 
 
 }

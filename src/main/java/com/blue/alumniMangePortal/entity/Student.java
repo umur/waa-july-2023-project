@@ -31,13 +31,11 @@ public class Student {
     @ManyToOne
     private Major major;
     @OneToMany
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
 //    private CurrentWorkPlace;
     @OneToOne
     private UploadedFilePath cv;
-    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
-        jobsAdvertisedList.add(jobs);
-    }
+
 
 }
