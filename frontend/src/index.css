@@ -46,7 +46,7 @@
   .form-group {
     min-width: 400px;
   }
-  .form-group div {
+  .form-group div.flex {
     flex: 1;
   }
 }

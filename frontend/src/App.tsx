@@ -1,8 +1,13 @@
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { UserContext } from "./context/UserContext";
+import { useState } from "react";
+import { IUser } from "./types/IUser";
 
 function App() {
+  const isLogged = useState(false);
+
   return (
     <>
       <nav className="navbar">

@@ -18,7 +18,6 @@ const Signup: FC<Props> = () => {
             <TextField id="city" label="City" variant="outlined" />
             <TextField id="state" label="State" variant="outlined" />
             <TextField id="major" label="Major" variant="outlined" />
-            <FormControlLabel control={<Checkbox />} label="Remmber Me" />
           </div>
         </div>
         <Button variant="contained">Signup</Button>

@@ -4,6 +4,9 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import http from "../interceptor/interceptor";
+import { useNavigate } from "react-router-dom";
+
 const schema = z.object({
   email: z.string().nonempty("Email is required").email(),
   password: z.string().nonempty("Password is required"),
@@ -14,6 +17,8 @@ type formType = z.infer<typeof schema>;
 interface Props {}
 
 const Login: FC<Props> = () => {
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     register,
@@ -22,15 +27,21 @@ const Login: FC<Props> = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
+  const onSubmit = async (data: FieldValues) => {
+    const result = await http.post("/uaa/signin", data);
+
+    if (result.status === 200) {
+      localStorage.setItem("accessToken", result.data["accessToken"]);
+      localStorage.setItem("refreshToken", result.data["refreshToken"]);
+      navigate("/signup");
+    }
   };
 
   return (
     <div className="container d-flex">
       <form onSubmit={handleSubmit(onSubmit)} className="wrapper">
         <div className="form-group d-flex justify-around">
-          <div className="d-flex flex-column text-center">
+          <div className="d-flex flex-column text-center flex">
             <TextField
               {...register("email")}
               id="email"
@@ -46,7 +57,6 @@ const Login: FC<Props> = () => {
               variant="outlined"
             />
             {errors.password && <p>{errors.password.message}</p>}
-            <FormControlLabel control={<Checkbox />} label="Remmber Me" />
           </div>
         </div>
         <Button

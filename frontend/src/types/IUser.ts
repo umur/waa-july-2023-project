@@ -1,11 +1,19 @@
-type IUser = {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  city: string;
-  state: string;
-  major: string;
-};
+export interface IUser {
+  id?: number | null
+  version: number
+  email: string
+  firstName: string
+  lastName: string
+  city: string
+  state: string
+  major: string
+  roles: Role[]
+  enabled: boolean
+  jobApplications: any
+}
 
-export default IUser;
+export interface Role {
+  id: number
+  version: number
+  role: string
+}
