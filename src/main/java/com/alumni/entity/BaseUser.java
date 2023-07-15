@@ -32,7 +32,8 @@ public class BaseUser implements UserDetails {
     private String resetToken;
     private int failedLoginAttempts;
     private LocalDateTime activeAfter;
-    @ManyToMany
+    
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
