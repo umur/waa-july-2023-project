@@ -32,7 +32,7 @@ public class JobAdvertisementServiceImpl implements JobAdvertisementService {
     @Override
     public List<JobAdvertisementResponseDto> getList(int page, int size, List<Long> tags, String state, String city) {
 
-List<JobAdvertisement> list= new ArrayList<>();
+List<JobAdvertisement> list;
     if(tags!=null)
         list=repository.findAllByTagsInAndStateContainsIgnoreCaseAndCityContainsIgnoreCaseOrderByPostedAtDesc(tags,state,city,PageRequest.of(page,size));
     else
