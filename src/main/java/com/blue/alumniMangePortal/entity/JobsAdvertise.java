@@ -26,7 +26,7 @@ public class JobsAdvertise {
     private String companyName;
     private String tag;
     @ManyToOne
-    //@JsonBackReference
+    @JsonBackReference
     private Student student;
     @OneToOne
     private Address address;
