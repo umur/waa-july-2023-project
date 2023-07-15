@@ -150,4 +150,9 @@ public class UserServiceImpl implements UserService {
         }
         throw new IllegalArgumentException("User does not exist");
     }
+
+    @Override
+    public User getByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
 }

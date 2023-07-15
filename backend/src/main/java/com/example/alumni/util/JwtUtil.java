@@ -1,5 +1,6 @@
 package com.example.alumni.util;
 
+import com.example.alumni.service.UserService;
 import io.jsonwebtoken.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +18,7 @@ import java.util.function.Function;
 
 @Component
 @AllArgsConstructor
+@Transactional
 public class JwtUtil {
 
     private final UserDetailsService userDetailsService;
@@ -23,6 +26,8 @@ public class JwtUtil {
     private final long expiration = 15 * 60 * 1000;
     //     private final long expiration = 5;
     private final long refreshExpiration = 15 * 60 * 1000;
+
+    private final UserService userService;
 
     // this wil extract a claim from a token, its used in the methods above to get the username and date
     // TODO When this detects the access token is expired it will throw and exception.
@@ -55,8 +60,15 @@ public class JwtUtil {
     }
 
     public String generateToken(UserDetails userDetails) {
+
+      var user=  userService.getByEmail(userDetails.getUsername());
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", userDetails.getAuthorities());
+        claims.put("firstName", user.getFirstName());
+        claims.put("lastName", user.getLastName());
+        claims.put("city",user.getCity());
+        claims.put("state",user.getState());
+        claims.put("major",user.getMajor());
 
         return doGenerateToken(claims, userDetails.getUsername());
     }

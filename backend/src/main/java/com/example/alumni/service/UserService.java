@@ -14,4 +14,6 @@ public interface UserService extends BaseService<User, Long> {
     User toggleUserStatus(ToggleUserStatusRequest toggleUserStatusRequest);
 
     User resetUserPassword(ResetUserPasswordRequest resetUserPasswordRequest);
+
+    User getByEmail(String email);
 }
