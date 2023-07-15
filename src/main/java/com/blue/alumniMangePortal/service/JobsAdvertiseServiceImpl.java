@@ -36,14 +36,13 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
 
     }
     public JobsAdvertise saveJobsAdvertise(JobsAdvertise jobsAdvertise){
-        studentRepo.save(jobsAdvertise.getStudent());
         addressRepo.save(jobsAdvertise.getAddress());
         JobsAdvertise jobsAdvertise1=new JobsAdvertise();
         jobsAdvertise1.setDate(jobsAdvertise.getDate());
         jobsAdvertise1.setPosition(jobsAdvertise.getPosition());
         jobsAdvertise1.setJobAppliedDate(jobsAdvertise.getJobAppliedDate());
         jobsAdvertise1.setTag(jobsAdvertise.getTag());
-        jobsAdvertise1.setStudent(jobsAdvertise.getStudent());
+
         jobsAdvertise1.setAddress(jobsAdvertise.getAddress());
 
         jobsAdvertiseRepo.save(jobsAdvertise1);
@@ -56,7 +55,7 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
         jobs.get().setJobAppliedDate(jobsAdvertise.getJobAppliedDate());
         jobs.get().setCompanyName(jobsAdvertise.getCompanyName());
         jobs.get().setTag(jobsAdvertise.getTag());
-         jobs.get().setStudent(jobsAdvertise.getStudent());
+
          jobs.get().setAddress(jobsAdvertise.getAddress());
          jobsAdvertiseRepo.save(jobs.get());
          return jobs.get();
