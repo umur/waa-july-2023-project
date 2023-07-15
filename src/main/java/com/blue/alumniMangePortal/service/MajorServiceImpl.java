@@ -40,9 +40,11 @@ public class MajorServiceImpl implements MajorService {
 
     }
 
-
-    public boolean  DeleteMajorById(Long id) {
-        majorRepo.deleteById(id);
-        return true;
+    public void findByDeletedTrue(Long id){
+        Optional<Major>majorToDelete=majorRepo.findById(id);
+        majorToDelete.get().setDeleted(true);
+        majorRepo.save(majorToDelete.get());
     }
+
+
 }

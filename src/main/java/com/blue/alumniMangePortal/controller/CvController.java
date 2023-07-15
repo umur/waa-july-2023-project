@@ -31,8 +31,7 @@ public class CvController {
         return cvService.updateCv(id,cv);
     }
     @DeleteMapping("/{id}")
-    public boolean deleteCvById(@PathVariable Long id){
-        cvService.deleteCvById(id);
-        return  true;
+    public void deleteCvById(@PathVariable Long id){
+        cvService.findByDeletedTrue(id);
     }
 }

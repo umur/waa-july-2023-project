@@ -40,12 +40,12 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
-    public String deleteById(Long id){
-        Optional<Address> address= addressRepo.findById(id);
-        if(address.isPresent()){
-            addressRepo.deleteById(id);
-        }
-        return"Address deleted";
+    public void findByDeletedTrue(Long id){
+        Optional<Address> addressToDelete= addressRepo.findById(id);
+        addressToDelete.get().setDeleted(true);
+        addressRepo.save(addressToDelete.get());
+
+
     }
 
 }

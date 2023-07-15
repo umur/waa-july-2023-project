@@ -9,5 +9,5 @@ public interface AddressService {
     public Address getAddressById(Long id);
     public Address saveAddress(Address address);
     public Address updateAddress(long id,Address address);
-    public String deleteById(Long id);
+    void findByDeletedTrue(Long id);
 }
