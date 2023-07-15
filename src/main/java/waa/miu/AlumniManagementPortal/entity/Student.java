@@ -15,7 +15,7 @@ public class Student {
 
     private String firstName, lastName, password, email, phone, cv;
 
-    private boolean isCurrentlyEmployed, isDeleted;
+    private String isCurrentlyEmployed, isDeleted;
 
     @JsonManagedReference(value = "student-address")
     @OneToOne(mappedBy = "student")

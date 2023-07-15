@@ -12,8 +12,12 @@ const Student = () => {
     const navigate = useNavigate();
 
     const getStudents = async () => {
-        const result = await axios.get("/students");
-        setStudents(result.data);
+        try {
+            const result = await axios.get("/students");
+            setStudents(result.data);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {

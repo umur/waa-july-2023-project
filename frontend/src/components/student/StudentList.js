@@ -1,9 +1,42 @@
-const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
-    const baseUrl = "http://localhost:3000";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-    const constructDownloadLink = (fileName) => {
-        return `${baseUrl}/downloads${fileName}`;
-    };
+const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
+
+    const [downloadLinks, setDownloadLinks] = useState({});
+
+    useEffect(() => {
+        const fetchDownloadLinks = async () => {
+          const links = {};
+          for (const student of students) {
+            try {
+                let cvString = extractFileName(student.cv);
+                links[student.id] = cvString;
+            } catch (error) {
+                console.error(error);
+                links[student.id] = null;
+            }
+          }
+          setDownloadLinks(links);
+        };
+    
+        fetchDownloadLinks();
+      }, [students]);
+
+      const extractFileName = (filePath) => {
+        const fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+        return fileName;
+      };
+
+      const handleDownload = async (fileName) => {
+        let res = await axios.get(`/downloads/${fileName}`, { responseType: "blob" });
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", fileName);
+        document.body.appendChild(link);
+        link.click();
+      };
 
     return ( 
         <>
@@ -20,7 +53,6 @@ const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
                         <th scope="col">Phone</th>
                         <th scope="col">CV</th>
                         <th scope="col">Employed?</th>
-                        <th scope="col">Deleted?</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
                         </tr>
@@ -34,12 +66,17 @@ const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
                             <td>{student.lastName}</td>
                             <td>{student.email}</td>
                             <td>{student.phone}</td>
-                            {/* <td><a href={student.cv} download>Download</a></td> */}
-                            <td><a href={constructDownloadLink(student.cv)} download={`${student.firstName}-${student.lastName}-CV.pdf`}>Download</a></td>
-                            <td>{student.currentlyEmployed.toString()}</td>
-                            <td>{student.deleted.toString()}</td>
-                            <td><button className="btn btn-primary" onClick={() => handleUpdate(student.id)}>Update</button></td>
-                            <td><button className="btn btn-danger" onClick={() => handleDelete(student.id)}>Delete</button></td>
+                            <td>
+                                {downloadLinks[student.id] ? (
+                                <button className="btn btn-sm btn-info" onClick={() => handleDownload(downloadLinks[student.id])}
+                                title={`Download ${student.firstName}'s cv`}
+                                >
+                                    Download
+                                </button>) : ("N/A")}
+                            </td>
+                            <td>{student.isCurrentlyEmployed}</td>
+                            <td><button className="btn btn-sm btn-primary" onClick={() => handleUpdate(student.id)}>Update</button></td>
+                            <td><button className="btn btn-sm btn-danger" onClick={() => handleDelete(student.id)}>Delete</button></td>
                             </tr>
                         ))
                         }

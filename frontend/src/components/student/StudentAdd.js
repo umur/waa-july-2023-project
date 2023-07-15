@@ -22,8 +22,8 @@ const StudentAdd = () => {
         try {
           // convert the cv to base64
           const base64CV = await convertFileToBase64(cv);
-
           const student = { firstName, lastName, email, phone, cv: base64CV, isCurrentlyEmployed };
+          console.log(student);
           await addStudent(student);
           Swal.fire({
             title: `${entity} added successfully`,
@@ -76,7 +76,7 @@ const StudentAdd = () => {
         setPhone('');
         setCv('');
         setIsCurrentlyEmployed('');
-      }
+    }
 
     return ( 
         <>
@@ -109,10 +109,11 @@ const StudentAdd = () => {
 
                 <div className="mb-3">
                 <label htmlFor="employmentStatusInput" className="form-label">Employment status</label>
-                <select className="custom-select d-block w-100" id="employmentStatusInput" value={isCurrentlyEmployed} onChange={e => setIsCurrentlyEmployed(e.target.value)}>
+                <select className="custom-select d-block w-100" id="employmentStatusInput" value={isCurrentlyEmployed} 
+                onChange={e => setIsCurrentlyEmployed(e.target.value)}>
                     <option value="select one">Select</option>
-                    <option value="true">Yes, I am currently employed</option>
-                    <option value="false">No, I am not currently employed</option>
+                    <option value={true}>Yes, I am currently employed</option>
+                    <option value={false}>No, I am not currently employed</option>
                   </select>
                 </div>
 
