@@ -1,15 +1,16 @@
 package com.alumni.Service.impls;
 
 import com.alumni.Exceptions.NotFoundException;
-import com.alumni.Service.BaseUserService;
 import com.alumni.Service.StudentService;
 import com.alumni.dtos.response.StudentResponseDTO;
 import com.alumni.dtos.request.StudentRequestDto;
 import com.alumni.entity.BaseUser;
 import com.alumni.entity.Role;
 import com.alumni.entity.Student;
+import com.alumni.entity.enums.RoleEnum;
 import com.alumni.repository.AttachmentRepository;
 import com.alumni.repository.BaseUserRepository;
+import com.alumni.repository.RoleRepository;
 import com.alumni.repository.StudentRepository;
 import com.alumni.utils.RepositoryUtils;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private final StudentRepository repository;
+
+    private final RoleRepository roleRepository;
 
     @Autowired
     public AttachmentRepository attachmentRepository;
@@ -57,17 +60,16 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void create(StudentRequestDto requestDto) {
+        Role studentRole = roleRepository.findByName(RoleEnum.STUDENT.toString());
         Student entity= modelMapper.map(requestDto,Student.class);
-
         BaseUser baseUser= new BaseUser();
         baseUser.setEmail(requestDto.getEmail());
         baseUser.setPassword(bCryptPasswordEncoder.encode(requestDto.getEmail()));
         baseUser.setActiveAfter(LocalDateTime.now());
         baseUser.setActive(true);
         baseUser.setFailedLoginAttempts(0);
-        baseUser.setRoles(List.of(Role.STUDENT));
+        baseUser.setRoles(List.of(studentRole));
         entity.setUser(baseUserRepository.save(baseUser));
-
         repository.save(entity);
     }
 

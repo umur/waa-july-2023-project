@@ -7,7 +7,9 @@ import com.alumni.dtos.request.FacultyRequestDto;
 import com.alumni.dtos.response.FacultyResponseDTO;
 import com.alumni.entity.Faculty;
 import com.alumni.entity.Role;
+import com.alumni.entity.enums.RoleEnum;
 import com.alumni.repository.FacultyRepository;
+import com.alumni.repository.RoleRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,8 @@ public class FacultyServiceImpl implements FacultyService {
 
     private final FacultyRepository repository;
 
+    private final RoleRepository roleRepository;
+
     private final BaseUserService baseUserService;
     @Override
     public List<FacultyResponseDTO> getList(int page, int size, String name) {
@@ -38,8 +42,9 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public void create(FacultyRequestDto requestDto) {
+        Role facultyRole = roleRepository.findByName(RoleEnum.FACULTY.toString());
         Faculty entity= modelMapper.map(requestDto,Faculty.class);
-        entity.setUser(baseUserService.save(requestDto.getEmail(), requestDto.getEmail(),List.of(Role.FACULTY)));
+        entity.setUser(baseUserService.save(requestDto.getEmail(), requestDto.getEmail(),List.of(facultyRole)));
         repository.save(entity);
 
     }

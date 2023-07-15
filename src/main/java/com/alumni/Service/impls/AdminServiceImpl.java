@@ -3,21 +3,17 @@ package com.alumni.Service.impls;
 import com.alumni.Exceptions.NotFoundException;
 import com.alumni.Service.AdminService;
 import com.alumni.Service.BaseUserService;
-import com.alumni.Service.StudentService;
 import com.alumni.dtos.request.AdminRequestDto;
 import com.alumni.dtos.response.AdminResponseDTO;
-import com.alumni.dtos.response.StudentResponseDTO;
 import com.alumni.entity.Admin;
 import com.alumni.entity.Role;
-import com.alumni.entity.Student;
+import com.alumni.entity.enums.RoleEnum;
 import com.alumni.repository.AdminRepository;
-import com.alumni.repository.StudentRepository;
-import com.alumni.utils.RepositoryUtils;
+import com.alumni.repository.RoleRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +24,8 @@ public class AdminServiceImpl implements AdminService {
     private final ModelMapper modelMapper;
 
     private final AdminRepository repository;
+
+    private final RoleRepository roleRepository;
 
     private final BaseUserService baseUserService;
     @Override
@@ -41,8 +39,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void create(AdminRequestDto requestDto) {
+        Role adminRole = roleRepository.findByName(RoleEnum.ADMIN.toString());
         Admin entity= modelMapper.map(requestDto,Admin.class);
-        entity.setUser(baseUserService.save(requestDto.getEmail(), requestDto.getEmail(),List.of(Role.STUDENT)));
+        entity.setUser(baseUserService.save(requestDto.getEmail(), requestDto.getEmail(),List.of(adminRole)));
         repository.save(entity);
 
     }
