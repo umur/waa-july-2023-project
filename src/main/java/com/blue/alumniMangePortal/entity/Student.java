@@ -29,10 +29,10 @@ public class Student {
     private Major major;
     @OneToMany
    // @JsonManagedReference
-    private List<JobsAdvertise> jobsAdvertisedList=new ArrayList<>();
+    private List<JobsAdvertise> jobsAdvertisedList;
 //    private CurrentWorkPlace;
 //    private Cv cv;
-    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
-        jobsAdvertisedList.add(jobs);
-    }
+//    public void addJobsAdvertisedToStd(JobsAdvertise jobs){
+//        jobsAdvertisedList.add(jobs);
+//    }
 }

@@ -2,17 +2,26 @@ package com.blue.alumniMangePortal.service;
 
 import com.blue.alumniMangePortal.entity.Cv;
 import com.blue.alumniMangePortal.entity.JobsAdvertise;
+import com.blue.alumniMangePortal.entity.Student;
+import com.blue.alumniMangePortal.repository.AddressRepo;
 import com.blue.alumniMangePortal.repository.CvRepo;
 import com.blue.alumniMangePortal.repository.JobsAdvertiseRepo;
+import com.blue.alumniMangePortal.repository.StudentRepo;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
     private final JobsAdvertiseRepo jobsAdvertiseRepo;
+    private final StudentRepo studentRepo;
+    private final AddressRepo addressRepo;
 
     public  List<JobsAdvertise> getAll(){
       return  jobsAdvertiseRepo.findAll();
@@ -27,13 +36,26 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
 
     }
     public JobsAdvertise saveJobsAdvertise(JobsAdvertise jobsAdvertise){
-        jobsAdvertiseRepo.save(jobsAdvertise);
-        return jobsAdvertise;
+        studentRepo.save(jobsAdvertise.getStudent());
+        addressRepo.save(jobsAdvertise.getAddress());
+        JobsAdvertise jobsAdvertise1=new JobsAdvertise();
+        jobsAdvertise1.setDate(jobsAdvertise.getDate());
+        jobsAdvertise1.setPosition(jobsAdvertise.getPosition());
+        jobsAdvertise1.setJobAppliedDate(jobsAdvertise.getJobAppliedDate());
+        jobsAdvertise1.setTag(jobsAdvertise.getTag());
+        jobsAdvertise1.setStudent(jobsAdvertise.getStudent());
+        jobsAdvertise1.setAddress(jobsAdvertise.getAddress());
+
+        jobsAdvertiseRepo.save(jobsAdvertise1);
+        return jobsAdvertise1;
     }
     public JobsAdvertise updateJobsAdvertise(long id,JobsAdvertise jobsAdvertise){
         Optional<JobsAdvertise> jobs = jobsAdvertiseRepo.findById(id);
-         jobs.get().setPosition(jobsAdvertise.getPosition());
-         jobs.get().setDate(jobsAdvertise.getDate());
+        jobs.get().setDate(jobsAdvertise.getDate());
+        jobs.get().setPosition(jobsAdvertise.getPosition());
+        jobs.get().setJobAppliedDate(jobsAdvertise.getJobAppliedDate());
+        jobs.get().setCompanyName(jobsAdvertise.getCompanyName());
+        jobs.get().setTag(jobsAdvertise.getTag());
          jobs.get().setStudent(jobsAdvertise.getStudent());
          jobs.get().setAddress(jobsAdvertise.getAddress());
          jobsAdvertiseRepo.save(jobs.get());
@@ -45,9 +67,7 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
         jobsAdvertiseRepo.deleteById(id);
              return true;
     }
-    public void softDeleteItem(Long id) {
-//
-    }
+
     @Override
     public void findByDeletedTrue(Long id){
         Optional<JobsAdvertise>jobsAdvertiseToDelete=jobsAdvertiseRepo.findById(id);
@@ -63,26 +83,12 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
          return jobsAdvertiseRepo.findTop10ByOrderByAppliedAtDesc();
 
    }
-//  public Student filterStudent(Object obj) {
-//        if (obj instanceof String) {
-//            String var = (String) obj;
-//            if (studentRepo.findByState(var) != null) {
-//                return studentRepo.findByState(var);
-//            } else if (studentRepo.findByCity(var) != null) {
-//                return studentRepo.findByCity(var);
-//            } else if (studentRepo.findByMajor(var) != null) {
-//                return studentRepo.findByMajor(var);
-//            } else if (studentRepo.findByName(var) != null) {
-//                return studentRepo.findByName(var);
-//            }
-//        } else if (obj instanceof Long) {
-//            Long var = (Long) obj;
-//            if (studentRepo.findById(var) != null) {
-//                Optional<Student> std = studentRepo.findById(var);
-//                return std.get();
-//            }
-//        }
-//        return null;
-//    }
+    public List<JobsAdvertise> getJobsAdvertisByTag(String tag){
+       return jobsAdvertiseRepo.findByTagValue(tag);
+
+
+    }
+
+
 
 }
