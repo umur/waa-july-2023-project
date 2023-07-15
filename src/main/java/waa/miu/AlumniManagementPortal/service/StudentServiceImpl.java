@@ -13,6 +13,7 @@ import waa.miu.AlumniManagementPortal.repository.StudentRepo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Service
@@ -66,10 +67,8 @@ public class StudentServiceImpl implements StudentService{
         MediaType mediaType = MediaType.parse(tika.detect(fileBytes));
         String fileExtension = mediaType.getSubtype();
         if (fileExtension.equals("x-tika-ooxml")) fileExtension = "docx";
-        String filePath = "/Users/fortuneking/Downloads/uploads/"+
-                student.getFirstName()+"-"+
-                student.getLastName()+
-                "-CV."+fileExtension;
+        String fileName = student.getFirstName() + "-" + student.getLastName() + "-CV." + fileExtension;
+        String filePath = Paths.get("uploads", fileName).toString();
         try{
             Path path = Path.of(filePath);
             Files.write(path, fileBytes);
@@ -81,8 +80,11 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student update(Long id, Student student) {
-        String studentCVPath = processCV(student);
         Student existingStudent = findById(id);
+        String studentCVPath = existingStudent.getCv();
+        if(!(existingStudent.getCv().equals(student.getCv()))){
+            studentCVPath = processCV(student);
+        }
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setCv(studentCVPath);
@@ -93,8 +95,8 @@ public class StudentServiceImpl implements StudentService{
         existingStudent.setMajor(student.getMajor());
         existingStudent.setJobAdverts(student.getJobAdverts());
         existingStudent.setCurrentWorkPlace(student.getCurrentWorkPlace());
-        existingStudent.setCurrentlyEmployed(student.isCurrentlyEmployed());
-        existingStudent.setDeleted(student.isDeleted());
+        existingStudent.setIsCurrentlyEmployed(student.getIsCurrentlyEmployed());
+        existingStudent.setIsDeleted(student.getIsDeleted());
         return studentRepo.save(existingStudent);
     }
 
