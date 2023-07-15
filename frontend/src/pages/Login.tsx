@@ -1,11 +1,14 @@
-import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
-import { FC } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, TextField } from "@mui/material";
+import jwt_decode from "jwt-decode";
+import { FC, useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-import http from "../interceptor/interceptor";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
+import http from "../interceptor/interceptor";
+import { IUser } from "../types/IUser";
 
 const schema = z.object({
   email: z.string().nonempty("Email is required").email(),
@@ -14,11 +17,11 @@ const schema = z.object({
 
 type formType = z.infer<typeof schema>;
 
-interface Props {}
+type LoginResult = { accessToken: string; refreshToken: string } & IUser;
 
-const Login: FC<Props> = () => {
+const Login: FC = () => {
   const navigate = useNavigate();
-
+  const { updateUser } = useUserContext();
   const {
     handleSubmit,
     register,
@@ -27,13 +30,32 @@ const Login: FC<Props> = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data: FieldValues) => {
-    const result = await http.post("/uaa/signin", data);
+  //handlers
+  const onSubmit = async (formData: FieldValues) => {
+    const { data, status } = await http.post<LoginResult>(
+      "/uaa/signin",
+      formData
+    );
 
-    if (result.status === 200) {
-      localStorage.setItem("accessToken", result.data["accessToken"]);
-      localStorage.setItem("refreshToken", result.data["refreshToken"]);
-      navigate("/signup");
+    if (status === 200) {
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      navigate("/dashbord");
+      updateUser({
+        version: 1,
+        email: "test",
+        firstName: "test",
+        lastName: "test",
+        city: "test",
+        state: "test",
+        major: "test",
+        roles: [],
+        enabled: false,
+        jobApplications: "test",
+      });
+      // const decoded = jwt_decode(data.accessToken);
+      // const user = await http.post('/uaa/users/', data);
+      // updateUser && updateUser(decoded.user)
     }
   };
 
