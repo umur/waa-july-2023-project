@@ -37,5 +37,4 @@ public class Student {
     @OneToOne
     private UploadedFilePath cv;
 
-
 }
