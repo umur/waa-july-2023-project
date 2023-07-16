@@ -51,7 +51,11 @@ function App() {
     console.log();
   }
 
-
+  const refreshUserData = () => {
+    let user = JSON.parse(localStorage.getItem('loggedInUser') || String("{}"));
+    setLoggedInUser(user);
+    loggedInUser = user;
+  }
 
   return (
     //  <Router>
@@ -100,7 +104,7 @@ function App() {
               <Route path="/sign-in" element={<Login applyUserRole={refreshMenus} />}/>
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/users" element={<Users />}/>
-              <Route path="/profile" element={<Profile />}/>
+              <Route path="/profile" element={<Profile applyUserDataChange={refreshUserData}/>}/>
               <Route path="/students" element={<Students />}/>
               <Route path="/dashboards" element={<Dashboards />}/>
               <Route path="/jobs" element={<Jobs />}/>

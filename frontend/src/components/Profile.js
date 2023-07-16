@@ -2,7 +2,7 @@ import {Navigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
-export default function Profile() {
+export default function Profile(props) {
     let user = JSON.parse(localStorage.getItem('loggedInUser') || String("{}"))
     const [userData, setUserData] = useState({
         email: user.email,
@@ -127,6 +127,7 @@ export default function Profile() {
                 user.zip = userData.zip;
                 user.state = userData.state;
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
+                props.applyUserDataChange();
                 alert('User data has been saved successfully!');
             }
             console.log(result);
