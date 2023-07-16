@@ -1,11 +1,12 @@
-import { FC, useEffect, useState } from 'react';
-import BarChart from './BarChart';
-import PieChart from './PieCart';
-import DonutChart from './DonutChart';
-import http from '../../interceptor/interceptor';
-import { IUser } from '../../types/IUser';
-import { getCities, getUsersByState } from '../../utils/chart-data.helper';
-import { DataItem } from './charts.types';
+import { FC, useEffect, useState } from "react";
+import BarChart from "./BarChart";
+import PieChart from "./PieCart";
+import DonutChart from "./DonutChart";
+import http from "../interceptor/interceptor";
+import { IUser } from "../types/IUser";
+import { getCities, getUsersByState } from "../utils/chart-data.helper";
+import { DataItem } from "./charts.types";
+import { Autocomplete, TextField } from "@mui/material";
 
 const Charts: FC = () => {
   const [cities, setCities] = useState<Array<string>>();
@@ -20,15 +21,15 @@ const Charts: FC = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    Promise.all([http.get<Array<IUser>>('/uaa/users'), http.get('/uaa/ads')])
+    Promise.all([http.get<Array<IUser>>("/users")])
       .then(
         (result) => {
           if (result[0].status === 200) {
             setUsers(result[0].data);
           }
-          if (result[1].status === 200) {
-            setDonutChart(result[1].data as DataItem[]);
-          }
+          // if (result[1].status === 200) {
+          //   setDonutChart(result[1].data as DataItem[]);
+          // }
         },
         (err) => {
           console.log(err);
@@ -52,6 +53,13 @@ const Charts: FC = () => {
 
   return (
     <div>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={cities || []}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Cities" />}
+      />
       {barChartData && <BarChart data={barChartData} />}
       {selectedState && pieChartData && <PieChart data={pieChartData} />}
       {donutChart && <DonutChart data={donutChart} />}

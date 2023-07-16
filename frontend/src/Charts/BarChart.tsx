@@ -1,6 +1,6 @@
-import * as echarts from 'echarts';
-import React, { useEffect, useRef } from 'react';
-import { DataItem } from './charts.types';
+import * as echarts from "echarts";
+import React, { useEffect, useRef } from "react";
+import { DataItem } from "./charts.types";
 
 interface BarChartProps {
   data: DataItem[];
@@ -12,23 +12,23 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
   useEffect(() => {
     const chart = echarts.init(chartRef.current!);
 
-    const options: echarts.EChartOption = {
+    const options: echarts.EChartsOption = {
       tooltip: {
-        trigger: 'axis',
+        trigger: "axis",
         axisPointer: {
-          type: 'shadow',
+          type: "shadow",
         },
       },
       xAxis: {
-        type: 'category',
+        type: "category",
         data: data.map((item) => item.name),
       },
       yAxis: {
-        type: 'value',
+        type: "value",
       },
       series: [
         {
-          type: 'bar',
+          type: "bar",
           data: data.map((item) => item.value),
         },
       ],
@@ -41,7 +41,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
     };
   }, [data]);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '400px' }} />;
+  return <div ref={chartRef} style={{ width: "100%", height: "400px" }} />;
 };
 
 export default BarChart;

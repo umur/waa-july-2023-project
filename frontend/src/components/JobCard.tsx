@@ -56,6 +56,7 @@ const JobCard: FC<Props> = ({
         </CardContent>
         <CardActions>
           {user == jobAdvertisement.user && <Button size="small">Edit</Button>}
+          <Button size="small">Apply</Button>
         </CardActions>
       </Card>
     </Box>

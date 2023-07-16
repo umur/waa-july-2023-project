@@ -7,6 +7,8 @@ import { useUserContext } from "./context/UserContext";
 import IAccessToken from "./types/IAccessToken";
 import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
+import Charts from "./Charts/Charts";
+import Profile from "./pages/Profile";
 
 const AppRoutes: FC = () => {
   const { user, updateUser } = useUserContext();
@@ -76,7 +78,7 @@ const AppRoutes: FC = () => {
               </Link>
             </li>
             <li>
-              <Link className="d-flex align-center justify-center" to="login">
+              <Link className="d-flex align-center justify-center" to="Profile">
                 Profile
               </Link>
             </li>
@@ -99,7 +101,7 @@ const AppRoutes: FC = () => {
           <>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="jobs" element={<Jobs />} />
-            <Route path="signup" element={<Signup />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="signup" element={<Signup />} />
           </>
         ) : (
@@ -107,6 +109,7 @@ const AppRoutes: FC = () => {
         )}
         <Route path="*" element={<Navigate to="/dashboard" replace={true} />} />
       </Routes>
+      {/* <Charts /> */}
     </Fragment>
   );
 };
