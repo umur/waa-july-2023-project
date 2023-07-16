@@ -9,10 +9,13 @@ import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
 import Charts from "./Charts/Charts";
 import Profile from "./pages/Profile";
+import useRole from "./hooks/useRole";
+import Students from "./pages/Students";
 
 const AppRoutes: FC = () => {
   const { user, updateUser } = useUserContext();
   const navigate = useNavigate();
+  const { isFaculty } = useRole();
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -47,52 +50,74 @@ const AppRoutes: FC = () => {
 
   return (
     <Fragment>
-      <nav className="navbar">
-        {!user && (
-          <ul className="d-flex align-center">
-            <li>
-              <Link className="d-flex align-center justify-center" to="login">
-                Login
-              </Link>
-            </li>
-            <li className="d-flex align-center justify-center">
-              <Link className="d-flex align-center justify-center" to="signup">
-                Signup
-              </Link>
-            </li>
-          </ul>
-        )}
-        {user && (
-          <ul className="d-flex align-center">
-            <li className="d-flex align-center justify-center">
-              <Link
-                className="d-flex align-center justify-center"
-                to="dashboard"
-              >
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link className="d-flex align-center justify-center" to="jobs">
-                Jobs
-              </Link>
-            </li>
-            <li>
-              <Link className="d-flex align-center justify-center" to="Profile">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="d-flex align-center justify-center"
-                onClick={handleSignout}
-                to="login"
-              >
-                Signout
-              </Link>
-            </li>
-          </ul>
-        )}
+      <nav className="navbar d-flex align-center justify-between">
+        <div>
+          <h3>Alumni Management Portal</h3>
+        </div>
+        <div>
+          {" "}
+          {!user && (
+            <ul className="d-flex align-center">
+              <li>
+                <Link className="d-flex align-center justify-center" to="login">
+                  Login
+                </Link>
+              </li>
+              <li className="d-flex align-center justify-center">
+                <Link
+                  className="d-flex align-center justify-center"
+                  to="signup"
+                >
+                  Signup
+                </Link>
+              </li>
+            </ul>
+          )}
+          {user && (
+            <ul className="d-flex align-center">
+              <li className="d-flex align-center justify-center">
+                <Link
+                  className="d-flex align-center justify-center"
+                  to="dashboard"
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link className="d-flex align-center justify-center" to="jobs">
+                  Jobs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="d-flex align-center justify-center"
+                  to="Profile"
+                >
+                  Profile
+                </Link>
+              </li>
+              {isFaculty && (
+                <li>
+                  <Link
+                    className="d-flex align-center justify-center"
+                    to="students"
+                  >
+                    Students
+                  </Link>
+                </li>
+              )}
+              <li>
+                <Link
+                  className="d-flex align-center justify-center"
+                  onClick={handleSignout}
+                  to="login"
+                >
+                  Signout
+                </Link>
+              </li>
+            </ul>
+          )}
+        </div>
       </nav>
       <Routes>
         <Route path="login" element={<Login />} />
@@ -102,7 +127,7 @@ const AppRoutes: FC = () => {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="jobs" element={<Jobs />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="signup" element={<Signup />} />
+            <Route path="students" element={<Students />} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/login" replace={true} />} />

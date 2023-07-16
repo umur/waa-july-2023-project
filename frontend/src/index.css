@@ -69,6 +69,9 @@
 .justify-around {
   justify-content: space-around;
 }
+.justify-between {
+  justify-content: space-between;
+}
 .text-center {
   text-align: center;
 }
@@ -81,5 +84,21 @@
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   margin: auto;
   text-align: end;
+  padding: 10px;
+}
+
+.p-1 {
+  padding: 4px;
+}
+
+.p-2 {
+  padding: 6px;
+}
+
+.p-3 {
+  padding: 8px;
+}
+
+.p-4 {
   padding: 10px;
 }
