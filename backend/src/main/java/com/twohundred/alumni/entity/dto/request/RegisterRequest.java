@@ -15,4 +15,11 @@ public class RegisterRequest {
   private String email;
   private String password;
   private String role;
+  private Integer salary;
+  private Double gpa;
+  private String street;
+  private String city;
+  private String zip;
+  private String state;
+
 }

@@ -23,8 +23,8 @@ function App() {
       [{title:'Sign in', path:'/sign-in'}, {title:'Sign up', path:'/sign-up'}];
   const loggedInUserMenus = {
       ADMIN:[{title:'Users', path:'/users'}, {title:'Profile', path:'/profile'}],
-      FACULTY:[{title:'/dashboards', path:'/students'}, {title:'/jobs', path:'/profile'}],
-      STUDENT:[{title:'/dashboards', path:'/jobs'}, {title:'Profile', path:'/profile'}]
+      FACULTY:[{title:'Dashboards', path:'/dashboards'},{title:'Students', path:'/students'}, {title:'Profile', path:'/profile'}],
+      STUDENT:[{title:'Jobs', path:'/jobs'}, {title:'Profile', path:'/profile'}]
   };
 
   let [loggedInUser, setLoggedInUser] = useState({});

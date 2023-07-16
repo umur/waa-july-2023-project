@@ -46,6 +46,9 @@ body, html, .App, #root, .auth-wrapper {
   line-height: 1;
   padding-bottom: 20px;
 }
+.auth-wrapper .error {
+  text-align: center;
+}
 .custom-control-label {
   font-weight: 400;
 }
@@ -59,4 +62,13 @@ body, html, .App, #root, .auth-wrapper {
 }
 .forgot-password a {
   color: #167bff;
+}
+
+.mybtn {
+  width:70px; float: right;  margin-top: 10px;
+}
+
+.regArea {
+  width: 700px;
+  border-radius: 10px;
 }

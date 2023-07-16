@@ -79,12 +79,25 @@ public class AuthService {
 
     public LoginResponse register(RegisterRequest request) {
         List<Role> roles = Arrays.asList(roleRepo.findByRole(request.getRole()));
-        var user = new User(
-                request.getFirstname(),
-                request.getLastname(),
-                request.getEmail(),
-                passwordEncoder.encode(request.getPassword()),
-                roles);
+        Address address = new Address();
+        address.setStreet(request.getStreet());
+        address.setCity(request.getCity());
+        address.setZip(request.getZip());
+        address.setState(request.getState());
+        User user;
+        if("STUDENT".equals(request.getRole())) {
+            user = new Student();
+        } else {
+            user = new Faculty();
+        }
+        user.setFirstName(request.getFirstname());
+        user.setLastName(request.getLastname());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRoles(roles);
+        user.setAddress(address);
+        user.setActive(true);
+        user.setLocked(false);
         var savedUser = repository.save(user);
         var jwtToken = jwtUtil.generateToken(user);
         saveUserToken(savedUser, jwtToken);
