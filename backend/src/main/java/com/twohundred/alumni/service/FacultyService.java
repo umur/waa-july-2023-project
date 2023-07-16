@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface FacultyService {
     Faculty findById(Long id);
-    FacultyDto update(User faculty, FacultyDto facultyDto);
+    FacultyDto update(FacultyDto facultyDto);
 
     FacultyDto delete(User faculty);
     List<Student> filterStudentsBySearchParam(String state, String city, String major, String name, String id);

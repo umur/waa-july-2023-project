@@ -10,6 +10,7 @@ import com.twohundred.alumni.service.impl.StudentServiceImpl;
 import com.twohundred.alumni.util.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.twohundred.alumni.entity.dto.request.FacultyDto;
@@ -25,7 +26,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/faculties")
 @RequiredArgsConstructor
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@PreAuthorize("hasAnyRole('FACULTY', 'ROLE_FACULTY')")
 public class FacultyController {
     private final FacultyServiceImpl facultyServiceImpl;
     private final CommentServiceImpl commentService;
@@ -35,10 +37,9 @@ public class FacultyController {
     private final Mapper mapper;
 
     @LogMe
-    @PostMapping
+    @PutMapping
     public FacultyDto update(@RequestBody FacultyDto facultyDto) {
-        User currentFaculty = securityUtil.getCurrentUser();
-        return facultyServiceImpl.update(currentFaculty, facultyDto);
+        return facultyServiceImpl.update(facultyDto);
     }
 
     @DeleteMapping

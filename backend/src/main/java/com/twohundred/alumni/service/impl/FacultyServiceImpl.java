@@ -46,8 +46,8 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public FacultyDto update(User currentFaculty, FacultyDto facultyDto) {
-        Faculty tempFaculty = findById(currentFaculty.getId());
+    public FacultyDto update(FacultyDto facultyDto) {
+        Faculty tempFaculty = facultyRepo.findById(facultyDto.getId()).get();
         tempFaculty.setSalary(facultyDto.getSalary());
         tempFaculty.setTitle(facultyDto.getTitle());
         tempFaculty.setFirstName(facultyDto.getFirstName());
