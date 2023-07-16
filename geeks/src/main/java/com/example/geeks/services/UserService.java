@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        return usRepo.findAllByIsDeleted(false);
+        return usRepo.findAll();
     }
 
     public Optional<User> getUser(Long id) {

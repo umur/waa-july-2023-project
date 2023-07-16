@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/advertisements")
+@CrossOrigin
 public class AdvertisementController {
 
     @Qualifier("ads")

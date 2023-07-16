@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/applications")
+@CrossOrigin
 public class ApplicationController {
 
     @Qualifier("aps")

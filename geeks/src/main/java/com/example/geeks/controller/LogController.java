@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/logs")
+@CrossOrigin
 public class LogController {
 
     @Qualifier("los")

@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/experiences")
+@CrossOrigin
 public class ExperienceController {
 
     @Qualifier("exs")
