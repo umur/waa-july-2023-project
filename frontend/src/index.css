@@ -17,13 +17,14 @@
   justify-content: flex-end;
   height: 100%;
   list-style: none;
+  gap: 0;
 }
 
 .navbar ul li {
   height: 100%;
   transition: all 0.3s ease;
-  width: 70px;
   cursor: pointer;
+  padding: 0 10px;
 }
 .navbar ul li a {
   height: 100%;
