@@ -18,6 +18,10 @@ const AppRoutes: FC = () => {
   const { isFaculty } = useRole();
 
   useEffect(() => {
+
+    //FIXME: use the refresh token to get new token
+
+    
     if (localStorage.getItem("accessToken")) {
       const decoded: IAccessToken = jwt_decode(
         localStorage.getItem("accessToken") || ""
@@ -54,7 +58,7 @@ const AppRoutes: FC = () => {
         <div>
           <h3>Alumni Management Portal</h3>
         </div>
-        <div>
+        <div style={{ height: "100%" }}>
           {" "}
           {!user && (
             <ul className="d-flex align-center">
