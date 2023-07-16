@@ -19,6 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -34,7 +39,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http.cors(cors -> cors.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/uaa/**").permitAll()
                         .requestMatchers("/echart/**").permitAll()
@@ -43,7 +49,6 @@ public class SecurityConfig {
                         .requestMatchers("/student/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
                         .requestMatchers("/comment/**").hasAnyAuthority("ADMIN", "FACULTY")
                         .requestMatchers("/faculties/**").hasAuthority("FACULTY")
-                        .requestMatchers("/user/**").hasAuthority("ADMIN")
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest()
                         .authenticated())
@@ -56,7 +61,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

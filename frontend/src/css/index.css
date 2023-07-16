@@ -69,6 +69,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .regArea {
+  background-color:white;
   width: 700px;
   border-radius: 10px;
 }

@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 axios.defaults.baseURL = "http://localhost:8090";
 root.render(
-   // <BrowserRouter>
+    <BrowserRouter>
         <App />
-  //  </BrowserRouter>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

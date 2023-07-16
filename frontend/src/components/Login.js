@@ -50,6 +50,7 @@ const Login = (props)=>{
             if(result.status == 200 && result.data && result.data.accessToken) {
                 localStorage.setItem('loggedInUser', JSON.stringify(result.data));
                 props.applyUserRole();
+
             }
         }catch (e) {
             setLoginErrorMessage('Invalid user credentials')

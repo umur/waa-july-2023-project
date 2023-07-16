@@ -3,13 +3,14 @@ import axios from 'axios';
 import {Navigate} from "react-router-dom";
 
 export default function Register() {
-
     const [newUserData, setNewUserData] = useState({
         email: '',
         firstname: '',
         lastname: '',
         role:'STUDENT',
+        title:'',
         salary:'',
+        major:'',
         gpa:'',
         password: '',
         confirmPassword: '',
@@ -98,7 +99,9 @@ export default function Register() {
             lastname:userData.lastname,
             password:userData.password,
             role:userData.role,
+            title:userData.title,
             salary:userData.salary,
+            major:userData.major,
             gpa:userData.gpa,
             street:userData.street,
             city:userData.city,

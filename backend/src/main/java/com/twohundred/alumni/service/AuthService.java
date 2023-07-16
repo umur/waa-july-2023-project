@@ -43,40 +43,6 @@ public class AuthService {
     private final StudentRepo studentRepo;
     private final ModelMapper modelMapper;
 
-    public LoginResponse registerFaculty(FacultyRegisterRequest request) {
-        List<Role> roles = Arrays.asList(roleRepo.findByRole("FACULTY"));
-        var faculty = new Faculty(request.getTitle(), request.getSalary());
-        faculty.setFirstName(request.getFirstname());
-        faculty.setLastName(request.getLastname());
-        faculty.setEmail(request.getEmail());
-        faculty.setPassword(passwordEncoder.encode(request.getPassword()));
-        faculty.setRoles(roles);
-        Address address = modelMapper.map(request.getAddress(), Address.class);
-        faculty.setAddress(address);
-        facultyRepo.save(faculty);
-        var jwtToken = jwtUtil.generateToken(faculty);
-        saveUserToken(faculty, jwtToken);
-        return new LoginResponse(jwtToken, faculty.getId(), faculty.getFirstName() + ' ' + faculty.getLastName(),
-                faculty.getRoles().stream().map(r -> r.getRole()).toList());
-    }
-
-    public LoginResponse registerStudent(StudentRegisterRequest request) {
-        List<Role> roles = Arrays.asList(roleRepo.findByRole("STUDENT"));
-        var student = new Student(request.getMajor(), request.getGpa());
-        student.setFirstName(request.getFirstname());
-        student.setLastName(request.getLastname());
-        student.setEmail(request.getEmail());
-        student.setPassword(passwordEncoder.encode(request.getPassword()));
-        student.setRoles(roles);
-        Address address = modelMapper.map(request.getAddress(), Address.class);
-        student.setAddress(address);
-        studentRepo.save(student);
-        var jwtToken = jwtUtil.generateToken(student);
-        saveUserToken(student, jwtToken);
-        return new LoginResponse(jwtToken, student.getId(), student.getFirstName() + ' ' +  student.getLastName(),
-                student.getRoles().stream().map(r -> r.getRole()).toList());
-    }
-
     public LoginResponse register(RegisterRequest request) {
         List<Role> roles = Arrays.asList(roleRepo.findByRole(request.getRole()));
         Address address = new Address();
@@ -87,8 +53,12 @@ public class AuthService {
         User user;
         if("STUDENT".equals(request.getRole())) {
             user = new Student();
+            ((Student)user).setMajor(request.getMajor());
+            ((Student)user).setGpa(request.getGpa());
         } else {
             user = new Faculty();
+            ((Faculty)user).setTitle(request.getTitle());
+            ((Faculty)user).setSalary(request.getSalary());
         }
         user.setFirstName(request.getFirstname());
         user.setLastName(request.getLastname());
@@ -98,11 +68,8 @@ public class AuthService {
         user.setAddress(address);
         user.setActive(true);
         user.setLocked(false);
-        var savedUser = repository.save(user);
-        var jwtToken = jwtUtil.generateToken(user);
-        saveUserToken(savedUser, jwtToken);
-        return new LoginResponse(jwtToken, user.getId(), user.getFirstName() + ' ' +  user.getLastName(),
-                user.getRoles().stream().map(r -> r.getRole()).toList());
+        repository.save(user);
+        return new LoginResponse();
     }
 
     public LoginResponse authenticate(LoginRequest request) {
@@ -121,8 +88,30 @@ public class AuthService {
             var user = repository.findByEmail(request.getEmail()).orElseThrow();
             var jwtToken = jwtUtil.generateToken(user);
             saveUserToken(user, jwtToken);
-            return new LoginResponse(jwtToken, user.getId(), user.getFirstName() + ' ' +  user.getLastName(),
-                    user.getRoles().stream().map(r -> r.getRole()).toList());
+            List<String> roles = user.getRoles().stream().map(r -> r.getRole()).toList();
+            LoginResponse loginResponse = new LoginResponse();
+            loginResponse.setAccessToken(jwtToken);
+            if(roles.contains("STUDENT")) {
+                Student student = studentRepo.findById(user.getId()).orElse(null);
+                loginResponse.setMajor(student.getMajor());
+                loginResponse.setGpa(student.getGpa());
+            } else {
+                Faculty faculty = facultyRepo.findById(user.getId()).orElse(null);
+                loginResponse.setTitle(faculty.getTitle());
+                loginResponse.setSalary(faculty.getSalary());
+            }
+            loginResponse.setId(user.getId());
+            loginResponse.setFirstName(user.getFirstName());
+            loginResponse.setLastName(user.getLastName());
+            loginResponse.setName(user.getFirstName() + ' ' +  user.getLastName());
+            loginResponse.setEmail(user.getEmail());
+            loginResponse.setRoles(roles);
+            loginResponse.setStreet(user.getAddress().getStreet());
+            loginResponse.setCity(user.getAddress().getCity());
+            loginResponse.setZip(user.getAddress().getZip());
+            loginResponse.setState(user.getAddress().getState());
+
+            return loginResponse;
         } catch (Exception ex) {
             System.out.println("Error:" + ex.getMessage());
         }

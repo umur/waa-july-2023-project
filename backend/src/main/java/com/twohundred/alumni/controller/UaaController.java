@@ -31,16 +31,4 @@ public class UaaController {
     public ResponseEntity<LoginResponse> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
-
-    @LogMe
-    @PostMapping("/signup/faculty")
-    public ResponseEntity<LoginResponse> register(@RequestBody FacultyRegisterRequest request) {
-        return ResponseEntity.ok(authService.registerFaculty(request));
-    }
-
-    @LogMe
-    @PostMapping("/signup/student")
-    public ResponseEntity<LoginResponse> register(@RequestBody StudentRegisterRequest request) {
-        return ResponseEntity.ok(authService.registerStudent(request));
-    }
 }

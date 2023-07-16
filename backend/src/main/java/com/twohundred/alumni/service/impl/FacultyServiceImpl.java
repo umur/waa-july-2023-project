@@ -50,7 +50,6 @@ public class FacultyServiceImpl implements FacultyService {
         Faculty tempFaculty = findById(currentFaculty.getId());
         tempFaculty.setSalary(facultyDto.getSalary());
         tempFaculty.setTitle(facultyDto.getTitle());
-
         tempFaculty.setFirstName(facultyDto.getFirstName());
         tempFaculty.setLastName(facultyDto.getLastName());
         tempFaculty.setEmail(facultyDto.getEmail());

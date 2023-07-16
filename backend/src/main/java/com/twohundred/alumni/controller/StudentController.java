@@ -17,13 +17,14 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/students")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentController {
     private final StudentServiceImpl studentServiceImpl;
     private final SecurityUtil securityUtil;
     private final ExperienceServiceImpl experienceService;
 
     @PutMapping
-    public StudentDto update(StudentDto studentDto) {
+    public StudentDto update(@RequestBody StudentDto studentDto) {
         return studentServiceImpl.update(studentDto);
     }
 

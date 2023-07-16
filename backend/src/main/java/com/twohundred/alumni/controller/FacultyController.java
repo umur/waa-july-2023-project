@@ -1,5 +1,6 @@
 package com.twohundred.alumni.controller;
 
+import com.twohundred.alumni.aspect.annotation.LogMe;
 import com.twohundred.alumni.entity.Comment;
 import com.twohundred.alumni.entity.User;
 import com.twohundred.alumni.entity.dto.request.CommentDto;
@@ -24,6 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/faculties")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class FacultyController {
     private final FacultyServiceImpl facultyServiceImpl;
     private final CommentServiceImpl commentService;
@@ -32,8 +34,9 @@ public class FacultyController {
 
     private final Mapper mapper;
 
-    @PutMapping
-    public FacultyDto update(FacultyDto facultyDto) {
+    @LogMe
+    @PostMapping
+    public FacultyDto update(@RequestBody FacultyDto facultyDto) {
         User currentFaculty = securityUtil.getCurrentUser();
         return facultyServiceImpl.update(currentFaculty, facultyDto);
     }
