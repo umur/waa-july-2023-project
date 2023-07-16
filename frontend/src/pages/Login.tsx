@@ -1,13 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, TextField } from "@mui/material";
 import jwt_decode from "jwt-decode";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
-import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import http from "../interceptor/interceptor";
+import IAccessToken from "../types/IAccessToken";
 import { IUser } from "../types/IUser";
 
 const schema = z.object({
@@ -40,22 +41,24 @@ const Login: FC = () => {
     if (status === 200) {
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      navigate("/dashbord");
+      navigate("/dashboard");
+      const decoded: IAccessToken = jwt_decode(data.accessToken);
       updateUser({
-        version: 1,
-        email: "test",
-        firstName: "test",
-        lastName: "test",
-        city: "test",
-        state: "test",
-        major: "test",
-        roles: [],
-        enabled: false,
-        jobApplications: "test",
+        version: 0,
+        email: decoded.sub,
+        firstName: decoded.firstName,
+        lastName: decoded.lastName,
+        city: decoded.city,
+        state: decoded.state,
+        major: decoded.major,
+        roles: [
+          {
+            role: decoded.roles[0].authority,
+          },
+        ],
+        enabled: true,
+        jobApplications: [],
       });
-      // const decoded = jwt_decode(data.accessToken);
-      // const user = await http.post('/uaa/users/', data);
-      // updateUser && updateUser(decoded.user)
     }
   };
 
