@@ -1,10 +1,12 @@
 package com.blue.alumniMangePortal.configuration;
 
+import com.blue.alumniMangePortal.repository.AlumniUserRepo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
+@RequiredArgsConstructor
 @Service
 public class JwtService {
+
+    private final AlumniUserRepo alumniUserRepo;
 
     private static final String SECRET_KEY = "5IG07LXn1ZU1axU55QOiHzrVF/Ax370oqrt7JeWimMo=";
 
@@ -36,6 +40,9 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ){
+        var username = userDetails.getUsername();
+        var alumniUser = alumniUserRepo.findByEmail(username).get();
+
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
@@ -43,6 +50,7 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .claim("role", alumniUser.getRole())
                 .compact();
     }
 
