@@ -214,162 +214,162 @@ insert into faculty (id, first_name, last_name, password, email, phone_number, t
 insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (8, 'Kristel', 'Van Eeden', 'pC8#=!?m|J!', 'kvaneeden7@bandcamp.com', '844-361-3716', 'Software Engineer II', false, 'USER', true);
 insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (9, 'Ursola', 'Grimme', 'qW2_}iYC1GDXgRL', 'ugrimme8@uiuc.edu', '351-334-3674', 'VP Accounting', true, 'USER', false);
 insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (10, 'Cathleen', 'Clotworthy', 'eT3~vd7tLL', 'cclotworthy9@bloglovin.com', '263-662-3320', 'Pharmacist', true, 'ADMIN', false);
-#
-# -- Insert dummy data for address table
-# insert into address (id, Street, zip, city, state) values (1, '89 Dixon Trail', '2005', 'Patria', null);
-# insert into address (id, Street, zip, city, state) values (2, '29036 Jay Road', null, 'Rey', null);
-# insert into address (id, Street, zip, city, state) values (3, '5986 Vernon Drive', '6216', 'Abucayan', null);
-# insert into address (id, Street, zip, city, state) values (4, '22037 Erie Place', '632735', 'Kupino', null);
-# insert into address (id, Street, zip, city, state) values (5, '5 Calypso Drive', null, 'Shatoujiao', null);
-# insert into address (id, Street, zip, city, state) values (6, '1 Lindbergh Alley', null, 'Karangkancana', null);
-# insert into address (id, Street, zip, city, state) values (7, '39585 Bluejay Trail', null, 'Bayt Sīrā', null);
-# insert into address (id, Street, zip, city, state) values (8, '94993 Northfield Hill', null, 'Purwosari', null);
-# insert into address (id, Street, zip, city, state) values (9, '69 Ramsey Court', '102257', 'Kineshma', null);
-# insert into address (id, Street, zip, city, state) values (10, '8 Birchwood Place', '1005', 'Cullinan', null);
-# insert into address (id, Street, zip, city, state) values (11, '05697 Gerald Lane', '476048', 'Pedraza', null);
-# insert into address (id, Street, zip, city, state) values (12, '57 Mcbride Terrace', '2587', 'Inriville', null);
-# insert into address (id, Street, zip, city, state) values (13, '64104 Menomonie Alley', null, 'Cendagah', null);
-# insert into address (id, Street, zip, city, state) values (14, '0 Toban Hill', null, 'Kushnytsya', null);
-# insert into address (id, Street, zip, city, state) values (15, '64 Sachs Court', '2765-366', 'Livramento', 'Lisboa');
-# insert into address (id, Street, zip, city, state) values (16, '30265 Mesta Junction', '33405', 'West Palm Beach', 'Florida');
-# insert into address (id, Street, zip, city, state) values (17, '95 Everett Parkway', null, 'Sumberdangdang', null);
-# insert into address (id, Street, zip, city, state) values (18, '02 Lerdahl Drive', null, 'Erniusuokou', null);
-# insert into address (id, Street, zip, city, state) values (19, '42 Maryland Avenue', null, 'Huaizhong', null);
-# insert into address (id, Street, zip, city, state) values (20, '97933 Scott Drive', '477047', 'Salamina', null);
-#
-#
-# -- Insert dummy data for CurrentWorkPlace table
-# insert into current_work_place (company_name, position) values ('Browsecat', 'Civil Engineer');
-# insert into current_work_place (company_name, position) values ('Twimm', 'General Manager');
-# insert into current_work_place (company_name, position) values ('Zoonder', 'Data Coordinator');
-# insert into current_work_place (company_name, position) values ('Skibox', 'Automation Specialist IV');
-# insert into current_work_place (company_name, position) values ('Edgeclub', 'Systems Administrator IV');
-# insert into current_work_place (company_name, position) values ('Mudo', 'Engineer III');
-# insert into current_work_place (company_name, position) values ('Latz', 'Environmental Specialist');
-# insert into current_work_place (company_name, position) values ('Livepath', 'Research Associate');
-# insert into current_work_place (company_name, position) values ('Wordtune', 'Web Designer II');
-# insert into current_work_place (company_name, position) values ('Skyvu', 'Cost Accountant');
-# insert into current_work_place (company_name, position) values ('Midel', 'Human Resources Manager');
-# insert into current_work_place (company_name, position) values ('Dynazzy', 'VP Quality Control');
-# insert into current_work_place (company_name, position) values ('Zoomzone', 'Safety Technician III');
-# insert into current_work_place (company_name, position) values ('Jabbersphere', 'VP Sales');
-# insert into current_work_place (company_name, position) values ('Topicshots', 'Assistant Professor');
-# insert into current_work_place (company_name, position) values ('Trudeo', 'Mechanical Systems Engineer');
-# insert into current_work_place (company_name, position) values ('DabZ', 'Help Desk Technician');
-# insert into current_work_place (company_name, position) values ('Npath', 'Help Desk Operator');
-# insert into current_work_place (company_name, position) values ('Ainyx', 'Marketing Manager');
-# insert into current_work_place (company_name, position) values ('Realmix', 'Assistant Manager');
-#
-#
-# -- Insert dummy data for CV table
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Jemmie', 'Lowles', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Chrystal', 'Connaughton', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Isaac', 'Slimon', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Thia', 'Gawne', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Sadie', 'Jerman', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Kile', 'Leversha', 'Phasellus in felis. Donec semper sapien a libero. Nam dui.', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Sidoney', 'Nason', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Kenyon', 'Dearn', 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Corrie', 'Ludvigsen', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Olwen', 'Songest', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Constantine', 'Lyard', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Erie', 'Hugland', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Olag', 'Nesbeth', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Quinton', 'Parradine', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Conant', 'Kibbee', 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 'Phasellus in felis. Donec semper sapien a libero. Nam dui.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Noella', 'Matterson', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 'Fusce consequat. Nulla nisl. Nunc nisl.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Adan', 'Dummer', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Carin', 'Wagstaff', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Ada', 'Heigold', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.');
-# insert into cv (first_name, last_name, work_experience, education_background) values ('Ferdinanda', 'MacLleese', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.');
-#
-#
-# -- Insert dummy data for JobExperience table
-# insert into job_experience (job_experiences) values ('nullam orci pede venenatis non sodales sed tincidunt eu');
-# insert into job_experience (job_experiences) values ('aliquam augue quam sollicitudin vitae');
-# insert into job_experience (job_experiences) values ('nullam molestie nibh in lectus pellentesque at');
-# insert into job_experience (job_experiences) values ('habitasse platea dictumst etiam faucibus cursus urna');
-# insert into job_experience (job_experiences) values ('erat nulla tempus vivamus in');
-# insert into job_experience (job_experiences) values ('luctus et ultrices posuere cubilia curae');
-# insert into job_experience (job_experiences) values ('sodales sed tincidunt eu felis fusce posuere felis sed');
-# insert into job_experience (job_experiences) values ('platea dictumst etiam faucibus cursus');
-# insert into job_experience (job_experiences) values ('massa donec dapibus duis at velit');
-# insert into job_experience (job_experiences) values ('duis consequat dui nec nisi volutpat eleifend donec ut');
-# insert into job_experience (job_experiences) values ('condimentum id luctus nec molestie sed justo pellentesque');
-# insert into job_experience (job_experiences) values ('tempor convallis nulla neque libero convallis eget eleifend luctus ultricies');
-# insert into job_experience (job_experiences) values ('dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum');
-# insert into job_experience (job_experiences) values ('nulla suscipit ligula in lacus curabitur at ipsum ac');
-# insert into job_experience (job_experiences) values ('nunc commodo placerat praesent blandit nam nulla integer');
-# insert into job_experience (job_experiences) values ('mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit');
-# insert into job_experience (job_experiences) values ('vel est donec odio justo sollicitudin');
-# insert into job_experience (job_experiences) values ('sapien a libero nam dui proin leo odio');
-# insert into job_experience (job_experiences) values ('mauris morbi non lectus aliquam');
-# insert into job_experience (job_experiences) values ('nam congue risus semper porta volutpat quam pede lobortis');
-#
-# -- Insert dummy data for JobsAdvertise table
-# insert into jobs_advertise (date, position) values ('2024-05-24 03:51:39', 'Web Designer III');
-# insert into jobs_advertise (date, position) values ('2024-05-22 04:12:12', 'Electrical Engineer');
-# insert into jobs_advertise (date, position) values ('2023-02-18 09:35:54', 'Accounting Assistant II');
-# insert into jobs_advertise (date, position) values ('2023-01-09 20:17:28', 'Environmental Tech');
-# insert into jobs_advertise (date, position) values ('2024-05-13 19:18:03', 'Accounting Assistant IV');
-# insert into jobs_advertise (date, position) values ('2023-06-09 07:45:00', 'Operator');
-# insert into jobs_advertise (date, position) values ('2024-01-21 06:16:31', 'Recruiting Manager');
-# insert into jobs_advertise (date, position) values ('2024-02-25 03:54:12', 'Developer II');
-# insert into jobs_advertise (date, position) values ('2023-08-01 02:53:27', 'Help Desk Technician');
-# insert into jobs_advertise (date, position) values ('2023-04-15 03:01:21', 'Structural Analysis Engineer');
-# insert into jobs_advertise (date, position) values ('2024-02-21 18:28:09', 'Accounting Assistant III');
-# insert into jobs_advertise (date, position) values ('2023-02-26 09:39:04', 'Account Coordinator');
-# insert into jobs_advertise (date, position) values ('2024-10-28 05:15:21', 'GIS Technical Architect');
-# insert into jobs_advertise (date, position) values ('2024-03-05 17:46:03', 'Cost Accountant');
-# insert into jobs_advertise (date, position) values ('2024-02-26 05:09:41', 'Geological Engineer');
-# insert into jobs_advertise (date, position) values ('2023-11-02 22:12:54', 'Editor');
-# insert into jobs_advertise (date, position) values ('2023-11-03 08:44:04', 'Research Associate');
-# insert into jobs_advertise (date, position) values ('2023-09-09 05:27:57', 'Operator');
-# insert into jobs_advertise (date, position) values ('2024-09-22 22:03:51', 'Senior Quality Engineer');
-# insert into jobs_advertise (date, position) values ('2023-03-17 13:45:13', 'Information Systems Manager');
-#
-#
-# -- Insert dummy data for Major table
-# insert into major (duration, name) values (41, 'rhoncus aliquam lacus');
-# insert into major (duration, name) values (9, 'velit vivamus vel');
-# insert into major (duration, name) values (56, 'mattis odio');
-# insert into major (duration, name) values (51, 'ut');
-# insert into major (duration, name) values (18, 'et');
-# insert into major (duration, name) values (85, 'mattis egestas metus');
-# insert into major (duration, name) values (20, 'in faucibus');
-# insert into major (duration, name) values (92, 'metus vitae');
-# insert into major (duration, name) values (59, 'fermentum');
-# insert into major (duration, name) values (94, 'bibendum');
-# insert into major (duration, name) values (49, 'semper');
-# insert into major (duration, name) values (71, 'in');
-# insert into major (duration, name) values (57, 'vestibulum');
-# insert into major (duration, name) values (31, 'erat');
-# insert into major (duration, name) values (46, 'odio elementum');
-# insert into major (duration, name) values (66, 'phasellus id');
-# insert into major (duration, name) values (94, 'purus sit amet');
-# insert into major (duration, name) values (69, 'ac enim');
-# insert into major (duration, name) values (36, 'fermentum justo');
-# insert into major (duration, name) values (47, 'elementum');
-#
-#
-# -- Insert dummy data for Student table
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Nissa', 'Handrok', 'nhandrok0@amazon.co.uk', 'vE6#<L29"', '912-990-6623', false, 'STUDENT', false);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Brander', 'Gullam', 'bgullam1@paginegialle.it', 'jK2`@zA''y', '982-474-5532', false, 'ADMIN', false);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Garrek', 'Matisoff', 'gmatisoff2@earthlink.net', 'cS5|dsDd''o.a1!', '359-676-3505', false, 'FACULTY', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Ludovico', 'Bruff', 'lbruff3@devhub.com', 'vA7@#O.s!BdL', '290-959-5850', true, 'FACULTY', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Doralynne', 'Tarry', 'dtarry4@histats.com', 'lX3%R4rA/K', '580-340-8884', false, 'FACULTY', false);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Damita', 'Ash', 'dash5@google.nl', 'wK8{sfNr2Kv', '383-227-5663', true, 'ADMIN', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Martita', 'Novotne', 'mnovotne6@economist.com', 'uK3~Izel`h+%J${i', '493-199-4329', true, 'FACULTY', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Josias', 'Lightman', 'jlightman7@chicagotribune.com', 'vR8=JSlihE0/H', '758-906-3698', false, 'FACULTY', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Tallulah', 'Hartless', 'thartless8@lycos.com', 'kH9=)!=f', '979-106-8398', true, 'ADMIN', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Letty', 'de Broke', 'ldebroke9@comsenz.com', 'nW8}onN''TFquEE', '459-248-9601', false, 'STUDENT', false);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Eldridge', 'Van Leijs', 'evanleijsa@pinterest.com', 'vX8|ad!d', '155-458-1198', false, 'FACULTY', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Brittan', 'Portigall', 'bportigallb@google.co.uk', 'eJ2=#Ru,s', '896-515-8957', false, 'ADMIN', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Koressa', 'Fahy', 'kfahyc@sogou.com', 'dO2''O7jHY/', '778-325-7503', false, 'ADMIN', false);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Wendy', 'Popescu', 'wpopescud@mapy.cz', 'hE0(y&$"55IW', '206-780-8953', true, 'STUDENT', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Lisetta', 'Klima', 'lklimae@technorati.com', 'fJ5%_4PxTUy+|', '751-797-3981', true, 'FACULTY', false);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Dasha', 'Bouttell', 'dbouttellf@pinterest.com', 'cT5)/>X2', '782-612-0645', true, 'STUDENT', false);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Ninette', 'Painswick', 'npainswickg@wunderground.com', 'tJ2,cYui', '126-806-7050', false, 'FACULTY', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Brannon', 'Oldfield', 'boldfieldh@geocities.jp', 'vL6~X,@`O<', '502-407-7631', false, 'ADMIN', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Callie', 'Ruvel', 'cruveli@mozilla.com', 'lU9"q=@3$KI0c', '838-256-7449', true, 'STUDENT', true);
-# insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Aharon', 'Olennikov', 'aolennikovj@phpbb.com', 'kF2&1p,Q', '336-108-1520', true, 'ADMIN', true);
+-- #
+-- # -- Insert dummy data for address table
+-- # insert into address (id, Street, zip, city, state) values (1, '89 Dixon Trail', '2005', 'Patria', null);
+-- # insert into address (id, Street, zip, city, state) values (2, '29036 Jay Road', null, 'Rey', null);
+-- # insert into address (id, Street, zip, city, state) values (3, '5986 Vernon Drive', '6216', 'Abucayan', null);
+-- # insert into address (id, Street, zip, city, state) values (4, '22037 Erie Place', '632735', 'Kupino', null);
+-- # insert into address (id, Street, zip, city, state) values (5, '5 Calypso Drive', null, 'Shatoujiao', null);
+-- # insert into address (id, Street, zip, city, state) values (6, '1 Lindbergh Alley', null, 'Karangkancana', null);
+-- # insert into address (id, Street, zip, city, state) values (7, '39585 Bluejay Trail', null, 'Bayt Sīrā', null);
+-- # insert into address (id, Street, zip, city, state) values (8, '94993 Northfield Hill', null, 'Purwosari', null);
+-- # insert into address (id, Street, zip, city, state) values (9, '69 Ramsey Court', '102257', 'Kineshma', null);
+-- # insert into address (id, Street, zip, city, state) values (10, '8 Birchwood Place', '1005', 'Cullinan', null);
+-- # insert into address (id, Street, zip, city, state) values (11, '05697 Gerald Lane', '476048', 'Pedraza', null);
+-- # insert into address (id, Street, zip, city, state) values (12, '57 Mcbride Terrace', '2587', 'Inriville', null);
+-- # insert into address (id, Street, zip, city, state) values (13, '64104 Menomonie Alley', null, 'Cendagah', null);
+-- # insert into address (id, Street, zip, city, state) values (14, '0 Toban Hill', null, 'Kushnytsya', null);
+-- # insert into address (id, Street, zip, city, state) values (15, '64 Sachs Court', '2765-366', 'Livramento', 'Lisboa');
+-- # insert into address (id, Street, zip, city, state) values (16, '30265 Mesta Junction', '33405', 'West Palm Beach', 'Florida');
+-- # insert into address (id, Street, zip, city, state) values (17, '95 Everett Parkway', null, 'Sumberdangdang', null);
+-- # insert into address (id, Street, zip, city, state) values (18, '02 Lerdahl Drive', null, 'Erniusuokou', null);
+-- # insert into address (id, Street, zip, city, state) values (19, '42 Maryland Avenue', null, 'Huaizhong', null);
+-- # insert into address (id, Street, zip, city, state) values (20, '97933 Scott Drive', '477047', 'Salamina', null);
+-- #
+-- #
+-- # -- Insert dummy data for CurrentWorkPlace table
+-- # insert into current_work_place (company_name, position) values ('Browsecat', 'Civil Engineer');
+-- # insert into current_work_place (company_name, position) values ('Twimm', 'General Manager');
+-- # insert into current_work_place (company_name, position) values ('Zoonder', 'Data Coordinator');
+-- # insert into current_work_place (company_name, position) values ('Skibox', 'Automation Specialist IV');
+-- # insert into current_work_place (company_name, position) values ('Edgeclub', 'Systems Administrator IV');
+-- # insert into current_work_place (company_name, position) values ('Mudo', 'Engineer III');
+-- # insert into current_work_place (company_name, position) values ('Latz', 'Environmental Specialist');
+-- # insert into current_work_place (company_name, position) values ('Livepath', 'Research Associate');
+-- # insert into current_work_place (company_name, position) values ('Wordtune', 'Web Designer II');
+-- # insert into current_work_place (company_name, position) values ('Skyvu', 'Cost Accountant');
+-- # insert into current_work_place (company_name, position) values ('Midel', 'Human Resources Manager');
+-- # insert into current_work_place (company_name, position) values ('Dynazzy', 'VP Quality Control');
+-- # insert into current_work_place (company_name, position) values ('Zoomzone', 'Safety Technician III');
+-- # insert into current_work_place (company_name, position) values ('Jabbersphere', 'VP Sales');
+-- # insert into current_work_place (company_name, position) values ('Topicshots', 'Assistant Professor');
+-- # insert into current_work_place (company_name, position) values ('Trudeo', 'Mechanical Systems Engineer');
+-- # insert into current_work_place (company_name, position) values ('DabZ', 'Help Desk Technician');
+-- # insert into current_work_place (company_name, position) values ('Npath', 'Help Desk Operator');
+-- # insert into current_work_place (company_name, position) values ('Ainyx', 'Marketing Manager');
+-- # insert into current_work_place (company_name, position) values ('Realmix', 'Assistant Manager');
+-- #
+-- #
+-- # -- Insert dummy data for CV table
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Jemmie', 'Lowles', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Chrystal', 'Connaughton', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Isaac', 'Slimon', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Thia', 'Gawne', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Sadie', 'Jerman', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Kile', 'Leversha', 'Phasellus in felis. Donec semper sapien a libero. Nam dui.', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Sidoney', 'Nason', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Kenyon', 'Dearn', 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Corrie', 'Ludvigsen', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Olwen', 'Songest', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Constantine', 'Lyard', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Erie', 'Hugland', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Olag', 'Nesbeth', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Quinton', 'Parradine', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Conant', 'Kibbee', 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 'Phasellus in felis. Donec semper sapien a libero. Nam dui.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Noella', 'Matterson', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.', 'Fusce consequat. Nulla nisl. Nunc nisl.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Adan', 'Dummer', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Carin', 'Wagstaff', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Ada', 'Heigold', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.');
+-- # insert into cv (first_name, last_name, work_experience, education_background) values ('Ferdinanda', 'MacLleese', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.');
+-- #
+-- #
+-- # -- Insert dummy data for JobExperience table
+-- # insert into job_experience (job_experiences) values ('nullam orci pede venenatis non sodales sed tincidunt eu');
+-- # insert into job_experience (job_experiences) values ('aliquam augue quam sollicitudin vitae');
+-- # insert into job_experience (job_experiences) values ('nullam molestie nibh in lectus pellentesque at');
+-- # insert into job_experience (job_experiences) values ('habitasse platea dictumst etiam faucibus cursus urna');
+-- # insert into job_experience (job_experiences) values ('erat nulla tempus vivamus in');
+-- # insert into job_experience (job_experiences) values ('luctus et ultrices posuere cubilia curae');
+-- # insert into job_experience (job_experiences) values ('sodales sed tincidunt eu felis fusce posuere felis sed');
+-- # insert into job_experience (job_experiences) values ('platea dictumst etiam faucibus cursus');
+-- # insert into job_experience (job_experiences) values ('massa donec dapibus duis at velit');
+-- # insert into job_experience (job_experiences) values ('duis consequat dui nec nisi volutpat eleifend donec ut');
+-- # insert into job_experience (job_experiences) values ('condimentum id luctus nec molestie sed justo pellentesque');
+-- # insert into job_experience (job_experiences) values ('tempor convallis nulla neque libero convallis eget eleifend luctus ultricies');
+-- # insert into job_experience (job_experiences) values ('dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum');
+-- # insert into job_experience (job_experiences) values ('nulla suscipit ligula in lacus curabitur at ipsum ac');
+-- # insert into job_experience (job_experiences) values ('nunc commodo placerat praesent blandit nam nulla integer');
+-- # insert into job_experience (job_experiences) values ('mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit');
+-- # insert into job_experience (job_experiences) values ('vel est donec odio justo sollicitudin');
+-- # insert into job_experience (job_experiences) values ('sapien a libero nam dui proin leo odio');
+-- # insert into job_experience (job_experiences) values ('mauris morbi non lectus aliquam');
+-- # insert into job_experience (job_experiences) values ('nam congue risus semper porta volutpat quam pede lobortis');
+-- #
+-- # -- Insert dummy data for JobsAdvertise table
+-- # insert into jobs_advertise (date, position) values ('2024-05-24 03:51:39', 'Web Designer III');
+-- # insert into jobs_advertise (date, position) values ('2024-05-22 04:12:12', 'Electrical Engineer');
+-- # insert into jobs_advertise (date, position) values ('2023-02-18 09:35:54', 'Accounting Assistant II');
+-- # insert into jobs_advertise (date, position) values ('2023-01-09 20:17:28', 'Environmental Tech');
+-- # insert into jobs_advertise (date, position) values ('2024-05-13 19:18:03', 'Accounting Assistant IV');
+-- # insert into jobs_advertise (date, position) values ('2023-06-09 07:45:00', 'Operator');
+-- # insert into jobs_advertise (date, position) values ('2024-01-21 06:16:31', 'Recruiting Manager');
+-- # insert into jobs_advertise (date, position) values ('2024-02-25 03:54:12', 'Developer II');
+-- # insert into jobs_advertise (date, position) values ('2023-08-01 02:53:27', 'Help Desk Technician');
+-- # insert into jobs_advertise (date, position) values ('2023-04-15 03:01:21', 'Structural Analysis Engineer');
+-- # insert into jobs_advertise (date, position) values ('2024-02-21 18:28:09', 'Accounting Assistant III');
+-- # insert into jobs_advertise (date, position) values ('2023-02-26 09:39:04', 'Account Coordinator');
+-- # insert into jobs_advertise (date, position) values ('2024-10-28 05:15:21', 'GIS Technical Architect');
+-- # insert into jobs_advertise (date, position) values ('2024-03-05 17:46:03', 'Cost Accountant');
+-- # insert into jobs_advertise (date, position) values ('2024-02-26 05:09:41', 'Geological Engineer');
+-- # insert into jobs_advertise (date, position) values ('2023-11-02 22:12:54', 'Editor');
+-- # insert into jobs_advertise (date, position) values ('2023-11-03 08:44:04', 'Research Associate');
+-- # insert into jobs_advertise (date, position) values ('2023-09-09 05:27:57', 'Operator');
+-- # insert into jobs_advertise (date, position) values ('2024-09-22 22:03:51', 'Senior Quality Engineer');
+-- # insert into jobs_advertise (date, position) values ('2023-03-17 13:45:13', 'Information Systems Manager');
+-- #
+-- #
+-- # -- Insert dummy data for Major table
+-- # insert into major (duration, name) values (41, 'rhoncus aliquam lacus');
+-- # insert into major (duration, name) values (9, 'velit vivamus vel');
+-- # insert into major (duration, name) values (56, 'mattis odio');
+-- # insert into major (duration, name) values (51, 'ut');
+-- # insert into major (duration, name) values (18, 'et');
+-- # insert into major (duration, name) values (85, 'mattis egestas metus');
+-- # insert into major (duration, name) values (20, 'in faucibus');
+-- # insert into major (duration, name) values (92, 'metus vitae');
+-- # insert into major (duration, name) values (59, 'fermentum');
+-- # insert into major (duration, name) values (94, 'bibendum');
+-- # insert into major (duration, name) values (49, 'semper');
+-- # insert into major (duration, name) values (71, 'in');
+-- # insert into major (duration, name) values (57, 'vestibulum');
+-- # insert into major (duration, name) values (31, 'erat');
+-- # insert into major (duration, name) values (46, 'odio elementum');
+-- # insert into major (duration, name) values (66, 'phasellus id');
+-- # insert into major (duration, name) values (94, 'purus sit amet');
+-- # insert into major (duration, name) values (69, 'ac enim');
+-- # insert into major (duration, name) values (36, 'fermentum justo');
+-- # insert into major (duration, name) values (47, 'elementum');
+-- #
+-- #
+-- # -- Insert dummy data for Student table
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Nissa', 'Handrok', 'nhandrok0@amazon.co.uk', 'vE6#<L29"', '912-990-6623', false, 'STUDENT', false);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Brander', 'Gullam', 'bgullam1@paginegialle.it', 'jK2`@zA''y', '982-474-5532', false, 'ADMIN', false);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Garrek', 'Matisoff', 'gmatisoff2@earthlink.net', 'cS5|dsDd''o.a1!', '359-676-3505', false, 'FACULTY', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Ludovico', 'Bruff', 'lbruff3@devhub.com', 'vA7@#O.s!BdL', '290-959-5850', true, 'FACULTY', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Doralynne', 'Tarry', 'dtarry4@histats.com', 'lX3%R4rA/K', '580-340-8884', false, 'FACULTY', false);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Damita', 'Ash', 'dash5@google.nl', 'wK8{sfNr2Kv', '383-227-5663', true, 'ADMIN', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Martita', 'Novotne', 'mnovotne6@economist.com', 'uK3~Izel`h+%J${i', '493-199-4329', true, 'FACULTY', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Josias', 'Lightman', 'jlightman7@chicagotribune.com', 'vR8=JSlihE0/H', '758-906-3698', false, 'FACULTY', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Tallulah', 'Hartless', 'thartless8@lycos.com', 'kH9=)!=f', '979-106-8398', true, 'ADMIN', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Letty', 'de Broke', 'ldebroke9@comsenz.com', 'nW8}onN''TFquEE', '459-248-9601', false, 'STUDENT', false);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Eldridge', 'Van Leijs', 'evanleijsa@pinterest.com', 'vX8|ad!d', '155-458-1198', false, 'FACULTY', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Brittan', 'Portigall', 'bportigallb@google.co.uk', 'eJ2=#Ru,s', '896-515-8957', false, 'ADMIN', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Koressa', 'Fahy', 'kfahyc@sogou.com', 'dO2''O7jHY/', '778-325-7503', false, 'ADMIN', false);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Wendy', 'Popescu', 'wpopescud@mapy.cz', 'hE0(y&$"55IW', '206-780-8953', true, 'STUDENT', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Lisetta', 'Klima', 'lklimae@technorati.com', 'fJ5%_4PxTUy+|', '751-797-3981', true, 'FACULTY', false);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Dasha', 'Bouttell', 'dbouttellf@pinterest.com', 'cT5)/>X2', '782-612-0645', true, 'STUDENT', false);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Ninette', 'Painswick', 'npainswickg@wunderground.com', 'tJ2,cYui', '126-806-7050', false, 'FACULTY', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Brannon', 'Oldfield', 'boldfieldh@geocities.jp', 'vL6~X,@`O<', '502-407-7631', false, 'ADMIN', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Callie', 'Ruvel', 'cruveli@mozilla.com', 'lU9"q=@3$KI0c', '838-256-7449', true, 'STUDENT', true);
+-- # insert into student (first_name, last_name, email, password, phone_number, is_deleted, role, currently_employed) values ('Aharon', 'Olennikov', 'aolennikovj@phpbb.com', 'kF2&1p,Q', '336-108-1520', true, 'ADMIN', true);
