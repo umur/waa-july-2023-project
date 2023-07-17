@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './css/App.css'
-import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './components/Login.js'
 import SignUp from './components/Register.js'
 import Students from './components/Students.js'
@@ -11,7 +11,7 @@ import Dashboards from './components/Dashboards.js'
 import Profile from './components/Profile.js'
 import Home from './components/Home.js'
 import {useState} from "react";
-import Logout from "./components/Logout";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
   let [authenticated, setAuthenticated] = useState(() => {
@@ -22,9 +22,19 @@ function App() {
   const guestMenus =
       [{title:'Sign in', path:'/sign-in'}, {title:'Sign up', path:'/sign-up'}];
   const loggedInUserMenus = {
-      ADMIN:[{title:'Users', path:'/users'}, {title:'Profile', path:'/profile'}],
-      FACULTY:[{title:'Dashboards', path:'/dashboards'},{title:'Students', path:'/students'}, {title:'Profile', path:'/profile'}],
-      STUDENT:[{title:'Jobs', path:'/jobs'}, {title:'Profile', path:'/profile'}]
+      ADMIN:[{title:'Users', path:'/users'},
+        {title:'Profile', path:'/profile'},
+        {title:'Reset password', path:'/reset-password'}
+      ],
+      FACULTY:[{title:'Dashboards', path:'/dashboards'},
+        {title:'Students', path:'/students'},
+        {title:'Profile', path:'/profile'},
+        {title:'Reset password', path:'/reset-password'}
+      ],
+      STUDENT:[{title:'Jobs', path:'/jobs'},
+        {title:'Profile', path:'/profile'},
+        {title:'Reset password', path:'/reset-password'}
+      ]
   };
 
   let [loggedInUser, setLoggedInUser] = useState({});
@@ -55,6 +65,13 @@ function App() {
     let user = JSON.parse(localStorage.getItem('loggedInUser') || String("{}"));
     setLoggedInUser(user);
     loggedInUser = user;
+  }
+
+  const doLogout = () => {
+    localStorage.removeItem('loggedInUser');
+    setLoggedInUser({});
+    setMenuItems(defaultMenu());
+    setAuthenticated(false);
   }
 
   return (
@@ -93,7 +110,14 @@ function App() {
                         </li>
                     )
                   })}
-                  {authenticated ? <Logout /> : ''}
+                  {authenticated ?
+                      (
+                          <li className="nav-item">
+                            <Link className="nav-link" onClick={doLogout} to="/sign-in">
+                              Logout
+                            </Link>
+                          </li>
+                      ) : ''}
                 </ul>
               </div>
             </div>
@@ -108,6 +132,7 @@ function App() {
               <Route path="/students" element={<Students />}/>
               <Route path="/dashboards" element={<Dashboards />}/>
               <Route path="/jobs" element={<Jobs />}/>
+              <Route path="/reset-password" element={<ResetPassword />}/>
             </Routes>
 
           </div>

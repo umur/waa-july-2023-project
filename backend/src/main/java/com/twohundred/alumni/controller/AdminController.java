@@ -1,5 +1,6 @@
 package com.twohundred.alumni.controller;
 
+import com.twohundred.alumni.aspect.annotation.LogMe;
 import com.twohundred.alumni.entity.User;
 import com.twohundred.alumni.entity.dto.request.UserPasswordResetDto;
 import com.twohundred.alumni.service.UserService;
@@ -50,7 +51,8 @@ public class AdminController {
         userService.update(user);
     }
 
-    @PostMapping("/reset-password")
+    @LogMe
+    @PutMapping("/reset-password")
     public void authenticate(@RequestBody UserPasswordResetDto userPasswordResetDto) {
         log.info("User password is going to be reset");
         userService.resetPassword(userPasswordResetDto);

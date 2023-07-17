@@ -5,8 +5,11 @@ import com.twohundred.alumni.entity.dto.request.UserPasswordResetDto;
 import com.twohundred.alumni.repository.UserRepo;
 import com.twohundred.alumni.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,14 +51,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void resetPassword(UserPasswordResetDto userPasswordResetDto) {
         User user = getUser(userPasswordResetDto.getId());
-        if(userPasswordResetDto.getOldPassword() == null ||
-                user.getPassword().equals(passwordEncoder.encode(userPasswordResetDto.getOldPassword()))) {
-            throw new RuntimeException("User password is incorrect!");
+        if(userPasswordResetDto.getPassword() == null ||
+                !passwordEncoder.matches(userPasswordResetDto.getPassword(), user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User current password is incorrect!");
         }
 
         if(userPasswordResetDto.getNewPassword() == null ||
-           !userPasswordResetDto.getNewPassword().equals(userPasswordResetDto.getNewPasswordConfirm())) {
-            throw new RuntimeException("User new password does not match witch confirmed password!");
+           !userPasswordResetDto.getNewPassword().equals(userPasswordResetDto.getConfirmPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User new password does not match witch confirmed password!");
         }
         user.setPassword(passwordEncoder.encode(userPasswordResetDto.getNewPassword()));
         update(user);

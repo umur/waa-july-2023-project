@@ -1,15 +1,11 @@
 package com.twohundred.alumni.entity.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class UserPasswordResetDto {
     private Long id;
-    private String oldPassword;
+    private String password;
     private String newPassword;
-    private String newPasswordConfirm;
+    private String confirmPassword;
 }

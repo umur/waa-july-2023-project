@@ -46,9 +46,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/uaa/**").permitAll()
                         .requestMatchers("/echart/**").permitAll()
                         .requestMatchers("/faculties/**").permitAll()
+                        .requestMatchers("/admin/**").permitAll()
 
                         /*
                         .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
