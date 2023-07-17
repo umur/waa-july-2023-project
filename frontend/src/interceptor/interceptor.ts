@@ -18,13 +18,15 @@
 
 
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+
 const http: AxiosInstance = axios.create({
   baseURL: "http://localhost:8080",
 });
+
 http.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const accessToken = localStorage.getItem('accessToken');
- //   const refreshToken = localStorage.getItem('refreshToken');
+    //   const refreshToken = localStorage.getItem('refreshToken');
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -34,7 +36,7 @@ http.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-let isRefreshing=false;
+let isRefreshing = false;
 http.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -58,7 +60,9 @@ http.interceptors.response.use(
         localStorage.setItem('refreshToken', newRefreshToken);
 
         console.log('token refreshed');
-        
+
+        isRefreshing = false;
+
         // Update the authorization header with the new token
         http.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
 
@@ -70,9 +74,9 @@ http.interceptors.response.use(
         console.log('Error refreshing token:', refreshError);
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        // Perform any necessary actions, such as logging out the user
+        return Promise.reject(error);
       }
-      
+
     }
 
     // Check if the response status is 403 (Forbidden)
