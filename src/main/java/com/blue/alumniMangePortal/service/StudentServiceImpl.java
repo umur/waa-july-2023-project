@@ -12,7 +12,7 @@ import org.apache.tika.Tika;
 import org.apache.tika.mime.MediaType;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
+//import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

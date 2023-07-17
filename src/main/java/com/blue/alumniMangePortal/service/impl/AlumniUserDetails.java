@@ -1,5 +1,6 @@
 package com.blue.alumniMangePortal.service.impl;
 
+import com.blue.alumniMangePortal.entity.AlumniUser;
 import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.entity.Role;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,16 +10,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class FacultyUserDetails implements UserDetails {
+public class AlumniUserDetails implements UserDetails {
 
     private String email;
     private String password;
     private Role role;
 
-    public FacultyUserDetails(Faculty faculty) {
-        this.email = faculty.getEmail();
-        this.password = faculty.getPassword();
-        this.role = faculty.getRole();
+    public AlumniUserDetails(AlumniUser alumniUser) {
+        this.email = alumniUser.getEmail();
+        this.password = alumniUser.getPassword();
+        this.role = alumniUser.getRole();
     }
 
     @Override

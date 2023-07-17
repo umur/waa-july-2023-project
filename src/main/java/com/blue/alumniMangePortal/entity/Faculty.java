@@ -12,19 +12,13 @@ import java.util.Collection;
 import java.util.List;
 @Setter
 @Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+//@Builder
+@RequiredArgsConstructor
 @Entity
-public class Faculty  {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Faculty extends AlumniUser {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String first_name;
-    private String last_name;
-    @JsonIgnore
-    private String password;
-    private String email;
     private String phone_number;
     @ManyToOne
     private Department department;
@@ -36,26 +30,25 @@ public class Faculty  {
     private Address address;
     private boolean is_admin;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+
 
     @JsonIgnore
     private boolean is_deleted;
 
 //    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return List.of(new SimpleGrantedAuthority(role.name()));
+//    }
 
 //    @Override
-    public String getPassword() {
-        return password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
 
 //    @Override
-    public String getUsername() {
-        return email;
-    }
+//    public String getUsername() {
+//        return email;
+//    }
 
 //    @Override
     public boolean isAccountNonExpired() {

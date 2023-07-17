@@ -10,20 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/alumniMangePortal/faculties")
+@RequestMapping("/faculties")
 public class FacultyController {
     @Autowired
     private FacultyService facultyService;
     @Autowired
     private AddressService addressService;
 
-    @PostMapping
-    public void addFaculty(@RequestBody Faculty faculty) {
-        Address address = faculty.getAddress();
-        addressService.saveAddress(address);
-        faculty.setAddress(address);
-        facultyService.addFaculty(faculty);
-    }
 
     @GetMapping
     public List<Faculty> getFaculties() {

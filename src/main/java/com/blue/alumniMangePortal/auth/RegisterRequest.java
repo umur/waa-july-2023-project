@@ -4,6 +4,9 @@ import com.blue.alumniMangePortal.entity.Address;
 import com.blue.alumniMangePortal.entity.Comment;
 import com.blue.alumniMangePortal.entity.Department;
 import com.blue.alumniMangePortal.entity.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,14 +21,7 @@ import java.util.List;
 public class RegisterRequest {
     private String first_name;
     private String last_name;
-    private String email;
     private String password;
-    private String phone_number;
-    private Department department;
-    private String title;
-    private List<Comment> comments;
-    private Address address;
-    private boolean is_admin;
-    private boolean is_deleted;
+    private String email;
     private Role role;
 }

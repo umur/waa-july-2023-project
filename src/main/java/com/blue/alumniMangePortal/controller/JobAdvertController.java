@@ -6,8 +6,8 @@ import com.blue.alumniMangePortal.dto.StudentJob;
 import com.blue.alumniMangePortal.entity.JobsAdvertise;
 import com.blue.alumniMangePortal.service.JobsAdvertiseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

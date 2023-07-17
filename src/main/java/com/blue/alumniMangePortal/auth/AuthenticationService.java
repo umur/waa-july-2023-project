@@ -2,8 +2,10 @@ package com.blue.alumniMangePortal.auth;
 
 import com.blue.alumniMangePortal.configuration.JwtService;
 import com.blue.alumniMangePortal.dto.RegisterStudent;
+import com.blue.alumniMangePortal.entity.AlumniUser;
 import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.entity.Student;
+import com.blue.alumniMangePortal.repository.AlumniUserRepo;
 import com.blue.alumniMangePortal.repository.FacultyRepo;
 import com.blue.alumniMangePortal.repository.StudentRepo;
 import com.blue.alumniMangePortal.service.StudentService;
@@ -20,52 +22,56 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final FacultyRepo facultyRepo;
+    private final AlumniUserRepo alumniUserRepo;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final StudentRepo studentRepo;
     private final UserDetailsService userDetailsService;
 
-    public AuthenticationResponse registerStudent(RegisterStudent registerStudent) {
-        var student = Student.builder()
-                .firstName(registerStudent.getFirstName())
-                .lastName(registerStudent.getLastName())
-                .email(registerStudent.getEmail())
-                .password((passwordEncoder.encode(registerStudent.getPassword())))
-                .phoneNumber(registerStudent.getPhoneNumber())
-                .isDeleted(registerStudent.isDeleted())
-                .currentlyEmployed(registerStudent.isCurrentlyEmployed())
-                .address(registerStudent.getAddress())
-                .major(registerStudent.getMajor())
-                .role(registerStudent.getRole())
-                .build();
-        studentRepo.save(student);
-        var jwtToken = jwtService.generateToken(student);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
-    }
+//    public AuthenticationResponse registerStudent(RegisterStudent registerStudent) {
+//        var student = Student.builder()
+//                .firstName(registerStudent.getFirstName())
+//                .lastName(registerStudent.getLastName())
+//                .email(registerStudent.getEmail())
+//                .password((passwordEncoder.encode(registerStudent.getPassword())))
+//                .phoneNumber(registerStudent.getPhoneNumber())
+//                .isDeleted(registerStudent.isDeleted())
+//                .currentlyEmployed(registerStudent.isCurrentlyEmployed())
+//                .address(registerStudent.getAddress())
+//                .major(registerStudent.getMajor())
+////                .role(registerStudent.getRole())
+//                .build();
+//        studentRepo.save(student);
+//        UserDetails userDetails = userDetailsService.loadUserByUsername(student.getEmail());
+//        var jwtToken = jwtService.generateToken(userDetails);
+//        return AuthenticationResponse.builder()
+//                .token(jwtToken)
+//                .build();
+////        return null;
+//    }
 
     public AuthenticationResponse registerFaculty(RegisterRequest request) {
 //        String role = request.getRole();
-        var faculty = Faculty.builder()
+//        var al =
+        var alumniUser = AlumniUser.builder()
                 .first_name(request.getFirst_name())
                 .last_name(request.getLast_name())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .phone_number(request.getPhone_number())
-                .department(request.getDepartment())
-                .title(request.getTitle())
-                .comments(request.getComments())
-                .address(request.getAddress())
-                .is_admin(true)
-                .is_deleted(false)
+//                .phone_number(request.getPhone_number())
+//                .department(request.getDepartment())
+//                .title(request.getTitle())
+//                .comments(request.getComments())
+//                .address(request.getAddress())
+//                .is_admin(true)
+//                .is_deleted(false)
                 .role(request.getRole())
                 .build();
-        facultyRepo.save(faculty);
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(faculty.getUsername());
+        alumniUserRepo.save(alumniUser);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(alumniUser.getEmail());
         var jwtToken = jwtService.generateToken(userDetails);
+        System.out.println(jwtToken);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -83,8 +89,8 @@ public class AuthenticationService {
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException(e.getMessage());
         }
-        var faculty = facultyRepo.findByEmail(request.getEmail())
-                .orElseThrow();
+//        var faculty = facultyRepo.findByEmail(request.getEmail())
+//                .orElseThrow();
         final UserDetails userDetails = userDetailsService.loadUserByUsername(result.getName());
         var jwtToken = jwtService.generateToken(userDetails);
         return AuthenticationResponse.builder()
