@@ -56,19 +56,24 @@ http.interceptors.response.use(
         // Update the new tokens in local storage
         const newToken = response.data.accessToken;
         const newRefreshToken = response.data.refreshToken;
-        localStorage.setItem('accessToken', newToken);
-        localStorage.setItem('refreshToken', newRefreshToken);
+        if (newToken != 'null') {
+          localStorage.setItem('accessToken', newToken);
+          localStorage.setItem('refreshToken', newRefreshToken);
 
-        console.log('token refreshed');
+          console.log('token refreshed');
 
-        isRefreshing = false;
+          isRefreshing = false;
 
-        // Update the authorization header with the new token
-        http.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+          // Update the authorization header with the new token
+          http.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
 
-        // Retry the original request with the updated token
-        originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
-        return http(originalRequest);
+          // Retry the original request with the updated token
+          originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+          return http(originalRequest);
+        }
+        else {
+          throw error("refresh tocken expired");
+        }
       } catch (refreshError) {
         // Handle the refresh token request error, e.g., logout the user
         console.log('Error refreshing token:', refreshError);
@@ -84,6 +89,12 @@ http.interceptors.response.use(
       // Handle the 403 Forbidden error
       console.log('Access Forbidden');
       // Perform any necessary actions, such as displaying an error message or redirecting the user
+      const accessToken = localStorage.getItem('accessToken');
+      console.log(accessToken);
+      if (accessToken == 'null') {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+      }
     }
 
     return Promise.reject(error);
