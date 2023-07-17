@@ -1,5 +1,5 @@
-import { DataItem } from '../pages/Charts/charts.types';
-import { IUser } from '../types/IUser';
+import { DataItem } from "../Charts/charts.types";
+import { IUser } from "../types/IUser";
 
 export const getUsersByState = (users: Array<IUser>): Array<DataItem> => {
   const map: Map<string, number> = new Map();
@@ -49,7 +49,7 @@ export const getUsersByCity = (
   return result;
 };
 
-export const getCities = (users: Array<IUser>) => {
-  const cities = users.map((user) => user.city);
-  return [...new Set(cities)];
+export const getStates = (users: Array<IUser>) => {
+  const states = users.map((user) => user.state);
+  return [...new Set(states)];
 };

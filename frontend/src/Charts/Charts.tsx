@@ -4,7 +4,7 @@ import PieChart from "./PieCart";
 import DonutChart from "./DonutChart";
 import http from "../interceptor/interceptor";
 import { IUser } from "../types/IUser";
-import { getCities, getUsersByState } from "../utils/chart-data.helper";
+import { getStates, getUsersByState } from "../utils/chart-data.helper";
 import { DataItem } from "./charts.types";
 import { Autocomplete, TextField } from "@mui/material";
 
@@ -43,7 +43,7 @@ const Charts: FC = () => {
   useEffect(() => {
     if (users) {
       setBarChartData(getUsersByState(users));
-      setCities(getCities(users));
+      setCities(getStates(users));
     }
   }, [users]);
 
