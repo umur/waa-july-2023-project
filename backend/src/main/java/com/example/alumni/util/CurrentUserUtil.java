@@ -29,11 +29,8 @@ public class CurrentUserUtil {
     public Optional<User> getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
-            Optional<Long> userId = Optional.ofNullable(Long.parseLong(authentication.getName()));
-            if (userId.isPresent()) {
-                return userRepository.findById(userId.get());
-            }
-            return Optional.ofNullable(null);
+            String email = authentication.getName();
+            return userRepository.findByEmail(email);
         } else {
             return Optional.ofNullable(null);
         }
