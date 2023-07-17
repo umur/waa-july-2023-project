@@ -11,14 +11,14 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Student {
+public class Student extends AlumniUser {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String password;
+//    private String email;
+//    private String firstName;
+//    private String lastName;
+//    private String password;
     private String phoneNumber;
     @JsonIgnoreProperties
     private boolean isDeleted;

@@ -15,8 +15,8 @@ public class AlumniUser {
     @Id
     @GeneratedValue
     private Long id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     @JsonIgnore
     private String password;
     private String email;

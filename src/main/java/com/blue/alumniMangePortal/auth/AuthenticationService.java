@@ -55,8 +55,8 @@ public class AuthenticationService {
 //        String role = request.getRole();
 //        var al =
         var alumniUser = AlumniUser.builder()
-                .first_name(request.getFirst_name())
-                .last_name(request.getLast_name())
+                .firstName(request.getFirst_name())
+                .lastName(request.getLast_name())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
 //                .phone_number(request.getPhone_number())

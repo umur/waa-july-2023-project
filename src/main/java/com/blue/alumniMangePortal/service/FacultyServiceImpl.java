@@ -1,6 +1,5 @@
 package com.blue.alumniMangePortal.service;
 
-import com.blue.alumniMangePortal.entity.Address;
 import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.repository.FacultyRepo;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +32,8 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public void updateFaculty(Long id, Faculty faculty) {
         Faculty facultyToUpdate = getFaculty(id);
-        facultyToUpdate.setFirst_name(faculty.getFirst_name());
-        facultyToUpdate.setLast_name(faculty.getLast_name());
+        facultyToUpdate.setFirstName(faculty.getFirstName());
+        facultyToUpdate.setLastName(faculty.getLastName());
         facultyToUpdate.setEmail(facultyToUpdate.getEmail());
         facultyToUpdate.setPhone_number(faculty.getPhone_number());
         facultyToUpdate.setDepartment(faculty.getDepartment());

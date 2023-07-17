@@ -18,7 +18,7 @@ public class FacultyController {
     private AddressService addressService;
 
 
-    @GetMapping("/fac")
+    @GetMapping
     public List<Faculty> getFaculties() {
         return facultyService.getFaculties();
     }
