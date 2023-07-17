@@ -3,7 +3,6 @@ import ShowUsers from "./ShowUsers";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import UserDetails from "./UserDetails";
 import Login from "./Login";
-import Dashboard from "./Dashboard";
 import { useEffect, useState } from "react";
 
 const App = () => {
@@ -20,7 +19,7 @@ const App = () => {
   return user ? (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard user={user} setUser={setUser} />} />
+        <Route path="/" element={<ShowUsers />} />
         <Route path="/user-details/:id" element={<UserDetails />} />
         <Route path="/users" element={<ShowUsers />} />
       </Routes>

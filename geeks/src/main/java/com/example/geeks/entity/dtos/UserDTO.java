@@ -3,6 +3,7 @@ package com.example.geeks.entity.dtos;
 import com.example.geeks.entity.Comment;
 import com.example.geeks.entity.Experience;
 import com.example.geeks.entity.Log;
+import com.example.geeks.entity.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.OneToMany;
@@ -42,7 +43,7 @@ public class UserDTO {
 //    private String major;
 
     @JsonSerialize
-    private String role;
+    private Role role;
 
     @JsonSerialize
     private boolean active;

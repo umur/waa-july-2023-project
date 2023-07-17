@@ -22,7 +22,8 @@ function Login({ setUser }) {
 
     if (result.status === 200) {
       setUser(result.data);
-      localStorage.setItem("user", JSON.stringify(result.data.jwtToken));
+      console.log(result.data.jwtToken)
+      localStorage.setItem("user", result.data.jwtToken);
       console.log(result.status);
       console.log(result.data.jwtToken);
     } else {

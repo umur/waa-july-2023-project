@@ -35,6 +35,10 @@ public class AdvertisementService {
         return jaRepo.getAdvertisementsByCityIsAndIsDeleted(city, false);
     }
 
+
+    public List<Advertisement> getNewTen(){
+        return jaRepo.getLastTen();
+    }
     public List<Advertisement> getAdvertisementsByState(String state){
         return jaRepo.getAdvertisementsByStateIsAndIsDeleted(state, false);
     }

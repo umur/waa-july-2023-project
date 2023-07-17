@@ -17,6 +17,9 @@ public interface AdvertisementRepo extends ListCrudRepository<Advertisement, Lis
 
     public List<Advertisement> getAdvertisementsByTagIsAndIsDeleted(String tag, boolean b);
 
+    @Query(value = "SELECT * FROM alumni_db.advertisement order by date desc limit 10", nativeQuery = true)
+    public List<Advertisement> getLastTen();
+
     public List<Advertisement> getAdvertisementsByStateIsAndIsDeleted(String state, boolean b);
 
     public List<Advertisement> getAdvertisementsByCityIsAndIsDeleted(String city, boolean b);

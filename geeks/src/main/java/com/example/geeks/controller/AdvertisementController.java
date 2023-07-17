@@ -25,6 +25,10 @@ public class AdvertisementController {
     }
     */
 
+    @GetMapping("/newest")
+    public List<Advertisement> getLastTen(){
+        return advertisementService.getNewTen();
+    }
 
     @GetMapping
     public List<Advertisement> getAllAdvertisements() {

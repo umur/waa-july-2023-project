@@ -34,6 +34,7 @@ public class User implements Serializable, UserDetails {
     private String cv;
     private boolean isDeleted;
 
+    @JsonManagedReference
     @Enumerated(EnumType.STRING)
     private Role role;
 
