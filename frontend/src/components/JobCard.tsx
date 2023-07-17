@@ -21,6 +21,7 @@ const JobCard: FC<Props> = ({
     requiredSkills: "requiredSkills",
     tags: [],
     user: null,
+    id:-1,
   },
 }) => {
   const { user } = useUserContext();

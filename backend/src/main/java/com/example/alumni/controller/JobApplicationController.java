@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/job-applications")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class JobApplicationController {
 
     @Autowired

@@ -43,7 +43,8 @@ public class UaaController {
 
     @PostMapping("/refreshToken")
     public LoginResponse refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
-        return authService.refreshToken(refreshTokenRequest);
+        var loginResponse = authService.refreshToken(refreshTokenRequest);
+        return loginResponse;
     }
 
     @PostMapping("/signup")

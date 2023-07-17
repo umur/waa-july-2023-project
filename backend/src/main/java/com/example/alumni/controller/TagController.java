@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tags")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TagController {
 
     @Autowired

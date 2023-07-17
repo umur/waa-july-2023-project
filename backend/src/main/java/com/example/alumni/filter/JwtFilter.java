@@ -5,6 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
@@ -29,11 +30,19 @@ public class JwtFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-            var token = extractTokenFromRequest(request);
+        System.out.println(request.getRequestURL().toString().toLowerCase());
 
-            if (token != null && jwtUtil.validateToken(token)) {
+        var token = extractTokenFromRequest(request);
+
+        if (token != null) {
+            if (jwtUtil.validateToken(token)) {
                 SecurityContextHolder.getContext().setAuthentication(jwtUtil.getAuthentication(token));
+            } else if(!request.getRequestURL().toString().toLowerCase().endsWith("/uaa/refreshtoken")){
+                response.setStatus(HttpStatus.UNAUTHORIZED.value()); // Set HTTP 401 Unauthorized status
+                return;
             }
+        }
+
 
         filterChain.doFilter(request, response);
     }
@@ -49,7 +58,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             var token = authorizationHeader.substring(7);
-            return token;
+            if(!token.equals("null")){
+                return token;
+            }
         }
         return null;
     }

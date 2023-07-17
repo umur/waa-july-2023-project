@@ -12,6 +12,7 @@ import com.example.alumni.entity.Experience;
 
 @RestController
 @RequestMapping("/experiences")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ExperienceController {
 
     @Autowired

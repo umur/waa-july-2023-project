@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +25,7 @@ public class JwtUtil {
 
     private final UserDetailsService userDetailsService;
     private final String secret = "Don\'tLogin@1";
-    private final long expiration = 15 * 60 * 1000;
+    private final long expiration = 1 * 60 * 1000;
     //     private final long expiration = 5;
     private final long refreshExpiration = 15 * 60 * 1000;
 
@@ -51,7 +53,13 @@ public class JwtUtil {
     }
 
     public Date getExpirationDateFromToken(String token) {
-        return getClaimFromToken(token, Claims::getExpiration);
+        try {
+            return getClaimFromToken(token, Claims::getExpiration);
+        } catch (ExpiredJwtException e) {
+            System.out.println(" Token expired ");
+        }
+
+        return new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000);
     }
 
     public Boolean isTokenExpired(String token) {
@@ -61,14 +69,14 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
 
-      var user=  userService.getByEmail(userDetails.getUsername());
+        var user = userService.getByEmail(userDetails.getUsername());
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", userDetails.getAuthorities());
         claims.put("firstName", user.getFirstName());
         claims.put("lastName", user.getLastName());
-        claims.put("city",user.getCity());
-        claims.put("state",user.getState());
-        claims.put("major",user.getMajor());
+        claims.put("city", user.getCity());
+        claims.put("state", user.getState());
+        claims.put("major", user.getMajor());
 
         return doGenerateToken(claims, userDetails.getUsername());
     }

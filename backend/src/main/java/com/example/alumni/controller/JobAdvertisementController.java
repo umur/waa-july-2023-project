@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/job-advertisements")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class JobAdvertisementController {
 
     @Autowired

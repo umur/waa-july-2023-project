@@ -12,6 +12,7 @@ import com.example.alumni.entity.Role;
 
 @RestController
 @RequestMapping("/roles")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RoleController {
 
     @Autowired

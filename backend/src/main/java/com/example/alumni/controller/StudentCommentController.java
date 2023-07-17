@@ -12,6 +12,7 @@ import com.example.alumni.entity.StudentComment;
 
 @RestController
 @RequestMapping("/student-comments")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentCommentController {
 
     @Autowired

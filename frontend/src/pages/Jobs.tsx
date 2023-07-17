@@ -65,7 +65,7 @@ const Jobs: FC = () => {
       "/job-advertisements",
       dto
     );
-    //FIXME: fix 400 error
+    
     if (status === 200) {
       if (data) setJobs([...jobs, data]);
     }

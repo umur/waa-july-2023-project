@@ -12,6 +12,7 @@ import com.example.alumni.entity.Resume;
 
 @RestController
 @RequestMapping("/resumes")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ResumeController {
 
     @Autowired
