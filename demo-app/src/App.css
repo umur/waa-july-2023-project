@@ -77,3 +77,51 @@
 .bold-text {
   font-weight: bold;
 }
+
+
+/* Define the grid layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* 4 columns with equal width */
+  gap: 20px;
+  /* Gap between grid items */
+  padding: 50px;
+  background-color: rgb(239, 244, 238);
+  margin-left: 100px;
+  margin-right: 100px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+}
+
+/* Style each grid item (card) */
+.grid-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+/* Style on hover */
+.grid-item:hover {
+  transform: scale(1.05);
+  /* Scale up the card on hover */
+}
+
+
+.first-span {
+  display: block; /* Forces the first span to occupy the full width */
+  font-weight: bold; /* Makes the first span bold (just an example) */
+}
+
+.other-spans {
+  text-align: left; /* Aligns all other spans to the left */
+}
+
+.left-margin{
+  margin-left: 60px;
+}

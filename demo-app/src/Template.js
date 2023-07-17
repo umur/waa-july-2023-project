@@ -10,6 +10,9 @@ const Template = ({ setUser, children }) => (
         <Link to="/users"> All Users </Link>
       </li>
       <li>
+        <Link to="/Advertisements"> adverstisements </Link>
+      </li>
+      <li>
         <button
           onClick={() => {
             localStorage.removeItem("user");
