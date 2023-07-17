@@ -1,0 +1,117 @@
+{
+  "info": {
+    "_postman_id": "ApplicationController",
+    "name": "ApplicationController",
+    "description": "Postman collection for ApplicationController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Application",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/applications",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "applications"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Applications",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/applications",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "applications"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Application by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/applications/{{id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "applications",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Applications of Student",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/applications/student/{{studentId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "applications",
+            "student",
+            "{{studentId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "ExperienceController",
+    "name": "ExperienceController",
+    "description": "Postman collection for ExperienceController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Experience",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/experiences",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "experiences"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Experiences By User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/experiences/user/{{userId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "experiences",
+            "user",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Experiences By Skill",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/experiences/skill/{{skillName}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "experiences",
+            "skill",
+            "{{skillName}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

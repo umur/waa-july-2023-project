@@ -1,0 +1,195 @@
+{
+  "info": {
+    "_postman_id": "AdvertisementController",
+    "name": "AdvertisementController",
+    "description": "Postman collection for AdvertisementController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Advertisement",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/advertisements",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "advertisements"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Advertisements",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/advertisements",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "advertisements"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Advertisement by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/advertisements/{{id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "advertisements",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Advertisements by City",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/advertisements/byCity/{{city}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "advertisements",
+            "byCity",
+            "{{city}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Advertisements by State",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/advertisements/byState/{{state}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "advertisements",
+            "byState",
+            "{{state}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Advertisements by Tag",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/advertisements/byTag/{{tag}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "advertisements",
+            "byTag",
+            "{{tag}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Advertisements by Company Name",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic dXNlcjphZjAxZGU2Zi02OGFjLTQxZjEtOTg5Yi01YjI4ZjBiOGU4ZDU="
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/advertisements/byCompanyName/{{companyName}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "advertisements",
+            "byCompanyName",
+            "{{companyName}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+package com.example.geeks.repos;
+
+import com.example.geeks.entity.Comment;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface CommentRepo extends ListCrudRepository<Comment, List<Comment>> {
+
+    public List<Comment> getCommentsByCommentGiver_IdAndIsDeleted(Long u, boolean d);
+
+
+
+    public List<Comment> getCommentsByCommentReceiver_IdAndIsDeleted(Long u, boolean d);
+
+
+    public List<Comment> getCommentsByCommentGiver_IdAndCommentReceiver_IdAndIsDeleted(Long staffId, Long studentId, boolean d);
+
+    @Modifying
+    @Query(value = "UPDATE `alumni_db`.`comment` SET `is_deleted` = true WHERE (`comment_giver_id` = ?1) AND (`comment_receiver_id` = ?2);\n",
+            nativeQuery = true)
+    public void updateCommentByIdIs(Long commenterId, Long receiverId);
+}
