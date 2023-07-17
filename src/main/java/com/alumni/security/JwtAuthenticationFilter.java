@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String jwt = extractTokenFromRequest(request);
 
-
+        System.out.println("jwt =" +jwt);
         if (jwt == null) {
             filterChain.doFilter(request, response);
             return;
@@ -55,7 +55,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
 
 
     public String extractTokenFromRequest(HttpServletRequest request) {

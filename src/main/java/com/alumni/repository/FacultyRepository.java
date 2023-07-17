@@ -11,5 +11,5 @@ import java.util.List;
 public interface FacultyRepository extends JpaRepository<Faculty,Long> {
 
 
-    List<Faculty> findAllByNameContainsIgnoreCaseOrderByIdDesc(String name, Pageable of);
+//    List<Faculty> findAllByNameContainsIgnoreCaseOrderByIdDesc(String name, Pageable of);
 }

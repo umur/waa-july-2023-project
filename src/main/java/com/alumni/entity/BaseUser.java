@@ -69,4 +69,9 @@ public class BaseUser implements UserDetails {
     public boolean isEnabled() {
         return isActive;
     }
+
+    @Override
+    public String toString() {
+        return "firstName=  " + firstName + ", lastName= " + lastName + ", email= " + email + ", password= " + password +  ", roles= " + roles;
+    }
 }

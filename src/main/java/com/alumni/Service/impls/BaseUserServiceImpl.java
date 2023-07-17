@@ -42,6 +42,13 @@ public class BaseUserServiceImpl implements BaseUserService {
     }
 
     @Override
+    public BaseUser save(BaseUser user, List<Role> roles) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(roles);
+        return repository.save(user);
+    }
+
+    @Override
     public BaseUser save(String email, String password, List<Role> roles) {
 
         BaseUser baseUser = new BaseUser();
