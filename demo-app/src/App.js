@@ -23,7 +23,6 @@ const App = () => {
         <Route path="/" element={<Dashboard user={user} setUser={setUser} />} />
         <Route path="/user-details/:id" element={<UserDetails />} />
         <Route path="/users" element={<ShowUsers />} />
-        {/* <Route index path="/login" element={<Login />} /> */}
       </Routes>
     </BrowserRouter>
   ) : (

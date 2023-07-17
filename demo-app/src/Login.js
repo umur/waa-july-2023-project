@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import miuLogo from "./miu_logo.jpg";
 
 function Login({ setUser }) {
   const [values, setValues] = useState({
@@ -37,6 +38,8 @@ function Login({ setUser }) {
 
   return (
     <div className="Login">
+      <img style={{ width: 400, height: 150 }} src={miuLogo} alt="MIU Logo" />
+
       <br></br>
       <div>Login Screen</div>
 
@@ -46,6 +49,7 @@ function Login({ setUser }) {
       <div>
         <br></br>
         <div>Email</div>
+        <br></br>
         <input
           placeholder="Email"
           name="email"
@@ -56,14 +60,17 @@ function Login({ setUser }) {
 
         <br></br>
         <div>Password</div>
+        <br></br>
         <input
           placeholder="Password"
           name="password"
+          type="password"
           value={values.password}
           onChange={handleChange}
         />
         <br></br>
-
+        <br></br>
+        <br></br>
         <button onClick={onLoginClick}>Login in</button>
         <br></br>
         <br></br>

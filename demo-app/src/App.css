@@ -65,3 +65,15 @@
   color: #545151;
 }
 
+.Login {
+  margin-top: 200px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  background-color: lightblue;
+}
+
+.bold-text {
+  font-weight: bold;
+}
