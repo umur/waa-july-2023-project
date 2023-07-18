@@ -36,8 +36,9 @@ public class Resume implements Serializable {
     @Version
     private int version;
 
-    @Lob
+    @Column(columnDefinition="TEXT")
     private String careerGoal;
+
     private String jobTitle;
 
     @OneToMany

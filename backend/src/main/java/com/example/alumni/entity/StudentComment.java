@@ -40,7 +40,7 @@ public class StudentComment implements Serializable {
     @Version
     private int version;
 
-    @Lob
+    @Column(columnDefinition="TEXT")
     private String comment;
 
     @ManyToOne

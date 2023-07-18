@@ -39,14 +39,22 @@ public class JobAdvertisement implements Serializable {
     private int version;
 
     private String positionTitle;
-    @Lob
+
+    @Column(columnDefinition="TEXT")
     private String Description;
+
     private Double minSalary;
     private Double maxSalary;
-    @Lob
+
+    @Column(columnDefinition="TEXT")
     private String requiredSkills;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "jobadvertisement_tags",
+            joinColumns = @JoinColumn(name = "job_advertisement_id"),
+            inverseJoinColumns = @JoinColumn(name = "tags_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = { "job_advertisement_id", "tags_id" })
+    )
     private List<Tag> tags;
 
     @ManyToOne
