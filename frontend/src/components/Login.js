@@ -53,7 +53,11 @@ const Login = (props)=>{
 
             }
         }catch (e) {
-            setLoginErrorMessage('Invalid user credentials')
+            if(e && e.response != null && e.response.data != null && e.response.data.status == 400 && e.response.data.message) {
+                setLoginErrorMessage(e.response.data.message);
+            } else {
+                setLoginErrorMessage('Invalid user credentials')
+            }
         }
     }
 

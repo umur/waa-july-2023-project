@@ -29,9 +29,10 @@ public class User implements UserDetails {
     protected String lastName;
     protected String email;
     protected String password;
-    protected Boolean active;
-    protected Boolean locked;
-    protected Long lockedTimeInMilliseconds;
+    protected Boolean active = Boolean.TRUE;
+    protected Boolean locked = Boolean.FALSE;
+    protected Integer failAttempts = 0;
+    protected Long lastFailAttemptTime = 0L;
     protected Boolean deleted = Boolean.FALSE;
 
     @Embedded

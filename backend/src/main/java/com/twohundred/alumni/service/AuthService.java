@@ -2,11 +2,14 @@ package com.twohundred.alumni.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +32,7 @@ import com.twohundred.alumni.repository.UserRepo;
 import com.twohundred.alumni.util.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -73,6 +77,32 @@ public class AuthService {
     }
 
     public LoginResponse authenticate(LoginRequest request) {
+        Optional<User> userOptionl = repository.findByEmail(request.getEmail());
+        if(userOptionl.isPresent()) {
+            User u = userOptionl.get();
+            String message = "";
+            if(u.getLocked()) {
+                message = "Your account is locked, contact to admin to unlock";
+            } else if(!u.getActive()) {
+                message = "Your account is deactivated, contact to admin to activate";
+            } else if(!passwordEncoder.matches(request.getPassword(), u.getPassword()) &&
+                     u.getFailAttempts() > 4 && (System.currentTimeMillis() - u.getLastFailAttemptTime() < 15 * 60 * 60 * 1000)) {
+                message = "You attempted to login quite enough, please try again in 15 minutes";
+            }
+            if(!"".equals(message)) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message);
+            }
+            if(u.getFailAttempts() > 4 && (System.currentTimeMillis() - u.getLastFailAttemptTime() > 15 * 60 * 60 * 1000)) {
+               u.setLastFailAttemptTime(0L);
+               u.setFailAttempts(0);
+               repository.save(u);
+            }
+            if(!passwordEncoder.matches(request.getPassword(), u.getPassword()) && u.getFailAttempts() < 5) {
+                u.setFailAttempts(u.getFailAttempts() + 1);
+                u.setLastFailAttemptTime(System.currentTimeMillis());
+                repository.save(u);
+            }
+        }
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -80,8 +110,9 @@ public class AuthService {
                             request.getPassword()));
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException(e.getMessage());
-        } catch (Exception ex) {
-            System.out.println("Error:" + ex.getMessage());
+        }
+        catch (AuthenticationException ae) {
+            throw new BadCredentialsException(ae.getMessage());
         }
 
         try {

@@ -38,7 +38,6 @@ public class AdminController {
         log.info("Lock user with id="+ id);
         User user = userService.getUser(id);
         user.setLocked(Boolean.TRUE);
-        user.setLockedTimeInMilliseconds(System.currentTimeMillis());
         userService.update(user);
     }
 
@@ -47,7 +46,6 @@ public class AdminController {
         log.info("Unlock user with id="+ id);
         User user = userService.getUser(id);
         user.setLocked(Boolean.FALSE);
-        user.setLockedTimeInMilliseconds(null);
         userService.update(user);
     }
 
