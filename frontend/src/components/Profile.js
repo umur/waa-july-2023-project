@@ -107,7 +107,7 @@ export default function Profile(props) {
                     'Access-Control-Allow-Headers': '*',
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer  ${user.accessToken}`
+                    "Authorization": `Bearer ${user.accessToken}`
             };
             const result = await axios.put(url, data, {headers});
             if(result.status > 399) {

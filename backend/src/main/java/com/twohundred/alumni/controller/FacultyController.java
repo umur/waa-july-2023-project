@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping("/faculties")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-//@PreAuthorize("hasAnyRole('FACULTY', 'ROLE_FACULTY')")
+@PreAuthorize("hasAuthority('FACULTY')")
 public class FacultyController {
     private final FacultyServiceImpl facultyServiceImpl;
     private final CommentServiceImpl commentService;

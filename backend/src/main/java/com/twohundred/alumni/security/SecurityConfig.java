@@ -45,15 +45,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http.csrf(AbstractHttpConfigurer::disable).cors().and()
                 .exceptionHandling((exceptionHandling) ->
                         exceptionHandling.authenticationEntryPoint(new AlumniAuthenticationEntryPoint()))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/uaa/**").permitAll()
                         .requestMatchers("/echart/**").permitAll()
-                        .requestMatchers("/faculties/**").permitAll()
                         .requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/faculties/**").hasAuthority("FACULTY")
 
                         /*
                         .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
@@ -100,8 +100,7 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-    */
-
+*/
 /*
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
