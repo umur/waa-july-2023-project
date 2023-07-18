@@ -50,6 +50,6 @@ export const getUsersByCity = (
 };
 
 export const getStates = (users: Array<IUser>) => {
-  const states = users.map((user) => user.state);
-  return [...new Set(states)];
+  const state = users.map((user) => user.state);
+  return [...new Set(state)];
 };
