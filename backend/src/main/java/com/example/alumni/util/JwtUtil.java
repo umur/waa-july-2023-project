@@ -25,9 +25,9 @@ public class JwtUtil {
 
     private final UserDetailsService userDetailsService;
     private final String secret = "Don\'tLogin@1";
-    private final long expiration = 1 * 60 * 1000;
+    private final long expiration = 24 * 60 * 60 * 1000;
     //     private final long expiration = 5;
-    private final long refreshExpiration = 15 * 60 * 1000;
+    private final long refreshExpiration = 24 * 60 * 60 * 1000;
 
     private final UserService userService;
 
