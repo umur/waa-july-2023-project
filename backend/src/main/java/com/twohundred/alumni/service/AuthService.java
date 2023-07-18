@@ -55,14 +55,14 @@ public class AuthService {
         address.setZip(request.getZip());
         address.setState(request.getState());
         User user;
-        if("STUDENT".equals(request.getRole())) {
+        if ("STUDENT".equals(request.getRole())) {
             user = new Student();
-            ((Student)user).setMajor(request.getMajor());
-            ((Student)user).setGpa(request.getGpa());
+            ((Student) user).setMajor(request.getMajor());
+            ((Student) user).setGpa(request.getGpa());
         } else {
             user = new Faculty();
-            ((Faculty)user).setTitle(request.getTitle());
-            ((Faculty)user).setSalary(request.getSalary());
+            ((Faculty) user).setTitle(request.getTitle());
+            ((Faculty) user).setSalary(request.getSalary());
         }
         user.setFirstName(request.getFirstname());
         user.setLastName(request.getLastname());
@@ -122,7 +122,7 @@ public class AuthService {
             List<String> roles = user.getRoles().stream().map(r -> r.getRole()).toList();
             LoginResponse loginResponse = new LoginResponse();
             loginResponse.setAccessToken(jwtToken);
-            if(roles.contains("STUDENT")) {
+            if (roles.contains("STUDENT")) {
                 Student student = studentRepo.findById(user.getId()).orElse(null);
                 loginResponse.setMajor(student.getMajor());
                 loginResponse.setGpa(student.getGpa());
@@ -135,7 +135,7 @@ public class AuthService {
             loginResponse.setId(user.getId());
             loginResponse.setFirstName(user.getFirstName());
             loginResponse.setLastName(user.getLastName());
-            loginResponse.setName(user.getFirstName() + ' ' +  user.getLastName());
+            loginResponse.setName(user.getFirstName() + ' ' + user.getLastName());
             loginResponse.setEmail(user.getEmail());
             loginResponse.setRoles(roles);
             loginResponse.setStreet(user.getAddress().getStreet());

@@ -40,8 +40,8 @@ VALUES (4, 3);
 INSERT INTO user_roles (user_id, roles_id)
 VALUES (5, 2);
 
-INSERT INTO job_advertisement (id, is_deleted, date_created, faculty_id, benefits, city, company_name, description, state)
-VALUES (1, 0, '2023-07-11 02:53:50', 1, "Unlimited PTO", "Austin", "Apple", "Looking for Java Software Engineers", "Texas");
+INSERT INTO job_advertisement (id, deleted, date_created, created_student_id, benefits, city, company_name, description, state)
+VALUES (1, 0, '2023-07-11 02:53:50', 2, "Unlimited PTO", "Austin", "Apple", "Looking for Java Software Engineers", "Texas");
 
 INSERT INTO tag (id, deleted, name)
 VALUES (1, 0, "Java");

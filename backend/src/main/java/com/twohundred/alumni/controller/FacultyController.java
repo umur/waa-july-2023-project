@@ -1,27 +1,34 @@
 package com.twohundred.alumni.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.twohundred.alumni.aspect.annotation.LogMe;
 import com.twohundred.alumni.entity.Comment;
 import com.twohundred.alumni.entity.User;
 import com.twohundred.alumni.entity.dto.request.CommentDto;
+import com.twohundred.alumni.entity.dto.request.FacultyDto;
 import com.twohundred.alumni.entity.dto.request.StudentDto;
 import com.twohundred.alumni.service.impl.CommentServiceImpl;
+import com.twohundred.alumni.service.impl.FacultyServiceImpl;
 import com.twohundred.alumni.service.impl.StudentServiceImpl;
 import com.twohundred.alumni.util.Mapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
-import com.twohundred.alumni.entity.dto.request.FacultyDto;
-import com.twohundred.alumni.service.impl.FacultyServiceImpl;
 import com.twohundred.alumni.util.SecurityUtil;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/faculties")
@@ -39,9 +46,12 @@ public class FacultyController {
     @LogMe
     @PutMapping
     public FacultyDto update(@RequestBody FacultyDto facultyDto) {
+        User currentStudent = securityUtil.getCurrentUser();
+        facultyDto.setId(currentStudent.getId());
         return facultyServiceImpl.update(facultyDto);
     }
 
+    @LogMe
     @DeleteMapping
     public FacultyDto delete() {
         User currentFaculty = securityUtil.getCurrentUser();

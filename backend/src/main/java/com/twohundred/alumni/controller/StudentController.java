@@ -1,5 +1,6 @@
 package com.twohundred.alumni.controller;
 
+import com.twohundred.alumni.aspect.annotation.LogMe;
 import com.twohundred.alumni.entity.Experience;
 import com.twohundred.alumni.entity.User;
 import com.twohundred.alumni.entity.dto.request.ExperienceDto;
@@ -23,11 +24,15 @@ public class StudentController {
     private final SecurityUtil securityUtil;
     private final ExperienceServiceImpl experienceService;
 
+    @LogMe
     @PutMapping
     public StudentDto update(@RequestBody StudentDto studentDto) {
+        User currentStudent = securityUtil.getCurrentUser();
+        studentDto.setId(currentStudent.getId());
         return studentServiceImpl.update(studentDto);
     }
 
+    @LogMe
     @DeleteMapping
     public StudentDto delete() {
         User currentStudent = securityUtil.getCurrentUser();

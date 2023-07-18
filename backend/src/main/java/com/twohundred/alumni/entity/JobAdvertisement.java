@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @SQLDelete(sql = "UPDATE tag SET deleted = true WHERE id=?")
-@Where(clause = "is_deleted = false")
+@Where(clause = "deleted = false")
 public class JobAdvertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +29,15 @@ public class JobAdvertisement {
     private List<Tag> tags;
 
     @ManyToOne
-    private Faculty faculty;
+    private Student createdStudent;
 
     @ElementCollection
     private List<String> files;
 
     @CreatedDate
     private Date dateCreated;
-    private Boolean isDeleted = Boolean.FALSE;
+    private Boolean deleted = Boolean.FALSE;
+
+    @OneToMany(mappedBy = "jobAd")
+    private List<CV> cvs;
 }

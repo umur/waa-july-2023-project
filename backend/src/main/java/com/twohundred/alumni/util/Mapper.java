@@ -5,10 +5,17 @@ import com.twohundred.alumni.entity.Student;
 import com.twohundred.alumni.entity.dto.request.AddressDto;
 import com.twohundred.alumni.entity.dto.request.JobAdvertisementDto;
 import com.twohundred.alumni.entity.dto.request.StudentDto;
+
+import lombok.RequiredArgsConstructor;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class Mapper {
+    private final ModelMapper modelMapper;
+
     public StudentDto mapStudentToDTO(Student student) {
         StudentDto studentDto = new StudentDto();
         studentDto.setId(student.getId());
@@ -27,8 +34,7 @@ public class Mapper {
     }
 
     public JobAdvertisementDto mapJobAdToFilteredDTO(JobAdvertisement job) {
-        return new JobAdvertisementDto(job.getId(), job.getDescription(), job.getBenefits(), job.getCompanyName(), job.getState(),
-                job.getCity(), job.getTags(), job.getFaculty().getId(), job.getFiles(), Utils.dateLongToString(job.getDateCreated().getTime()));
+        return modelMapper.map(job, JobAdvertisementDto.class);
     }
 
 }
