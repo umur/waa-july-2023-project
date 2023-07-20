@@ -49,6 +49,7 @@ const Login = (props)=>{
             }
             if(result.status == 200 && result.data && result.data.accessToken) {
                 localStorage.setItem('loggedInUser', JSON.stringify(result.data));
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.accessToken;
                 props.applyUserRole();
 
             }

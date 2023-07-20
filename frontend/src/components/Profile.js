@@ -109,7 +109,7 @@ export default function Profile(props) {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${user.accessToken}`
             };
-            const result = await axios.put(url, data, {headers});
+            const result = await axios.put(url, data);
             if(result.status > 399) {
                 setUserErrorMessage('Saving user data failed')
             }

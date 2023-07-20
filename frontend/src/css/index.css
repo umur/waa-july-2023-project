@@ -73,3 +73,9 @@ body, html, .App, #root, .auth-wrapper {
   width: 700px;
   border-radius: 10px;
 }
+
+.usersTable  {
+  background-color: white;
+  width: 80%;
+  margin: auto;
+}

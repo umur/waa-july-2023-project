@@ -47,7 +47,7 @@ export default function ResetPassword(props) {
     const postResetPassword = async (data) => {
         // send request
         try {
-            const result = await axios.put("/admin/reset-password", data, {headers});
+            const result = await axios.put("/admin/reset-password", data);
             console.log(result);
             if(result.status > 400) {
                 setErrorMessage('Error happened while reset password');

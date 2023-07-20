@@ -126,7 +126,8 @@ public class AuthService {
                 Student student = studentRepo.findById(user.getId()).orElse(null);
                 loginResponse.setMajor(student.getMajor());
                 loginResponse.setGpa(student.getGpa());
-            } else {
+            }
+            if(roles.contains(("FACULTY"))) {
                 Faculty faculty = facultyRepo.findById(user.getId()).orElse(null);
                 loginResponse.setTitle(faculty.getTitle());
                 loginResponse.setSalary(faculty.getSalary());

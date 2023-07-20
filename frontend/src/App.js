@@ -12,6 +12,7 @@ import Profile from './components/Profile.js'
 import Home from './components/Home.js'
 import {useState} from "react";
 import ResetPassword from "./components/ResetPassword";
+import axios from "axios";
 
 function App() {
   let [authenticated, setAuthenticated] = useState(() => {
@@ -44,9 +45,8 @@ function App() {
     let user = JSON.parse(localStorage.getItem('loggedInUser') || String("{}"))
     if(user != null && user.accessToken !=null && user.roles != null) {
       setLoggedInUser(user);
-      loggedInUser = user;
       menus = [];
-      loggedInUser.roles.map((item) => {
+      user.roles.map((item) => {
         menus = [...menus, ...loggedInUserMenus[item]];
       })
     }
@@ -64,7 +64,6 @@ function App() {
   const refreshUserData = () => {
     let user = JSON.parse(localStorage.getItem('loggedInUser') || String("{}"));
     setLoggedInUser(user);
-    loggedInUser = user;
   }
 
   const doLogout = () => {
@@ -72,6 +71,7 @@ function App() {
     setLoggedInUser({});
     setMenuItems(defaultMenu());
     setAuthenticated(false);
+    delete axios.defaults.headers.common['Authorization'];
   }
 
   return (
