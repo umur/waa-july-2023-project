@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {Navigate} from "react-router-dom";
+import {Navigate, useParams} from "react-router-dom";
 
-export default function ResetPassword(props) {
+export default function ResetPasswordByAdmin() {
     let user = JSON.parse(localStorage.getItem('loggedInUser') || String("{}"))
+
+    const params = useParams()
     const [data, setData] = useState({
-        id:user.id,
-        password: '',
+        id:params.id,
+        name:params.name,
         newPassword: '',
         confirmPassword: ''
     })
@@ -19,10 +21,6 @@ export default function ResetPassword(props) {
     }
 
     const resetClicked = (event) => {
-        if(!data.password) {
-            setErrorMessage("Current password is mandatory");
-            return;
-        }
         if(!data.newPassword) {
             setErrorMessage("New password is mandatory and must be at least 5 charachters");
             return;
@@ -47,7 +45,7 @@ export default function ResetPassword(props) {
     const postResetPassword = async (data) => {
         // send request
         try {
-            const result = await axios.put("/user/reset-password", data);
+            const result = await axios.put("/admin/reset-password", data);
             console.log(result);
             if(result.status > 400) {
                 setErrorMessage('Error happened while reset password');
@@ -77,19 +75,8 @@ export default function ResetPassword(props) {
 
     return (
         <div className="auth-inner">
-            <h3>Reset password</h3>
+            <h3>Reset password for user {data.name}</h3>
             <span className="error text-danger">{errorMessage}</span>
-            <div className="mb-3">
-                <label>Current password</label>
-                <input
-                    value={data.password}
-                    onChange={handleChange}
-                    name="password"
-                    type="password"
-                    className="form-control"
-                    placeholder="Current password"
-                />
-            </div>
             <div className="mb-3">
                 <label>New password</label>
                 <input

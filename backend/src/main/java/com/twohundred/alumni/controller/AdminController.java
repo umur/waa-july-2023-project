@@ -2,6 +2,7 @@ package com.twohundred.alumni.controller;
 
 import com.twohundred.alumni.aspect.annotation.LogMe;
 import com.twohundred.alumni.entity.User;
+import com.twohundred.alumni.entity.dto.request.FacultyDto;
 import com.twohundred.alumni.entity.dto.request.UserDto;
 import com.twohundred.alumni.entity.dto.request.UserPasswordResetDto;
 import com.twohundred.alumni.service.UserService;
@@ -22,6 +23,12 @@ public class AdminController {
 
     @Autowired
     UserService userService;
+
+    @LogMe
+    @PutMapping
+    public void update(@RequestBody UserDto userDto) {
+        userService.update(userDto);
+    }
 
     @LogMe
     @GetMapping("/all-users")
@@ -59,7 +66,7 @@ public class AdminController {
     @LogMe
     @PutMapping("/reset-password")
     public void authenticate(@RequestBody UserPasswordResetDto userPasswordResetDto) {
-        log.info("User password is going to be reset");
-        userService.resetPassword(userPasswordResetDto);
+        log.info("User password is going to be reset by admin");
+        userService.resetPasswordByAdmin(userPasswordResetDto);
     }
 }

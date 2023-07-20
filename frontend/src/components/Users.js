@@ -1,4 +1,4 @@
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -54,6 +54,12 @@ export default function Users() {
         putActiveDeActive(user);
     }
 
+    const navigate = useNavigate()
+
+    const handleResetPassword = (user) => {
+        navigate("/reset-password/"+user.id+"/" + user.firstName + ' ' + user.lastName)
+    }
+
     const useAuth = () => {
         let user = localStorage.getItem('loggedInUser') ? JSON.parse(localStorage.getItem('loggedInUser')) : false
         return (user != null && user.accessToken != null && user.roles != null);
@@ -93,9 +99,17 @@ export default function Users() {
                                 <td>{user.active ? 'yes' : 'no'}</td>
                                 <td>{user.role.indexOf('ADMIN') != -1 ? '' :
                                 <div>
-                                    <button className="btn btn-primary" onClick={() => {handleLock(user)}}>{user.locked ? 'Unlock' : 'Lock'}</button>
+                                    <button className="btn btn-primary"
+                                            onClick={() => {handleLock(user)}}>{user.locked ? 'Unlock' : 'Lock'}
+                                    </button>
                                     &nbsp;
-                                    <button className="btn btn-primary" onClick={() => {handleActive(user)}}>{user.active ? 'DeActivate' : 'Activate'}</button>
+                                    <button className="btn btn-primary"
+                                            onClick={() => {handleActive(user)}}>{user.active ? 'DeActivate' : 'Activate'}
+                                    </button>
+                                    &nbsp;
+                                    <button className="btn btn-primary" onClick={() => {handleResetPassword(user)}}>
+                                        Reset password
+                                    </button>
                                 </div>
                                 }</td>
                             </tr>
@@ -104,7 +118,6 @@ export default function Users() {
                 }
                 </tbody>
             </table>
-
         </div>
     );
 }

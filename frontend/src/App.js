@@ -13,6 +13,7 @@ import Home from './components/Home.js'
 import {useState} from "react";
 import ResetPassword from "./components/ResetPassword";
 import axios from "axios";
+import ResetPasswordByAdmin from "./components/ResetPasswordByAdmin";
 
 function App() {
   let [authenticated, setAuthenticated] = useState(() => {
@@ -133,6 +134,7 @@ function App() {
               <Route path="/dashboards" element={<Dashboards />}/>
               <Route path="/jobs" element={<Jobs />}/>
               <Route path="/reset-password" element={<ResetPassword />}/>
+              <Route path="/reset-password/:id/:name" element={<ResetPasswordByAdmin />}/>
             </Routes>
 
           </div>

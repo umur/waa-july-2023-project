@@ -103,6 +103,9 @@ export default function Profile(props) {
             if(userData.role == 'FACULTY') {
                 url = "/faculties"
             }
+            if(userData.role == 'ADMIN') {
+                url = "/admin"
+            }
             const headers = {
                     'Access-Control-Allow-Headers': '*',
                     "Access-Control-Allow-Origin": "*",
@@ -185,13 +188,15 @@ export default function Profile(props) {
                             <select disabled="true" value={userData.role} className="form-control"
                                     onChange={handleUserChange}
                                     placeholder="Faculty/Student" name="role">
+                                <option value="ADMIN">ADMIN</option>
                                 <option value="FACULTY">Faculty</option>
                                 <option value="STUDENT">Student</option>
                             </select>
                         </div>
                     </div>
                     <div className="form-group row">
-                        {userData.role == 'FACULTY' ? (
+                        {userData.role == 'ADMIN' ? '' :
+                            userData.role == 'FACULTY' ? (
                                 <div className="col-sm-6">
                                     <label>Title</label>
                                     <input
@@ -207,7 +212,7 @@ export default function Profile(props) {
                                 </div>
                             )
                         }
-                        {userData.role == 'FACULTY' ? (
+                        {userData.role == 'ADMIN' ? '' : userData.role == 'FACULTY' ? (
                                 <div className="col-sm-6">
                                     <label>Salary</label>
                                     <input
