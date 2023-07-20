@@ -82,11 +82,12 @@ public class StudentServiceImpl implements StudentService {
 
         if (fileExtention.equals("x-tika-ooxml")) fileExtention = "docx";
 
-        String filePath = "C:\\Users\\HP\\Desktop\\upload\\" + student.getFirstName()
-                + "-" + student.getLastName() + "-" + "cv" + "." + fileExtention;
+        String fileName = student.getFirstName() + "-" + student.getLastName() + "-CV." + fileExtention;
+        String path1 = Paths.get("uploads", fileName).toString();
 
-        Path path1 = Paths.get(filePath);
-        Files.write(path1, fileBytes);
+        Path path = Path.of(path1);
+        Files.write(path, fileBytes);
+
         String path2Db = path1.toString();
         UploadedFilePath path3 = new UploadedFilePath();
         path3.setFilePath(path2Db);
