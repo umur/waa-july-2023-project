@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping("/faculties")
 public class FacultyController {
@@ -26,6 +27,12 @@ public class FacultyController {
     @GetMapping("/{id}")
     public Faculty getFactuly(@PathVariable Long id) {
         return facultyService.getFaculty(id);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/email/{email}")
+    public Faculty getFacultyByEmail(@PathVariable String email) {
+        return facultyService.getFacultyByEmail(email);
     }
 
     @PutMapping("/{id}/faculty")

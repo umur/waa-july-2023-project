@@ -8,6 +8,7 @@ public interface FacultyService {
     void addFaculty(Faculty faculty);
     List<Faculty> getFaculties();
     Faculty getFaculty(Long id);
+    Faculty getFacultyByEmail(String email);
     void updateFaculty(Long id, Faculty faculty);
     void deleteFaculty(Long id);
 }

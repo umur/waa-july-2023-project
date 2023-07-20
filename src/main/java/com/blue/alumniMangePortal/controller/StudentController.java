@@ -1,6 +1,9 @@
 package com.blue.alumniMangePortal.controller;
 import com.blue.alumniMangePortal.entity.JobExperience;
+import com.blue.alumniMangePortal.entity.JobsApplied;
 import com.blue.alumniMangePortal.entity.Student;
+import com.blue.alumniMangePortal.service.JobsAppliedService;
+import com.blue.alumniMangePortal.service.JobsAppliedServiceImpl;
 import com.blue.alumniMangePortal.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
+    private final JobsAppliedService jobsAppliedService;
     @PostMapping("/registerStudent")
     public Student registerStudent(@RequestBody Student student){
         return studentService.registerStudent(student);
@@ -18,6 +22,10 @@ public class StudentController {
     @PutMapping("/updateProfile/{id}")
     public Student updateProfile(@PathVariable Long id, @RequestBody Student student){
         return studentService.updateProfile(id, student);
+    }
+    @PostMapping ("/applyForJob/{id}")
+    public JobsApplied applyForJob(@PathVariable Long id,@RequestBody JobsApplied jobsApplied){
+        return jobsAppliedService.addJobsApplied(id, jobsApplied);
     }
 
     @GetMapping("/getById/{id}")

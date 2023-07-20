@@ -30,6 +30,11 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
+    public Faculty getFacultyByEmail(String email) {
+        return facultyRepo.findByEmail(email);
+    }
+
+    @Override
     public void updateFaculty(Long id, Faculty faculty) {
         Faculty facultyToUpdate = getFaculty(id);
         facultyToUpdate.setFirstName(faculty.getFirstName());
