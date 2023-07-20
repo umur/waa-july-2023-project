@@ -35,11 +35,12 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public List<FacultyResponseDTO> getList(int page, int size) {
 
-    return new ArrayList<FacultyResponseDTO>();
-//        return repository.findAllByNameContainsIgnoreCaseOrderByIdDesc(
-//                        PageRequest.of(page, size)
-//                )
-//                .stream().map((Faculty faculty) -> modelMapper.map(faculty, FacultyResponseDTO.class)).collect(Collectors.toList());
+//    return new ArrayList<FacultyResponseDTO>();
+
+        return repository.findAll(
+                        PageRequest.of(page, size)
+                )
+                .stream().map((Faculty faculty) -> modelMapper.map(faculty, FacultyResponseDTO.class)).collect(Collectors.toList());
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/faculties")
 @AllArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins="*")
 public class FacultyController {
     private final FacultyService service;
 
@@ -22,8 +22,9 @@ public class FacultyController {
             @RequestParam int size,
             @RequestParam(required = false,defaultValue = "") String  name
             ){
-        return service.getList(page,size);
-
+        var test =service.getList(page,size);
+        System.out.println("test = "+ test);
+        return test;
     }
 
 
