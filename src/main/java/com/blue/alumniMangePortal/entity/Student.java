@@ -37,4 +37,7 @@ public class Student extends AlumniUser {
     @OneToOne
     private UploadedFilePath cv;
 
+    @OneToMany
+    private List<JobsApplied> jobsAppliedList;
+
 }
