@@ -5,13 +5,11 @@ import com.alumni.Service.StudentService;
 import com.alumni.dtos.response.StudentResponseDTO;
 import com.alumni.dtos.request.StudentRequestDto;
 import com.alumni.entity.BaseUser;
+import com.alumni.entity.Comment;
 import com.alumni.entity.Role;
 import com.alumni.entity.Student;
 import com.alumni.entity.enums.RoleEnum;
-import com.alumni.repository.AttachmentRepository;
-import com.alumni.repository.BaseUserRepository;
-import com.alumni.repository.RoleRepository;
-import com.alumni.repository.StudentRepository;
+import com.alumni.repository.*;
 import com.alumni.utils.RepositoryUtils;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -35,6 +33,8 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository repository;
 
     private final RoleRepository roleRepository;
+
+    private final CommentRepository commentRepository;
 
     @Autowired
     public AttachmentRepository attachmentRepository;
@@ -60,8 +60,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void create(StudentRequestDto requestDto) {
+        System.out.println("yess1");
+
         Role studentRole = roleRepository.findByName(RoleEnum.STUDENT.toString());
         Student entity= modelMapper.map(requestDto,Student.class);
+        System.out.println("yess");
+
+        System.out.println("yess"+studentRole.getId());
+
         BaseUser baseUser= new BaseUser();
         baseUser.setEmail(requestDto.getEmail());
         baseUser.setPassword(bCryptPasswordEncoder.encode(requestDto.getEmail()));
@@ -100,6 +106,21 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void changePassword(Long id, String password) {
         
+    }
+
+    @Override
+    public Student findByUserName(String s) {
+        return repository.findByUserEmail(s);
+    }
+
+    @Override
+    public void addComment(Long id, Comment comment) {
+        commentRepository.save(comment);
+    }
+
+    @Override
+    public List<Comment> getComments(Long id) {
+        return commentRepository.findAllByStudentId(id);
     }
 
 

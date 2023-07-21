@@ -12,6 +12,18 @@ INSERT INTO role (id, name) VALUES (1, 'admin');
 INSERT INTO role (id, name) VALUES (2, 'faculty');
 INSERT INTO role (id, name) VALUES (3, 'student');
 
+INSERT INTO tag (id, label, color) VALUES
+                                                 (1, 'Information Technology (IT)'),
+                                                 (2, 'Marketing and Advertising'),
+                                                 (3, 'Finance and Accounting'),
+                                                 (4, 'Sales and Business Development'),
+                                                 (5, 'Human Resources (HR)'),
+                                                 (6, 'Healthcare and Medical'),
+                                                 (7, 'Education and Teaching'),
+                                                 (8, 'Engineering and Technology'),
+                                                 (9, 'Creative Arts and Design'),
+                                                 (10, 'Customer Service and Support');
+
 SELECT SETVAL('role_seq',3);
 
 --- insert states
@@ -326,3 +338,15 @@ VALUES
 (248, 50,  'Cincinnati'),
 (249, 50,  'Toledo'),
 (250, 50,  'Akron');
+
+INSERT INTO tag (value, id) VALUES ('Information Technology (IT)', 1);
+INSERT INTO tag (value, id) VALUES ('Marketing and Advertising', 2);
+INSERT INTO tag (value, id) VALUES ('Finance and Accounting', 3);
+INSERT INTO tag (value, id) VALUES ('Sales and Business Development', 4);
+INSERT INTO tag (value, id) VALUES ('Human Resources (HR)', 5);
+INSERT INTO tag (value, id) VALUES ('Healthcare and Medical', 6);
+INSERT INTO tag (value, id) VALUES ('Education and Teaching', 7);
+INSERT INTO tag (value, id) VALUES ('Engineering and Technology', 8);
+INSERT INTO tag (value, id) VALUES ('Creative Arts and Design', 9);
+INSERT INTO tag (value, id) VALUES ('Customer Service and Support', 10);
+

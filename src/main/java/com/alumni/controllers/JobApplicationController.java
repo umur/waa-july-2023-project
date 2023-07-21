@@ -24,8 +24,9 @@ public class JobApplicationController {
             @RequestParam(required = false, defaultValue = "") Long JobId) {
 
         return ResponseEntity.ok(service.getList(page, size, StudentId, JobId));
-
     }
+
+
 
 
 }

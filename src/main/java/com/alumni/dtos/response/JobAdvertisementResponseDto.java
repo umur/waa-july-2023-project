@@ -16,8 +16,12 @@ public class JobAdvertisementResponseDto {
     private String state;
     private String city;
     private String company;
+
+    private String title;
+    private String description;
+    
     private String attachments;
-    private Student postedBy;
+//    private Student postedBy;
     private List<Tag> tags= new ArrayList<>();
 
 }
