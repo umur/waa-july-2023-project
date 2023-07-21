@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/students")
 @RequiredArgsConstructor
+@CrossOrigin
 public class StudentController {
     private final StudentService studentService;
     private final JobsAppliedService jobsAppliedService;
