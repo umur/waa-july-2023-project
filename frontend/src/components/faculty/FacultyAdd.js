@@ -31,7 +31,7 @@ const FacultyAdd = () => {
             confirmButtonText: 'Yes, I want to add another'
           }).then((result) => {
             if (!result.isConfirmed) {
-              navigate('/showFaculties');
+              navigate('/show-faculties');
             }
             resetForm();
           })

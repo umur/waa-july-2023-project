@@ -6,7 +6,7 @@ import FacultyList from './FacultyList';
 
 
 const Faculty = () => {
-    const entity = "faculty";
+    const entity = "Faculty";
     
     const [faculties, setFaculties] = useState([]);
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Faculty = () => {
     }, [])
 
     const handleUpdate = async (id) => {
-        navigate("/updateFaculties/"+id);
+        navigate("/update-faculties/"+id);
     }
 
     const handleDelete = (id) => {

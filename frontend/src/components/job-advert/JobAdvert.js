@@ -2,30 +2,30 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
-import StudentList from './StudentList';
+import JobAdvertList from './JobAdvertList';
 
 
-const Student = () => {
-    const entity = "student";
+const JobAdvert = () => {
+    const entity = "job advert";
     
-    const [students, setStudents] = useState([]);
+    const [jobAdverts, setJobAdverts] = useState([]);
     const navigate = useNavigate();
 
-    const getStudents = async () => {
+    const getJobAdverts = async () => {
         try {
-            const result = await axios.get("/students");
-            setStudents(result.data);
+            const result = await axios.get("/job-adverts");
+            setJobAdverts(result.data);
         } catch (error) {
             console.error(error);
         }
     }
 
     useEffect(() => {
-        getStudents();
+        getJobAdverts();
     }, [])
 
     const handleUpdate = async (id) => {
-        navigate("/update-students/"+id);
+        navigate("/update-job-adverts/"+id);
     }
 
     const handleDelete = (id) => {
@@ -40,13 +40,13 @@ const Student = () => {
         }).then(async(result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`/students/${id}`);
+                    await axios.delete(`/job-adverts/${id}`);
                     Swal.fire(
                         'Success!',
                         `The ${entity} has been deleted successfully.`,
                         'success'
                     )
-                    getStudents();
+                    getJobAdverts();
                 } catch (error) {
                     Swal.fire({
                         icon: 'error',
@@ -62,9 +62,9 @@ const Student = () => {
 
     return ( 
         <>
-            {students && <StudentList students={students} title="All Students" handleUpdate={handleUpdate} handleDelete={handleDelete} />}
+            {jobAdverts && <JobAdvertList jobAdverts={jobAdverts} title="All Job Adverts" handleUpdate={handleUpdate} handleDelete={handleDelete} />}
         </>
      );
 }
  
-export default Student;
+export default JobAdvert;

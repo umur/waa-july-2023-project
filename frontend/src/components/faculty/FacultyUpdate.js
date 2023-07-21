@@ -36,7 +36,7 @@ const FacultyUpdate = () => {
                     text: `An error occurred while fetching the ${entity} with id ${id}, please try again`,
                 })
                 console.error(error);
-                navigate("/showFaculties");
+                navigate("/show-faculties");
             }
             
         }
@@ -56,7 +56,7 @@ const FacultyUpdate = () => {
                 `The ${entity} has been updated successfully.`,
                 'success'
             )
-            navigate("/showFaculties");
+            navigate("/show-faculties");
         } catch (error) {
             Swal.fire({
                 icon: 'error',

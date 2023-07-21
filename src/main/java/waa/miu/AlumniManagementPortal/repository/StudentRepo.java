@@ -12,4 +12,5 @@ public interface StudentRepo extends ListCrudRepository<Student, Long> {
     List<Student> findByAddressCity(String city);
     List<Student> findAllByMajorMajorName(String major);
     List<Student> findAllByFirstName(String name);
+    List<Student> findByStudentId(String studentId);
 }
