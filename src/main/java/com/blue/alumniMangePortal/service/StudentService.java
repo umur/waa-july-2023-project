@@ -1,6 +1,7 @@
 package com.blue.alumniMangePortal.service;
 
 import com.blue.alumniMangePortal.auth.RegisterRequest;
+import com.blue.alumniMangePortal.auth.RegisterStudentRequest;
 import com.blue.alumniMangePortal.entity.JobExperience;
 import com.blue.alumniMangePortal.entity.Student;
 
@@ -24,5 +25,5 @@ public interface StudentService {
     String resetPassword(Student student, String password);
 
     void deleteById(Long id);
-    void addStudent(RegisterRequest request);
+    void addStudent(RegisterStudentRequest request);
 }
