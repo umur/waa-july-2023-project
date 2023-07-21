@@ -2,19 +2,23 @@ package waa.miu.AlumniManagementPortal.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
-@Data
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Student extends AlumniUser {
 
-    private String firstName, lastName, password, email, phone, cv;
 
+   @Id
+//   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
+
+//    private String firstName, lastName, password, email, phone, cv;
+    private String cv,phone;
     private boolean isCurrentlyEmployed, isDeleted;
 
     @JsonManagedReference(value = "student-address")
