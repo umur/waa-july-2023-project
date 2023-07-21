@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/jobAdverts")
+@RequestMapping("/job-adverts")
 @CrossOrigin
 public class JobAdvertController {
 
@@ -45,8 +45,4 @@ public class JobAdvertController {
         return jobAdvertService.findTop10JobsByDateAdded();
     }
 
-    @GetMapping("/findTop10JobsByDateApplied")
-    public List<JobAdvert> findTop10JobsByDateApplied(){
-        return jobAdvertService.findTop10JobsByDateApplied();
-    }
 }

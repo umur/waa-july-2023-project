@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,11 +15,22 @@ public class JobAdvert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String jobName, expectedSalary, jobDescription;
+    private String jobTitle, jobDescription, companyName;
 
-    private LocalDateTime dateAdded, dateApplied;
+    private double expectedSalary;
+
+    private LocalDateTime dateAdded;
 
     @JsonBackReference(value = "student-jobAdverts")
     @ManyToOne
     private Student student;
+
+//    @OneToOne
+//    private Address address;
+
+//    @ManyToMany
+//    private List<Student> applicants;
+
+//    @ManyToMany
+//    private List<Tag> tags;
 }

@@ -20,17 +20,17 @@ public class Address {
 
     private String zipcode;
 
-    @JsonBackReference(value = "faculty-address")
-    @OneToOne
-    private Faculty faculty;
-
-    @JsonBackReference(value = "currentWorkPlace-address")
-    @OneToOne
-    private CurrentWorkPlace currentWorkPlace;
-
-    @JsonBackReference(value = "student-address")
-    @OneToOne
-    private Student student;
+//    @JsonBackReference(value = "faculty-address")
+//    @OneToOne
+//    private Faculty faculty;
+//
+//    @JsonBackReference(value = "currentWorkPlace-address")
+//    @OneToOne
+//    private CurrentWorkPlace currentWorkPlace;
+//
+//    @JsonBackReference(value = "student-address")
+//    @OneToOne
+//    private Student student;
 
 
 }

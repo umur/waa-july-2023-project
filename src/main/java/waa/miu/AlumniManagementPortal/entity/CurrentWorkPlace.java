@@ -19,7 +19,8 @@ public class CurrentWorkPlace {
     @OneToMany(mappedBy = "currentWorkPlace")
     private List<Student> students;
 
-    @JsonManagedReference(value = "currentWorkPlace-address")
-    @OneToOne(mappedBy = "currentWorkPlace")
+//    @JsonManagedReference(value = "currentWorkPlace-address")
+//    @OneToOne(mappedBy = "currentWorkPlace")
+    @OneToOne
     private Address address;
 }

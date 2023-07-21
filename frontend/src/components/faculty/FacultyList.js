@@ -1,9 +1,18 @@
+import { Link } from "react-router-dom";
+
 const FacultyList = ({ faculties, title, handleUpdate, handleDelete}) => {
 
     return ( 
         <>
             <div>
-                <h2>{title}</h2>
+                <div className="d-flex justify-content-between">
+                    <div>
+                        <h2>{title}</h2>
+                    </div>
+                    <div>
+                        <Link to="/create-faculties" className="btn btn-md btn-success">Add new Faculty</Link>
+                    </div>
+                </div>
                 <div className="mt-5">
                     <table className="table">
                     <thead>
@@ -20,9 +29,9 @@ const FacultyList = ({ faculties, title, handleUpdate, handleDelete}) => {
                     </thead>
                     <tbody>
                         {
-                        faculties.map(faculty => (
+                        faculties.map((faculty, index) => (
                             <tr key={faculty.id}>
-                            <td>{faculty.id}</td>
+                            <td>{index+1}</td>
                             <td>{faculty.firstName}</td>
                             <td>{faculty.lastName}</td>
                             <td>{faculty.email}</td>

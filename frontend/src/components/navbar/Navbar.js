@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
   return (
     <>
       <div className="container">
@@ -17,26 +18,42 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item nav-link">
-              <Link to="/createStudents" className="nav-link">
-                Add new Student
+              <Link to="/apply-to-jobs" className="nav-link">
+                Apply to Jobs
               </Link>
             </li>
             <li className="nav-item nav-link">
-              <Link to="/showFaculties" className="nav-link">
+              <Link to="/show-faculties" className="nav-link">
                 Show Faculties
               </Link>
             </li>
             <li className="nav-item nav-link">
-              <Link to="/createFaculties" className="nav-link">
-                Add new Faculty
+              <Link to="/show-job-adverts" className="nav-link">
+                Show Job Adverts
               </Link>
             </li>
             <li className="nav-item nav-link">
+              <Link to="/dashboard" className="nav-link">
+                Dashboard
+              </Link>
+            </li>
+            <li className="nav-item nav-link">
+              <Link to="/sign-in" className="nav-link">
+                Sign In
+              </Link>
+            </li>
+            <li className="nav-item nav-link">
+              <Link to="/sign-up" className="nav-link">
+                Sign Up
+              </Link>
+            </li>
+            {/* <li className="nav-item nav-link">
               <Link to="http://localhost:8080/swagger-ui/index.html" target="_blank" className="nav-link">
                 Docs
               </Link>
-            </li>
+            </li> */}
           </ul>
+
         </header>
       </div>
     </>

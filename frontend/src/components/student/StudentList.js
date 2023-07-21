@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
 
@@ -10,8 +11,12 @@ const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
           const links = {};
           for (const student of students) {
             try {
-                let cvString = extractFileName(student.cv);
-                links[student.id] = cvString;
+                if(student.cv == null){
+                    links[student.id] = null;
+                } else {
+                    let cvString = extractFileName(student.cv);
+                    links[student.id] = cvString;
+                }
             } catch (error) {
                 console.error(error);
                 links[student.id] = null;
@@ -41,7 +46,16 @@ const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
     return ( 
         <>
             <div>
-                <h2>{title}</h2>
+                <div className="d-flex justify-content-between">
+                    <div>
+                        <h2>{title}</h2>
+                    </div>
+                    <div>
+                        <Link to="/create-students" className="btn btn-md btn-success">Add new Student</Link>
+                    </div>
+                </div>
+                
+
                 <div className="mt-5">
                     <table className="table">
                     <thead>
@@ -59,9 +73,9 @@ const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
                     </thead>
                     <tbody>
                         {
-                        students.map(student => (
+                        students.map((student, index) => (
                             <tr key={student.id}>
-                            <td>{student.id}</td>
+                            <td>{index+1}</td>
                             <td>{student.firstName}</td>
                             <td>{student.lastName}</td>
                             <td>{student.email}</td>

@@ -3,28 +3,25 @@ package waa.miu.AlumniManagementPortal.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
-@Data
-public class Faculty {
+@Getter
+@Setter
+public class Faculty extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String firstName, lastName, password, email, phone, title;
-
-    private boolean isAdmin, isDeleted;
+    private String title, isAdmin;
 
     @JsonBackReference(value = "faculty-department")
     @ManyToOne
     private Department department;
 
-    @JsonManagedReference(value = "faculty-address")
-    @OneToOne(mappedBy = "faculty")
+//    @JsonManagedReference(value = "faculty-address")
+//    @OneToOne(mappedBy = "faculty")
+    @OneToOne
     private Address address;
 
     @JsonManagedReference(value = "faculty-comment")

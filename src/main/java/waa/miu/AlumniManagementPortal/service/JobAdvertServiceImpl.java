@@ -29,17 +29,19 @@ public class JobAdvertServiceImpl implements JobAdvertService{
 
     @Override
     public JobAdvert create(JobAdvert jobAdvert) {
-        jobAdvert.setDateAdded(LocalDateTime.now());
         return jobAdvertRepo.save(jobAdvert);
     }
 
     @Override
     public JobAdvert update(Long id, JobAdvert jobAdvert) {
         JobAdvert existingJobAdvert = findById(id);
-        existingJobAdvert.setJobName(jobAdvert.getJobName());
+        existingJobAdvert.setJobTitle(jobAdvert.getJobTitle());
         existingJobAdvert.setExpectedSalary(jobAdvert.getExpectedSalary());
         existingJobAdvert.setJobDescription(jobAdvert.getJobDescription());
-        existingJobAdvert.setStudent(jobAdvert.getStudent());
+        existingJobAdvert.setCompanyName(jobAdvert.getCompanyName());
+//        existingJobAdvert.setStudent(jobAdvert.getStudent());
+//        existingJobAdvert.setAddress(jobAdvert.getAddress());
+//        existingJobAdvert.setApplicants(jobAdvert.getApplicants());
         return jobAdvertRepo.save(existingJobAdvert);
     }
 
@@ -53,8 +55,4 @@ public class JobAdvertServiceImpl implements JobAdvertService{
         return jobAdvertRepo.findTop10ByOrderByDateAddedDesc();
     }
 
-    @Override
-    public List<JobAdvert> findTop10JobsByDateApplied(){
-        return jobAdvertRepo.findTop10ByOrderByDateAppliedDesc();
-    }
 }

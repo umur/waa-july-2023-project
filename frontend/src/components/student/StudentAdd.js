@@ -23,7 +23,6 @@ const StudentAdd = () => {
           // convert the cv to base64
           const base64CV = await convertFileToBase64(cv);
           const student = { firstName, lastName, email, phone, cv: base64CV, isCurrentlyEmployed };
-          console.log(student);
           await addStudent(student);
           Swal.fire({
             title: `${entity} added successfully`,
@@ -112,8 +111,8 @@ const StudentAdd = () => {
                 <select className="custom-select d-block w-100" id="employmentStatusInput" value={isCurrentlyEmployed} 
                 onChange={e => setIsCurrentlyEmployed(e.target.value)}>
                     <option value="select one">Select</option>
-                    <option value={true}>Yes, I am currently employed</option>
-                    <option value={false}>No, I am not currently employed</option>
+                    <option value="Yes">Yes, I am currently employed</option>
+                    <option value="No">No, I am not currently employed</option>
                   </select>
                 </div>
 

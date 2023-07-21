@@ -40,8 +40,6 @@ public class FacultyServiceImpl implements FacultyService{
             existingFaculty.setEmail(faculty.getEmail());
             existingFaculty.setPhone(faculty.getPhone());
             existingFaculty.setTitle(faculty.getTitle());
-            existingFaculty.setAdmin(faculty.isAdmin());
-            existingFaculty.setDeleted(faculty.isDeleted());
             existingFaculty.setDepartment(faculty.getDepartment());
             existingFaculty.setAddress(faculty.getAddress());
             existingFaculty.setComments(faculty.getComments());
