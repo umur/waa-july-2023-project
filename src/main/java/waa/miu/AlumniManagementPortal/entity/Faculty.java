@@ -8,10 +8,10 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Entity
-@Getter
 @Setter
-public class Faculty extends User {
+@Getter
+@Entity
+public class Faculty extends AlumniUser {
 
     private String title, isAdmin;
 
