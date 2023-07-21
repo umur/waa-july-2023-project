@@ -21,6 +21,8 @@ public class AlumniUser {
     @JsonIgnore
     private String password;
     private String email;
+    private String phone;
+    private String isDeleted;
     @Enumerated(EnumType.STRING)
     private Role role;
 

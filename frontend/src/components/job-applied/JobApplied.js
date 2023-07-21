@@ -10,7 +10,11 @@ const ApplyToJobs = () => {
 
     const getJobAdverts = async () => {
         try {
-            const result = await axios.get("/job-adverts");
+            const result = await axios.get("/job-adverts", {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                }
+              });
             setJobAdverts(result.data);
         } catch (error) {
             console.error(error);
@@ -34,7 +38,11 @@ const ApplyToJobs = () => {
             if (result.isConfirmed) {
                 try {
                     const studentId = 2;
-                    await axios.put(`/jobs-applied/${id}`, studentId);
+                    await axios.put(`/jobs-applied/${id}`, studentId, {
+                        headers: {
+                          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                        }
+                      });
                     Swal.fire(
                         'Success!',
                         `You have successfully applied to this ${entity}.`,

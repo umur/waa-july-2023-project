@@ -34,7 +34,11 @@ const StudentList = ({ students, title, handleUpdate, handleDelete}) => {
       };
 
       const handleDownload = async (fileName) => {
-        let res = await axios.get(`/downloads/${fileName}`, { responseType: "blob" });
+        let res = await axios.get(`/downloads/${fileName}`, { responseType: "blob" }, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            }
+          });
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement("a");
         link.href = url;
