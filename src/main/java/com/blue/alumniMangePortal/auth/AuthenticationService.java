@@ -2,12 +2,13 @@ package com.blue.alumniMangePortal.auth;
 
 import com.blue.alumniMangePortal.configuration.JwtService;
 import com.blue.alumniMangePortal.dto.RegisterStudent;
-import com.blue.alumniMangePortal.entity.AlumniUser;
+//import com.blue.alumniMangePortal.entity.AlumniUser;
 import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.entity.Student;
 import com.blue.alumniMangePortal.repository.AlumniUserRepo;
 import com.blue.alumniMangePortal.repository.FacultyRepo;
 import com.blue.alumniMangePortal.repository.StudentRepo;
+import com.blue.alumniMangePortal.service.FacultyService;
 import com.blue.alumniMangePortal.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +29,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final StudentRepo studentRepo;
     private final UserDetailsService userDetailsService;
+    private final FacultyRepo facultyRepo;
+    private final FacultyService facultyService;
 
 //    public AuthenticationResponse registerStudent(RegisterStudent registerStudent) {
 //        var student = Student.builder()
@@ -51,14 +54,20 @@ public class AuthenticationService {
 ////        return null;
 //    }
 
-    public AuthenticationResponse registerFaculty(RegisterRequest request) {
+    public void registerFaculty(RegisterRequest request) {
 //        String role = request.getRole();
 //        var al =
-        var alumniUser = AlumniUser.builder()
-                .firstName(request.getFirst_name())
-                .lastName(request.getLast_name())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+        Faculty faculty = new Faculty();
+        faculty.setFirstName(request.getFirst_name());
+        faculty.setLastName(request.getLast_name());
+        faculty.setEmail(request.getEmail());
+        faculty.setPassword(passwordEncoder.encode(request.getPassword()));
+        faculty.setRole(request.getRole());
+//        var alumniUser = Faculty.builder();
+//                .firstName(request.getFirst_name())
+//                .lastName(request.getLast_name())
+//                .email(request.getEmail())
+//                .password(passwordEncoder.encode(request.getPassword()))
 //                .phone_number(request.getPhone_number())
 //                .department(request.getDepartment())
 //                .title(request.getTitle())
@@ -66,15 +75,15 @@ public class AuthenticationService {
 //                .address(request.getAddress())
 //                .is_admin(true)
 //                .is_deleted(false)
-                .role(request.getRole())
-                .build();
-        alumniUserRepo.save(alumniUser);
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(alumniUser.getEmail());
-        var jwtToken = jwtService.generateToken(userDetails);
-        System.out.println(jwtToken);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+//                .role(request.getRole())
+//                .build();
+//        facultyService.addFaculty(faculty);
+//        final UserDetails userDetails = userDetailsService.loadUserByUsername(faculty.getEmail());
+//        var jwtToken = jwtService.generateToken(userDetails);
+//        System.out.println(jwtToken);
+//        return AuthenticationResponse.builder()
+//                .token(jwtToken)
+//                .build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

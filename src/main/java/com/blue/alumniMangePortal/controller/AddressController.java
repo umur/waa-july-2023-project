@@ -10,11 +10,12 @@ import java.util.List;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
+@CrossOrigin
 public class AddressController {
     private final AddressService addressService;
 
     @PostMapping("/addresses")
-    public void addAddress(Address address){
+    public void addAddress(@RequestBody Address address){
 
         addressService.saveAddress(address);
     }

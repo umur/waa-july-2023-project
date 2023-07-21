@@ -1,5 +1,7 @@
 package com.blue.alumniMangePortal.service;
 
+import com.blue.alumniMangePortal.auth.RegisterRequest;
+import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.entity.JobExperience;
 import com.blue.alumniMangePortal.entity.Student;
 import com.blue.alumniMangePortal.entity.UploadedFilePath;
@@ -10,6 +12,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.tika.Tika;
 import org.apache.tika.mime.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 //import java.awt.*;
@@ -28,6 +31,7 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepo studentRepo;
     private final JobExperienceRepo jobExperienceRepo;
     private final FilePathUploadRepo filePathUploadRepo;
+    private final PasswordEncoder passwordEncoder;
 
     //    private final AddressRepo addressRepo;
     @Override
@@ -167,6 +171,18 @@ public class StudentServiceImpl implements StudentService {
             Student s= std.get();
             s.setDeleted(true);
         }
+    }
+
+    @Override
+    public void addStudent(RegisterRequest request) {
+        Student newStudent = new Student();
+        newStudent.setFirstName(request.getFirst_name());
+        newStudent.setLastName(request.getLast_name());
+        newStudent.setEmail(request.getEmail());
+        newStudent.setPassword(passwordEncoder.encode(request.getPassword()));
+        newStudent.setRole(request.getRole());
+
+        studentRepo.save(newStudent);
     }
 }
 
