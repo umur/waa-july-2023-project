@@ -20,7 +20,7 @@ public class AttachmentServiceimpl implements AttachmentService {
     @Autowired
     public AttachmentRepository attachmentRepository;
 
-    private final String STORAGE_PATH = "/Users/poweruser/Desktop/waa-project/storage/";
+    private final String STORAGE_PATH = "/storage/";
     private final String API_HOST = "http://localhost:8080/api/v1/attachments";
 
 
@@ -28,8 +28,10 @@ public class AttachmentServiceimpl implements AttachmentService {
     public AttachmentUploadResponseDTO uploadAttachment(MultipartFile file) throws IOException {
 
         int hash_code = file.hashCode();
+        String  storagePath = System.getProperty("user.dir") + STORAGE_PATH;
+        System.out.println(storagePath);
 
-        String filePath = STORAGE_PATH + file.getOriginalFilename() + hash_code;
+        String filePath = storagePath + file.getOriginalFilename() + hash_code;
         String fileName = file.getOriginalFilename() + hash_code;
 
         String url = API_HOST + "/" + fileName;
