@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
+@CrossOrigin
 public class AddressController {
     private final AddressService addressService;
 

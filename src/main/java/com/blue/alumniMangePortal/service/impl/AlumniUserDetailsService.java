@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class AlumniUserDetailsService implements UserDetailsService {
 //    private final FacultyRepo facultyRepo;
 private final AlumniUserRepo alumniUserRepo;
+//private final FacultyRepo facultyRepo;
     public AlumniUserDetailsService(AlumniUserRepo alumniUserRepo) {
         this.alumniUserRepo = alumniUserRepo;
+//        this.facultyRepo = facultyRepo;
 //        this.facultyRepo = facultyRepo;
     }
 

@@ -60,8 +60,8 @@ export const FacultyEdit = () => {
               width="150px"
               src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
             />
-            <span className="font-weight-bold">{faculty.firstName}</span>
-            <span className="text-black-50">edogaru@mail.com.my</span>
+            <span className="font-weight-bold">{faculty.firstName} {faculty.lastName}</span>
+            <span className="text-black-50">{faculty.email}</span>
             <span> </span>
           </div>
         </div>
@@ -76,7 +76,7 @@ export const FacultyEdit = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="first name"
+                  placeholder={faculty.firstName}
                   defaultValue=""
                 />
               </div>
@@ -86,39 +86,48 @@ export const FacultyEdit = () => {
                   type="text"
                   className="form-control"
                   defaultValue=""
-                  placeholder="surname"
+                  placeholder={faculty.lastName}
                 />
               </div>
             </div>
+            <div className="col-md-12">
+                <label className="labels">Email ID</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder={faculty.email}
+                  defaultValue=""
+                />
+              </div>
             <div className="row mt-3">
               <div className="col-md-12">
                 <label className="labels">Mobile Number</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="enter phone number"
+                  placeholder={faculty.phone_number}
                   defaultValue=""
                 />
               </div>
               <div className="col-md-12">
-                <label className="labels">Address Line 1</label>
+                <label className="labels">Street</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="enter address line 1"
+                  placeholder="Street"
                   defaultValue=""
                 />
               </div>
               <div className="col-md-12">
-                <label className="labels">Address Line 2</label>
+                <label className="labels">Zip</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="enter address line 2"
+                  placeholder="Zip"
                   defaultValue=""
                 />
               </div>
-              <div className="col-md-12">
+              {/* <div className="col-md-12">
                 <label className="labels">Postcode</label>
                 <input
                   type="text"
@@ -126,8 +135,8 @@ export const FacultyEdit = () => {
                   placeholder="enter address line 2"
                   defaultValue=""
                 />
-              </div>
-              <div className="col-md-12">
+              </div> */}
+              {/* <div className="col-md-12">
                 <label className="labels">State</label>
                 <input
                   type="text"
@@ -135,8 +144,8 @@ export const FacultyEdit = () => {
                   placeholder="enter address line 2"
                   defaultValue=""
                 />
-              </div>
-              <div className="col-md-12">
+              </div> */}
+              {/* <div className="col-md-12">
                 <label className="labels">Area</label>
                 <input
                   type="text"
@@ -144,33 +153,25 @@ export const FacultyEdit = () => {
                   placeholder="enter address line 2"
                   defaultValue=""
                 />
-              </div>
-              <div className="col-md-12">
-                <label className="labels">Email ID</label>
+              </div> */}
+              
+              {/* <div className="col-md-12">
+                <label className="labels">Title</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="enter email id"
+                  placeholder={faculty.title}
                   defaultValue=""
                 />
-              </div>
-              <div className="col-md-12">
-                <label className="labels">Education</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="education"
-                  defaultValue=""
-                />
-              </div>
+              </div> */}
             </div>
             <div className="row mt-3">
               <div className="col-md-6">
-                <label className="labels">Country</label>
+                <label className="labels">City</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="country"
+                  placeholder="city"
                   defaultValue=""
                 />
               </div>
@@ -194,28 +195,28 @@ export const FacultyEdit = () => {
         <div className="col-md-4">
           <div className="p-3 py-5">
             <div className="d-flex justify-content-between align-items-center experience">
-              <span>Edit Experience</span>
+              <span>Edit Department</span>
               <span className="border px-3 p-1 add-experience">
-                <i className="fa fa-plus"></i>&nbsp;Experience
+                <i className="fa fa-plus"></i>&nbsp;Department
               </span>
             </div>
             <br />
             <div className="col-md-12">
-              <label className="labels">Experience in Designing</label>
+              <label className="labels">Department</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="experience"
+                placeholder={faculty.department}
                 defaultValue=""
               />
             </div>{" "}
             <br />
             <div className="col-md-12">
-              <label className="labels">Additional Details</label>
+              <label className="labels">Title</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="additional details"
+                placeholder={faculty.title}
                 defaultValue=""
               />
             </div>

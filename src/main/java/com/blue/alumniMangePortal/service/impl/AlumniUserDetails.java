@@ -1,5 +1,6 @@
 package com.blue.alumniMangePortal.service.impl;
 
+//import com.blue.alumniMangePortal.entity.AlumniUser;
 import com.blue.alumniMangePortal.entity.AlumniUser;
 import com.blue.alumniMangePortal.entity.Faculty;
 import com.blue.alumniMangePortal.entity.Role;

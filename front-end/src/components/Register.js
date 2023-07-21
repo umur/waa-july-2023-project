@@ -16,7 +16,7 @@ import { Navigate } from "react-router-dom";
   const submit = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:8080/auth/register", {
+    await axios.post("http://localhost:8080/auth/register/faculty", {
       name,
       email,
       password,
