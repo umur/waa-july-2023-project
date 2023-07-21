@@ -33,7 +33,6 @@ public class AttachmentServiceimpl implements AttachmentService {
         String fileName = file.getOriginalFilename() + hash_code;
 
         String url = API_HOST + "/" + fileName;
-        System.out.println(url);
 
         Attachment attachment = new Attachment ();
 
@@ -58,7 +57,6 @@ public class AttachmentServiceimpl implements AttachmentService {
 
     @Override
     public AttachmentDTO getAttachment(String name) throws IOException {
-        System.out.println(name);
         Optional<Attachment> attachment = attachmentRepository.findByName(name);
         String filePath = attachment.get().getFilePath();
         byte[] data = Files.readAllBytes(new File(filePath).toPath());
