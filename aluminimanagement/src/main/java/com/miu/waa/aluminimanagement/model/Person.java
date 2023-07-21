@@ -10,30 +10,27 @@ import java.util.List;
 
 @Entity
 @Data
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @Column(unique = true)
-    private String email;
-    private String firstName;
+    private int id;
+    @Column(nullable = false)
+    private String firstname;
+    @Column(nullable = false)
     private String lastname;
+    @Column(unique = true, nullable = false)
+    private String username;
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false)
+    private boolean isActive = true;
+    @OneToOne
+    private Address address;
 
-    private Boolean is_deleted = false;
-    private Instant LastLoggedInAt;
-
-    private String address;
-    private String state;
-    private String city;
-    private String zipCode;
-
-    @ManyToMany()
-    private List<Tag> tags;
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<Role> roles;
 
 }

@@ -1,6 +1,6 @@
 package com.miu.waa.aluminimanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,18 +10,12 @@ import java.util.List;
 @Data
 @DiscriminatorValue("student")
 public class Student extends  Person{
+    private String major;
+    private int graduatedYear;
+    private int universityId;
+    private double gpa;
 
-    @OneToOne
-    @JoinColumn(name="department_id")
-    private Department department;
-    private Double gpa;
-
-    @ManyToMany(mappedBy = "applied", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<JobAdvertisement> appliedTo;
-
-    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Comment> comments;
-
+    @OneToMany(mappedBy = "student")
+    @JsonBackReference(value = "student-jobApplication")
+    private List<JobApplication> jobApplications;
 }

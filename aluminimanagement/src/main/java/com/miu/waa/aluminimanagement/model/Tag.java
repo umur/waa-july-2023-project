@@ -1,22 +1,17 @@
 package com.miu.waa.aluminimanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-    private String name;
+    private int id;
 
-    @ManyToMany(mappedBy="tags", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Person> users = new ArrayList<>();
+    @Column(nullable = false, unique = true)
+    private String tag;
+
 }
