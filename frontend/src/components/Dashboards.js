@@ -1,9 +1,11 @@
 import {Navigate} from "react-router-dom";
+import NumberOfStudentsPerState from "./NumberOfStudentsPerState";
+import NumberOfStudentsPerCity from "./NumberOfStudentsPerCity";
 
 export default function Dashboards() {
     const useAuth = () => {
         let user = JSON.parse(localStorage.getItem('loggedInUser') || String("{}"))
-        return (user && user.accessToken && user.roles);
+        return (user != null && user.accessToken != null && user.roles != null);
     }
     const authed = useAuth();
 
@@ -12,6 +14,13 @@ export default function Dashboards() {
         return <Navigate to="/sign-in" replace />;
     }
     return (
-        <div></div>
+        <div>
+        <div class="usersTable">
+            <NumberOfStudentsPerState/>
+        </div>
+            <div className="usersTable">
+                <NumberOfStudentsPerCity/>
+            </div>
+        </div>
     )
 }
