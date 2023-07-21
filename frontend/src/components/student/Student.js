@@ -13,7 +13,11 @@ const Student = () => {
 
     const getStudents = async () => {
         try {
-            const result = await axios.get("/students");
+            const result = await axios.get("/students", {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                }
+            });
             setStudents(result.data);
         } catch (error) {
             console.error(error);

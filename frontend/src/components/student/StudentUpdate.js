@@ -24,7 +24,11 @@ const StudentUpdate = () => {
     useEffect(() => {
         const getStudent = async () => {
             try {
-                const result = await axios.get(`/students/${id}`);
+                const result = await axios.get(`/students/${id}`, {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                    }
+                  });
                 setStudent(result.data);
                 setFirstName(result.data.firstName);
                 setLastName(result.data.lastName);
@@ -95,7 +99,11 @@ const StudentUpdate = () => {
     }
 
     const updateStudent = async (updatedStudent) => {
-        await axios.put(`/students/${id}`, updatedStudent);
+        await axios.put(`/students/${id}`, updatedStudent, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            }
+        });
     }
 
     return (

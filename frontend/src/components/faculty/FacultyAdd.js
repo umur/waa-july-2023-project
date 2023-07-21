@@ -48,7 +48,11 @@ const FacultyAdd = () => {
     }
 
     const addFaculty = async (faculty) => {
-        await axios.post("/faculties", faculty);
+        await axios.post("/faculties", faculty, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+          }
+        });
     }
 
     const resetForm = () => {

@@ -22,7 +22,11 @@ const FacultyUpdate = () => {
     useEffect(() => {
         const getFaculty = async () => {
             try {
-                const result = await axios.get(`/faculties/${id}`);
+                const result = await axios.get(`/faculties/${id}`, {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                    }
+                  });
                 setFaculty(result.data);
                 setFirstName(result.data.firstName);
                 setLastName(result.data.lastName);
@@ -70,7 +74,11 @@ const FacultyUpdate = () => {
     }
 
     const updateFaculty = async (updatedFaculty) => {
-        await axios.put(`/faculties/${id}`, updatedFaculty);
+        await axios.put(`/faculties/${id}`, updatedFaculty, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            }
+          });
     }
 
     return (

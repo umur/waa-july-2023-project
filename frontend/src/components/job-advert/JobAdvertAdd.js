@@ -47,7 +47,11 @@ const JobAdvertAdd = () => {
     }
 
     const addJobAdvert = async (jobAdvert) => {
-        await axios.post("/job-adverts", jobAdvert);
+        await axios.post("/job-adverts", jobAdvert, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+          }
+        });
     }
 
     const resetForm = () => {
