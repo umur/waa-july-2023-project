@@ -1,14 +1,18 @@
 package com.blue.alumniMangePortal.service;
 
+import com.blue.alumniMangePortal.controller.AddressController;
 import com.blue.alumniMangePortal.entity.Address;
 import com.blue.alumniMangePortal.repository.AddressRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
     private final AddressRepo addressRepo;
@@ -26,8 +30,13 @@ public class AddressServiceImpl implements AddressService {
         return null;
     }
     public Address saveAddress(Address address){
-        addressRepo.save(address);
-        return address;
+        Address address1=new Address();
+        address1.setCity(address.getCity());
+        address1.setZip(address.getZip());
+        address1.setState(address.getState());
+        address1.setStreet(address.getStreet());
+        addressRepo.save(address1);
+        return address1;
     }
     public Address updateAddress(long id,Address address){
         Optional<Address> add=addressRepo.findById(id);
