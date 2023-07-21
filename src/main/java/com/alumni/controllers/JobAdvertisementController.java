@@ -2,11 +2,15 @@ package com.alumni.controllers;
 
 
 import com.alumni.Service.JobAdvertisementService;
-import com.alumni.Service.StudentService;
+import com.alumni.Service.JobApplicationService;
+import com.alumni.Service.JwtService;
 import com.alumni.dtos.request.JobAdvertisementRequestDto;
-import com.alumni.dtos.request.StudentRequestDto;
 import com.alumni.dtos.response.JobAdvertisementResponseDto;
-import com.alumni.dtos.response.StudentResponseDTO;
+import com.alumni.entity.Comment;
+import com.alumni.entity.JobAdvertisement;
+import com.alumni.entity.JobApplication;
+import com.alumni.entity.Student;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +22,9 @@ import java.util.List;
 @CrossOrigin
 public class JobAdvertisementController {
     private final JobAdvertisementService service;
+    private final JobApplicationService jobApplicationService;
+
+
 
 
     @GetMapping
@@ -57,6 +64,22 @@ public class JobAdvertisementController {
                        @RequestBody JobAdvertisementRequestDto requestDto){
         service.put(id,requestDto);
     }
+
+
+
+    @GetMapping("/{id}/applications")
+    public List<JobApplication> getJobApplications(@PathVariable(name = "id") Long id){
+        return jobApplicationService.getByJob(id);
+    }
+
+    @PostMapping("/{id}/applications")
+    public void addJobApplication(@PathVariable(name = "id") Long id, HttpServletRequest request){
+
+
+         jobApplicationService.createFromJob(id,request);
+    }
+
+
 
 
 

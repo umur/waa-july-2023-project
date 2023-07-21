@@ -21,7 +21,7 @@ public class JobAdvertisementResponseDto {
     private String description;
     
     private String attachments;
-    private Student postedBy;
+//    private Student postedBy;
     private List<Tag> tags= new ArrayList<>();
 
 }

@@ -19,6 +19,6 @@ public class Comment {
     @ManyToOne
     private Faculty faculty;
 
-    private String body;
+    private String comment;
 
 }

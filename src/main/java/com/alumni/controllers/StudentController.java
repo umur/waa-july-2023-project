@@ -4,6 +4,7 @@ package com.alumni.controllers;
 import com.alumni.Service.StudentService;
 import com.alumni.dtos.response.StudentResponseDTO;
 import com.alumni.dtos.request.StudentRequestDto;
+import com.alumni.entity.Comment;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,6 +61,16 @@ public class StudentController {
         service.put(id,requestDto);
     }
 
+    @GetMapping("/{id}/comments")
+    public List<Comment> getComments(@PathVariable(name = "id") Long id){
+        return service.getComments(id);
+    }
+
+    @PostMapping("/{id}/comments")
+    public void addJobApplication(@PathVariable(name = "id") Long id,@RequestBody Comment comment){
+
+        service.addComment(id,comment);
+    }
 
 
 }

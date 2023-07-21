@@ -338,3 +338,15 @@ VALUES
 (248, 50,  'Cincinnati'),
 (249, 50,  'Toledo'),
 (250, 50,  'Akron');
+
+INSERT INTO tag (value, id) VALUES ('Information Technology (IT)', 1);
+INSERT INTO tag (value, id) VALUES ('Marketing and Advertising', 2);
+INSERT INTO tag (value, id) VALUES ('Finance and Accounting', 3);
+INSERT INTO tag (value, id) VALUES ('Sales and Business Development', 4);
+INSERT INTO tag (value, id) VALUES ('Human Resources (HR)', 5);
+INSERT INTO tag (value, id) VALUES ('Healthcare and Medical', 6);
+INSERT INTO tag (value, id) VALUES ('Education and Teaching', 7);
+INSERT INTO tag (value, id) VALUES ('Engineering and Technology', 8);
+INSERT INTO tag (value, id) VALUES ('Creative Arts and Design', 9);
+INSERT INTO tag (value, id) VALUES ('Customer Service and Support', 10);
+

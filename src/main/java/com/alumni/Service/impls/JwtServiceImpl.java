@@ -18,10 +18,14 @@ public class JwtServiceImpl implements JwtService {
     public static final String SECRET_KEY = "nUz6Xa4gewX07SQm7bCigUmfQ0KkeuJV1234567890agdfh";
     private final long ACCESS_TOKEN_EXPIRATION = 1900000; // 15 * 60 * 1000
 
+
+
     @Override
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+
+
 
     @Override
     public String generateToken(BaseUser baseUser) {
