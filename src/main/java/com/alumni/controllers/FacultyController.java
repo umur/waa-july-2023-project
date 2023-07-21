@@ -22,9 +22,7 @@ public class FacultyController {
             @RequestParam int size,
             @RequestParam(required = false,defaultValue = "") String  name
             ){
-        var test =service.getList(page,size);
-        System.out.println("test = "+ test);
-        return test;
+        return service.getList(page,size);
     }
 
 
@@ -35,6 +33,7 @@ public class FacultyController {
 
     @GetMapping("/{id}")
     public FacultyResponseDTO findById(@PathVariable(name = "id") Long id){
+        System.out.println("findById"+ service.findById(id));
         return service.findById(id);
     }
 

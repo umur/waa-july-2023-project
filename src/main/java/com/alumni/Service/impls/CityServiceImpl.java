@@ -3,7 +3,10 @@ package com.alumni.Service.impls;
 import com.alumni.Service.CityService;
 import com.alumni.dtos.response.CityResponseDTO;
 import com.alumni.entity.JobApplication;
+import com.alumni.entity.Role;
+import com.alumni.entity.enums.RoleEnum;
 import com.alumni.repository.CityRepository;
+import com.alumni.repository.RoleRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -33,5 +36,7 @@ public class CityServiceImpl implements CityService {
     public List<CityResponseDTO> FindAllByStateId(Long stateId){
         return repository.findAllByStateId(stateId).stream().map(city -> modelMapper.map(city, CityResponseDTO.class)).collect(Collectors.toList());
     }
+
+
 
 }

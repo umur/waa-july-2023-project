@@ -34,8 +34,9 @@ public class SecurityConfiguration {
                             request.requestMatchers("/api/v1/auth/**").permitAll();
                             request.requestMatchers("/api/v1/cities/**").permitAll();
                             request.requestMatchers("/api/v1/states/**").permitAll();
+                            request.requestMatchers("/api/v1/**").permitAll();
 
-                            request.anyRequest().authenticated();
+                                request.anyRequest().permitAll();
                         }
                 )
                 .sessionManagement(sessionManagement ->

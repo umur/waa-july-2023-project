@@ -11,7 +11,7 @@ import org.springframework.web.servlet.function.EntityResponse;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="*")
 @RequestMapping("/api/v1/cities")
 @AllArgsConstructor
 public class CityController {

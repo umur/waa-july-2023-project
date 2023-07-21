@@ -39,8 +39,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String userEmail;
 
         String jwt = extractTokenFromRequest(request);
-
-        System.out.println("jwt =" +jwt);
         if (jwt == null) {
             filterChain.doFilter(request, response);
             return;
@@ -51,11 +49,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             userEmail = jwtService.extractUserName(jwt);
             if (userEmail == null || SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.UserDetailsService.loadUserByUsername(userEmail);
-                System.out.println("isTokenValid");
 
                 if (jwtService.isTokenValid(jwt, userDetails)) {
-                    System.out.println("valid");
-
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
@@ -68,9 +63,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }catch (ExpiredJwtException e){
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
 //            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid JWT token");
-            System.out.println("errorrr"+ e.toString());
         }catch (Exception e){
-            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid JWT token");
+            System.out.println("error" + e);
+
+//            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid JWT token");
         }
 
 

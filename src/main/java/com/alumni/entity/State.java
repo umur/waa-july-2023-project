@@ -1,6 +1,7 @@
 package com.alumni.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,6 +25,7 @@ public class State {
     private Long id;
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "state")
     private List<City> cities;
 }
