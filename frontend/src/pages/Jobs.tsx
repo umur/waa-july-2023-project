@@ -33,6 +33,7 @@ type formType = z.infer<typeof schema>;
 
 const Jobs: FC = () => {
   const [jobs, setJobs] = useState<JobAdvertisement[]>([]);
+  const [addedJob, setAddedJob] = useState(false);
 
   const { user } = useUserContext();
 
@@ -57,7 +58,7 @@ const Jobs: FC = () => {
       }
     }
     getData();
-  }, []);
+  }, [addedJob]);
 
   const onSubmit = async (formData: FormJobAdv) => {
     let dto: JobAdvertisement = { ...formData, tags: [], user: user };
@@ -65,9 +66,13 @@ const Jobs: FC = () => {
       "/job-advertisements",
       dto
     );
-    
+
     if (status === 200) {
       if (data) setJobs([...jobs, data]);
+      setAddedJob(true);
+      handleClose()
+    } else {
+      setAddedJob(false);
     }
   };
   return (
