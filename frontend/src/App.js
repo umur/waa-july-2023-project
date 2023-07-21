@@ -14,6 +14,7 @@ import {useState} from "react";
 import ResetPassword from "./components/ResetPassword";
 import axios from "axios";
 import ResetPasswordByAdmin from "./components/ResetPasswordByAdmin";
+import StudentDetail from './components/StudentDetail'
 
 function App() {
   let [authenticated, setAuthenticated] = useState(() => {
@@ -131,6 +132,7 @@ function App() {
               <Route path="/users" element={<Users />}/>
               <Route path="/profile" element={<Profile applyUserDataChange={refreshUserData}/>}/>
               <Route path="/students" element={<Students />}/>
+              <Route path="/students/:id" element={<StudentDetail />}/>
               <Route path="/dashboards" element={<Dashboards />}/>
               <Route path="/jobs" element={<Jobs />}/>
               <Route path="/reset-password" element={<ResetPassword />}/>

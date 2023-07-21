@@ -13,9 +13,11 @@ import com.twohundred.alumni.repository.StudentRepo;
 import com.twohundred.alumni.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentServiceImpl implements StudentService {
     private final StudentRepo studentRepo;
     private final ModelMapper modelMapper;

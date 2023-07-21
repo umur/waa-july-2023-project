@@ -1,4 +1,4 @@
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 // import {useAuth} from "../hooks/useAuth";
 import {useState, useEffect} from "react";
 import axios from 'axios';
@@ -25,6 +25,7 @@ export default function Students() {
     const [searchTerm, setSearchTerm] = useState('')
     const [data, setData] = useState(students)
     const [initialStudents, setInitialStudents] = useState(students)
+    const navigate = useNavigate()
     const useAuth = () => {
         return (user != null && user.accessToken != null && user.roles != null);
     }
@@ -65,6 +66,10 @@ export default function Students() {
         setSearchTerm("");
     };
 
+    const handleRedirectToDetail = (id) => {
+        navigate(`/students/${id}`);
+    };
+
     // we need also add authorization check
     if(authed !== true) {
         return <Navigate to="/sign-in" replace />;
@@ -95,7 +100,7 @@ export default function Students() {
                 <tbody>
                 {data && data.map((student, index) => {
                     return (
-                        <tr key={index}>
+                        <tr key={index} onClick={()=>handleRedirectToDetail(student.id)}>
                             <td>{student.id}</td>
                             <td>{student.major}</td>
                             <td>{student.firstName + ' ' + student.lastName}</td>
