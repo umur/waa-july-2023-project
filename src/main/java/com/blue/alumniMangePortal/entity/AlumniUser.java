@@ -6,12 +6,12 @@ import lombok.*;
 
 @Getter
 @Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-public class AlumniUser {
+public abstract class AlumniUser {
     @Id
     @GeneratedValue
     private Long id;

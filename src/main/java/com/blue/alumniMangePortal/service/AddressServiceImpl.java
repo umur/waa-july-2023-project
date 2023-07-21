@@ -14,23 +14,32 @@ public class AddressServiceImpl implements AddressService {
     private final AddressRepo addressRepo;
 
 
-    public List<Address> getAll(){
+    public List<Address> getAll() {
         return addressRepo.findAll();
     }
 
-    public Address getAddressById(Long id){
-        Optional<Address> add= addressRepo.findById(id);
-        if(add.isPresent()) {
+    public Address getAddressById(Long id) {
+        Optional<Address> add = addressRepo.findById(id);
+        if (add.isPresent()) {
             return add.get();
         }
         return null;
     }
-    public Address saveAddress(Address address){
-        addressRepo.save(address);
-        return address;
+
+    public Address saveAddress(Address address) {
+        Address address1 = new Address();
+        address1.setCity(address.getCity());
+        address1.setZip(address.getZip());
+        address1.setState(address.getState());
+        address1.setStreet(address.getStreet());
+        addressRepo.save(address1);
+
+        return address1;
+
     }
-    public Address updateAddress(long id,Address address){
-        Optional<Address> add=addressRepo.findById(id);
+
+    public Address updateAddress(long id, Address address) {
+        Optional<Address> add = addressRepo.findById(id);
         add.get().setCity(address.getCity());
         add.get().setZip(address.getZip());
         add.get().setStreet(address.getState());
@@ -40,8 +49,8 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
-    public void findByDeletedTrue(Long id){
-        Optional<Address> addressToDelete= addressRepo.findById(id);
+    public void findByDeletedTrue(Long id) {
+        Optional<Address> addressToDelete = addressRepo.findById(id);
         addressToDelete.get().setDeleted(true);
         addressRepo.save(addressToDelete.get());
 

@@ -47,17 +47,17 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        CorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:3000"); // Replace with your client application URL
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
-        config.setAllowCredentials(true);
-
-        ((UrlBasedCorsConfigurationSource) source).registerCorsConfiguration("/**", config);
-
-        return new CorsFilter(source);
-    }
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        CorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.addAllowedOrigin("http://localhost:3000"); // Replace with your client application URL
+//        config.addAllowedMethod("*");
+//        config.addAllowedHeader("*");
+//        config.setAllowCredentials(true);
+//
+//        ((UrlBasedCorsConfigurationSource) source).registerCorsConfiguration("/**", config);
+//
+//        return new CorsFilter(source);
+//    }
 }

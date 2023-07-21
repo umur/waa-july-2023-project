@@ -18,7 +18,7 @@ import java.util.List;
 public class Faculty extends AlumniUser {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    private Long id;
     private String phone_number;
     @ManyToOne
     private Department department;

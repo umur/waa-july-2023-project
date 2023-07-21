@@ -13,7 +13,8 @@ public interface FacultyRepo extends JpaRepository<Faculty, Long> {
     @Query("SELECT f FROM Faculty f WHERE f.is_deleted = false")
     List<Faculty> findAll();
 
-    Faculty findByEmail(String email);
+    Optional<Faculty> findByEmail(String email);
+
 
 //    @Query("SELECT f from Faculty f where f.is_deleted=false")
 //    Optional<Faculty> findById(Long id);
