@@ -39,7 +39,7 @@ public class Student extends AlumniUser {
     @OneToMany(mappedBy = "student")
     private List<Comment> comments;
 
-//    @ManyToMany
-    //private List<JobsApplied> jobsApplied;
+    @ManyToMany
+    private List<JobsApplied> jobsApplied;
 
 }
