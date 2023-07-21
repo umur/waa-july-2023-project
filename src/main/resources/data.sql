@@ -204,16 +204,16 @@ insert into comment (comment) values ('quis turpis eget elit sodales scelerisque
 
 
 # -- Insert dummy data for faculty table
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (1, 'Nyssa', 'Steanyng', 'dG2!jmRk~ay''x', 'nsteanyng0@craigslist.org', '329-542-2413', 'Staff Accountant III', false, 'ADMIN', true);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (2, 'Nicoline', 'Guillond', 'hG0*=QphB$H', 'nguillond1@auda.org.au', '101-811-1791', 'Actuary', false, 'USER', false);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (3, 'Ben', 'Board', 'rR9!J|GyO?mWpe<u', 'bboard2@amazonaws.com', '616-215-6143', 'Assistant Manager', true, 'ADMIN', true);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (4, 'Maia', 'Laughnan', 'cU7''fz2t', 'mlaughnan3@theglobeandmail.com', '762-567-2601', 'Payment Adjustment Coordinator', true, 'ADMIN', false);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (5, 'Lamar', 'Spinola', 'eT1`S@&,', 'lspinola4@uol.com.br', '822-395-7855', 'Pharmacist', true, 'ADMIN', false);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (6, 'Chrisse', 'Bernath', 'iC3{m"gyk', 'cbernath5@newyorker.com', '753-753-6594', 'Registered Nurse', false, 'USER', false);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (7, 'Roldan', 'Cuthill', 'iD9''VCZm{W', 'rcuthill6@digg.com', '299-278-8484', 'Design Engineer', false, 'ADMIN', false);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (8, 'Kristel', 'Van Eeden', 'pC8#=!?m|J!', 'kvaneeden7@bandcamp.com', '844-361-3716', 'Software Engineer II', false, 'USER', true);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (9, 'Ursola', 'Grimme', 'qW2_}iYC1GDXgRL', 'ugrimme8@uiuc.edu', '351-334-3674', 'VP Accounting', true, 'USER', false);
-insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (10, 'Cathleen', 'Clotworthy', 'eT3~vd7tLL', 'cclotworthy9@bloglovin.com', '263-662-3320', 'Pharmacist', true, 'ADMIN', false);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (1, 'Nyssa', 'Steanyng', 'dG2!jmRk~ay''x', 'nsteanyng0@craigslist.org', '329-542-2413', 'Staff Accountant III', false, 'ADMIN', true);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (2, 'Nicoline', 'Guillond', 'hG0*=QphB$H', 'nguillond1@auda.org.au', '101-811-1791', 'Actuary', false, 'USER', false);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (3, 'Ben', 'Board', 'rR9!J|GyO?mWpe<u', 'bboard2@amazonaws.com', '616-215-6143', 'Assistant Manager', true, 'ADMIN', true);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (4, 'Maia', 'Laughnan', 'cU7''fz2t', 'mlaughnan3@theglobeandmail.com', '762-567-2601', 'Payment Adjustment Coordinator', true, 'ADMIN', false);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (5, 'Lamar', 'Spinola', 'eT1`S@&,', 'lspinola4@uol.com.br', '822-395-7855', 'Pharmacist', true, 'ADMIN', false);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (6, 'Chrisse', 'Bernath', 'iC3{m"gyk', 'cbernath5@newyorker.com', '753-753-6594', 'Registered Nurse', false, 'USER', false);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (7, 'Roldan', 'Cuthill', 'iD9''VCZm{W', 'rcuthill6@digg.com', '299-278-8484', 'Design Engineer', false, 'ADMIN', false);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (8, 'Kristel', 'Van Eeden', 'pC8#=!?m|J!', 'kvaneeden7@bandcamp.com', '844-361-3716', 'Software Engineer II', false, 'USER', true);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (9, 'Ursola', 'Grimme', 'qW2_}iYC1GDXgRL', 'ugrimme8@uiuc.edu', '351-334-3674', 'VP Accounting', true, 'USER', false);
+# insert into faculty (id, first_name, last_name, password, email, phone_number, title, is_admin, role, is_deleted) values (10, 'Cathleen', 'Clotworthy', 'eT3~vd7tLL', 'cclotworthy9@bloglovin.com', '263-662-3320', 'Pharmacist', true, 'ADMIN', false);
 #
 # -- Insert dummy data for address table
 # insert into address (id, Street, zip, city, state) values (1, '89 Dixon Trail', '2005', 'Patria', null);
