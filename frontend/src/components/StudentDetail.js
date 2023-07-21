@@ -43,7 +43,7 @@ export default function StudentDetail(props) {
     }
 
     const getComments = async () => {
-        const result = await axios.get('/faculties/student/comment', {headers : headers, params: { id: id }});
+        const result = await axios.get('/faculties/student/comments', {headers : headers, params: { id: id }});
         if(result.status == 200) {
             setComments(result.data)
         } else

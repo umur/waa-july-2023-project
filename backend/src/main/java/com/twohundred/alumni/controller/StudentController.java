@@ -34,7 +34,7 @@ public class StudentController {
         return studentServiceImpl.delete(currentStudent);
     }
 
-    @PutMapping("/experience")
+    @PostMapping("/experience")
     public ResponseEntity<?> addExperience(@RequestBody ExperienceDto experienceDto) {
         User currentStudent;
         try {
@@ -49,6 +49,37 @@ public class StudentController {
         experience.setTo(experienceDto.getEndDate());
         experience.setCompany(experienceDto.getCompany());
         return ResponseEntity.ok(experienceService.create(experience));
+    }
+
+    @PutMapping("/experience")
+    public ResponseEntity<?> updateExperience(@RequestBody ExperienceDto experienceDto) {
+        User currentStudent;
+        try {
+            currentStudent = securityUtil.getCurrentUser();
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        Experience experience = new Experience();
+        experience.setStudent(currentStudent);
+        experience.setTitle(experienceDto.getTitle());
+        experience.setFrom(experienceDto.getStarDate());
+        experience.setTo(experienceDto.getEndDate());
+        experience.setCompany(experienceDto.getCompany());
+        return ResponseEntity.ok(experienceService.update(experience));
+    }
+    @GetMapping("/experience")
+    public ResponseEntity<?> getExperience(@RequestParam long id) {
+        return ResponseEntity.ok(experienceService.getExperiencesByUserId(id));
+    }
+
+    @DeleteMapping("/experience")
+    public ResponseEntity<?> deleteExperienceById(@RequestParam long id) {
+        try {
+            experienceService.delete(id);
+        }catch (Exception e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok("Experience deleted successfully");
     }
 
 }

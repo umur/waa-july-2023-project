@@ -13,5 +13,7 @@ public interface CommentService {
 
     Comment getComment(Long id);
 
+    List<Comment> getCommentByStudentId(Long id);
+
     void delete(Comment review);
 }

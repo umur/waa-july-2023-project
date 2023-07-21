@@ -10,9 +10,11 @@ public interface ExperienceService {
 
     List<Experience> findAll();
 
-    void update(Experience experience);
+    Experience update(Experience experience);
+
+    List<Experience> getExperiencesByUserId(Long id);
 
     Experience getExperience(Long id);
 
-    void delete(Experience experience);
+    void delete(Long id);
 }

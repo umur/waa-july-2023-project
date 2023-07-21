@@ -84,15 +84,26 @@ public class FacultyController {
         return ResponseEntity.ok(result);
     }
 
+//    @GetMapping("/student/comments")
+//    public ResponseEntity<?> getAllComments() {
+////        User currentFaculty;
+////        try {
+////            currentFaculty = securityUtil.getCurrentUser();
+////        } catch (Exception e) {
+////            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+////        }
+//        return ResponseEntity.ok(commentService.findAll());
+//    }
+
     @GetMapping("/student/comments")
-    public ResponseEntity<?> getAllComments(){
-//        User currentFaculty;
-//        try {
-//            currentFaculty = securityUtil.getCurrentUser();
-//        } catch (Exception e) {
-//            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
-//        }
-        return ResponseEntity.ok(commentService.findAll());
+    public ResponseEntity<?> getCommentsByStudentId(@RequestParam long id) {
+        List<Comment> result = new ArrayList<>();
+        try {
+            result.addAll(commentService.getCommentByStudentId(id));
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(result);
     }
 
 

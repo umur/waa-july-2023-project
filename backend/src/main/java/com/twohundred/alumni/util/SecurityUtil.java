@@ -21,7 +21,7 @@ public class SecurityUtil {
     }
 
     public User getCurrentUser() {
-           return repository.findByEmail(getCurrentUserName())
-                   .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return (User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
     }
 }

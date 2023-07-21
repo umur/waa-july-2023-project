@@ -27,8 +27,13 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     @Override
-    public void update(Experience experience) {
+    public Experience update(Experience experience) {
+        return experienceRepo.save(experience);
+    }
 
+    @Override
+    public List<Experience> getExperiencesByUserId(Long id) {
+        return experienceRepo.findAllByUserId(id);
     }
 
     @Override
@@ -37,7 +42,7 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     @Override
-    public void delete(Experience experience) {
-
+    public void delete(Long id) {
+        experienceRepo.deleteById(id);
     }
 }

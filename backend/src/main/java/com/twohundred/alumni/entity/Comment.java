@@ -13,7 +13,7 @@ import java.util.Date;
 @Where(clause = "deleted = false")
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String comment;
     @Temporal(TemporalType.DATE)

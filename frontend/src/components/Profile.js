@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useAuth } from '../hooks/useAuth';
 import { Field, FieldArray, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function Profile(props) {
   let user = JSON.parse(localStorage.getItem('loggedInUser') || String('{}'));
@@ -20,13 +23,66 @@ export default function Profile(props) {
     city: user.city,
     zip: user.zip,
     state: user.state,
-    experience: [
-      {
-        company: [],
-        years: [],
-      },
-    ],
   });
+  const [experience, setExperience] = useState([
+    {
+      id: '',
+      starDate: '',
+      endDate: '',
+      company: '',
+      title: '',
+    },
+  ]);
+
+  const getExperience = async () => {
+    const headers = {
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.accessToken}`,
+    };
+    const result = await axios.get('/students/experience', {
+      headers: headers,
+      params: { id: user.id },
+    });
+
+    if (result.status === 200) {
+      setExperience(result.data);
+    }
+  };
+  
+  const addExperience = async (experienceData) => {
+    experienceData.startDate = experienceData.startDate ? experienceData.startDate.getTime() : null;
+    experienceData.endDate = experienceData.endDate ? experienceData.endDate.getTime() : null;
+    
+    const headers = {
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.accessToken}`
+    };
+    const result = await axios.post('/students/experience', experienceData, {headers, params: { id: user.id }});
+
+    if (result.status === 200) {
+        getExperience();
+    }
+}
+
+  const removeExperience = async experienceId => {
+    const headers = {
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.accessToken}`,
+    };
+
+    const result = await axios.delete(`/students/experience/${experienceId}`, { headers });
+
+    if (result.status === 200) {
+      getExperience();
+    }
+  };
+
   const initialValues = {
     email: user.email,
     firstname: user.firstName || 'Mirzokhid',
@@ -42,8 +98,10 @@ export default function Profile(props) {
     state: user.state,
     experience: [
       {
-        company: [''],
-        years: [1],
+        company: '',
+        title: '',
+        startDate: null,
+        endDate: null,
       },
     ],
   };
@@ -76,12 +134,9 @@ export default function Profile(props) {
   });
   const [userErrorMessage, setUserErrorMessage] = useState('');
 
-  useEffect(
-    () => {
-      console.log('userData', userData);
-    },
-    [userData]
-  );
+  useEffect(() => {
+    getExperience();
+  }, []);
 
   const postUserData = async userData => {
     console.log(userData, 'data');
@@ -95,11 +150,6 @@ export default function Profile(props) {
       salary: userData.salary,
       major: userData.major,
       gpa: userData.gpa,
-      company: userData.company,
-      experience: {
-        company: userData.experience.company,
-        years: userData.experience.years,
-      },
       address: {
         street: userData.street,
         city: userData.city,
@@ -109,17 +159,13 @@ export default function Profile(props) {
     };
     // send request
     try {
-      let url = '/students';
-      if (userData.role == 'FACULTY') {
-        url = '/faculties';
-      }
       const headers = {
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${user.accessToken}`,
       };
-      const result = await axios.put(url, data, { headers });
+      const result = await axios.put('/faculties/filter/students', data, { headers });
       if (result.status > 399) {
         setUserErrorMessage('Saving user data failed');
       }
@@ -147,6 +193,12 @@ export default function Profile(props) {
   };
 
   const authed = useAuth();
+  const [startDateArray, setStartDateArray] = useState(
+    experience.map(exp => (exp.startDate ? new Date(exp.startDate) : null))
+  );
+  const [endDateArray, setEndDateArray] = useState(
+    experience.map(exp => (exp.endDate ? new Date(exp.endDate) : null))
+  );
 
   // we need also add authorization check
   if (authed != true) {
@@ -163,7 +215,8 @@ export default function Profile(props) {
         initialValues={initialValues}
         validationSchema={ProfileSchema}
         onSubmit={postUserData}
-        render={({ values, errors }) => {
+        enableReinitialize={true}
+        render={({ values, errors, setFieldValue }) => {
           return (
             <Form>
               <div className="row">
@@ -298,7 +351,7 @@ export default function Profile(props) {
                   </div>
 
                   {userData.role === 'STUDENT' && (
-                    <div className="form-group row mt-3">
+                    <div className="form-group row mt-2">
                       <FieldArray
                         name="experience"
                         render={arrayHelpers => (
@@ -307,7 +360,7 @@ export default function Profile(props) {
                             {values.experience.map((exp, index) => (
                               <div key={index}>
                                 <div className="row mt-3">
-                                  <div className="col-sm-6">
+                                  <div className="col-sm-4">
                                     <label>Company Name</label>
                                     <Field
                                       name={`experience[${index}].company`}
@@ -316,30 +369,76 @@ export default function Profile(props) {
                                       placeholder="Company"
                                     />
                                   </div>
-                                  <div className="col-sm-6">
-                                    <label>Years of experience</label>
+                                  <div className="col-sm-4">
+                                    <label>Title</label>
                                     <Field
-                                      name={`experience[${index}].years`}
-                                      type="number"
+                                      name={`experience[${index}].title`}
+                                      type="text"
                                       className="form-control"
-                                      placeholder="Years of experience"
+                                      placeholder="Title"
                                     />
                                   </div>
+                                  <div className="col-sm-4">
+                                    <label>Years of experience</label>
+                                    <div className="d-flex flex-row">
+                                      <DatePicker
+                                        selected={startDateArray[index]}
+                                        onChange={date => {
+                                          setFieldValue(`experience[${index}].startDate`, date);
+                                          const updatedStartDateArray = [...startDateArray];
+                                          updatedStartDateArray[index] = date;
+                                          setStartDateArray(updatedStartDateArray);
+                                        }}
+                                        selectsStart
+                                        startDate={startDateArray[index]}
+                                        endDate={endDateArray[index]}
+                                        className="form-control"
+                                      />
+                                      <DatePicker
+                                        selected={endDateArray[index]}
+                                        onChange={date => {
+                                          setFieldValue(`experience[${index}].endDate`, date);
+                                          const updatedEndDateArray = [...endDateArray];
+                                          updatedEndDateArray[index] = date;
+                                          setEndDateArray(updatedEndDateArray);
+                                        }}
+                                        selectsEnd
+                                        startDate={startDateArray[index]}
+                                        endDate={endDateArray[index]}
+                                        minDate={startDateArray[index]}
+                                        className="form-control"
+                                      />
+                                    </div>
+                                  </div>
                                   <div className="mt-2">
-                                    <button
-                                      type="button"
-                                      className="btn btn-warning mr-3"
-                                      onClick={() =>
-                                        arrayHelpers.push(index, { company: '', years: 0 })
-                                      }>
-                                      Add
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="btn btn-danger ms-2"
-                                      onClick={() => arrayHelpers.remove(index)}>
-                                      Remove
-                                    </button>
+                                    {index === values.experience.length - 1 ? (
+                                      <button
+                                        type="button"
+                                        className="btn btn-warning mr-3"
+                                        onClick={() => {
+                                          addExperience(values.experience[index]);
+                                          arrayHelpers.push({
+                                            company: '',
+                                            title: '',
+                                            startDate: null,
+                                            endDate: null,
+                                          });
+                                        }}>
+                                        Add
+                                      </button>
+                                    ) : (
+                                      <button
+                                        type="button"
+                                        className="btn btn-danger ms-2"
+                                        onClick={() => {
+                                          const experienceId = values.experience[index].id;
+                                          removeExperience(experienceId).then(() =>
+                                            arrayHelpers.remove(index)
+                                          );
+                                        }}>
+                                        Remove
+                                      </button>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -352,7 +451,10 @@ export default function Profile(props) {
                   <div className="form-group row">
                     <div className="col-sm-6" />
                     <div className="col-sm-6">
-                      <button onSubmit={postUserData} className="mybtn btn btn-primary">
+                      <button
+                        type="submit"
+                        onSubmit={postUserData}
+                        className="mybtn btn btn-primary">
                         Save
                       </button>
                     </div>
