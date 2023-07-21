@@ -13,6 +13,7 @@ import waa.miu.AlumniManagementPortal.repository.StudentRepo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Service
@@ -46,6 +47,7 @@ public class StudentServiceImpl implements StudentService{
                 case "city" -> students = studentRepo.findByAddressCity(value);
                 case "major" -> students = studentRepo.findAllByMajorMajorName(value);
                 case "name" -> students = studentRepo.findAllByFirstName(value);
+                case "studentId" -> students = studentRepo.findByStudentId(value);
                 default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid filter: "+key);
             }
         }
@@ -54,8 +56,10 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student create(Student student) {
-        String studentCVPath = processCV(student);
-        student.setCv(studentCVPath);
+        if (student.getCv() != null && !student.getCv().isEmpty()) {
+            String studentCVPath = processCV(student);
+            student.setCv(studentCVPath);
+        }
         return studentRepo.save(student);
     }
 
@@ -66,10 +70,8 @@ public class StudentServiceImpl implements StudentService{
         MediaType mediaType = MediaType.parse(tika.detect(fileBytes));
         String fileExtension = mediaType.getSubtype();
         if (fileExtension.equals("x-tika-ooxml")) fileExtension = "docx";
-        String filePath = "/Users/fortuneking/Downloads/uploads/"+
-                student.getFirstName()+"-"+
-                student.getLastName()+
-                "-CV."+fileExtension;
+        String fileName = student.getFirstName() + "-" + student.getLastName() + "-CV." + fileExtension;
+        String filePath = Paths.get("uploads", fileName).toString();
         try{
             Path path = Path.of(filePath);
             Files.write(path, fileBytes);
@@ -81,8 +83,12 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student update(Long id, Student student) {
-        String studentCVPath = processCV(student);
         Student existingStudent = findById(id);
+        String studentCVPath = existingStudent.getCv();
+//        if(student.getCv() != null)
+        if(student.getCv() != null && !Objects.equals(existingStudent.getCv(), student.getCv())){
+            studentCVPath = processCV(student);
+        }
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setCv(studentCVPath);
@@ -91,10 +97,12 @@ public class StudentServiceImpl implements StudentService{
         existingStudent.setPhone(student.getPhone());
         existingStudent.setAddress(student.getAddress());
         existingStudent.setMajor(student.getMajor());
-        existingStudent.setJobAdverts(student.getJobAdverts());
+        existingStudent.setStudentId(student.getStudentId());
+//        existingStudent.setJobAdverts(student.getJobAdverts());
+//        existingStudent.setAppliedJobAdverts(student.getAppliedJobAdverts());
         existingStudent.setCurrentWorkPlace(student.getCurrentWorkPlace());
-        existingStudent.setCurrentlyEmployed(student.isCurrentlyEmployed());
-        existingStudent.setDeleted(student.isDeleted());
+        existingStudent.setIsCurrentlyEmployed(student.getIsCurrentlyEmployed());
+        existingStudent.setIsDeleted(student.getIsDeleted());
         return studentRepo.save(existingStudent);
     }
 

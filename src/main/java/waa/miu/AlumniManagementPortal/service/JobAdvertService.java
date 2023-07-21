@@ -17,6 +17,4 @@ public interface JobAdvertService {
     void delete(Long id);
 
     List<JobAdvert> findTop10JobsByDateAdded();
-
-    List<JobAdvert> findTop10JobsByDateApplied();
 }

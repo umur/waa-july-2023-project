@@ -12,17 +12,11 @@ import java.util.List;
 @Entity
 public class Student extends AlumniUser {
 
+    private String studentId, cv, isCurrentlyEmployed;
 
-   @Id
-//   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
-
-//    private String firstName, lastName, password, email, phone, cv;
-    private String cv,phone;
-    private boolean isCurrentlyEmployed, isDeleted;
-
-    @JsonManagedReference(value = "student-address")
-    @OneToOne(mappedBy = "student")
+//    @JsonManagedReference(value = "student-address")
+//    @OneToOne(mappedBy = "student")
+    @OneToOne
     private Address address;
 
     @JsonBackReference(value = "student-major")
@@ -33,12 +27,19 @@ public class Student extends AlumniUser {
     @OneToMany(mappedBy = "student")
     private List<JobAdvert> jobAdverts;
 
+//    @JsonManagedReference
+//    @ManyToMany
+//    private List<JobAdvert> jobApplicants;
+
     @JsonBackReference(value = "student-currentWorkPlace")
     @ManyToOne
     private CurrentWorkPlace currentWorkPlace;
 
-    @JsonManagedReference(value = "student-comment")
+//    @JsonManagedReference(value = "student-comment")
     @OneToMany(mappedBy = "student")
     private List<Comment> comments;
+
+//    @ManyToMany
+    //private List<JobsApplied> jobsApplied;
 
 }

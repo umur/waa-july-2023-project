@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/majors")
+@CrossOrigin
 public class MajorController {
 
     private final MajorService majorService;
