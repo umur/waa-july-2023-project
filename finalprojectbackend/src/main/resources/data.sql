@@ -1,0 +1,112 @@
+-- --Insert data into Address table
+-- INSERT INTO cs545_WAA_project_db.addresses (city, state, street, zip_code)
+-- VALUES
+--     ('New York', 'NY', '123 Main Street', '10001'),
+--     ('Los Angeles', 'CA', '456 Elm Street', '90001'),
+--     ('Chicago', 'IL', '789 Oak Avenue', '60601'),
+--     ('Houston', 'TX', '321 Pine Road', '77001');
+--
+-- --Insert data into Users table
+-- INSERT INTO cs545_WAA_project_db.users (is_active, user_type, email, password, username)
+-- VALUES
+--     (1, 'Faculty', 'faculty@example.com', 'password123', 'faculty123'),
+--     (1, 'Student', 'student1@example.com', 'password456', 'student1'),
+--     (1, 'Student', 'student2@example.com', 'password789', 'student2'),
+--     (1, 'Student', 'student3@example.com', 'passwordabc', 'student3');
+--
+-- --Insert data into Faculties table
+-- INSERT INTO cs545_WAA_project_db.faculties (id, city, major, name, state)
+-- VALUES
+--     (1, 'New York', 'Computer Science', 'John Doe', 'NY'),
+--     (2, 'Los Angeles', 'Mathematics', 'Jane Smith', 'CA'),
+--     (3, 'Chicago', 'Physics', 'Michael Johnson', 'IL'),
+--     (4, 'Houston', 'Biology', 'Sarah Wilson', 'TX');
+--
+-- --Insert data into Password Reset Tokens table
+-- INSERT INTO cs545_WAA_project_db.password_reset_tokens (expiry_date, user_id, token)
+-- VALUES
+--     ('2023-07-03 12:00:00', 2, 'abc123xyz'),
+--     ('2023-07-04 14:30:00', 3, 'def456pqr'),
+--     ('2023-07-05 10:15:00', 4, 'ghi789stu'),
+--     ('2023-07-06 09:45:00', 2, 'jkl012vwx');
+
+-- -- Insert data into Students table
+-- INSERT INTO cs545_WAA_project_db.students ( id,city, major, name, state, cv)
+-- VALUES
+--     ( 1 ,'New York', 'Computer Science', 'Alice Johnson', 'NY', 'Sample CV for Alice Johnson'),
+--     (  2,'Los Angeles', 'Mathematics', 'Bob Smith', 'CA', 'Sample CV for Bob Smith'),
+--     (  3,'Chicago', 'Physics', 'Charlie Brown', 'IL', 'Sample CV for Charlie Brown'),
+--     (  4,'Houston', 'Biology', 'David Wilson', 'TX', 'Sample CV for David Wilson');
+--
+-- -- -- Insert data into Comments table
+-- INSERT INTO cs545_WAA_project_db.comments (date_created, faculty_id, student_id, content)
+-- VALUES
+--     ('2023-07-01 09:30:00', 1, 1, 'Great work!'),
+--     ('2023-07-02 11:45:00', 2, 2, 'Keep it up!'),
+--     ('2023-07-03 14:20:00', 3, 3, 'Impressive presentation.'),
+--     ('2023-07-03 16:30:00', 1, 4, 'Well done!');
+--
+--
+-- -- Insert data into Job Advertisements table
+-- INSERT INTO cs545_WAA_project_db.job_advertisements (is_active, date_created, date_updated, location_id, student_id, company_name, description, title)
+-- VALUES
+--     (1, '2023-06-30 10:00:00', '2023-06-30 12:30:00', 1, 1, 'ABC Company', 'Job description for ABC Company', 'Software Engineer'),
+--     (1, '2023-07-01 14:45:00', '2023-07-01 16:15:00', 2, 2, 'XYZ Corporation', 'Job description for XYZ Corporation', 'Data Analyst'),
+--     (1, '2023-07-02 09:15:00', '2023-07-02 11:30:00', 3, 4, '123 Industries', 'Job description for 123 Industries', 'Research Scientist'),
+--     (1, '2023-07-03 13:00:00', '2023-07-03 15:45:00', 4, 3, 'Acme Corporation', 'Job description for Acme Corporation', 'Marketing Coordinator');
+--
+-- -- Insert data into Job Advertisement Tags table
+-- INSERT INTO cs545_WAA_project_db.job_advertisement_tags (job_advertisement_id, tag)
+-- VALUES
+--     ( 1,'Java'),
+--     ( 2,'SQL'),
+--     (3,'Python'),
+--     (4,'Marketing');
+--
+--
+--
+-- -- Insert data into Job Experiences table
+-- INSERT INTO cs545_WAA_project_db.job_experiences (student_id)
+-- VALUES
+--     (2),
+--     (3),
+--     (4),
+--     (1);
+--
+-- --Insert data into Job Files table
+-- INSERT INTO cs545_WAA_project_db.job_files (job_advertisement_id, file_name)
+-- VALUES
+--     (1, 'resume.pdf'),
+--     (2, 'cover_letter.doc'),
+--     (3, 'portfolio.pdf'),
+--     (4, 'references.doc');
+-- INSERT INTO cs545_WAA_final_db.job (copany_name, job_description, job_location, job_salary, job_title, job_type, posted_date)
+-- VALUES
+--     ('ABC Company', 'Software Developer position', 'New York', '$80,000', 'Software Developer', 'Full-time', '2023-07-01'),
+--     ('XYZ Corporation', 'Data Analyst position', 'San Francisco', '$70,000', 'Data Analyst', 'Full-time', '2023-07-02'),
+--     ('123 Industries', 'Marketing Manager position', 'Los Angeles', '$90,000', 'Marketing Manager', 'Full-time', '2023-07-03'),
+--     ('Tech Solutions', 'Network Engineer position', 'Chicago', '$75,000', 'Network Engineer', 'Full-time', '2023-07-04'),
+--     ('Acme Corporation', 'Sales Representative position', 'Houston', '$60,000', 'Sales Representative', 'Full-time', '2023-07-05'),
+--     ('Global Inc.', 'HR Coordinator position', 'London', '£50,000', 'HR Coordinator', 'Full-time', '2023-07-06'),
+--     ('Digital Agency', 'Web Designer position', 'Berlin', '€55,000', 'Web Designer', 'Full-time', '2023-07-07'),
+--     ('Innovative Tech', 'Product Manager position', 'Tokyo', '¥9,000,000', 'Product Manager', 'Full-time', '2023-07-08');
+--
+-- INSERT INTO cs545_WAA_final_db.student (address, email, first_name, last_name, phone)
+-- VALUES
+--     ('123 Main St', 'john@example.com', 'John', 'Doe', '+1 123-456-7890'),
+--     ('456 Elm St', 'jane@example.com', 'Jane', 'Smith', '+1 987-654-3210'),
+--     ('789 Oak St', 'alex@example.com', 'Alex', 'Johnson', '+1 555-555-5555'),
+--     ('321 Pine St', 'lisa@example.com', 'Lisa', 'Brown', '+1 777-888-9999'),
+--     ('654 Cedar St', 'mike@example.com', 'Mike', 'Davis', '+1 111-222-3333'),
+--     ('987 Maple St', 'sarah@example.com', 'Sarah', 'Wilson', '+1 444-555-6666'),
+--     ('654 Birch St', 'tom@example.com', 'Tom', 'Anderson', '+1 999-888-7777'),
+--     ('321 Walnut St', 'emily@example.com', 'Emily', 'Taylor', '+1 333-222-1111');
+-- INSERT INTO cs545_WAA_final_db.faculty (address, email, name, phone) VALUES
+--                                                                          ('123 Main St', 'john.doe@example.com', 'John Doe', '555-1234'),
+--                                                                          ('456 Elm St', 'jane.smith@example.com', 'Jane Smith', '555-5678'),
+--                                                                          ('789 Oak Ave', 'robert.johnson@example.com', 'Robert Johnson', '555-9876'),
+--                                                                          ('321 Maple Rd', 'sarah.davis@example.com', 'Sarah Davis', '555-4321'),
+--                                                                          ('654 Pine Lane', 'michael.brown@example.com', 'Michael Brown', '555-8765'),
+--                                                                          ('987 Cedar Dr', 'emily.wilson@example.com', 'Emily Wilson', '555-1357'),
+--                                                                          ('741 Birch Street', 'david.anderson@example.com', 'David Anderson', '555-5793'),
+--                                                                          ('852 Oakwood Blvd', 'jennifer.thomas@example.com', 'Jennifer Thomas', '555-2468');
