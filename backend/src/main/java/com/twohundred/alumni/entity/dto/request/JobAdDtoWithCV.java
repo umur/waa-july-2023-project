@@ -3,14 +3,12 @@ package com.twohundred.alumni.entity.dto.request;
 import java.util.Date;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class JobAdvertisementDto {
+@Getter
+@Setter
+public class JobAdDtoWithCV {
     private int id;
     private String description;
     private String benefits;
@@ -18,8 +16,8 @@ public class JobAdvertisementDto {
     private String state;
     private String city;
     private List<TagDto> tags;
-    private Long facultyId;
     private StudentDto createdStudent;
     private List<String> files;
     private Date dateCreated;
+    private List<CVWithoutJobAdDto> cvs;
 }

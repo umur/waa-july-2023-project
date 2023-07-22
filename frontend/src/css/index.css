@@ -79,3 +79,6 @@ body, html, .App, #root, .auth-wrapper {
   width: 80%;
   margin: auto;
 }
+.card-md {
+  width: 70%;
+}

@@ -1,5 +1,6 @@
 package com.twohundred.alumni.controller;
 
+import com.twohundred.alumni.aspect.annotation.LogMe;
 import com.twohundred.alumni.entity.Experience;
 import com.twohundred.alumni.entity.User;
 import com.twohundred.alumni.entity.dto.request.ExperienceDto;
@@ -15,7 +16,7 @@ import com.twohundred.alumni.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/students/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentController {
@@ -23,18 +24,22 @@ public class StudentController {
     private final SecurityUtil securityUtil;
     private final ExperienceServiceImpl experienceService;
 
+    @LogMe
     @PutMapping
     public StudentDto update(@RequestBody StudentDto studentDto) {
+        User currentStudent = securityUtil.getCurrentUser();
+        studentDto.setId(currentStudent.getId());
         return studentServiceImpl.update(studentDto);
     }
 
+    @LogMe
     @DeleteMapping
     public StudentDto delete() {
         User currentStudent = securityUtil.getCurrentUser();
         return studentServiceImpl.delete(currentStudent);
     }
 
-    @PostMapping("/experience")
+    @PostMapping("experience")
     public ResponseEntity<?> addExperience(@RequestBody ExperienceDto experienceDto) {
         User currentStudent;
         try {

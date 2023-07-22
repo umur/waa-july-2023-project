@@ -1,20 +1,23 @@
-import React, {useEffect} from 'react'
+import axios from "axios"
+import React, { useState } from 'react'
+import { Link, Route, Routes } from 'react-router-dom'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import './css/App.css'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import Login from './components/Login.js'
-import SignUp from './components/Register.js'
-import Students from './components/Students.js'
-import Jobs from './components/Jobs.js'
-import Users from './components/Users.js'
 import Dashboards from './components/Dashboards.js'
-import Profile from './components/Profile.js'
 import Home from './components/Home.js'
-import {useState} from "react";
-import ResetPassword from "./components/ResetPassword";
-import axios from "axios";
-import ResetPasswordByAdmin from "./components/ResetPasswordByAdmin";
+import Jobs from './components/Jobs.js'
+import Login from './components/Login.js'
+import Profile from './components/Profile.js'
+import SignUp from './components/Register.js'
+import ResetPassword from "./components/ResetPassword"
+import ResetPasswordByAdmin from "./components/ResetPasswordByAdmin"
 import StudentDetail from './components/StudentDetail'
+import Students from './components/Students.js'
+import Users from './components/Users.js'
+import './css/App.css'
+import JobAdList from "./module/job-ad/screen/JobAdList"
+import EditJobAd from "./module/job-ad/screen/EditJobAd"
+import EditCV from "./module/cv/screen/EditCV"
+import CVList from "./module/cv/screen/CVList"
 
 function App() {
   let [authenticated, setAuthenticated] = useState(() => {
@@ -36,6 +39,8 @@ function App() {
       ],
       STUDENT:[{title:'Jobs', path:'/jobs'},
         {title:'Profile', path:'/profile'},
+        {title:'Job Ads', path:'/job-ads'},
+        {title: 'CV', path:'/cvs'},
         {title:'Reset password', path:'/reset-password'}
       ]
   };
@@ -60,7 +65,6 @@ function App() {
   const refreshMenus = () => {
     setAuthenticated(true);
     setMenuItems(defaultMenu());
-    console.log();
   }
 
   const refreshUserData = () => {
@@ -137,6 +141,13 @@ function App() {
               <Route path="/jobs" element={<Jobs />}/>
               <Route path="/reset-password" element={<ResetPassword />}/>
               <Route path="/reset-password/:id/:name" element={<ResetPasswordByAdmin />}/>
+              <Route path="/job-ads" element={<JobAdList />}/>
+              <Route path="/job-ads/add" element={<EditJobAd />}/>
+              <Route path="/job-ads/:id/edit" element={<EditJobAd />}/>
+              <Route path="/job-ads/:jobAdId/add-cv" element={<EditCV />}/>
+              <Route path="/cvs" element={<CVList />}/>
+              <Route path="/cvs/:id/edit" element={<EditCV />}/>
+              <Route path="/cvs/:studentId/:id/detail" element={<EditCV />}/>
             </Routes>
 
           </div>
