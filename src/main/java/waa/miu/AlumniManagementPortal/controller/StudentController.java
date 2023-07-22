@@ -2,6 +2,7 @@ package waa.miu.AlumniManagementPortal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import waa.miu.AlumniManagementPortal.dto.StudentDto;
 import waa.miu.AlumniManagementPortal.entity.Student;
 import waa.miu.AlumniManagementPortal.service.StudentService;
 
@@ -33,7 +34,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public Student create(@RequestBody Student student){
+    public Student create(@RequestBody StudentDto student){
         return studentService.create(student);
     }
 

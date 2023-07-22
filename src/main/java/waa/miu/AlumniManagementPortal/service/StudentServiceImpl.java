@@ -7,6 +7,8 @@ import org.apache.tika.mime.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import waa.miu.AlumniManagementPortal.dto.StudentDto;
+import waa.miu.AlumniManagementPortal.entity.Address;
 import waa.miu.AlumniManagementPortal.entity.Student;
 import waa.miu.AlumniManagementPortal.repository.StudentRepo;
 
@@ -21,6 +23,7 @@ import java.util.*;
 public class StudentServiceImpl implements StudentService{
 
     private final StudentRepo studentRepo;
+    private final AddressService addressService;
 
     @Override
     public List<Student> findAll() {
@@ -55,13 +58,32 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student create(Student student) {
-        if (student.getCv() != null && !student.getCv().isEmpty()) {
-            String studentCVPath = processCV(student);
-            student.setCv(studentCVPath);
-        }
-        return studentRepo.save(student);
+    public Student create(StudentDto studentDto) {
+        Address newAddress = addressService.createAddress(studentDto.getAddress());
+        Student newStudent = new Student();
+        newStudent.setFirstName(studentDto.getFirstName());
+        newStudent.setLastName(studentDto.getLastName());
+        newStudent.setEmail(studentDto.getEmail());
+//        newStudent.setPassword(passwordEncoder.encode(studentDto.getPassword()));
+        newStudent.setPassword(studentDto.getPassword());
+        newStudent.setPhone(studentDto.getPhone());
+        newStudent.setStudentId(studentDto.getStudentId());
+        newStudent.setCv(studentDto.getCv());
+        newStudent.setIsCurrentlyEmployed(studentDto.getIsCurrentlyEmployed());
+        newStudent.setIsDeleted(studentDto.getIsDeleted());
+        newStudent.setAddress(newAddress);
+        newStudent.setRole(studentDto.getRole());
+        return studentRepo.save(newStudent);
     }
+
+//    @Override
+//    public Student create(Student student) {
+//        if (student.getCv() != null && !student.getCv().isEmpty()) {
+//            String studentCVPath = processCV(student);
+//            student.setCv(studentCVPath);
+//        }
+//        return studentRepo.save(student);
+//    }
 
     private @NotNull String processCV(@NotNull Student student) {
         String base64value = student.getCv();

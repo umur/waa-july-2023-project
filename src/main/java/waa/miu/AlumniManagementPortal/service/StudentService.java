@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.service;
 
+import waa.miu.AlumniManagementPortal.dto.StudentDto;
 import waa.miu.AlumniManagementPortal.entity.Student;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface StudentService {
 
     List<Student> filterEntities(Map<String, String> filterParams);
 
-    Student create(Student student);
+    Student create(StudentDto studentDto);
 
     Student update(Long id, Student student);
 
