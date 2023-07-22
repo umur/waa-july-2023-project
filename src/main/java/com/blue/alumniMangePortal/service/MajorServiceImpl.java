@@ -27,8 +27,12 @@ public class MajorServiceImpl implements MajorService {
 
     }
     public Major saveMajor(Major major){
-        majorRepo.save(major);
-        return major;
+        Major major1=new Major();
+        major1.setName(major.getName());
+        major1.setDuration(major.getDuration());
+
+        majorRepo.save(major1);
+        return major1;
     }
     public Major updateMajor(long id,Major major){
         Optional<Major> major1 = majorRepo.findById(id);
