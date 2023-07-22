@@ -42,6 +42,8 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
         jobsAdvertise1.setPosition(jobsAdvertise.getPosition());
         jobsAdvertise1.setJobAppliedDate(jobsAdvertise.getJobAppliedDate());
         jobsAdvertise1.setTag(jobsAdvertise.getTag());
+        jobsAdvertise1.setCompanyName(jobsAdvertise.getCompanyName());
+
 
         jobsAdvertise1.setAddress(jobsAdvertise.getAddress());
 
