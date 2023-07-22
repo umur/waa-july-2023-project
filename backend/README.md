@@ -1,6 +1,16 @@
-Presentation Video Recordings: https://drive.google.com/file/d/1xAEds73QMyTHHh5oy-Gmrit5Z1_UNo57/view (Mirzokhidjon Ikromov ID#613731)
+admin user
+username:admin@miu.edu, password:password
 
-https://www.dropbox.com/scl/fi/vdp69cky45qb3ixiiiy0b/Group200_StudentID-616460.mp4?rlkey=6jkyvcks309zouo72cfr5yosg&dl=0  (Dilshod Inomov ID #616460)
+faculty
+username:john@miu.edu  password:password
+
+
+to generate bunch of students, make get request to this endpoint
+
+/uaa/generateStudents
+
+
+
 
 ## Alumni Management Portal
  
