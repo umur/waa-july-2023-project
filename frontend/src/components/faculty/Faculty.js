@@ -13,7 +13,11 @@ const Faculty = () => {
 
     const getFaculties = async () => {
         try {
-            const result = await axios.get("/faculties");
+            const result = await axios.get("/faculties", {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                }
+              });
             setFaculties(result.data);
         } catch (error) {
             console.error(error);
@@ -40,7 +44,11 @@ const Faculty = () => {
         }).then(async(result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`/faculties/${id}`);
+                    await axios.delete(`/faculties/${id}`, {
+                        headers: {
+                          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                        }
+                      });
                     Swal.fire(
                         'Success!',
                         `The ${entity} has been deleted successfully.`,

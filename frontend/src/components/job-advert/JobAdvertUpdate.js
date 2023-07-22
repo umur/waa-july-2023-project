@@ -22,7 +22,11 @@ const JobAdvertUpdate = () => {
     useEffect(() => {
         const getFaculty = async () => {
             try {
-                const result = await axios.get(`/job-adverts/${id}`);
+                const result = await axios.get(`/job-adverts/${id}`, {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                    }
+                  });
                 setJobAdvert(result.data);
                 setJobTitle(result.data.jobTitle);
                 setExpectedSalary(result.data.expectedSalary);

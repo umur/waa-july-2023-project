@@ -65,7 +65,11 @@ const StudentAdd = () => {
     }
 
     const addStudent = async (student) => {
-        await axios.post("/students", student);
+        await axios.post("/students", student, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+          }
+        });
     }
 
     const resetForm = () => {

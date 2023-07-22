@@ -13,7 +13,11 @@ const JobAdvert = () => {
 
     const getJobAdverts = async () => {
         try {
-            const result = await axios.get("/job-adverts");
+            const result = await axios.get("/job-adverts", {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                }
+              });
             setJobAdverts(result.data);
         } catch (error) {
             console.error(error);
@@ -40,7 +44,11 @@ const JobAdvert = () => {
         }).then(async(result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`/job-adverts/${id}`);
+                    await axios.delete(`/job-adverts/${id}`, {
+                        headers: {
+                          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                        }
+                      });
                     Swal.fire(
                         'Success!',
                         `The ${entity} has been deleted successfully.`,
