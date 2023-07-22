@@ -18,4 +18,6 @@ public class Address {
     private String state;
     @JsonIgnore
     boolean isDeleted;
+    @OneToOne
+    private Student student;
 }

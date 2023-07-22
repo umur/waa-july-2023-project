@@ -1,10 +1,8 @@
 package com.blue.alumniMangePortal.service;
 
 import com.blue.alumniMangePortal.auth.RegisterRequest;
-import com.blue.alumniMangePortal.entity.Faculty;
-import com.blue.alumniMangePortal.entity.JobExperience;
-import com.blue.alumniMangePortal.entity.Student;
-import com.blue.alumniMangePortal.entity.UploadedFilePath;
+import com.blue.alumniMangePortal.auth.RegisterStudentRequest;
+import com.blue.alumniMangePortal.entity.*;
 import com.blue.alumniMangePortal.repository.FilePathUploadRepo;
 import com.blue.alumniMangePortal.repository.JobExperienceRepo;
 import com.blue.alumniMangePortal.repository.StudentRepo;
@@ -32,6 +30,7 @@ public class StudentServiceImpl implements StudentService {
     private final JobExperienceRepo jobExperienceRepo;
     private final FilePathUploadRepo filePathUploadRepo;
     private final PasswordEncoder passwordEncoder;
+    private final AddressService addressService;
 
     //    private final AddressRepo addressRepo;
     @Override
@@ -175,12 +174,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void addStudent(RegisterRequest request) {
+    public void addStudent(RegisterStudentRequest request) {
+        Address newAddress = addressService.saveAddress(request.getAddress());
         Student newStudent = new Student();
         newStudent.setFirstName(request.getFirst_name());
         newStudent.setLastName(request.getLast_name());
         newStudent.setEmail(request.getEmail());
         newStudent.setPassword(passwordEncoder.encode(request.getPassword()));
+        newStudent.setAddress(newAddress);
         newStudent.setRole(request.getRole());
 
         studentRepo.save(newStudent);

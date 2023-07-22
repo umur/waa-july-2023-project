@@ -26,7 +26,7 @@ public class AuthenticationController {
 
     @PostMapping("/register/student")
     public ResponseEntity<String> registerStudent(
-            @RequestBody RegisterRequest request
+            @RequestBody RegisterStudentRequest request
     ){
         studentService.addStudent(request);
         return ResponseEntity.ok("Student Created Successfully");

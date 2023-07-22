@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/students")
 @RequiredArgsConstructor
+
 @CrossOrigin
 public class StudentController {
     private final StudentService studentService;
@@ -21,8 +22,8 @@ public class StudentController {
         return studentService.registerStudent(student);
     }
     @PutMapping("/updateProfile/{id}")
-    public Student updateProfile(@PathVariable Long id, @RequestBody Student student){
-        return studentService.updateProfile(id, student);
+    public void updateProfile(@PathVariable Long id, @RequestBody Student student){
+         studentService.updateProfile(id, student);
     }
     @PostMapping ("/applyForJob/{id}")
     public JobsApplied applyForJob(@PathVariable Long id,@RequestBody JobsApplied jobsApplied){
@@ -33,7 +34,7 @@ public class StudentController {
     public Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
-    @GetMapping("/")
+    @GetMapping
     public List<Student> getAllStudents(){
         return studentService.getAllStudents();
     }
