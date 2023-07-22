@@ -18,6 +18,7 @@ public class JobAdvertisementDto {
     private String state;
     private String city;
     private List<TagDto> tags;
+    private Long facultyId;
     private StudentDto createdStudent;
     private List<String> files;
     private Date dateCreated;

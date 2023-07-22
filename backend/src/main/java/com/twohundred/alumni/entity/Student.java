@@ -19,6 +19,6 @@ public class Student extends User {
 
     private Double gpa;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     private List<CV> cvs;
 }

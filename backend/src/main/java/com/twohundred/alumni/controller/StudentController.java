@@ -39,7 +39,7 @@ public class StudentController {
         return studentServiceImpl.delete(currentStudent);
     }
 
-    @PutMapping("experience")
+    @PostMapping("experience")
     public ResponseEntity<?> addExperience(@RequestBody ExperienceDto experienceDto) {
         User currentStudent;
         try {

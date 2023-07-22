@@ -60,10 +60,15 @@ public class FacultyController {
     }
 
     @GetMapping("filter/students")
-    public ResponseEntity<?> filterStudentsByParam(@RequestParam(value = "state", required = false) String state, @RequestParam(value = "city", required = false) String city, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "id", required = false) String id) {
+    public ResponseEntity<?> filterStudentsByParam(@RequestParam(value = "state", required = false) String state,
+            @RequestParam(value = "city", required = false) String city,
+            @RequestParam(value = "major", required = false) String major,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "id", required = false) String id) {
         List<StudentDto> result = new ArrayList<>();
         try {
-            result.addAll(facultyServiceImpl.filterStudentsBySearchParam(state, city, major, name, id).stream().map(mapper::mapStudentToDTO).toList());
+            result.addAll(facultyServiceImpl.filterStudentsBySearchParam(state, city, major, name, id).stream()
+                    .map(mapper::mapStudentToDTO).toList());
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_GATEWAY);
         }
@@ -96,15 +101,14 @@ public class FacultyController {
     }
 
     @GetMapping("student/comments")
-    public ResponseEntity<?> getAllComments(){
-//        User currentFaculty;
-//        try {
-//            currentFaculty = securityUtil.getCurrentUser();
-//        } catch (Exception e) {
-//            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
-//        }
-        return ResponseEntity.ok(commentService.findAll());
+    public ResponseEntity<?> getCommentsByStudentId(@RequestParam long id) {
+        List<Comment> result = new ArrayList<>();
+        try {
+            result.addAll(commentService.getCommentByStudentId(id));
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(result);
     }
-
 
 }

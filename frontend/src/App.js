@@ -14,6 +14,10 @@ import StudentDetail from './components/StudentDetail'
 import Students from './components/Students.js'
 import Users from './components/Users.js'
 import './css/App.css'
+import JobAdList from "./module/job-ad/screen/JobAdList"
+import EditJobAd from "./module/job-ad/screen/EditJobAd"
+import EditCV from "./module/cv/screen/EditCV"
+import CVList from "./module/cv/screen/CVList"
 
 function App() {
   let [authenticated, setAuthenticated] = useState(() => {

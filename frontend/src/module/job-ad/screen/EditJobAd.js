@@ -113,56 +113,58 @@ function EditJobAd() {
               onChange={handleChange}
             />
           </div>
-          <div className="mt-4">
-            {jobAd?.createdStudent.id === user.id ? (
-              <>
-                <h5>CV</h5>
-                {jobAd?.cvs && jobAd.cvs.length > 0 ? (
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Text</th>
-                        <th scope="col">Created Student</th>
-                        <th scope="col">Created date</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {jobAd.cvs.map((cv, i) => (
-                        <tr key={cv.id.jobAdId}>
-                          <td>{i + 1}</td>
-                          <td>{`${cv.text.substring(0, 10)}...`}</td>{" "}
-                          <td>{utility.getFullName(cv.student)}</td>
-                          <td>{cv.createdDate}</td>
-                          <td>
-                            <Link
-                              to={`/cvs/${cv.id.studentId}/${cv.id.jobAdId}/detail`}
-                            >
-                              Detail
-                            </Link>
-                          </td>
+          {isEditing && (
+            <div className="mt-4">
+              {jobAd?.createdStudent.id === user.id ? (
+                <>
+                  <h5>CV</h5>
+                  {jobAd?.cvs && jobAd.cvs.length > 0 ? (
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Text</th>
+                          <th scope="col">Created Student</th>
+                          <th scope="col">Created date</th>
+                          <th scope="col">Action</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                ) : (
-                  <span className="text-primary">
-                    There are no CVs for this job ad.
-                  </span>
-                )}
-              </>
-            ) : (
-              <button
-                className="btn btn-primary"
-                onClick={() => navigate(`/job-ads/${jobAd?.id}/add-cv`)}
-              >
-                Apply for this job
-              </button>
-            )}
-          </div>
+                      </thead>
+                      <tbody>
+                        {jobAd.cvs.map((cv, i) => (
+                          <tr key={cv.id.jobAdId}>
+                            <td>{i + 1}</td>
+                            <td>{`${cv.text.substring(0, 10)}...`}</td>{" "}
+                            <td>{utility.getFullName(cv.student)}</td>
+                            <td>{cv.createdDate}</td>
+                            <td>
+                              <Link
+                                to={`/cvs/${cv.id.studentId}/${cv.id.jobAdId}/detail`}
+                              >
+                                Detail
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <span className="text-primary">
+                      There are no CVs for this job ad.
+                    </span>
+                  )}
+                </>
+              ) : (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate(`/job-ads/${jobAd?.id}/add-cv`)}
+                >
+                  Apply for this job
+                </button>
+              )}
+            </div>
+          )}
 
-          {jobAd?.createdStudent.id === user.id && (
+          {(!isEditing || jobAd?.createdStudent.id === user.id) && (
             <button className="btn btn-primary mt-4" type="submit">
               Save
             </button>
