@@ -1,29 +1,30 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Template = ({ setUser, children }) => (
   <div>
-    <ul>
-      <li>
-        <Link to="/user-details/1">Back To Default User</Link>
-      </li>
-      <li>
-        <Link to="/users"> All Users </Link>
-      </li>
-      <li>
-        <Link to="/Advertisements"> adverstisements </Link>
-      </li>
-      <li>
+    <nav>
+      <Link to="/users"> All Users </Link>
+      <Link to="/Advertisements"> Advertisements </Link>
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          justifyContent: "flex-end",
+        }}
+      >
         <button
           onClick={() => {
             localStorage.removeItem("user");
+            axios.defaults.headers.common["Authorization"] = undefined;
             setUser(null);
           }}
         >
           logout
         </button>
-      </li>
-    </ul>
-    {children}
+      </div>
+    </nav>
+    <main>{children}</main>
   </div>
 );
 

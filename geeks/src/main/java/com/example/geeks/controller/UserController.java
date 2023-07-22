@@ -19,22 +19,12 @@ import java.util.stream.Collectors;
 public class UserController {
 
 
-    //DONOT FORGET TO USE PASS AND USERNAMR(USER) IN HEADERS
     private final  UserService uss;
 
-    /*
-    @PostMapping
-    @ResponseBody
-    public User addUser(@RequestBody User user) {
-        User savedUser = uss.addUser(user);
-        return savedUser;
-    }
-    */
     @GetMapping
     @ResponseBody
     public List<UserDTO> getAllUsers() {
         List<User> users = uss.getAllUsers();
-        //return users;
         return users.stream().map(user -> {
             UserDTO dto = new UserDTO();
             BeanUtils.copyProperties(user, dto);
@@ -90,15 +80,4 @@ public class UserController {
         return users;
     }
 
-//    @DeleteMapping("/activate/{id}")
-//    @ResponseBody
-//    public void activateUser(@PathVariable Long id) {
-//        uss.deleteUser(id);
-//    }
-//
-//    @DeleteMapping("/deactivate/{id}")
-//    @ResponseBody
-//    public void deActivateUser(@PathVariable Long id) {
-//        uss.deleteUser(id);
-//    }
 }

@@ -32,15 +32,7 @@ public class UserDTO {
 
     @JsonSerialize
     private String email;
-//
-//    @JsonSerialize
-//    private String state;
-//
-//    @JsonSerialize
-//    private String city;
-//
-//    @JsonSerialize
-//    private String major;
+
 
     @JsonSerialize
     private Role role;
@@ -48,24 +40,7 @@ public class UserDTO {
     @JsonSerialize
     private boolean active;
 
-//    @JsonSerialize
-//    private String cv;
-//
     @JsonSerialize
     private boolean deleted;
-
-    // navigation properties
-
-//    @JsonSerialize
-//    private List<Log> logs;
-//
-//    @JsonSerialize
-//    private List<Experience> experiences;
-//
-//    @JsonSerialize
-//    private List<Comment> givenComments;
-//
-//    @JsonSerialize
-//    private List<Comment> receivedComments;
 
 }

@@ -2,8 +2,9 @@ import Advertisement from "./Advertisement";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Application from "./Application";
+import Template from "./Template";
 
-export default function ShowAdvertisement() {
+export default function ShowAdvertisement(props) {
   const initialAdvertisements = [
     {
       id: 1,
@@ -369,22 +370,11 @@ export default function ShowAdvertisement() {
   }, []);
 
   return (
-    <div>
+    <Template {...props}>
       <h2 className="left-margin">last 10 job advertisements</h2>
       <div className="grid-container">
         {Advertisements.slice(0, 10).map((user) => {
-          return (
-            <Advertisement
-              id={user.id}
-              description={user.description}
-              salary={user.salary}
-              companyName={user.companyName}
-              state={user.state}
-              tag={user.tag}
-              city={user.city}
-              title={user.title}
-            />
-          );
+          return <Advertisement {...user} />;
         })}
       </div>
 
@@ -392,21 +382,10 @@ export default function ShowAdvertisement() {
         10 most recently applied job advertisements
       </h2>
       <div className="grid-container">
-        {initialApplications.slice(0, 10).map((user) => {
-          return (
-            <Application
-              id={user.id}
-              description={user.description}
-              salary={user.salary}
-              companyName={user.companyName}
-              state={user.state}
-              tag={user.tag}
-              city={user.city}
-              title={user.title}
-            />
-          );
+        {applications.slice(0, 10).map((user) => {
+          return <Application {...user.advertisement} />;
         })}
       </div>
-    </div>
+    </Template>
   );
 }

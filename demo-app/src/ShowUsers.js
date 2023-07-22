@@ -3,22 +3,14 @@ import axios from "axios";
 import User from "./User";
 import Template from "./Template";
 
-export default function ShowUsers() {
+export default function ShowUsers(props) {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get("/users", {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${localStorage.getItem("user")}`,
-          },
-        });
+        const response = await axios.get("/users");
         setUsers(response.data);
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -27,14 +19,8 @@ export default function ShowUsers() {
     getUsers();
   }, []);
 
-  if (false) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div>
-      <Template />
-
+    <Template {...props}>
       <table>
         <thead>
           <tr>
@@ -59,6 +45,6 @@ export default function ShowUsers() {
           ))}
         </tbody>
       </table>
-    </div>
+    </Template>
   );
 }

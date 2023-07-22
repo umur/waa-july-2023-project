@@ -30,7 +30,6 @@
 //
 // export default User;
 
-
 import React from "react";
 import { useNavigate } from "react-router";
 
@@ -38,30 +37,20 @@ function User(props) {
   const navigate = useNavigate();
 
   const onUserClicked = () => {
-    navigate("/UserDetails/" + props.id);
+    navigate("/user/" + props.id);
   };
 
   return (
-      <tr>
-        <td>
-          {props.id}
-        </td>
-        <td>
-          {props.name}
-        </td>
-        <td>
-          {props.email}
-        </td>
-        <td>
-          {props.role}
-        </td>
-        <td>
-          {props.active}
-        </td>
-        <td>
-          <input type="button" value="Show" onClick={onUserClicked} />
-        </td>
-      </tr>
+    <tr>
+      <td>{props.id}</td>
+      <td>{props.name}</td>
+      <td>{props.email}</td>
+      <td>{props.role}</td>
+      <td>{props.active}</td>
+      <td>
+        <button onClick={onUserClicked}>Show</button>
+      </td>
+    </tr>
   );
 }
 

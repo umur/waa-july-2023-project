@@ -22,8 +22,11 @@ function Login({ setUser }) {
 
     if (result.status === 200) {
       setUser(result.data);
-      console.log(result.data.jwtToken)
+      console.log(result.data.jwtToken);
       localStorage.setItem("user", result.data.jwtToken);
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${result.data.jwtToken}`;
       console.log(result.status);
       console.log(result.data.jwtToken);
     } else {

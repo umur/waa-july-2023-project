@@ -37,15 +37,20 @@ public class UserActivityLogger {
         var log = new Log();
         log.setTime(LocalDateTime.now());
         log.setDescription(joinPoint.toShortString());
-        SimpleGrantedAuthority userId = (SimpleGrantedAuthority) SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[1];
-        User userInDB;
-        if (userRepo.findById(Long.valueOf(userId.getAuthority())).isPresent()) {
-            userInDB = userRepo.findById(Long.valueOf(userId.getAuthority())).get();
-        } else {
-            userInDB = null;
-        }
+        SimpleGrantedAuthority userId = null;
+        try{
+            userId = (SimpleGrantedAuthority) SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[1];
+            User userInDB;
+            if (userRepo.findById(Long.valueOf(userId.getAuthority())).isPresent()) {
+                userInDB = userRepo.findById(Long.valueOf(userId.getAuthority())).get();
+            } else {
+                userInDB = null;
+            }
 
-        log.setUser(userInDB);
-        logger.addLog(log);
+            log.setUser(userInDB);
+            logger.addLog(log);
+        }catch (Exception e){
+            userId = (SimpleGrantedAuthority) SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()[0];
+        }
     }
 }

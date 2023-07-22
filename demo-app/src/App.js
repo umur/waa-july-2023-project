@@ -20,11 +20,17 @@ const App = () => {
   return user ? (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ShowUsers />} />
-        <Route path="/user-details/:id" element={<UserDetails />} />
-        <Route path="/users" element={<ShowUsers />} />
-        <Route path="/AdvertisementDetails/:id" element={<UserDetails />} />
-        <Route path="/Advertisements" element={<ShowAdvertisement />} />
+        <Route path="/" element={<ShowUsers setUser={setUser} />} />
+        <Route path="/user/:id" element={<UserDetails setUser={setUser} />} />
+        <Route path="/users" element={<ShowUsers setUser={setUser} />} />
+        <Route
+          path="/AdvertisementDetails/:id"
+          element={<UserDetails setUser={setUser} />}
+        />
+        <Route
+          path="/Advertisements"
+          element={<ShowAdvertisement setUser={setUser} />}
+        />
       </Routes>
     </BrowserRouter>
   ) : (

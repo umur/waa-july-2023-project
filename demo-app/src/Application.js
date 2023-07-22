@@ -1,15 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router";
 
 function Application(props) {
-  const navigate = useNavigate();
-
-  const onApplicationClicked = () => {
-    navigate("/ApplicationDetails/" + props.id);
-  };
-
   return (
-    <div className="userDiv" onClick={onApplicationClicked}>
+    <div className="userDiv">
       <span className="first-span">{props.title}</span>
       <hr />
       <span className="other-spans">{props.companyName}</span>
