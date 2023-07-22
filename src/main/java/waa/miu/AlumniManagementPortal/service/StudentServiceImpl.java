@@ -132,4 +132,44 @@ public class StudentServiceImpl implements StudentService{
     public void delete(Long id) {
         studentRepo.deleteById(id);
     }
+
+    @Override
+    public List<Map<String, Integer>> getStudentsPerState() {
+        Map<String, Integer> map = new HashMap<>();
+        List<Student> studentList = findAll();
+
+        for (Student s : studentList) {
+            String state = s.getAddress().getState();
+            map.put(state, map.getOrDefault(state, 0) + 1);
+        }
+
+        List<Map<String, Integer>> result = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            Map<String, Integer> stateCountMap = new HashMap<>();
+            stateCountMap.put(entry.getKey(), entry.getValue());
+            result.add(stateCountMap);
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<Map<String, Integer>> getStudentsPerCity() {
+        Map<String, Integer> map = new HashMap<>();
+        List<Student> studentList = findAll();
+
+        for (Student s : studentList) {
+            String city = s.getAddress().getCity();
+            map.put(city, map.getOrDefault(city, 0) + 1);
+        }
+
+        List<Map<String, Integer>> result = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            Map<String, Integer> cityCountMap = new HashMap<>();
+            cityCountMap.put(entry.getKey(), entry.getValue());
+            result.add(cityCountMap);
+        }
+
+        return result;
+    }
 }
