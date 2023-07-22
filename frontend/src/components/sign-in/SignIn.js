@@ -25,7 +25,6 @@ const SignIn = () => {
                 }
               });
             handleLoginSuccess(response.data.token);
-            console.log(response.data);
         } catch (error) {
             console.error("Login failed! /n", error);
             // Handle login error (display error message, clear form, etc.)

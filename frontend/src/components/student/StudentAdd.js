@@ -12,6 +12,14 @@ const StudentAdd = () => {
     const [phone, setPhone] = useState('');
     const [cv, setCv] = useState('');
     const [isCurrentlyEmployed, setIsCurrentlyEmployed] = useState('');
+
+    const [studentId, setStudentId] = useState('');
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zipcode, setZipcode] = useState('');
+
+
     const [isPending, setIsPending] = useState(false);
     const navigate = useNavigate();
 
@@ -22,7 +30,8 @@ const StudentAdd = () => {
         try {
           // convert the cv to base64
           const base64CV = await convertFileToBase64(cv);
-          const student = { firstName, lastName, email, phone, cv: base64CV, isCurrentlyEmployed };
+          const address = {street, city, state, zipcode};
+          const student = { firstName, lastName, email, phone, cv: base64CV, isCurrentlyEmployed, studentId,  address};
           await addStudent(student);
           Swal.fire({
             title: `${entity} added successfully`,
@@ -118,6 +127,35 @@ const StudentAdd = () => {
                     <option value="Yes">Yes, I am currently employed</option>
                     <option value="No">No, I am not currently employed</option>
                   </select>
+                </div>
+
+                <div className="mb-3">
+                <label htmlFor="studentIDInput" className="form-label">Student ID</label>
+                <input type="text" className="form-control" id="studentIDInput" value={studentId} onChange={e => setStudentId(e.target.value)} required />
+                </div>
+
+                <div className="mb-3">
+                  <h3><em>Address section</em></h3>
+                </div>
+
+                <div className="mb-3">
+                <label htmlFor="streetInput" className="form-label">Street</label>
+                <input type="text" className="form-control" id="streetInput" value={street} onChange={e => setStreet(e.target.value)} required />
+                </div>
+                
+                <div className="mb-3">
+                <label htmlFor="cityInput" className="form-label">City</label>
+                <input type="text" className="form-control" id="cityInput" value={city} onChange={e => setCity(e.target.value)} required />
+                </div>
+
+                <div className="mb-3">
+                <label htmlFor="stateInput" className="form-label">State</label>
+                <input type="text" className="form-control" id="stateInput" value={state} onChange={e => setState(e.target.value)} required />
+                </div>
+
+                <div className="mb-3">
+                <label htmlFor="zipcodeInput" className="form-label">Zip code</label>
+                <input type="text" className="form-control" id="zipcodeInput" value={zipcode} onChange={e => setZipcode(e.target.value)} required />
                 </div>
 
                 <div className="mb-3">
