@@ -31,7 +31,7 @@ import com.twohundred.alumni.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/faculties")
+@RequestMapping("/faculties/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @PreAuthorize("hasAuthority('FACULTY')")
@@ -58,7 +58,7 @@ public class FacultyController {
         return facultyServiceImpl.delete(currentFaculty);
     }
 
-    @GetMapping("/filter/students")
+    @GetMapping("filter/students")
     public ResponseEntity<?> filterStudentsByParam(@RequestParam(value = "state", required = false) String state, @RequestParam(value = "city", required = false) String city, @RequestParam(value = "major", required = false) String major, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "id", required = false) String id) {
         List<StudentDto> result = new ArrayList<>();
         try {
@@ -70,7 +70,7 @@ public class FacultyController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/student/comment")
+    @PostMapping("student/comment")
     public ResponseEntity<?> addCommentToStudent(@RequestBody CommentDto commentDto) {
         User currentFaculty, student;
         try {
@@ -94,26 +94,15 @@ public class FacultyController {
         return ResponseEntity.ok(result);
     }
 
-//    @GetMapping("/student/comments")
-//    public ResponseEntity<?> getAllComments() {
-////        User currentFaculty;
-////        try {
-////            currentFaculty = securityUtil.getCurrentUser();
-////        } catch (Exception e) {
-////            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
-////        }
-//        return ResponseEntity.ok(commentService.findAll());
-//    }
-
-    @GetMapping("/student/comments")
-    public ResponseEntity<?> getCommentsByStudentId(@RequestParam long id) {
-        List<Comment> result = new ArrayList<>();
-        try {
-            result.addAll(commentService.getCommentByStudentId(id));
-        } catch (Exception e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(result);
+    @GetMapping("student/comments")
+    public ResponseEntity<?> getAllComments(){
+//        User currentFaculty;
+//        try {
+//            currentFaculty = securityUtil.getCurrentUser();
+//        } catch (Exception e) {
+//            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+//        }
+        return ResponseEntity.ok(commentService.findAll());
     }
 
 

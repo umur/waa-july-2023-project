@@ -18,7 +18,7 @@ import com.twohundred.alumni.util.SecurityUtil;
 
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/cvs")
+@RequestMapping("/cvs/")
 @RestController
 @RequiredArgsConstructor
 public class CVController {
@@ -30,19 +30,39 @@ public class CVController {
         return cvService.getCVs(securityUtil.getCurrentUserId());
     }
 
+    @GetMapping("{jobAdId}")
+    public CVDto getCV(@PathVariable int jobAdId) {
+        CVId cvId = new CVId();
+        cvId.setJobAdId(jobAdId);
+        cvId.setStudentId(securityUtil.getCurrentUserId());
+        
+        return cvService.findByIdDto(cvId);
+    }
+
+    @GetMapping("{jobAdId}/student/{studentId}")
+    public CVDto getCVForCreator(@PathVariable int jobAdId, @PathVariable Long studentId) {
+        CVId cvId = new CVId();
+
+        cvId.setJobAdId(jobAdId);
+        cvId.setStudentId(studentId);
+        
+        return cvService.findByIdDtoForCreator(cvId);
+    }
+
     @PostMapping
     public CVDto create(@RequestBody CVDto cvDto) {
         cvDto.getId().setStudentId(securityUtil.getCurrentUserId());
         return cvService.create(cvDto);
     }
 
-    @PutMapping
-    public CVDto update(@RequestBody CVDto cvDto) {
+    @PutMapping("{jobAdId}")
+    public CVDto update(@PathVariable int jobAdId, @RequestBody CVDto cvDto) {
         cvDto.getId().setStudentId(securityUtil.getCurrentUserId());
+        cvDto.getId().setJobAdId(jobAdId);
         return cvService.update(cvDto);
     }
 
-    @DeleteMapping("/job-ads/{jobAdId}")
+    @DeleteMapping("{jobAdId}")
     public CVDto delete(@PathVariable int jobAdId) {
         CVId cvId = new CVId();
         cvId.setJobAdId(jobAdId);

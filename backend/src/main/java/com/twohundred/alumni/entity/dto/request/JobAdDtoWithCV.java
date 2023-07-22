@@ -19,5 +19,5 @@ public class JobAdDtoWithCV {
     private StudentDto createdStudent;
     private List<String> files;
     private Date dateCreated;
-    private List<CVDto> cvs;
+    private List<CVWithoutJobAdDto> cvs;
 }

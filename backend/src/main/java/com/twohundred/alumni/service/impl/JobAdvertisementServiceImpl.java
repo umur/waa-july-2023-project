@@ -1,5 +1,6 @@
 package com.twohundred.alumni.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ import com.twohundred.alumni.exception.Exceptions;
 import com.twohundred.alumni.repository.JobAdvertisementRepo;
 import com.twohundred.alumni.repository.TagRepo;
 import com.twohundred.alumni.service.JobAdvertisementService;
+import com.twohundred.alumni.util.SecurityUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JobAdvertisementServiceImpl implements JobAdvertisementService {
     private final ModelMapper modelMapper;
+    private final SecurityUtil securityUtil;
     private final StudentServiceImpl studentServiceImpl;
     private final TagRepo tagRepo;
     private final JobAdvertisementRepo jobAdvertisementRepo;
@@ -65,6 +68,7 @@ public class JobAdvertisementServiceImpl implements JobAdvertisementService {
         Student student = studentServiceImpl.findById(userId);
         JobAdvertisement jobAd = modelMapper.map(jobAdvertisementDto, JobAdvertisement.class);
         jobAd.setCreatedStudent(student);
+        jobAd.setDateCreated(new Date());
         JobAdvertisement tempJobAd = jobAdvertisementRepo.save(jobAd);
 
         return modelMapper.map(tempJobAd, JobAdvertisementDto.class);
@@ -127,6 +131,10 @@ public class JobAdvertisementServiceImpl implements JobAdvertisementService {
     @Override
     public JobAdDtoWithCV getByIdDtoWithCV(int id) {
         JobAdvertisement jobAd = getById(id);
+
+        if (!securityUtil.getCurrentUserId().equals(jobAd.getCreatedStudent().getId())) {
+            jobAd.setCvs(null);
+        }
 
         return modelMapper.map(jobAd, JobAdDtoWithCV.class);
     }

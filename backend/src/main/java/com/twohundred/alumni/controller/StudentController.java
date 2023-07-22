@@ -16,7 +16,7 @@ import com.twohundred.alumni.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/students/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentController {
@@ -39,7 +39,7 @@ public class StudentController {
         return studentServiceImpl.delete(currentStudent);
     }
 
-    @PostMapping("/experience")
+    @PutMapping("experience")
     public ResponseEntity<?> addExperience(@RequestBody ExperienceDto experienceDto) {
         User currentStudent;
         try {

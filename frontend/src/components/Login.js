@@ -44,6 +44,7 @@ const Login = (props)=>{
         try {
             const result = await axios.post("/uaa/signin", userCredentials);
             console.log(result);
+            console.log("here");
             if(result.status > 400) {
                 setLoginErrorMessage('Error happened while sign in');
             }
@@ -77,7 +78,7 @@ const Login = (props)=>{
     return (
         <div className="auth-inner">
                 <h3>Sign In</h3>
-                <span class="error text-danger">{loginErrorMessage}</span>
+                <span className="error text-danger">{loginErrorMessage}</span>
                 <div className="mb-3">
                     <label>Email address</label>
                     <input

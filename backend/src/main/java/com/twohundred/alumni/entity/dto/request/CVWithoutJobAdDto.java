@@ -7,10 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CVDto {
+public class CVWithoutJobAdDto {
     private CVIdDto id;
+    private StudentWithoutCVDto student;
     private String text;
-    private StudentDto student;
-    private JobAdvertisementDto jobAd;
     private LocalDate createdDate;
 }

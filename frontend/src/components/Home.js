@@ -1,6 +1,6 @@
 export default function Home() {
     return (
-        <div class="homeClass">
+        <div className="homeClass">
             <h2>Alumni Management Portal</h2>
             <hr/>
             <h4>

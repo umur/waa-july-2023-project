@@ -46,24 +46,33 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable).cors().and()
-                .exceptionHandling((exceptionHandling) ->
-                        exceptionHandling.authenticationEntryPoint(new AlumniAuthenticationEntryPoint()))
+                .exceptionHandling((exceptionHandling) -> exceptionHandling
+                        .authenticationEntryPoint(new AlumniAuthenticationEntryPoint()))
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers(HttpMethod.OPTIONS).permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/uaa/**").permitAll()
                         .requestMatchers("/echart/**").permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                        .requestMatchers("/faculties/**").hasAuthority("FACULTY")
-                        .requestMatchers("/user/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
+                        // .requestMatchers("/faculties/**").permitAll()
+                        .requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/student/**")
+                        .hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
+                        .requestMatchers("/job-ads/**")
+                        .hasAnyAuthority("STUDENT")
+                        .requestMatchers("/cvs/**")
+                        .hasAnyAuthority("STUDENT")
+                        .requestMatchers("/faculties/**")
+                        .hasAnyAuthority("FACULTY", "ADMIN")
 
                         /*
-                        .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
-                        .requestMatchers("/student/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
-                        .requestMatchers("/comment/**").hasAnyAuthority("ADMIN", "FACULTY")
-                        .requestMatchers("/faculties/**").hasAuthority("FACULTY")
-                        .requestMatchers("/user/**").hasAuthority("ADMIN")
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
-
+                         * .requestMatchers("/job/**").hasAnyAuthority("ADMIN", "FACULTY", "STUDENT")
+                         * .requestMatchers("/student/**").hasAnyAuthority("ADMIN", "FACULTY",
+                         * "STUDENT")
+                         * .requestMatchers("/comment/**").hasAnyAuthority("ADMIN", "FACULTY")
+                         * .requestMatchers("/faculties/**").hasAuthority("FACULTY")
+                         * .requestMatchers("/user/**").hasAuthority("ADMIN")
+                         * .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                         * 
                          */
                         .anyRequest()
                         .authenticated())
@@ -73,47 +82,52 @@ public class SecurityConfig {
                         jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout((logout) -> logout.logoutSuccessUrl("/uaa/logout")
                         .permitAll().addLogoutHandler(logoutHandler)
-                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()))
-                        ;
-
+                        .logoutSuccessHandler(
+                                (request, response, authentication) -> SecurityContextHolder.clearContext()));
 
         return http.build();
     }
-/*
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedHeaders(Arrays.asList("Host",
-                "Content-Type",
-                "Authorization",
-                "Access-Control-Request-Origin",
-                "Access-Control-Request-Method",
-                "Access-Control-Request-Headers",
-                "Access-Control-Allow-Origin",
-                "access-control-allow-origin",
-                "Access-Control-Allow-Headers",
-                "access-control-allow-headers",
-                "Access-Control-Allow-Methods",
-                "access-control-allow-methods"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE", "OPTIONS", "HEAD"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-*/
-/*
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://127.0.0.1:3000"));
-        configuration.addAllowedOriginPattern("*");
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-*/
+    /*
+     * @Bean
+     * CorsConfigurationSource corsConfigurationSource() {
+     * CorsConfiguration configuration = new CorsConfiguration();
+     * configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+     * configuration.setAllowedHeaders(Arrays.asList("Host",
+     * "Content-Type",
+     * "Authorization",
+     * "Access-Control-Request-Origin",
+     * "Access-Control-Request-Method",
+     * "Access-Control-Request-Headers",
+     * "Access-Control-Allow-Origin",
+     * "access-control-allow-origin",
+     * "Access-Control-Allow-Headers",
+     * "access-control-allow-headers",
+     * "Access-Control-Allow-Methods",
+     * "access-control-allow-methods"));
+     * configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE",
+     * "OPTIONS", "HEAD"));
+     * UrlBasedCorsConfigurationSource source = new
+     * UrlBasedCorsConfigurationSource();
+     * source.registerCorsConfiguration("/**", configuration);
+     * return source;
+     * }
+     */
+
+    /*
+     * @Bean
+     * CorsConfigurationSource corsConfigurationSource() {
+     * CorsConfiguration configuration = new CorsConfiguration();
+     * configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000",
+     * "http://127.0.0.1:3000"));
+     * configuration.addAllowedOriginPattern("*");
+     * configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT",
+     * "DELETE"));
+     * UrlBasedCorsConfigurationSource source = new
+     * UrlBasedCorsConfigurationSource();
+     * source.registerCorsConfiguration("/**", configuration);
+     * return source;
+     * }
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -126,7 +140,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

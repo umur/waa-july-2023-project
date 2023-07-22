@@ -1,13 +1,9 @@
 package com.twohundred.alumni.entity.dto.request;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 
 @Data
-public class StudentDto {
+public class StudentWithoutCVDto {
     private Long id;
     private String major;
     private Double gpa;
@@ -15,6 +11,4 @@ public class StudentDto {
     private String lastName;
     private String email;
     private AddressDto address;
-    @JsonIgnore
-    private List<CVDto> cvs;
 }

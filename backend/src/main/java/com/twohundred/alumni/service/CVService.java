@@ -9,6 +9,10 @@ import com.twohundred.alumni.entity.dto.request.CVDto;
 public interface CVService {
     List<CVDto> getCVs(Long id);
 
+    CVDto findByIdDto(CVId cvId);
+
+    CVDto findByIdDtoForCreator(CVId cvId);
+
     CV findById(CVId cvId);
 
     CVDto create(CVDto cv);

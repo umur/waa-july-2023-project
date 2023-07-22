@@ -68,18 +68,61 @@ export default function Profile(props) {
     }
 }
 
-  const removeExperience = async experienceId => {
-    const headers = {
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${user.accessToken}`,
-    };
-
-    const result = await axios.delete(`/students/experience/${experienceId}`, { headers });
-
-    if (result.status === 200) {
-      getExperience();
+    const postUserData = async (userData) => {
+        const data = {
+            id:user.id,
+            email:userData.email,
+            firstName:userData.firstname,
+            lastName:userData.lastname,
+            role:userData.role,
+            title:userData.title,
+            salary:userData.salary,
+            major:userData.major,
+            gpa:userData.gpa,
+            address: {
+                street: userData.street,
+                city: userData.city,
+                zip: userData.zip,
+                state: userData.state
+            }
+        }
+        // send request
+        try {
+            let url = "/students/";
+            if(userData.role == 'FACULTY') {
+                url = "/faculties/"
+            }
+            const headers = {
+                    // 'Access-Control-Allow-Headers': '*',
+                    // "Access-Control-Allow-Origin": "*",
+                    // "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.accessToken}`
+            };
+            const result = await axios.put(url, data, {headers});
+            if(result.status > 399) {
+                setUserErrorMessage('Saving user data failed')
+            }
+            if(result.status == 200) {
+                user.email = userData.email;
+                user.firstName = userData.firstname;
+                user.lastName = userData.lastname;
+                user.name = userData.firstname + ' ' + userData.lastname;
+                user.title = userData.title;
+                user.salary = userData.salary;
+                user.major = userData.major;
+                user.gpa = userData.gpa;
+                user.street = userData.street;
+                user.city = userData.city;
+                user.zip = userData.zip;
+                user.state = userData.state;
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
+                props.applyUserDataChange();
+                alert('User data has been saved successfully!');
+            }
+            console.log(result);
+        }catch (e) {
+            setUserErrorMessage('Saving user data failed')
+        }
     }
   };
 

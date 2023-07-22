@@ -21,26 +21,26 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/job-ads")
+@RequestMapping("/job-ads/")
 public class JobAdvertisementController {
     private final JobAdvertisementServiceImpl jobAdServiceImpl;
     private final SecurityUtil securityUtil;
 
     @LogMe
-    @GetMapping("/created")
+    @GetMapping("created")
     public List<JobAdDtoWithCV> getCreatedJobAds() {
         return jobAdServiceImpl.getCreatedJobAds(securityUtil.getCurrentUserId());
     }
 
     @LogMe
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
 
     public JobAdvertisementDto get(@PathVariable int id) {
         return jobAdServiceImpl.getByIdDto(id);
     }
 
     @LogMe
-    @GetMapping("/cv/{id}")
+    @GetMapping("cv/{id}")
 
     public JobAdDtoWithCV getWithCV(@PathVariable int id) {
         return jobAdServiceImpl.getByIdDtoWithCV(id);
@@ -59,14 +59,14 @@ public class JobAdvertisementController {
     }
 
     @LogMe
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public JobAdvertisementDto update(@PathVariable int id, @RequestBody JobAdvertisementDto jobAdvertisementDto) {
         jobAdvertisementDto.setId(id);
         return jobAdServiceImpl.update(jobAdvertisementDto, securityUtil.getCurrentUserId());
     }
 
     @LogMe
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public JobAdvertisementDto delete(@PathVariable int id) {
         return jobAdServiceImpl.delete(id, securityUtil.getCurrentUserId());
     }
