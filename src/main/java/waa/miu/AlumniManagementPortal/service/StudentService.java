@@ -1,5 +1,6 @@
 package waa.miu.AlumniManagementPortal.service;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import waa.miu.AlumniManagementPortal.dto.StudentDto;
 import waa.miu.AlumniManagementPortal.entity.Student;
 
@@ -19,4 +20,8 @@ public interface StudentService {
     Student update(Long id, Student student);
 
     void delete(Long id);
+
+    List<Map<String, Integer>> getStudentsPerState();
+
+    List<Map<String, Integer>> getStudentsPerCity();
 }
