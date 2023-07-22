@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> findAll() {
-        return studentRepo.findAll();
+        return studentRepo.findAllActiveStudents();
     }
 
     @Override
@@ -130,7 +131,10 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public void delete(Long id) {
-        studentRepo.deleteById(id);
+//        studentRepo.deleteById(id);
+        Student existingStudent = findById(id);
+        existingStudent.setIsDeleted(existingStudent.getIsDeleted());
+        studentRepo.save(existingStudent);
     }
 
     @Override
