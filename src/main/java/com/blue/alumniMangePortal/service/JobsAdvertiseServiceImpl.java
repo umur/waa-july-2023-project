@@ -40,9 +40,9 @@ public class JobsAdvertiseServiceImpl implements JobsAdvertiseService {
         JobsAdvertise jobsAdvertise1=new JobsAdvertise();
         jobsAdvertise1.setDate(jobsAdvertise.getDate());
         jobsAdvertise1.setPosition(jobsAdvertise.getPosition());
+        jobsAdvertise1.setCompanyName(jobsAdvertise.getCompanyName());
         jobsAdvertise1.setJobAppliedDate(jobsAdvertise.getJobAppliedDate());
         jobsAdvertise1.setTag(jobsAdvertise.getTag());
-
         jobsAdvertise1.setAddress(jobsAdvertise.getAddress());
 
         jobsAdvertiseRepo.save(jobsAdvertise1);
