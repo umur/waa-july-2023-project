@@ -60,6 +60,10 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student create(StudentDto studentDto) {
+        if (studentDto.getCv() != null && !studentDto.getCv().isEmpty()) {
+            String studentCVPath = processCV(studentDto);
+            studentDto.setCv(studentCVPath);
+        }
         Address newAddress = addressService.createAddress(studentDto.getAddress());
         Student newStudent = new Student();
         newStudent.setFirstName(studentDto.getFirstName());
@@ -71,22 +75,14 @@ public class StudentServiceImpl implements StudentService{
         newStudent.setStudentId(studentDto.getStudentId());
         newStudent.setCv(studentDto.getCv());
         newStudent.setIsCurrentlyEmployed(studentDto.getIsCurrentlyEmployed());
-        newStudent.setIsDeleted(studentDto.getIsDeleted());
+        newStudent.setIsDeleted("false");
         newStudent.setAddress(newAddress);
         newStudent.setRole(studentDto.getRole());
+        newStudent.setCv(studentDto.getCv());
         return studentRepo.save(newStudent);
     }
 
-//    @Override
-//    public Student create(Student student) {
-//        if (student.getCv() != null && !student.getCv().isEmpty()) {
-//            String studentCVPath = processCV(student);
-//            student.setCv(studentCVPath);
-//        }
-//        return studentRepo.save(student);
-//    }
-
-    private @NotNull String processCV(@NotNull Student student) {
+    private @NotNull String processCV(@NotNull StudentDto student) {
         String base64value = student.getCv();
         byte[] fileBytes = Base64.getDecoder().decode(base64value);
         Tika tika = new Tika();
@@ -105,7 +101,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student update(Long id, Student student) {
+    public Student update(Long id, StudentDto student) {
         Student existingStudent = findById(id);
         String studentCVPath = existingStudent.getCv();
 //        if(student.getCv() != null)
@@ -133,7 +129,7 @@ public class StudentServiceImpl implements StudentService{
     public void delete(Long id) {
 //        studentRepo.deleteById(id);
         Student existingStudent = findById(id);
-        existingStudent.setIsDeleted(existingStudent.getIsDeleted());
+        existingStudent.setIsDeleted("true");
         studentRepo.save(existingStudent);
     }
 

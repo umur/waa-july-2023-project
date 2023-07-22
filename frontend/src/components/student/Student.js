@@ -44,7 +44,11 @@ const Student = () => {
         }).then(async(result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`/students/${id}`);
+                    await axios.delete(`/students/${id}`, {
+                        headers: {
+                          Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                        }
+                    });
                     Swal.fire(
                         'Success!',
                         `The ${entity} has been deleted successfully.`,
