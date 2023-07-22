@@ -1,5 +1,7 @@
 Presentation Video Recordings: https://drive.google.com/file/d/1xAEds73QMyTHHh5oy-Gmrit5Z1_UNo57/view (Mirzokhidjon Ikromov ID#613731)
 
+https://www.dropbox.com/scl/fi/vdp69cky45qb3ixiiiy0b/Group200_StudentID-616460.mp4?rlkey=6jkyvcks309zouo72cfr5yosg&dl=0  (Dilshod Inomov ID #616460)
+
 ## Alumni Management Portal
  
 Alumni Tracking System is an online-based application that helps to tracking of college graduates. The project aims to improve current tracking procedure of college graduate and providing alumni data to college faculties. It aims to developing a web portal which will be useful for the college to monitor the alumni and for the alumni to update their current status about the job activities.
